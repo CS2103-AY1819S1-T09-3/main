@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.google.GoogleClientInstance;
 import seedu.address.model.person.Person;
 
 /**
@@ -78,6 +79,16 @@ public interface Model {
     void commitAddressBook();
 
     /**
+     * Get GoogleClientInstance.
+     */
+    GoogleClientInstance getGoogleClientInstance();
+
+    /**
+     * Set GoogleClientInstance.
+     */
+    void setGoogleClientInstance(GoogleClientInstance instance);
+
+    /**
      * Updates the userPrefs current directory.
      */
     void updateUserPrefs(Path newCurrDirectory);
@@ -86,4 +97,5 @@ public interface Model {
      * Retrieves the userPrefs current directory.
      */
     Path getCurrDirectory();
+
 }
