@@ -35,7 +35,7 @@ public class LsCommand extends Command {
                         fileNames.append(file.getName());
                         fileNames.append("\t");
                     }
-                } else if (file.isDirectory()){
+                } else if (file.isDirectory()) {
                     // do not list system directories
                     if (!(file.getName()).startsWith(".")) {
                         fileNames.append(file.getName());

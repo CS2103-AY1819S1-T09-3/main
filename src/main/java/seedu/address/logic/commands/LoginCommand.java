@@ -10,7 +10,7 @@ import static java.util.Objects.requireNonNull;
 //TODO: add for parser
 
 /**
- *  Logs in user
+ * Logs in user
  */
 public class LoginCommand extends Command {
 
