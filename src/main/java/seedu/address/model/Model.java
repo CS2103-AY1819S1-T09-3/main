@@ -3,6 +3,7 @@ package seedu.address.model;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.google.GoogleClientInstance;
 import seedu.address.model.person.Person;
 
 /**
@@ -75,4 +76,14 @@ public interface Model {
      * Saves the current address book state for undo/redo.
      */
     void commitAddressBook();
+
+    /**
+     * Get GoogleClientInstance.
+     */
+    GoogleClientInstance getGoogleClientInstance();
+
+    /**
+     * Set GoogleClientInstance.
+     */
+    void setGoogleClientInstance(GoogleClientInstance instance);
 }

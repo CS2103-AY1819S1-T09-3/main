@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.ComponentManager;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.model.AddressBookChangedEvent;
+import seedu.address.model.google.GoogleClientInstance;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,6 +23,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     private final VersionedAddressBook versionedAddressBook;
     private final FilteredList<Person> filteredPersons;
+    public GoogleClientInstance photoLibrary = null;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -98,6 +100,18 @@ public class ModelManager extends ComponentManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== GoogleClient Accessors =============================================================
+
+    @Override
+    public void setGoogleClientInstance(GoogleClientInstance instance) {
+        photoLibrary = instance;
+    }
+
+    @Override
+    public GoogleClientInstance getGoogleClientInstance() {
+        return photoLibrary;
     }
 
     //=========== Undo/Redo =================================================================================

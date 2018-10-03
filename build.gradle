@@ -58,6 +58,12 @@ dependencies {
     String testFxVersion = '4.0.12-alpha'
     String jUnitVersion = '5.1.0'
 
+    compile 'com.google.photos.library:google-photos-library-client:1.0.0'
+    compile 'com.google.apis:google-api-services-plus:v1-rev557-1.25.0'
+    compile 'com.google.oauth-client:google-oauth-client-java6:1.23.0'
+    compile 'com.google.oauth-client:google-oauth-client-jetty:1.23.0'
+    compile 'com.google.api-client:google-api-client:1.25.0'
+    compile 'io.grpc:grpc-netty:1.13.2'
     implementation group: 'org.controlsfx', name: 'controlsfx', version: '8.40.11'
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.7.0'
     implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.7.4'
