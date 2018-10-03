@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 import java.io.File;
 import javax.imageio.ImageIO;
 
-//@@author kaile
+//@@author chivent
 
 /**
  * Lists all files in current directory.
