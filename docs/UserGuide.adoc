@@ -1,4 +1,4 @@
-= AddressBook Level 4 - User Guide
+= Piconso - User Guide
 :site-section: UserGuide
 :toc:
 :toc-title:
@@ -12,33 +12,20 @@ ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
 endif::[]
-:repoURL: https://github.com/se-edu/addressbook-level4
+:repoURL: https://github.com/CS2103-AY1819S1-T09-3/main
 
 By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
 
 == Introduction
 
-AddressBook Level 4 (AB4) is for those who *prefer to use a desktop app for managing contacts*. More importantly, AB4 is *optimized for those who prefer to work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB4 can get your contact management tasks done faster than traditional GUI apps. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
+Piconso is for those who *prefer to use a desktop app for editing images*. More importantly, Piconso is *optimized for those who prefer to work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Piconso can edit your images faster than Photoshop. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
 
 == Quick Start
 
 .  Ensure you have Java version `9` or later installed in your Computer.
-.  Download the latest `addressbook.jar` link:{repoURL}/releases[here].
-.  Copy the file to the folder you want to use as the home folder for your Address Book.
+.  Download the latest `piconso.jar` link:{repoURL}/releases[here].
+.  Copy the file to the folder you want to use as the home folder for your Piconso.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
-+
-image::Ui.png[width="790"]
-+
-.  Type the command in the command box and press kbd:[Enter] to execute it. +
-e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
-.  Some example commands you can try:
-
-* *`list`* : lists all contacts
-* **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : adds a contact named `John Doe` to the Address Book.
-* **`delete`**`3` : deletes the 3rd contact shown in the current list
-* *`exit`* : exits the app
-
-.  Refer to <<Features>> for details of each command.
 
 [[Features]]
 == Features
@@ -54,207 +41,163 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 === Viewing help : `help`
 
-Format: `help`
-
-=== Adding a person: `add`
-
-Adds a person to the address book +
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
-
-[TIP]
-A person can have any number of tags (including 0)
+Format: `help`: viewing list of all commands +
+Format: `help [COMMAND]`: show explanation for certain command
 
 Examples:
 
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `help open`
 
-=== Listing all persons : `list`
+=== Opening an image: `open`
 
-Shows a list of all persons in the address book. +
-Format: `list`
-
-=== Editing a person : `edit`
-
-Edits an existing person in the address book. +
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
-
-****
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index *must be a positive integer* 1, 2, 3, ...
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person's tags by typing `t/` without specifying any tags after it.
-****
+Format: `open [FILE_NAME]`: opens an image for editing
 
 Examples:
 
-* `edit 1 p/91234567 e/johndoe@example.com` +
-Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-* `edit 2 n/Betsy Crower t/` +
-Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `open img00001.jpg`
 
-=== Locating persons by name: `find`
+=== Applying a transformation to an image : `add`
 
-Finds persons whose names contain any of the given keywords. +
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `add [TRANSFORMATION]`: adds a specific transformation to the current set of transformation thus far
 
-****
-* The search is case insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-****
+Custom defined transformation by user (see save set, 3.5)
 
-Examples:
+* Format: `add [-NAME_OF_TRANSFORMATION_SET]`
 
-* `find John` +
-Returns `john` and `John Doe`
-* `find Betsy Tim John` +
-Returns any person having names `Betsy`, `Tim`, or `John`
+Available transformations
 
-=== Deleting a person : `delete`
+* `crop`: crops an image to a specified size.  X and Y offset values represent the location of the top left corner of the cropped image with respect to the original image
 
-Deletes the specified person from the address book. +
-Format: `delete INDEX`
+** Format: `add -crop [X-POSITION][Y-POSITION]`
 
-****
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index *must be a positive integer* 1, 2, 3, ...
-****
+* `gblur`: performs gaussian blur on the currently opened image
 
-Examples:
+** Format: `add -gblur [AMOUNT]`
 
-* `list` +
-`delete 2` +
-Deletes the 2nd person in the address book.
-* `find Betsy` +
-`delete 1` +
-Deletes the 1st person in the results of the `find` command.
+* `hue`: changes the overall hue of the image by rotating colors on color wheel (i.e rotating by a certain degree to map red all red in image to purple)
 
-=== Selecting a person : `select`
+** Format: `add -hue [VALUE_OF_ROTATION]`
 
-Selects the person identified by the index number used in the displayed person list. +
-Format: `select INDEX`
+* `brightness`: changes the brightness of the image. VALUE [-100, 100]
 
-****
-* Selects the person and loads the Google search page the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index *must be a positive integer* `1, 2, 3, ...`
-****
+** Format: `add -brightness [VALUE]`
+
+* `contrast`: adjust the contrast of the image. VALUE [0, 100]
+
+** Format: `add -contrast [VALUE]`
+
+* `rotate`: rotates an image. DIRECTION [left, right], VALUE [0, 360]
+
+** Format: `add -rotate [DIRECTION] [VALUE]`
+
+* `compress`: compress an image. VALUE [0, 100]
+
+** Format: `add -compress [VALUE]`
+
+* `caption`: adds a caption to the image at the specific position and size
+
+** Format: `add -caption [X-POSITION][Y-POSITION][SIZE]`
+
+* `convert`: changes image in defined size and format.
+
+** Format: `add -convert [FORMAT_TYPES]`
+
+=== Saving images/transformation set : `save`
+
+Format: `save -image [IMAGE_NAME]`: saves the transformed image +
+Format: `save -set [SET_NAME]`: saves the transformation set added thus far into a new transformation type
 
 Examples:
 
-* `list` +
-`select 2` +
-Selects the 2nd person in the address book.
-* `find Betsy` +
-`select 1` +
-Selects the 1st person in the results of the `find` command.
+* `save -image exampleImage` +
+* `save -set exampleSet`
 
-=== Listing entered commands : `history`
+=== Adding images to working set: `select`
 
-Lists all the commands that you have entered in reverse chronological order. +
-Format: `history`
+Format: `select [IMAGE_NAME]`: adds an image to the current working set
+Format: `select -all`: adds all images in current directory from working set
+
+Examples:
+
+* `select exampleImage` +
+* `select -all`
+
+=== Removing images from working set : `deselect`
+
+Format: `deselect [IMAGE_NAME]`: removes an image from the current working set
+Format: `deselect -all`: removes all images in current directory from working set
+
+Examples:
+
+* `deselect exampleImage` +
+* `deselect -all`
+
+=== Clear history of transformations : `clear`
+
+Format: `clear`: clears all history of transformations on image
+
+=== Undoing previous actions : `undo`
+
+Format: `undo`: Step back to previous transformation
 
 [NOTE]
 ====
-Pressing the kbd:[&uarr;] and kbd:[&darr;] arrows will display the previous and next input respectively in the command box.
-====
-
-// tag::undoredo[]
-=== Undoing previous command : `undo`
-
-Restores the address book to the state before the previous _undoable_ command was executed. +
-Format: `undo`
-
-[NOTE]
-====
-Undoable commands: those commands that modify the address book's content (`add`, `delete`, `edit` and `clear`).
+Undoable commands: those commands that modify the image's transformation (`add` and `clear`).
 ====
 
 Examples:
 
-* `delete 1` +
-`list` +
-`undo` (reverses the `delete 1` command) +
+* `select -all` +
+`undo` (reverses the `select -all` command) +
 
-* `select 1` +
-`list` +
-`undo` +
-The `undo` command fails as there are no undoable commands executed previously.
-
-* `delete 1` +
+* `add -brightness 50` +
 `clear` +
 `undo` (reverses the `clear` command) +
-`undo` (reverses the `delete 1` command) +
+`undo` (reverses the `add -brightness 50` command) +
 
-=== Redoing the previously undone command : `redo`
+=== Redoing the previous actions : `redo`
 
-Reverses the most recent `undo` command. +
-Format: `redo`
+Format: `redo`: Step forward to previous transformation
 
 Examples:
 
-* `delete 1` +
-`undo` (reverses the `delete 1` command) +
-`redo` (reapplies the `delete 1` command) +
+* `add -brightness 50` +
+`undo` (reverses the `add -brightness 50` command) +
+`redo` (reapplies the `add -brightness 50` command) +
 
-* `delete 1` +
-`redo` +
-The `redo` command fails as there are no `undo` commands executed previously.
+=== Changing directories : `cd`
 
-* `delete 1` +
-`clear` +
-`undo` (reverses the `clear` command) +
-`undo` (reverses the `delete 1` command) +
-`redo` (reapplies the `delete 1` command) +
-`redo` (reapplies the `clear` command) +
-// end::undoredo[]
+Format: `cd`: changes directory
 
-=== Clearing all entries : `clear`
+=== Listing files in directory : `ls`
 
-Clears all entries from the address book. +
-Format: `clear`
+Format: `ls`: lists files in the current directory
 
-=== Exiting the program : `exit`
+=== Exiting the apllication: `exit`
 
-Exits the program. +
-Format: `exit`
-
-=== Saving the data
-
-Address book data are saved in the hard disk automatically after any command that changes the data. +
-There is no need to save manually.
-
-// tag::dataencryption[]
-=== Encrypting data files `[coming in v2.0]`
-
-_{explain how the user can enable/disable data encryption}_
-// end::dataencryption[]
+Format: `exit`: closes the application
 
 == FAQ
 
 *Q*: How do I transfer my data to another Computer? +
-*A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.
+*A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous folder.
 
 == Command Summary
 
-* *Add* `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...` +
-e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+* *Add* `add [TRANSFORMATION]` +
+e.g. `add -rotate left 180`
+* *Cd* : `cd`
 * *Clear* : `clear`
-* *Delete* : `delete INDEX` +
-e.g. `delete 3`
-* *Edit* : `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
-e.g. `edit 2 n/James Lee e/jameslee@example.com`
-* *Find* : `find KEYWORD [MORE_KEYWORDS]` +
-e.g. `find James Jake`
-* *List* : `list`
-* *Help* : `help`
-* *Select* : `select INDEX` +
-e.g.`select 2`
-* *History* : `history`
-* *Undo* : `undo`
+* *Deselect* : `deselect [IMAGE_NAME]/deselect -all` +
+e.g. `deselect exampleImage`
+* *Exit* : `exit`
+* *Help* : `help` +
+* *Ls* : `ls`
+* *Open* : `open [FILE_NAME]` +
+e.g. `open exampleImage.jpg`
 * *Redo* : `redo`
+* *Save* : `save [IMAGE_NAME]/[SET_NAME]` +
+e.g. `save exampleImage.jpg`
+* *Select* : `select [IMAGE_NAME]/select -all`
+e.g. `select exampleImage.jpg`
+* *Undo* : `undo`

@@ -820,13 +820,14 @@ See this https://github.com/se-edu/addressbook-level4/pull/599[PR] for the step-
 
 *Target user profile*:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
+* needs a qiocl amd easy way to edit images
+* has a lot of images to edit
+* appreciates the power that traditional editing software provides
+* familiar with the command line
 * prefers typing over mouse input
-* is reasonably comfortable using CLI apps
+* is reasonably comfortable using CLI app
 
-*Value proposition*: manage contacts faster than a typical mouse/GUI driven app
+*Value proposition*: view, preview and edit images quickly in a streamlined, modular and repeatable process
 
 [appendix]
 == User Stories
@@ -836,17 +837,22 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 [width="59%",cols="22%,<23%,<25%,<30%",options="header",]
 |=======================================================================
 |Priority |As a ... |I want to ... |So that I can...
-|`* * *` |new user |see usage instructions |refer to instructions when I forget how to use the App
+|`* * *` |photographer |edit an image |enhance an image
 
-|`* * *` |user |add a new person |
+|`* * *` |photographer |mass edit images |avoid repeating similar tasks
 
-|`* * *` |user |delete a person |remove entries that I no longer need
+|`* * *` |photographer |see detailed information about a photo |immidiately know what post-processing tools to apply
 
-|`* * *` |user |find a person by name |locate details of persons without having to go through the entire list
+|`* * *` |photographer |define my own set of transformations |avoid repetitive typing of commands
 
-|`* *` |user |hide <<private-contact-detail,private contact details>> by default |minimize chance of someone else seeing them by accident
+|`* * *` |photographer |see the preview of the transformations before committing to disk |explore the effects of transformations
 
-|`*` |user with many persons in the address book |sort persons by name |locate a person easily
+|`* *` |photographer |be able to upload my photos to the cloud (Google Photos) |safely store and share my photos across devices
+
+|`* *` |web developer |generate static image assets |convert, compress and resize images to be ready for web deployment from raw images
+
+|`*` |web developer or photographer |add captions or watermarks to images |to protect my intellectual property
+
 |=======================================================================
 
 _{More to be added}_
@@ -854,53 +860,116 @@ _{More to be added}_
 [appendix]
 == Use Cases
 
-(For all use cases below, the *System* is the `AddressBook` and the *Actor* is the `user`, unless specified otherwise)
+(For all use cases below, the *System* is `Picconso` and the *Actor* is the `user`, unless specified otherwise)
 
 [discrete]
-=== Use case: Delete person
+=== Use case: Editing an image
 
 *MSS*
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User opens an image
+2.  User uses the CLI to describe a set of transformations to the image
+3.  User is shown a preview of the outcome
+4.  User is can save the outcome/transformation to disk
 +
 Use case ends.
 
 *Extensions*
 
 [none]
-* 2a. The list is empty.
+* 1a. The given image cannot be opened.
++
+[none]
+** 1a1. Picconso shows an error message.
++
+Use case resumes at step 1.
+
+* 2a. User is unsatisfied with the last transformation.
++
+[none]
+** 2a1. User can undo the last transformation.
++
+Use case resumes at step 2.
+
+[discrete]
+=== Use case: Define a set of transformations
+
+*MSS*
+
+1.  User edits an image (from use case Editing an image)
+2.  Picconso displays transformations done on the right side pane
+3.  User enters command to save the set of transformations
+4.  Picconso requests for a name for the set
+5.  User enters a name
+6.  Picconso saves the set
 +
 Use case ends.
 
-* 3a. The given index is invalid.
+*Extensions*
+
+[none]
+* 5a. The input name is already used.
 +
 [none]
-** 3a1. AddressBook shows an error message.
+** 5a1. Picconso asks if user wants to overwrite to previously stored set.
 +
-Use case resumes at step 2.
+Use case resumes at step 4.
+
+[discrete]
+=== Use case: Mass edit images
+
+*MSS*
+
+1.  User selects a range of images
+2.  User defines an optional alternate directory to save output
+3.  User applies a known set of transformations to the set of images
+4.  Output from step 3 is saved in directory defined in step 2 and user is notified
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. Selected range is an empty set.
++
+[none]
+** 1a1. Picconso shows an error message.
++
+Use case resumes at step 1.
+
+[discrete]
+=== Use case: Add caption or watermark to image
+
+*MSS*
+
+1.  User opens an image
+2.  Picconso displays the image in the preview pane
+3.  User inputs caption or watermark text into input
+4.  Picconso displays the caption/watermark in the preview pane
++
+Use case ends.
+
 
 _{More to be added}_
 
 [appendix]
 == Non Functional Requirements
 
-.  Should work on any <<mainstream-os,mainstream OS>> as long as it has Java `9` or higher installed.
-.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+.  Export images in differnt formats and sizes.
+.  Have quick access to various filter options.
+.  View detailed information about images.
+.  Navigate directories efficiently.
 
 _{More to be added}_
 
 [appendix]
 == Glossary
 
-[[mainstream-os]] Mainstream OS::
-Windows, Linux, Unix, OS-X
+[[current-working-set]] Current working set::
+Files that are currently opened
 
-[[private-contact-detail]] Private contact detail::
-A contact detail that is not meant to be shared with others
+[[transformation]] Transformation::
+Action that is performed on an image
 
 [appendix]
 == Product Survey

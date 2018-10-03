@@ -4,9 +4,11 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import javafx.scene.image.Image;
 import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.events.ui.ChangeImageEvent;
 import seedu.address.commons.events.ui.JumpToListRequestEvent;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -44,6 +46,8 @@ public class SelectCommand extends Command {
         }
 
         EventsCenter.getInstance().post(new JumpToListRequestEvent(targetIndex));
+        EventsCenter.getInstance().post(new ChangeImageEvent(new Image("https://api.thecatapi.com/v1/images/search?format=src&size=full"), "preview"));
+        EventsCenter.getInstance().post(new ChangeImageEvent(new Image("https://api.thecatapi.com/v1/images/search?format=src&size=full"), "original"));
         return new CommandResult(String.format(MESSAGE_SELECT_PERSON_SUCCESS, targetIndex.getOneBased()));
 
     }
