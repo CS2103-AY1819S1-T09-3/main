@@ -28,27 +28,27 @@ Responsibilities: UI
 
 '''
 
-=== Johnny Doe
-image::yijinl.jpg[width="150", align="left"]
-{empty}[http://github.com/yijinl[github]] [<<johndoe#, portfolio>>]
+=== Benedict Chua
+image::benedictcss/png[width="150", align="left"]
+{empty}[http://github.com/benedictcss[github]] [<<benedict#, portfolio>>]
 
 Role: Developer +
 Responsibilities: Data
 
 '''
 
-=== Johnny Roe
-image::m133225.jpg[width="150", align="left"]
-{empty}[http://github.com/m133225[github]] [<<johndoe#, portfolio>>]
+=== Ong Kai Le
+image::chivent.png[width="150", align="left"]
+{empty}[http://github.com/chivent[github]] [<<kaile#, portfolio>>]
 
 Role: Developer +
 Responsibilities: Dev Ops + Threading
 
 '''
 
-=== Benson Meier
-image::yl_coder.jpg[width="150", align="left"]
-{empty}[http://github.com/yl-coder[github]] [<<johndoe#, portfolio>>]
+=== Zhang Tianyang
+image::lancelotwillow.png[width="150", align="left"]
+{empty}[http://github.com/lancelotwillow[github]] [<<tianyang#, portfolio>>]
 
 Role: Developer +
 Responsibilities: UI

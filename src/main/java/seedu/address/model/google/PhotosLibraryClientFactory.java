@@ -5,6 +5,13 @@ package seedu.address.model.google;
 
 // creation of authentication instance (O-Auth)
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.security.GeneralSecurityException;
+import java.util.List;
+
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
 import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
@@ -24,18 +31,16 @@ import com.google.common.collect.ImmutableList;
 import com.google.photos.library.v1.PhotosLibraryClient;
 import com.google.photos.library.v1.PhotosLibrarySettings;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.security.GeneralSecurityException;
-import java.util.List;
+
 
 //@@author chivent
 //TODO: credit --> https://github.com/google/java-photoslibrary/tree/master/sample
 //TODO: Remove comments in later future
 //TODO: Store files elsewhere [TBD]
 
+/**
+ * Factory for Photos Library
+ */
 public class PhotosLibraryClientFactory {
 
 
@@ -52,6 +57,7 @@ public class PhotosLibraryClientFactory {
 
     private PhotosLibraryClientFactory() {
     }
+
 
     public static GoogleClientInstance createClient() throws IOException, GeneralSecurityException {
 

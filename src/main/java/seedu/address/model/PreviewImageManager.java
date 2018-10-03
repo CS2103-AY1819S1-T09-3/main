@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class PreviewImageManager {
 
-    // static variable single_instance of type Singleton 
+    // static variable single_instance of type Singleton
     private static PreviewImageManager single_instance = null;
     private List<PreviewImage> previewImageStateList;
     private int currentStatePointer;
@@ -23,17 +23,17 @@ public class PreviewImageManager {
         currentStatePointer = 0;
     }
 
-    // static method to create instance of PreviewImageManager class 
+    // static method to create instance of PreviewImageManager class
     public static PreviewImageManager getInstance()
     {
-        // To ensure only one instance is created 
+        // To ensure only one instance is created
         if (single_instance == null) {
             single_instance = new PreviewImageManager();
         }
-        
         return single_instance;
     }
 
+    //initialise with Image
     public void initialiseWithImage(PreviewImage initialImage) {
         previewImageStateList = new ArrayList<>();
         previewImageStateList.add(initialImage);
