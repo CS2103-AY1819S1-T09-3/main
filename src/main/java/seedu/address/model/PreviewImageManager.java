@@ -20,7 +20,7 @@ public class PreviewImageManager {
     // private constructor
     private PreviewImageManager() {
         previewImageStateList = new ArrayList<>();
-        //previewImageStateList.add(new PreviewImage(new Image("https://via.placeholder.com/500x500")));
+        previewImageStateList.add(new PreviewImage());
         currentStatePointer = 0;
     }
 
@@ -33,7 +33,6 @@ public class PreviewImageManager {
         return singleInstance;
     }
 
-    //initialise with Image
     /**
      * Initialise a copy of the latest {@code PreviewImage} state with image.
      */
