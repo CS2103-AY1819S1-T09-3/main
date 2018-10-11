@@ -5,8 +5,12 @@ import static java.util.Objects.requireNonNull;
 import javafx.scene.image.Image;
 import seedu.address.commons.events.BaseEvent;
 
+<<<<<<< HEAD
+//@author Jeffry
+=======
 
 //@author j-lum
+>>>>>>> 6af3a1442e46f36312d26fdfec2a2eb823de766b
 /**
  * A simple event that notifies a target ImagePanel to change its image.
  */

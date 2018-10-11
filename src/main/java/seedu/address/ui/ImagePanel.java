@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import com.google.common.eventbus.Subscribe;
 
 import javafx.application.Platform;
+
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
@@ -28,6 +29,11 @@ public class ImagePanel extends UiPart<Region> {
     private final ObjectProperty<Image> image = new SimpleObjectProperty<Image>(
             new Image("https://via.placeholder.com/500x500"));
 
+<<<<<<< HEAD
+    private final ObjectProperty<Image> image = new SimpleObjectProperty<Image>(
+            new Image("https://via.placeholder.com/500x500"));
+=======
+>>>>>>> 6af3a1442e46f36312d26fdfec2a2eb823de766b
     private final String name;
 
     @FXML

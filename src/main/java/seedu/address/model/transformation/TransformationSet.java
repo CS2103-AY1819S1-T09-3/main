@@ -6,7 +6,11 @@ import java.util.LinkedList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ImageMagickUtil;
 
+<<<<<<< HEAD
+
+=======
 //@@author j-lum
+>>>>>>> 6af3a1442e46f36312d26fdfec2a2eb823de766b
 
 /**
  * Represents a set of transformations that can be applied to any layer.
@@ -32,7 +36,12 @@ public class TransformationSet {
     }
 
     /**
+<<<<<<< HEAD
+     * .
+     * @param t
+=======
      * Adds transformations to transformation set
+>>>>>>> 6af3a1442e46f36312d26fdfec2a2eb823de766b
      */
     public void addTransformations(Transformation t) {
         transformations.addLast(t);
@@ -40,7 +49,12 @@ public class TransformationSet {
     }
 
     /**
+<<<<<<< HEAD
+     * .
+     * @param steps
+=======
      * Removes transformations from transformation set
+>>>>>>> 6af3a1442e46f36312d26fdfec2a2eb823de766b
      */
     public void removeTransformations(int steps) {
         if (steps > transformations.size()) {
