@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.storage.JsonConvertArgsStorage;
 
 /**
- * @author Zhang Tianyang
+ * @author lancelotwillow
  * the class to execute the convert command that do the modification of the image
  */
 public class ConvertCommand extends Command {
@@ -40,7 +40,6 @@ public class ConvertCommand extends Command {
     }
 
     /**
-     * @author Zhang Tianyang
      * build a new processbuilder and initialize witht the commands need to the convert command
      * @param model {@code Model} which the command should operate on.
      * @param history {@code CommandHistory} which the command should operate on.
