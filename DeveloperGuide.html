@@ -30,6 +30,7 @@
 <ul class="sectlevel2">
 <li><a href="#change-directory-cd-feature">3.1. Change Directory (Cd) feature</a></li>
 <li><a href="#undo-redo-feature">3.2. Undo/Redo feature</a></li>
+<li><a href="#google-google-features">3.3. Google (google) features</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -589,6 +590,56 @@ If the <code>currentStatePointer</code> is at index <code>previewImageStateList.
 <p>During mass editing of images, only the first image will be previewed and have its states stored. Undo/redo will work as if 1 image is being edited. When the user has finalised his transformations, only then will the transformations be applied to the whole set.</p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="google-google-features"><a class="link" href="#google-google-features">3.3. Google (google) features</a></h3>
+<div class="sect3">
+<h4 id="overall-introduction"><a class="link" href="#overall-introduction">3.3.1. Overall Introduction</a></h4>
+<div class="paragraph">
+<p>The Google commands allow for access to Google Photos through a logged-in instance of the user, and are held up by two main components.
+* <code>PhotosLibraryClientFactory</code> - Initiates and carries out the login process, and produces a <code>PhotosLibraryClient</code> instance, which handles all calls to Google Photos.
+* <code>PhotoHandler</code> - Mainly consists of a <code>PhotoLibraryClient</code> instance and user&#8217;s logged in state. Performs all explicit calls to Google Photos through the <code>PhotoLibraryClient</code> instance.
+** An instance of <code>PhotoHandler</code> is accessed through <code>Model#getPhotoHandler()</code> and `Model#setPhotoHandler()</p>
+</div>
+<div class="paragraph">
+<p>There are 4 main google-related commands, with the first being a command to login a user, and the latter 3 being overloaded command types, with <code>GoogleCommand</code> as the main class
+* <code>LoginCommand</code> - Logins in user to their Google Account
+* <code>GoogleLsCommand</code> - Returns the user&#8217;s current directory.
+* <code>GoogleDlCommand</code> - Downloads the specified image &lt;to be implemented and updated in 1.3&gt;
+* <code>GoogleUploadCommand</code> - Uploads the specified image &lt;to be implemented and updated in 1.3&gt;</p>
+</div>
+<div class="sect4">
+<h5 id="login-login-command"><a class="link" href="#login-login-command">Login (login) Command</a></h5>
+<div class="paragraph">
+<p>The login command can be called either explictly by the user through <code>login</code> or will execute implicitly whenever a user calls a google-related command without first logging in</p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the google login behaves at each step upon explicit call.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user executes a <code>login</code> command.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The login command calls <code>Model#getPhotoHandler()</code> and checks if a PhotoHandler instance already exists, if false, it calls <code>PhotoLibraryClientFactory#createClient()</code> to set up the requirements for log in and redirects the user to the browser. To learn more about the implementation of OAuth methods, you may refer to <a href="https://developers.google.com/identity/protocols/OAuth2#installed">O-Auth Explanation</a> and <a href="https://developers.google.com/api-client-library/java/google-api-java-client/oauth2#installed_applications">Google API examples</a></p>
+</div>
+<div class="paragraph">
+<p>Step 3. PhotoLibraryClientFactory instance then calls <code>PhotoLibraryClientFactory#createPhotosLibraryClient()</code> and <code>PhotoLibraryClientFactory#getUserEmail() to instantiate a `PhotoHandler</code> instance</p>
+</div>
+<div class="paragraph">
+<p>Step 4. The <code>PhotoHandler</code> instance is then set via Model#setPhotoHandler() as Model#photoLibrary(), and confirmation of login is sent to user.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the cd command works:
+{Diagram to be added}</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="other-google-commands"><a class="link" href="#other-google-commands">Other google commands</a></h5>
+<div class="paragraph">
+<p>{To be updated}</p>
+</div>
 </div>
 </div>
 </div>
@@ -1325,4 +1376,4 @@ b. Require developers to download those libraries manually (this creates extra w
 <p><em>{To be updated}</em></p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-17 15:04:56 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-17 15:32:11 UTC</div></div></div></body></html>
