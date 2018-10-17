@@ -2,7 +2,7 @@ package seedu.address.model.canvas;
 
 import java.util.ArrayList;
 
-import javafx.scene.image.Image;
+import seedu.address.model.PreviewImage;
 
 
 //@author Jeffry
@@ -12,10 +12,20 @@ import javafx.scene.image.Image;
  * and that the canvas area must be larger than zero.
  */
 public class Canvas {
+    private static final String LAYER_NAME = "Layer %d";
 
     private ArrayList<Layer> layers = new ArrayList<>();
+    private Boolean canvasIsAuto;
 
-    public Canvas(Image base){
+    public Canvas(){
 
+    }
+
+    public void addLayer(Layer l) {
+        layers.add(l);
+    }
+
+    public void addLayer(PreviewImage i, String name) {
+        layers.add(new Layer(i, String.format(LAYER_NAME, layers.size())));
     }
 }

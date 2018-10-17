@@ -3,9 +3,7 @@ package seedu.address.model.canvas;
 //@author Jeffry
 import static java.util.Objects.requireNonNull;
 
-import javafx.scene.image.Image;
-import seedu.address.model.transformation.TransformationSet;
-
+import seedu.address.model.PreviewImage;
 
 /**
  * Represents a layer in a canvas.
@@ -13,22 +11,20 @@ import seedu.address.model.transformation.TransformationSet;
  */
 
 public class Layer {
-    private final Image image;
+    private final PreviewImage image;
     private int x;
     private int y;
     private int height;
     private int width;
     private String name;
-    private TransformationSet history;
 
-    public Layer(Image image, String name) {
+    public Layer(PreviewImage image, String name) {
         this.image = requireNonNull(image);
         this.x = 0;
         this.y = 0;
-        this.height = (int) image.getHeight();
-        this.width = (int) image.getWidth();
+        this.height = image.getImage().getHeight();
+        this.width = image.getImage().getWidth();
         this.name = name;
-        history = new TransformationSet();
     }
 
     public int getX() {
@@ -65,6 +61,8 @@ public class Layer {
 
     @Override
     public String toString() {
-        return String.format("-page %dx%d+%d+%d %s", height, width, x, y, image.getUrl());
+        //return String.format("-page %dx%d+%d+%d %s", height, width, x, y, image.getUrl());
+        // TODO : keep track of the path in PreviewImage
+        return "";
     }
 }
