@@ -4,7 +4,7 @@ libdir=${exec_prefix}/lib
 includedir=${prefix}/include/ImageMagick-7
 includearchdir=$MAGICK_HOME/include/ImageMagick-7
 libname=MagickWand-7.Q16HDRI
- 
+
 Name: MagickWand
 Description: MagickWand - C API for ImageMagick (ABI Q16HDRI)
 URL: https://github.com/ImageMagick

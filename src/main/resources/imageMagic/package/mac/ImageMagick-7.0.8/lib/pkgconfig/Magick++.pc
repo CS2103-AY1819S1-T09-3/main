@@ -4,7 +4,7 @@ libdir=${exec_prefix}/lib
 includedir=${prefix}/include/ImageMagick-7
 includearchdir=$MAGICK_HOME/include/ImageMagick-7
 libname=Magick++-7.Q16HDRI
- 
+
 Name: Magick++
 Description: Magick++ - C++ API for ImageMagick (ABI Q16HDRI)
 Version: 7.0.8

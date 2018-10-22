@@ -4,7 +4,7 @@ libdir=${exec_prefix}/lib
 includedir=${prefix}/include/ImageMagick-7
 includearchdir=$MAGICK_HOME/include/ImageMagick-7
 libname=MagickCore-7.Q16HDRI
- 
+
 Name: ImageMagick
 Description: ImageMagick - convert, edit, and compose images (ABI Q16HDRI)
 URL: https://github.com/ImageMagick

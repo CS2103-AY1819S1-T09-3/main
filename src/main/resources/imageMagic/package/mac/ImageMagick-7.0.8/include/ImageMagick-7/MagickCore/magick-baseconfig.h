@@ -1,6 +1,6 @@
 #ifndef _MAGICKCORE_MAGICK_BASECONFIG_H
 #define _MAGICKCORE_MAGICK_BASECONFIG_H 1
- 
+
 /* MagickCore/magick-baseconfig.h. Generated automatically at end of configure. */
 /* config/config.h.  Generated from config.h.in by configure.  */
 /* config/config.h.in.  Generated from configure.ac by autoheader.  */
@@ -1675,6 +1675,6 @@
 /* Define to empty if the keyword `volatile' does not work. Warning: valid
    code using `volatile' can become incorrect without. Disable with care. */
 /* #undef volatile */
- 
+
 /* once: _MAGICKCORE_MAGICK_BASECONFIG_H */
 #endif

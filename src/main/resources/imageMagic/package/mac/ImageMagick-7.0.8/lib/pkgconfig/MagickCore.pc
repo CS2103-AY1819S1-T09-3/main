@@ -5,7 +5,7 @@ includedir=${prefix}/include/ImageMagick-7
 includearchdir=$MAGICK_HOME/include/ImageMagick-7
 libname=MagickCore-7.Q16HDRI
 moduledir=${exec_prefix}/lib/ImageMagick-7.0.8/modules-Q16HDRI
- 
+
 Name: MagickCore
 Description: MagickCore - C API for ImageMagick (ABI Q16HDRI)
 URL: https://github.com/ImageMagick
