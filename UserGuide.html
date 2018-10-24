@@ -14,7 +14,7 @@
 <li><a href="#Features">3. Features</a>
 <ul class="sectlevel2">
 <li><a href="#viewing-help-code-help-code">3.1. Viewing help : <code>help</code></a></li>
-<li><a href="#applying-a-transformation-to-an-image-code-add-code">3.2. Applying a transformation to an image : <code>add</code></a></li>
+<li><a href="#applying-a-transformation-to-an-image-code-convert-code">3.2. Applying a transformation to an image : <code>convert</code></a></li>
 <li><a href="#saving-images-transformation-set-code-save-code">3.3. Saving images/transformation set : <code>save</code></a></li>
 <li><a href="#adding-images-to-working-set-code-select-code">3.4. Adding images to working set: <code>select</code></a></li>
 <li><a href="#removing-images-from-working-set-code-deselect-code">3.5. Removing images from working set : <code>deselect</code></a></li>
@@ -92,15 +92,15 @@ Format: <code>help [COMMAND]</code>: show explanation for certain command</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>help add</code></p>
+<p><code>help convert</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="applying-a-transformation-to-an-image-code-add-code"><a class="link" href="#applying-a-transformation-to-an-image-code-add-code">3.2. Applying a transformation to an image : <code>add</code></a></h3>
+<h3 id="applying-a-transformation-to-an-image-code-convert-code"><a class="link" href="#applying-a-transformation-to-an-image-code-convert-code">3.2. Applying a transformation to an image : <code>convert</code></a></h3>
 <div class="paragraph">
-<p>Format: <code>add [TRANSFORMATION]</code>: adds a specific transformation to the current set of transformation thus far</p>
+<p>Format: <code>add [args]</code>: apply the conversion specified to the select image</p>
 </div>
 <div class="paragraph">
 <p>Custom defined transformation by user (see save set, 3.5)</p>
@@ -118,31 +118,31 @@ Format: <code>help [COMMAND]</code>: show explanation for certain command</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>crop</code>: crops an image to a specified size.  X and Y offset values represent the location of the top left corner of the cropped image with respect to the original image</p>
+<p><code>resize</code>: resize the image to the specified percentage of the original one</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Format: <code>add -crop [X-POSITION][Y-POSITION]</code></p>
+<p>Format: <code>convert resize [percentage]</code></p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><code>gblur</code>: performs gaussian blur on the currently opened image</p>
+<p><code>blur</code>: performs gaussian blur on the currently opened image, with the argument specified with radius and sigama</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Format: <code>add -gblur [AMOUNT]</code></p>
+<p>Format: <code>convert blur [RadiusxSigama]</code></p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><code>hue</code>: changes the overall hue of the image by rotating colors on color wheel (i.e rotating by a certain degree to map red all red in image to purple)</p>
+<p><code>colorspace</code>: change the color space of the current image</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Format: <code>add -hue [VALUE_OF_ROTATION]</code></p>
+<p>Format: <code>convert colorspace [color space]</code></p>
 </li>
 </ul>
 </div>
@@ -158,21 +158,21 @@ Format: <code>help [COMMAND]</code>: show explanation for certain command</p>
 </div>
 </li>
 <li>
-<p><code>contrast</code>: adjust the contrast of the image. VALUE [0, 100]</p>
+<p><code>contrast</code>: adjust the contrast of the image.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Format: <code>add -contrast [VALUE]</code></p>
+<p>Format: <code>convert contrast</code></p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><code>rotate</code>: rotates an image. DIRECTION [left, right], VALUE [0, 360]</p>
+<p><code>rotate</code>: rotates an image. DIRECTION [left, right], VALUE [-180, 180]</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Format: <code>add -rotate [DIRECTION] [VALUE]</code></p>
+<p>Format: <code>convert rotate [vlaue]</code></p>
 </li>
 </ul>
 </div>
@@ -445,4 +445,4 @@ e.g. <code>select exampleImage.jpg</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-24 13:37:42 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-24 15:44:56 UTC</div></div></div></body></html>
