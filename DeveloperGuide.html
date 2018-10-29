@@ -29,9 +29,10 @@
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#change-directory-cd-feature">3.1. Change Directory (Cd) feature</a></li>
-<li><a href="#undo-redo-feature">3.2. Undo/Redo feature</a></li>
-<li><a href="#transmission-feature">3.3. Transmission feature</a></li>
-<li><a href="#google-google-features">3.4. Google (google) features</a></li>
+<li><a href="#select-next-feature">3.2. Select/Next feature</a></li>
+<li><a href="#undo-redo-feature">3.3. Undo/Redo feature</a></li>
+<li><a href="#transmission-feature">3.4. Transmission feature</a></li>
+<li><a href="#google-google-features">3.5. Google (google) features</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -360,11 +361,19 @@ This section describes some noteworthy details on how certain features are imple
 </div>
 <div class="sect2">
 <h3 id="change-directory-cd-feature"><a class="link" href="#change-directory-cd-feature">3.1. Change Directory (Cd) feature</a></h3>
+<div class="paragraph">
+<p>The Cd feature is implemented to allow users to access images in the different directories within their home system.
+This removes the restrictions of accessing only images from one particular folder.</p>
+</div>
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">3.1.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The Cd mechanism is facilitated by the <code>UserPrefs</code>. It contains the current directory the user&#8217;s in, stored internally as
-<code>currDirectory</code>. It implements the following operations:</p>
+<p>The Cd mechanism is facilitated by the <code>ModelManager</code>. It contains the operations <code>Model#getCurrDirectory</code> and
+<code>Model#updateCurrDirectory(Path)</code> respectively.</p>
+</div>
+<div class="paragraph">
+<p>The Model calls upon <code>UserPrefs</code> within the respective operations. The <code>UserPrefs</code> class contains the current directory
+the user&#8217;s in, stored internally as <code>currDirectory</code> and implements the following operations:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -377,8 +386,9 @@ This section describes some noteworthy details on how certain features are imple
 </ul>
 </div>
 <div class="paragraph">
-<p>These operations are exposed to the Model interface as <code>Model#getCurrDirectory</code> and <code>Model#updateCurrDirectory(Path)</code>
-respectively.</p>
+<p>Within the operation <code>UserPrefs#updateUserPrefs(Path)</code>, it also retrieves the list of images within the directory,
+which are stored internally as <code>imageList</code>. This would facilitates the <code>Select</code> feature in our application
+(refer to 3.2).</p>
 </div>
 <div class="paragraph">
 <p>Additionally, to ease user&#8217;s experience, similar to the actual usage of the cd command, this feature also uses the <code>tab</code>
@@ -457,9 +467,199 @@ If the <code>newCurrDirectory</code> is not a directory, i.e. <code>isDirectory(
 </div>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.2. Undo/Redo feature</a></h3>
+<h3 id="select-next-feature"><a class="link" href="#select-next-feature">3.2. Select/Next feature</a></h3>
+<div class="paragraph">
+<p>The Select Command allow users to select the images in a batch of 10 images within the directory for image-editing.
+This command is further facilitated by the Next Command.</p>
+</div>
+<div class="paragraph">
+<p>The Next Command retrieves the next 10 images in the image list for users to select.
+The image selected will then be displayed on the GUI.</p>
+</div>
 <div class="sect3">
 <h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The implementation of the Select/Next feature is largely similar to the <code>Cd Command</code>. It is facilitated by the <code>ModelManager</code>
+and contains the following operations:</p>
+</div>
+<div class="paragraph">
+<p>Select feature:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Model#getDirectoryImageList</code>&#8201;&#8212;&#8201;Retrieved the stored list of images in UserPrefs.</p>
+</li>
+<li>
+<p><code>Model#updateCurrentOriginalImage(Image, Path)</code>&#8201;&#8212;&#8201;Updates the model with the current selected images.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Next feature:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Model#updateImageList()</code>&#8201;&#8212;&#8201;Retrieves the list with all the images from <code>UserPrefs</code>.</p>
+</li>
+<li>
+<p><code>Model#updateImageList(ArrayList&lt;Path&gt;)</code>&#8201;&#8212;&#8201;Updates the list with the new list of images.</p>
+</li>
+<li>
+<p><code>Model#removeImageFromList(int)</code>&#8201;&#8212;&#8201;Remove image from the list of images.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The Model calls upon <code>UserPrefs</code> which stores and facilitates updates and retrieval of the <code>imageList</code> in the current
+directory. The <code>UserPrefs</code> class implements the following operation:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>UserPrefs#getAllImages()</code>&#8201;&#8212;&#8201;Returns all the user&#8217;s images current directory.</p>
+</li>
+<li>
+<p><code>UserPrefs#updateImageList()</code>&#8201;&#8212;&#8201;Retrieves all the images in the current directory.</p>
+</li>
+<li>
+<p><code>UserPrefs#updateImageList(ArrayList&lt;Path&gt;)&#8201;&#8212;&#8201;Updates `imageList</code> with the new <code>imageList</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Other operation, <code>Model#updateCurrentOriginalImage(Image, Path)</code> stores the path of the selected image
+as <code>currOriginalImage</code> and the <code>PreviewImage</code> instance of the path as <code>currentPreviewImage</code> within the <code>ModelManager</code>.
+Additionally, the operation also creates a canvas and a layer to facilitate the transmission feature.</p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the select and next mechanism behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user launches the application for the first time. The <code>UserPrefs</code> will be initialized with the <code>currDirectory</code>
+as the user&#8217;s home directory.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The user executes <code>cd Desktop</code> command to navigate into the Desktop directory. The cd command calls
+<code>Model#updateImageList()</code> to retrieve all the images within Desktop.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SelectNextCommand1.png" alt="SelectNextCommand1" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 3. The user executes <code>select 1</code> command to select the first image in the first batch of 10 images. The select
+command calls <code>Model#getDirectoryImageList()</code> to retrieve all the images within Desktop. The first image is then
+retrieved and displayed on the GUI.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SelectNextCommand2.png" alt="SelectNextCommand2" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 4. The user executes <code>next</code> command to access the next batch of 10 images from the list. The next command calls
+<code>Model#removeImageFromList(int)</code> to remove the first 10 images in the current <code>imageList</code> and calls
+<code>Model#updateImageList(ArrayList&lt;Path&gt;)</code> to update <code>UserPrefs</code> with the new <code>imageList</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SelectNextCommand3.png" alt="SelectNextCommand3" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the select command works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SelectSequenceDiagram.png" alt="SelectSequenceDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the next command works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/NextSequenceDiagram.png" alt="NextSequenceDiagram" width="800">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-select-executes"><a class="link" href="#aspect-how-select-executes">Aspect: How select executes</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Select images within the BATCH_SIZE.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Work on a small size of images.</p>
+</li>
+<li>
+<p>Cons: Hard to retrieve images from end of list.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2</strong> : Select images within the <code>imageList</code> size.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to retrieve images anywhere in the list.</p>
+</li>
+<li>
+<p>Cons: Can be very messy if the imageList size is too large.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-how-next-executes"><a class="link" href="#aspect-how-next-executes">Aspect: How next executes</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Removes and updates <code>imageList</code> in <code>UserPrefs</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement and to access current batch.</p>
+</li>
+<li>
+<p>Cons: Users unable to access previous images.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2</strong> : Update the current start pointer for each batch.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Users would be able to access previous batches.</p>
+</li>
+<li>
+<p>Cons: Harder to implement and keep track of the the current start pointer.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.3. Undo/Redo feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.3.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The undo/redo mechanism is facilitated by <code>PreviewImageManager</code>.
 It is a single instance containing a list of <code>PreviewImage</code> and a <code>currentStatePointer</code>. Each <code>PreviewImage</code> stores a <code>BufferedImage</code> and a <code>TransformationSet</code>.
@@ -581,7 +781,7 @@ If the <code>currentStatePointer</code> is at index <code>previewImageStateList.
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.3.2. Design Considerations</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -595,9 +795,9 @@ If the <code>currentStatePointer</code> is at index <code>previewImageStateList.
 </div>
 </div>
 <div class="sect2">
-<h3 id="transmission-feature"><a class="link" href="#transmission-feature">3.3. Transmission feature</a></h3>
+<h3 id="transmission-feature"><a class="link" href="#transmission-feature">3.4. Transmission feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.3.1. Current Implementation</a></h4>
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>(the diagram will be upload soon)</p>
 </div>
@@ -684,7 +884,7 @@ if the <code>model.getDisplayedImage()</code> return an invalid bufferedImage or
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.3.2. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.4.2. Design Considerations</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -698,9 +898,9 @@ if the <code>model.getDisplayedImage()</code> return an invalid bufferedImage or
 </div>
 </div>
 <div class="sect2">
-<h3 id="google-google-features"><a class="link" href="#google-google-features">3.4. Google (google) features</a></h3>
+<h3 id="google-google-features"><a class="link" href="#google-google-features">3.5. Google (google) features</a></h3>
 <div class="sect3">
-<h4 id="overall-introduction"><a class="link" href="#overall-introduction">3.4.1. Overall Introduction</a></h4>
+<h4 id="overall-introduction"><a class="link" href="#overall-introduction">3.5.1. Overall Introduction</a></h4>
 <div class="paragraph">
 <p>The Google commands allow for access to Google Photos through a logged-in instance of the user, and are held up by two main components.</p>
 </div>
@@ -742,9 +942,9 @@ if the <code>model.getDisplayedImage()</code> return an invalid bufferedImage or
 </div>
 </div>
 <div class="sect3">
-<h4 id="login-login-command"><a class="link" href="#login-login-command">3.4.2. Login (login) Command</a></h4>
+<h4 id="login-login-command"><a class="link" href="#login-login-command">3.5.2. Login (login) Command</a></h4>
 <div class="sect4">
-<h5 id="current-implementation-4"><a class="link" href="#current-implementation-4">Current Implementation</a></h5>
+<h5 id="current-implementation-5"><a class="link" href="#current-implementation-5">Current Implementation</a></h5>
 <div class="paragraph">
 <p>The Login command currently authenticates a user via Google OAuth. To learn more about the implementation of OAuth methods, you may refer to <a href="https://developers.google.com/identity/protocols/OAuth2#installed">O-Auth Explanation</a> and <a href="https://developers.google.com/api-client-library/java/google-api-java-client/oauth2#installed_applications">Google API examples</a>.</p>
 </div>
@@ -784,7 +984,7 @@ If connection to the internet is lost at any point during authentication with Go
 </div>
 </div>
 <div class="sect3">
-<h4 id="other-google-commands"><a class="link" href="#other-google-commands">3.4.3. Other google commands</a></h4>
+<h4 id="other-google-commands"><a class="link" href="#other-google-commands">3.5.3. Other google commands</a></h4>
 <div class="paragraph">
 <p>{To be updated in v1.3}</p>
 </div>
@@ -1523,4 +1723,4 @@ b. Require developers to download those libraries manually (this creates extra w
 <p><em>{To be updated}</em></p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-29 14:26:03 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-29 14:46:24 UTC</div></div></div></body></html>
