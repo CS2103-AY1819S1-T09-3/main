@@ -488,7 +488,7 @@ and contains the following operations:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>Model#getDirectoryImageList</code>&#8201;&#8212;&#8201;Retrieved the stored list of images in UserPrefs.</p>
+<p><code>Model#getDirectoryImageList()</code>&#8201;&#8212;&#8201;Retrieves the stored list of images in UserPrefs.</p>
 </li>
 <li>
 <p><code>Model#updateCurrentOriginalImage(Image, Path)</code>&#8201;&#8212;&#8201;Updates the model with the current selected images.</p>
@@ -512,7 +512,7 @@ and contains the following operations:</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>The Model calls upon <code>UserPrefs</code> which stores and facilitates updates and retrieval of the <code>imageList</code> in the current
+<p>The <code>Model</code> calls upon <code>UserPrefs</code> which stores and facilitates the updates and retrieval of <code>imageList</code> in the current
 directory. The <code>UserPrefs</code> class implements the following operation:</p>
 </div>
 <div class="ulist">
@@ -524,14 +524,14 @@ directory. The <code>UserPrefs</code> class implements the following operation:<
 <p><code>UserPrefs#updateImageList()</code>&#8201;&#8212;&#8201;Retrieves all the images in the current directory.</p>
 </li>
 <li>
-<p><code>UserPrefs#updateImageList(ArrayList&lt;Path&gt;)&#8201;&#8212;&#8201;Updates `imageList</code> with the new <code>imageList</code>.</p>
+<p><code>UserPrefs#updateImageList(ArrayList&lt;Path&gt;)</code>&#8201;&#8212;&#8201;Updates <code>imageList</code> with the new <code>imageList</code>.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Other operation, <code>Model#updateCurrentOriginalImage(Image, Path)</code> stores the path of the selected image
-as <code>currOriginalImage</code> and the <code>PreviewImage</code> instance of the path as <code>currentPreviewImage</code> within the <code>ModelManager</code>.
-Additionally, the operation also creates a canvas and a layer to facilitate the transmission feature.</p>
+<p>The <code>Model#updateCurrentOriginalImage(Image, Path)</code> operation stores the path of the selected image and the
+<code>PreviewImage</code> instance of it as <code>currOriginalImage</code> and <code>currentPreviewImage</code> respectively within the <code>ModelManager</code>.
+Additionally, the operation also creates a canvas and a layer to facilitate the <code>transmission</code> feature.</p>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the select and next mechanism behaves at each step.</p>
@@ -542,7 +542,7 @@ as the user&#8217;s home directory.</p>
 </div>
 <div class="paragraph">
 <p>Step 2. The user executes <code>cd Desktop</code> command to navigate into the Desktop directory. The cd command calls
-<code>Model#updateImageList()</code> to retrieve all the images within Desktop.</p>
+<code>Model#updateImageList()</code> to initialise the <code>imageList</code> with all the images within Desktop.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -597,7 +597,7 @@ retrieved and displayed on the GUI.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Work on a small size of images.</p>
+<p>Pros: Users work on a small size of images.</p>
 </li>
 <li>
 <p>Cons: Hard to retrieve images from end of list.</p>
@@ -613,7 +613,7 @@ retrieved and displayed on the GUI.</p>
 <p>Pros: Easy to retrieve images anywhere in the list.</p>
 </li>
 <li>
-<p>Cons: Can be very messy if the imageList size is too large.</p>
+<p>Cons: Can be very messy if the <code>imageList</code> size is too large.</p>
 </li>
 </ul>
 </div>
@@ -626,7 +626,7 @@ retrieved and displayed on the GUI.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice)</strong>: Removes and updates <code>imageList</code> in <code>UserPrefs</code>.</p>
+<p><strong>Alternative 1 (current choice)</strong>: Removes first 10 images and updates <code>imageList</code> in <code>UserPrefs</code>.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -646,7 +646,7 @@ retrieved and displayed on the GUI.</p>
 <p>Pros: Users would be able to access previous batches.</p>
 </li>
 <li>
-<p>Cons: Harder to implement and keep track of the the current start pointer.</p>
+<p>Cons: Hard to implement and keep track of the current start pointer.</p>
 </li>
 </ul>
 </div>
@@ -1723,4 +1723,4 @@ b. Require developers to download those libraries manually (this creates extra w
 <p><em>{To be updated}</em></p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-30 06:09:45 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-30 06:38:17 UTC</div></div></div></body></html>
