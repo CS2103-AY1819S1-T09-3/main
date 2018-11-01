@@ -933,50 +933,64 @@ If the <code>currentStatePointer</code> is at index <code>currentSize - 1</code>
 <div class="sect3">
 <h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.5.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>(the diagram will be upload soon)</p>
-</div>
-<div class="paragraph">
-<p>The transmission mechanism is facilitated by ImageMagic execute file.
-It is an execute file which can be use to do the processing to the target image with the specified command given. There is a imageMaigc Util which will check the existence of the package, Additional, there is a demo given in the example command, which is able to do the blur, resize, and contrast on the target image.
+<p>The transmission mechanism is facilitated by ImageMagick execute file.
+It is an execute file which can be use to do the processing to the target image with specified commands given.
+There is a ImageMaigcUtil class which will check, create, and run the imagemagick executable file,
+a convertCommand to apply the specified transformation to the image,
+a createConvertCommand to customise the transformation and store the command.
+Additionally, there is a demo given in the example command, which is able to do the blur, resize, contrast&#8230;&#8203; on the target image just for demo testing.
 There are some main operations and processes in the class above.</p>
 </div>
+</div>
+<div class="sect3">
+<h4 id="imagemagicutil"><a class="link" href="#imagemagicutil">3.5.2. ImageMagicUtil:</a></h4>
 <div class="paragraph">
-<p>ImageMagicUtil:</p>
+<p>This class is used to provide the methods touching the ImageMagic package</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>getImageMagicPackagePath()</code>&#8201;&#8212;&#8201;get the path of the imageMagic package.</p>
+<p><code>getImageMagickZipUrl()</code>&#8201;&#8212;&#8201;get the Url of the ImageMagick zipped package inside the resource.</p>
 </li>
 <li>
-<p><code>getExecuteImageMagic()</code>&#8201;&#8212;&#8201;get the path to the execute file of the ImageMagic.</p>
+<p><code>getPlatform()</code>&#8201;&#8212;&#8201;get the platform of the current OS.</p>
 </li>
 <li>
-<p><code>getExecuteImageMagic()</code>&#8201;&#8212;&#8201;check whether there is an ect file.</p>
+<p><code>getExecuteImageMagick()</code>&#8201;&#8212;&#8201;get the path to the execute file of the ImageMagic.</p>
 </li>
 <li>
-<p><code>unzipPackage()</code>&#8201;&#8212;&#8201;unzip the package to get the execute file.</p>
+<p><code>parseArguments()</code>&#8201;&#8212;&#8201;parse the argument from the operation.</p>
+</li>
+<li>
+<p><code>processImage()</code>&#8201;&#8212;&#8201;process the specified transformation to the image.</p>
+</li>
+<li>
+<p><code>runProcessBuilder()</code>&#8201;&#8212;&#8201;run the process builder with the arguments given</p>
+</li>
+<li>
+<p><code>copyOutside()</code>&#8201;&#8212;&#8201;copy the ImageMagick outside and unzip</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>ExampleCommand:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>processImage(Index targetIndex)</code>&#8201;&#8212;&#8201;get the index of the example command, call the process builder to do the image process with imageMagic executable file.</p>
-</li>
-</ul>
+<div class="sect3">
+<h4 id="convertcommand"><a class="link" href="#convertcommand">3.5.3. ConvertCommand:</a></h4>
+<div class="paragraph">
+<p>this command is exposed to the model as <code>Model#addTransformation()</code>, which is used to update the transformatioSet of the currentPreviewImage.</p>
 </div>
 <div class="paragraph">
-<p>Given below is an example usage scenario and how the transmission should behaves at each step.</p>
+<p>Given below is an example usage scenario and how the transmission should behave at each step.</p>
 </div>
 <div class="paragraph">
-<p>Step 1. The user selects an image with the <code>select</code> command. the method <code>model.getDisplayedImage()</code> will be called to get he bufferedImage of the current displayed image.</p>
+<p>Step 1. The first time run the app, the corresponding zipped package of the ImageMagick will be copied outside, and unzipped,
+a temp folder will also be created.</p>
 </div>
 <div class="paragraph">
-<p>Step 2. The user enter the command which need processing to the image selected with arguments, for instance "blur 0x8" "resize 50%"</p>
+<p>Step 2. The user selects an image with the <code>select</code> command. the method <code>model.getPreviewImage()</code> will be called to get he bufferedImage of the current preview scene.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. The user enter the command which need processing to the image selected with arguments, for instance "blur 0x8" "resize 50%",
+the entered command will be parsed and the corresponding transformation will be created.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -991,7 +1005,7 @@ If the input is invalid for the command enter, the processing of the image will 
 </table>
 </div>
 <div class="paragraph">
-<p>Step 3. An instance of bufferedImage of the current displayed image will be created by the <code>model.getDisplayedImage()</code> and that one will be saved to the tmp folder inside the storage.</p>
+<p>Step 4. the transformation will be added to the transformation set store in the preview image in the model.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1000,16 +1014,18 @@ If the input is invalid for the command enter, the processing of the image will 
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-if the <code>model.getDisplayedImage()</code> return an invalid bufferedImage or the image is not successfully stored, the command ill stop and error will be thrown.
+if the transformation Set got from the model is invalid, an error should be prompted
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Step 4. An process builder will be built inside the method <code>processImage</code> which will take the image stored, the processing info stored in the transmission set, and use the ImageMagic executable file to do the processing, then store the modified in the tmp as well.</p>
+<p>Step 5. An process builder will be built inside the method <code>processImage</code> which will take the image stored,
+the processing info stored in the transmission set, use the ImageMagic executable file to do the processing,
+then store the modified image in the temp folder created.</p>
 </div>
 <div class="paragraph">
-<p>Step 5. The output bufferedImage will be generated by the modified file stored in the tmp, and the store file will be removed.</p>
+<p>Step 6. The output bufferedImage will be generated by the modified file stored in the temp folder, and the stored file will be removed.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1018,7 +1034,37 @@ if the <code>model.getDisplayedImage()</code> return an invalid bufferedImage or
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.5.2. Design Considerations</a></h4>
+<h4 id="createconvertcommand"><a class="link" href="#createconvertcommand">3.5.4. CreateConvertCommand:</a></h4>
+<div class="paragraph">
+<p>This command is to create a customised command and store in the disk, will check the transformations specified by <code>checkValidation()</code> first.</p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the transmission should behave at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user enters the name of the customized, the transformations specified sequentially.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The specified transformations will be parsed and checked by the templates store in the app.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+if the specified transformations has invalid name or arguments, error will be thrown and user will be reminded.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 3. The validated new command will be stored in the json for in the PicosonCommands folder create when first time run the app.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.5.5. Design Considerations</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1857,4 +1903,4 @@ b. Require developers to download those libraries manually (this creates extra w
 <p><em>{To be updated}</em></p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-01 14:43:06 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-01 16:57:06 UTC</div></div></div></body></html>
