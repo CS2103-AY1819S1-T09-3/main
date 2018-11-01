@@ -750,39 +750,9 @@ the <code>imageList</code> with all the images within Desktop.</p>
 <div class="sect3">
 <h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The undo/redo mechanism is facilitated by <code>PreviewImageManager</code>.
-It is a single instance containing a list of <code>PreviewImage</code> and a <code>currentStatePointer</code>. Each <code>PreviewImage</code> stores a <code>BufferedImage</code> and a <code>TransformationSet</code>.
-Additionally, it implements the following operations:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>PreviewImageManager#commit()</code>&#8201;&#8212;&#8201;Saves the newly transformed <code>PreviewImage</code> state in the history list.</p>
-</li>
-<li>
-<p><code>PreviewImageManager#undo()</code>&#8201;&#8212;&#8201;Restores the previous <code>PreviewImage</code> state from its history.</p>
-</li>
-<li>
-<p><code>PreviewImageManager#redo()</code>&#8201;&#8212;&#8201;Restores a previously undone <code>PreviewImage</code> state from its history.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>These operations are exposed in the <code>Model</code> interface as <code>Model#commitPreviewImageManager()</code>, <code>Model#undoPreviewImageManager()</code> and <code>Model#redoPreviewImageManager()</code> respectively.</p>
-</div>
-<div class="paragraph">
-<p>Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.</p>
-</div>
-<div class="paragraph">
-<p>Step 1. The user selects an image with the <code>select</code> command. The <code>PreviewImageManager</code> is initialized with the selected image, with the <code>currentStatePointer</code> pointing to that <code>PreviewImage</code> state.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/undoRedo1.png" alt="undoRedo1" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p>Step 2. The user execute a series of transformations. Each time, the newly transformend image is stored as a <code>PreviewImage</code> and added to the <code>previewImageStateList</code>. The <code>currentStatePointer</code> is also incremented. Eg. <code>hue</code>, <code>mirror</code>, <code>blur</code></p>
+<p>The undo/redo works on the <code>currentLayer</code> the user is working on. Each <code>Layer</code> contains a <code>PreviewImage</code> which facilitates the undo/redo mechanism.
+The mechanism works by caching the original image and transformed images in a temporary <code>cache</code> folder, and using <code>currentStatePointer</code> as a pointer together with <code>currentSize</code> as an indicator to manage the caching.
+Undoing and redoing will shift the <code>currentStatePointer</code> accordingly while each transformation commits the image by writing to the <code>cache</code> folder (purging redundant images if needed).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -791,7 +761,67 @@ Additionally, it implements the following operations:</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If a command fails its execution, it will not call <code>Model#commitPreviewImageManager()</code>, so nothing will be saved into the <code>previewImageStateList</code>.
+To work with multiple layers, each <code>Layer</code> has a single <code>PreviewImage</code> which is initialized with a unique <code>LayerId</code>, so that the <code>PreviewImage</code> can cache its images safely without conflicting image names.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Additionally, it implements the following operations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>PreviewImage#commit()</code>&#8201;&#8212;&#8201;Writes the newly transformed <code>BufferedImage</code> into the <code>cache</code> folder (purge redundant images if needed).</p>
+</li>
+<li>
+<p><code>PreviewImage#getImage()</code>&#8201;&#8212;&#8201;Returns the current <code>BufferedImage</code> state of the <code>previewImage</code> by reading from the <code>cache</code> folder.</p>
+</li>
+<li>
+<p><code>PreviewImage#undo()</code>&#8201;&#8212;&#8201;Shifts the <code>currentStatePointer</code> to the left, pointing to the previous state.</p>
+</li>
+<li>
+<p><code>PreviewImage#redo()</code>&#8201;&#8212;&#8201;Shifts the <code>currentStatePointer</code> to the right, pointing to a previously undone state.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These operations are exposed in the <code>Model</code> interface as <code>Model#updateCurrentPreviewImage()</code>, <code>Model#undoPreviewImage()</code> and <code>Model#redoPreviewImage()</code>.</p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user selects an image with the <code>select</code> command. The <code>Canvas</code> is initialized with a new <code>Layer</code> which initializes its own <code>PreviewImage</code> with the selected image. The <code>currentStatePointer</code> pointing to that state.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A <code>Canvas</code> can already be initialised, meaning this is an additional layer being added. The <code>Layer</code> and <code>PreviewImage</code> gets initialized the same way.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/undoRedo1.png" alt="undoRedo1" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 2. The user executes a series of transformations. Each time, the newly transformed <code>BufferedImage</code> is stored by writing it to the <code>cache</code> folder. The <code>currentStatePointer</code> is also incremented. Eg. <code>hue</code>, <code>mirror</code>, <code>blur</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If a command fails its execution, it will not call <code>Model#updateCurrentPreviewImage()</code>, so nothing will be cached.
 </td>
 </tr>
 </table>
@@ -802,7 +832,7 @@ If a command fails its execution, it will not call <code>Model#commitPreviewImag
 </div>
 </div>
 <div class="paragraph">
-<p>Step 3. The user wants to undo the previous action by using the <code>undo</code> command. It will call <code>Model#undoPreviewImageManager()</code> which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous <code>PreviewImage</code> state, and restores the model&#8217;s <code>previewImage</code> to that image.</p>
+<p>Step 3. The user wants to undo the previous action by using the <code>undo</code> command. It will call <code>Model#undoPreviewImage()</code> which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous <code>PreviewImage</code> state, then calls <code>Model#getCurrentPreviewImage()</code> to update the UI&#8217;s preview image pane.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -811,7 +841,7 @@ If a command fails its execution, it will not call <code>Model#commitPreviewImag
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If the <code>currentStatePointer</code> is at index 0, pointing to the initial state, then there are no previous <code>PreviewImage</code> states to restore. The <code>undo</code> command uses <code>Model#canUndoPreviewImageManager()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
+If the <code>currentStatePointer</code> is at index 0, pointing to the initial state, then there are no previous states to restore. The <code>undo</code> command uses <code>Model#canUndoPreviewImage()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
 </td>
 </tr>
 </table>
@@ -822,19 +852,11 @@ If the <code>currentStatePointer</code> is at index 0, pointing to the initial s
 </div>
 </div>
 <div class="paragraph">
-<p>Step 4. The user executes another transformation, which calls <code>Model#commitPreviewImageManager</code>. Since the <code>currentStatePointer</code> is not pointing at the end of the <code>previewImageStateList</code>, and the states after the <code>currentStatePointer</code> will not make sense, all <code>PreviewImage</code> states after the pointer will be purged.</p>
+<p>Step 4. The user executes another transformation, which calls <code>Model#updateCurrentPreviewImage</code>. Since the <code>currentStatePointer</code> is not pointing at the end state (<code>currentSize</code> - 1), and the states after the <code>currentStatePointer</code> will not make sense, all states after the pointer will be purged.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/undoRedo4.png" alt="undoRedo4" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p>Step 5. The user decides to undo several actions. The user uses the <code>undo</code> command followed by the number of actions to undo eg.<code>2</code>. The <code>currentStatePointer</code> derements accordingly. The model&#8217;s <code>previewImage</code> is to the pointed state.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/undoRedo5.png" alt="undoRedo5" width="800">
 </div>
 </div>
 <div class="paragraph">
@@ -846,7 +868,7 @@ If the <code>currentStatePointer</code> is at index 0, pointing to the initial s
 </div>
 </div>
 <div class="paragraph">
-<p>The redo command does the opposite — it calls <code>Model#redoPreviewImageManager()</code>, which shifts the currentStatePointer once to the right, pointing to the previously undone state, and updates the model&#8217;s <code>previewImage</code> to that image.</p>
+<p>The redo command does the opposite — it calls <code>Model#redoPreviewImage()</code>, which shifts the currentStatePointer once to the right, pointing to the previously undone state.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -855,13 +877,13 @@ If the <code>currentStatePointer</code> is at index 0, pointing to the initial s
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If the <code>currentStatePointer</code> is at index <code>previewImageStateList.size() - 1</code>, pointing to the last <code>PreviewImage</code> state, then there are no undone <code>PreviewImage</code> states to restore. The <code>redo</code> command uses <code>Model#canReddoPreviewImageManager()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+If the <code>currentStatePointer</code> is at index <code>currentSize - 1</code>, pointing to the <code>PreviewImage&#8217;s</code> last state, then there are no undone states to restore. The <code>redo</code> command uses <code>Model#canReddoPreviewImage()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>The following activity diagram summarizes what happens when a user executes a new command:</p>
+<p>The following activity diagram summarizes what happens when a user executes a new transformation:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -871,15 +893,38 @@ If the <code>currentStatePointer</code> is at index <code>previewImageStateList.
 </div>
 <div class="sect3">
 <h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.4.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p>An alternative to this implementation will be to store the transformations, and actually reverse the execution of each transformation. However, it could be time consuming and complicated especially for complex transformations. As such, Piconso stores the list of modified images. In order to regulate memory usage, Piconso limits the number of actions to undo to 10.</p>
+<p><strong>Alternative 1 (current choice):</strong> Saves each newly transformed image (including original).</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement.</p>
 </li>
 <li>
-<p>During mass editing of images, only the first image will be previewed and have its states stored. Undo/redo will work as if 1 image is being edited. When the user has finalised his transformations, only then will the transformations be applied to the whole set.</p>
+<p>Cons: Uses user&#8217;s storage space for caching.</p>
 </li>
 </ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Save only the command, and reverse/reapply transformation for each undo/redo.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Will not need to use user&#8217;s data storage.</p>
+</li>
+<li>
+<p>Cons: Transformations on images take significantly more time as compared to reading and writing cache. Also, reversing of transformations are not possible for commands like blur and colorspace.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
@@ -1812,4 +1857,4 @@ b. Require developers to download those libraries manually (this creates extra w
 <p><em>{To be updated}</em></p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-01 10:05:03 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-01 14:11:00 UTC</div></div></div></body></html>
