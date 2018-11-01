@@ -29,7 +29,7 @@
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#change-directory-cd-feature">3.1. Change Directory (Cd) feature</a></li>
-<li><a href="#select-next-feature">3.2. Select/Next feature</a></li>
+<li><a href="#select-feature">3.2. Select feature</a></li>
 <li><a href="#next-prev-feature">3.3. Next/Prev feature</a></li>
 <li><a href="#undo-redo-feature">3.4. Undo/Redo feature</a></li>
 <li><a href="#transmission-feature">3.5. Transmission feature</a></li>
@@ -507,7 +507,7 @@ If the <code>newCurrDirectory</code> is not a directory, i.e. <code>isDirectory(
 </div>
 </div>
 <div class="sect2">
-<h3 id="select-next-feature"><a class="link" href="#select-next-feature">3.2. Select/Next feature</a></h3>
+<h3 id="select-feature"><a class="link" href="#select-feature">3.2. Select feature</a></h3>
 <div class="paragraph">
 <p>The Select Command allow users to select the images in a batch of 10 images within the directory for image-editing.
 This command is further facilitated by the Next Command.</p>
@@ -515,11 +515,8 @@ This command is further facilitated by the Next Command.</p>
 <div class="sect3">
 <h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The implementation of the Select/Next feature is largely similar to the <code>Cd Command</code>. It is facilitated by the <code>ModelManager</code>
+<p>The implementation of the Select feature is largely similar to the <code>Cd Command</code>. It is facilitated by the <code>ModelManager</code>
 and contains the following operations:</p>
-</div>
-<div class="paragraph">
-<p>Select feature:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -539,12 +536,6 @@ batch. The <code>UserPrefs</code> class implements the following operation:</p>
 <ul>
 <li>
 <p><code>UserPrefs#getCurrImageListBatch()</code>&#8201;&#8212;&#8201;Returns the current batch of images.</p>
-</li>
-<li>
-<p><code>UserPrefs#updateImageList()</code>&#8201;&#8212;&#8201;Retrieves all the images in the current directory.</p>
-</li>
-<li>
-<p><code>UserPrefs#updateImageList(ArrayList&lt;Path&gt;)</code>&#8201;&#8212;&#8201;Updates <code>imageList</code> with the new <code>imageList</code>.</p>
 </li>
 </ul>
 </div>
@@ -576,7 +567,7 @@ then retrieved and displayed on the GUI.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SelectCommand2.png" alt="SelectCommand2" width="800">
+<img src="images/SelectCommand2.png" alt="SelectCommand2" width="500">
 </div>
 </div>
 <div class="paragraph">
@@ -585,7 +576,7 @@ is then retrieved similarly and displayed on the GUI.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SelectCommand3.png" alt="SelectCommand3" width="800">
+<img src="images/SelectCommand3.png" alt="SelectCommand3" width="450">
 </div>
 </div>
 <div class="paragraph">
@@ -1903,4 +1894,4 @@ b. Require developers to download those libraries manually (this creates extra w
 <p><em>{To be updated}</em></p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-01 19:10:21 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-01 19:40:18 UTC</div></div></div></body></html>
