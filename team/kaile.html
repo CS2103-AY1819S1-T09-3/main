@@ -1,0 +1,656 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Ong Kai Le - Project Portfolio</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="../images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level3">AB-3</a></li><li class="nav-item"><a class="nav-link active" href="../index.html">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">Piconso</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://cs2103-ay1819s1-t09-3.github.io/main/index.html"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Ong Kai Le - Project Portfolio</h1></div><div id="content"><div class="sect1">
+<h2 id="project-piconso"><a class="link" href="#project-piconso">PROJECT: Piconso</a></h2>
+<div class="sectionbody">
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Piconso is an CLI (Command Line Interface) Image Editor designed and developed for quick and efficient image-editing. Many image-editors are complex and difficult to pick up, having a steep learning curve and sometimes even a steep price!</p>
+</div>
+<div class="paragraph">
+<p>Unlike them, Piconso offers the same features, in a much more simplified manner. With Piconso, all traditional image-editing features can be performed solely through text commands, removing the hassle of working with a mouse. The interface can be used by photographers, designers, developers and more, and is very easy to pick up.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Major enhancement</strong>: Added <strong>connectivity to Google Photos</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: Allows the user to login to Google Photos, and view, upload and download images on/to Google Photos.</p>
+</li>
+<li>
+<p>Justification: This feature improves the product significantly because it provides a user cloud connectivity to Google Photos, thus the user can immediately retrieve and work on a batch of images from the cloud, and upload his completed work there as well for easy storage and sharing.</p>
+</li>
+<li>
+<p>Highlights: This enhancement uses memoization ensure undo/redo commands are almost instant. Since transformations to images take significant time (especially large images) and that users typically want to quickly inspect the before and after of their transformation, it is necessary  for undo and redo to be fast. As such, after each transformation, the resulting transformed image is cached into a temporary folder. Undo and redo operations will shift a pointer leftwards or rightwards and read the selected image, instead of reapplying or reversing a transformation process which is time consuming.</p>
+</li>
+<li>
+<p>Credit: Google Photos Java Client API and Google OAuth API have been used throughout Google related commands.The feature that allows login to Google Photos was also based upon the [<a href="https://github.com/google/java-photoslibrary/blob/master/sample/src/main/java/com/google/photos/library/sample/demos/AlbumDemo.java" class="bare">https://github.com/google/java-photoslibrary/blob/master/sample/src/main/java/com/google/photos/library/sample/demos/AlbumDemo.java</a> [example found here]]</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: Added a ls command that allows the user to list the files in their current directory. Additionally, also created and linked the UIs for FilmReel (shows images in current directory batch) and HistoryList (shows history of transformations performed on image)</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103-AY1819S1-T09-3/main/commits?author=chivent">All commits</a>]</p>
+</li>
+<li>
+<p><strong>Other contributions</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Project management:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Help manage tagging of milestone code (v1.1-v1.2)</p>
+</li>
+<li>
+<p>Participated in creating and tagging issues, and merging/reviewing PRs</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Enhancements to existing features:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated the status footer bar UI to display current directory and google connectivity status (Pull requests <a href="https://github.com/CS2103-AY1819S1-T09-3/main/pull/80">#80</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Documentation:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Added detailed implementation documentation for the google login feature in Developer Guide, including diagrams: <a href="https://github.com/CS2103-AY1819S1-T09-3/main/pull/131">#131</a></p>
+</li>
+<li>
+<p>Updated the User Guide for the google features: <a href="https://github.com/CS2103-AY1819S1-T09-3/main/pull/103">#103</a>, <a href="https://github.com/CS2103-AY1819S1-T09-3/main/pull/131">#131</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Community:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>PRs reviewed: <a href="https://github.com/CS2103-AY1819S1-T09-3/main/pull/44">#44</a>, <a href="https://github.com/CS2103-AY1819S1-T09-3/main/pull/37">#37</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="logging-in-to-google-photos-code-login-code"><a class="link" href="#logging-in-to-google-photos-code-login-code">Logging in to Google Photos: <code>login</code></a></h3>
+<div class="paragraph">
+<p>Format: <code>login</code>: allows you to log in to Google Photos</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Requires a stable internet connection</strong><br>
+Once the <code>login</code> command is launched, you <strong>MUST</strong> proceed with logging in from the redirected page, otherwise the application will freeze. You may use <code>logout</code> afterwards if you have changed your mind.<br></p>
+</div>
+<div class="paragraph">
+<p>A fix is upcoming in v2.0.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="google-photos-related-commands-code-g-code"><a class="link" href="#google-photos-related-commands-code-g-code">Google Photos related commands: <code>g</code></a></h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>All commands will require a stable internet connection.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="traversing-google-photos-code-g-ls-code"><a class="link" href="#traversing-google-photos-code-g-ls-code">Traversing Google Photos: <code>g ls</code></a></h4>
+<div class="paragraph">
+<p>Format: <code>g ls</code>: lists all photos in your Google Photos, takes a longer amount of time depending on the number of images stored.<br>
+Format: <code>g ls /a</code>: lists all albums in your Google Photos.<br>
+Format: <code>g ls &lt;ALBUM_NAME&gt;</code>: lists all photos in specified album from Google Photos.</p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>g ls &lt;Vacation&gt;</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="downloading-photos-from-google-photos-code-g-dl-code"><a class="link" href="#downloading-photos-from-google-photos-code-g-dl-code">Downloading photos from Google Photos: <code>g dl</code></a></h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>All photos will be downloaded to the currently opened local directory.<br>
+Any files with duplicate naming existing in the targeted directory <strong>WILL</strong> be replaced</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Format: <code>g dl /i&lt;IMAGE_NAME&gt;</code>: downloads specified image from Google Photos<br>
+Format: <code>g dl /a&lt;ALBUM_NAME&gt;</code>: downloads all images from specified album in Google Photos, takes a longer amount of time depending on the number of images stored in the album.<br>
+Format: <code>g dl /a&lt;ALBUM_NAME&gt; /i&lt;IMAGE_NAME&gt;</code>: downloads a specific photo from a specific album in Google Photos.</p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>g dl /i&lt;Beach.png&gt;</code> &#8594; Downloads Beach.png<br></p>
+</li>
+<li>
+<p><code>g dl /a&lt;Vacation&gt;</code> &#8594; Downloads all photos from Vacation album<br></p>
+</li>
+<li>
+<p><code>g dl /a&lt;Vacation&gt; /i&lt;Beach.png&gt;</code> &#8594; Downloads Beach.png from Vacation album<br></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="uploading-photos-to-google-photos-code-g-ul-code"><a class="link" href="#uploading-photos-to-google-photos-code-g-ul-code">Uploading photos to Google Photos: <code>g ul</code></a></h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>All uploaded photos will be automatically categorised into album 'Piconso Uploads'</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Format: <code>g ul &lt;IMAGE_NAME&gt;</code>: uploads specified image in currently open local directory to Google Photos<br>
+Format: <code>g ul all</code>: uploads all images in current directory to Google Photos, takes a longer amount of time depending on number of images to upload.</p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>g ul &lt;Cat.png&gt;</code> &#8594; Uploads Cat.png<br></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging-out-of-google-photos-code-logout-code"><a class="link" href="#logging-out-of-google-photos-code-logout-code">Logging out of Google Photos: <code>logout</code></a></h3>
+<div class="paragraph">
+<p>Format: <code>logout</code>: logs you out of Google Photos</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="exiting-the-application-code-exit-code"><a class="link" href="#exiting-the-application-code-exit-code">Exiting the application: <code>exit</code></a></h3>
+<div class="paragraph">
+<p>Format: <code>exit</code>: closes the application</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="faq"><a class="link" href="#faq">FAQ</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
+<strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous folder.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="command-summary"><a class="link" href="#command-summary">Command Summary</a></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Help</strong> : <code>help</code><br></p>
+</li>
+<li>
+<p><strong>Select</strong> : <code>select [INDEX]</code><br>
+e.g. <code>select 1</code><br></p>
+</li>
+<li>
+<p><strong>Next</strong> : <code>next</code><br></p>
+</li>
+<li>
+<p><strong>Previous</strong> : <code>prev</code><br></p>
+</li>
+<li>
+<p><strong>Convert</strong> <code>convert [TRANSFORMATION]</code><br>
+e.g. <code>add -rotate left 180</code><br></p>
+</li>
+<li>
+<p><strong>Save</strong> : <code>save [IMAGE_NAME]/[SET_NAME]</code><br>
+e.g. <code>save exampleImage.jpg</code><br></p>
+</li>
+<li>
+<p><strong>Undo</strong> : <code>undo</code><br></p>
+</li>
+<li>
+<p><strong>Redo</strong> : <code>redo</code><br></p>
+</li>
+<li>
+<p><strong>Ls</strong> : <code>ls</code><br></p>
+</li>
+<li>
+<p><strong>Cd</strong> : <code>cd [DIRECTORY_NAME]</code><br></p>
+</li>
+<li>
+<p><strong>Login</strong> : <code>login</code><br></p>
+</li>
+<li>
+<p><strong>Google List</strong> : <code>g ls OR g ls /a OR g ls &lt;ALBUM_NAME&gt;</code><br></p>
+</li>
+<li>
+<p><strong>Download</strong> : <code>g dl /i&lt;IMAGE_NAME&gt; OR g dl /a&lt;ALBUM_NAME&gt; OR g dl /a&lt;ALBUM_NAME&gt; /i&lt;IMAGE_NAME&gt;</code><br></p>
+</li>
+<li>
+<p><strong>Upload</strong> : <code>g ul &lt;IMAGE_NAME&gt; OR g ul all</code><br></p>
+</li>
+<li>
+<p><strong>Logout</strong> : <code>logout</code><br></p>
+</li>
+<li>
+<p><strong>Exit</strong> : <code>exit</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>[NOTE] This section is still in progress, features for Google Ls, Upload and Download are yet to be fully completed.
+=== Google Features
+==== Overall Introduction
+The Google commands allow for access to <a href="https://developers.google.com/photos/library/guides/get-started-java">Google Photos</a> through a logged-in instance of the user, and are held up by two main components.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>PhotosLibraryClientFactory</code> - Initiates and carries out the login process. Produces a <code>PhotoHandler</code> instance, which handles matters related to Google commands.</p>
+</li>
+<li>
+<p><code>PhotoHandler</code> - Mainly consists of a <code>PhotoLibraryClient</code> instance and user&#8217;s logged in state. Performs all explicit calls to Google Photos through the <code>PhotosLibraryClient</code> instance.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>PhotoHandler</code> instance is later accessed through <code>Model#getPhotoHandler()</code> and <code>Model#setPhotoHandler()`</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>There are 5 main google-related commands, with the first two commands to login/logout a user, and the latter 3 being overloaded command types with <code>GoogleCommand</code> as the abstract parent class.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>LoginCommand</code> - Logs in user to their Google Account.</p>
+</li>
+<li>
+<p><code>LogoutCommand</code> - Logs a user out of their Google Account.</p>
+</li>
+<li>
+<p><code>GoogleLsCommand</code> - Returns the files from Google Photos.</p>
+</li>
+<li>
+<p><code>GoogleDlCommand</code> - Downloads the specified image(s) from Google Photos to the user&#8217;s currently viewed local directory.</p>
+</li>
+<li>
+<p><code>GoogleUploadCommand</code> - Uploads the specified image(s) from the user&#8217;s currently viewed local directory to Google Photos.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To use Google Photos API in Piconso, we have connected and generated <code>client_credentials.json</code> via our own Google Account to enable usage of the API. It is suggested that you <a href="https://developers.google.com/photos/library/guides/get-started-java">configure</a> Piconso to use Google Photos Library API with your own account rather than the provided.<br>
+If you are not familiar with how Google Photos work, it would be advisable to first try out Google Photos as a consumer before proceeding.</p>
+</div>
+<div class="sect2">
+<h3 id="login-login-command"><a class="link" href="#login-login-command">Login(login) Command</a></h3>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
+<div class="paragraph">
+<p>The Login command currently authenticates a user via Google OAuth. To learn more about the implementation of OAuth methods, you may refer to <a href="https://developers.google.com/identity/protocols/OAuth2#installed">O-Auth Explanation</a> and <a href="https://developers.google.com/api-client-library/java/google-api-java-client/oauth2#installed_applications">Google API examples</a>. As the workings of Google OAuth are rather complicated, it is suggested that you go through the examples/documentations in those links.<br></p>
+</div>
+<div class="paragraph">
+<p>Below are some examples on how the login command will work.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If connection to the internet is lost at any point during authentication with Google&#8217;s server, login will fail and an error message will be sent to user as feedback.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="scenario-1-explicit-code-login-code-command-executed-user-not-logged-in-yet"><a class="link" href="#scenario-1-explicit-code-login-code-command-executed-user-not-logged-in-yet">Scenario 1: Explicit <code>login</code> command executed, user not logged in yet.</a></h4>
+<div class="paragraph">
+<p>Step 1. The user executes a <code>login</code> command.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The login command calls <code>Model#getPhotoHandler()</code> and checks if a PhotoHandler instance already exists, if false, it calls <code>PhotoLibraryClientFactory#createClient()</code> to set up the requirements for log in and redirects the user to the browser.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. The returned refresh token is stored, and PhotoLibraryClientFactory instance then calls <code>PhotoLibraryClientFactory#createPhotosLibraryClient()</code> and <code>PhotoLibraryClientFactory#getUserEmail() to instantiate a `PhotoHandler</code> instance</p>
+</div>
+<div class="paragraph">
+<p>Step 4. The <code>PhotoHandler</code> instance is set by model as <code>Model#photoLibrary</code>, and confirmation of login is sent to user.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram illustrates how the above steps work:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/LoginSequenceDiagram.png" alt="LoginSequenceDiagram" width="2000">
+</div>
+<div class="title">Figure 1. Sequence Diagram for Login Command</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Currently, the user MUST go through with the login process once activated else Piconso will freeze. Suggestions are to implement asynchronous login in v1.4 or by v2.0
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="scenario-2-implicit-login-where-piconso-auto-logs-in-user-upon-re-launch"><a class="link" href="#scenario-2-implicit-login-where-piconso-auto-logs-in-user-upon-re-launch">Scenario 2: Implicit login, where Piconso auto logs in user upon re-launch</a></h4>
+<div class="paragraph">
+<p>Step 1: Upon Piconso start up, <code>PhotoLibraryClientFactory#loginUserIfPossible()</code> is run by <code>ModelManager</code><br>
+Step 2: The method checks for stored credentials (refresh token), and logs in the user if it exists via <code>PhotoLibraryClientFactory#createClient()</code>, else the log in process is skipped.</p>
+</div>
+<div class="paragraph">
+<p>In both scenarios, whenever a refresh token is found stored the user is logged in without having to face browser re-direct again. At no point in any scenario will we be storing a user&#8217;s actual credentials. The only thing we will store is a refresh token that allows us to keep a user logged in, actual credentials are handled by Google OAuth<br></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="logout-logout-command"><a class="link" href="#logout-logout-command">Logout (logout) Command</a></h4>
+<div class="paragraph">
+<p>The logout command works in a simple manner. It deletes the stored credential file if it exists, and does nothing if it does not. Upon deleting the file, the user will no longer have a refresh token to stay logged in, and thus is effectively logged out.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="googlelscommand-list"><a class="link" href="#googlelscommand-list">GoogleLsCommand (list)</a></h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For all Google Commands (excluding login and logout), they will be called by commands appended with a g (i.e <code>g ls</code>, <code>g dl image.png</code>).<br>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Thus a <code>g</code> command will always be passed through a <code>GoogleCommandParser</code> before launching its respective command os launched.</p>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current Implementation</a></h4>
+<div class="paragraph">
+<p>The GoogleLsCommand allows users to browse through their stored images on Google Photos. Currently, it is overloaded with three types of commands the user can type</p>
+</div>
+<div class="paragraph">
+<p><code>g ls</code> &#8594; Lists all photos in user&#8217;s Google Photos, takes a longer amount of time depending on the number of images stored.<br>
+<code>g ls /a</code> &#8594; Lists all albums in user&#8217;s Google Photos.<br>
+<code>g ls &lt;ALBUM_NAME&gt;</code> &#8594; Lists all photos in specified album from Google Photos.</p>
+</div>
+<div class="paragraph">
+<p>As such, parsing will be done twice. Once by GoogleCommandParser, and another within GoogleLsCommand itself.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="example-code-g-ls-code-where-user-wants-to-list-all-albums-in-google-photos"><a class="link" href="#example-code-g-ls-code-where-user-wants-to-list-all-albums-in-google-photos">Example: <code>g ls</code>, where user wants to list all albums in Google Photos.</a></h4>
+<div class="paragraph">
+<p>Step 1. The user executes a <code>g ls /a</code> command.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The command goes through parsing, firstly by <code>GoogleCommandParser</code> and secondly filtered by GoogleLsCommand. It is determined to be for listing albums, and <code>model.getPhotoHandler().returnAllAlbumsList()</code> is called.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. Within that method, it makes a request to Google Photos, retrieves a list of <code>Album`s, and stores them in a `Map&lt;String, Album&gt;</code> with each key being the album name.</p>
+</div>
+<div class="paragraph">
+<p>Step 4. The entire list is converted into a String, and returned to the <code>CommandBox</code> ui as feedback to the user</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram illustrates how the above steps work:</p>
+</div>
+<div class="paragraph">
+<div class="title">Sequence Diagram for GoogleLsCommand</div>
+<p>{IMAGE TO BE ADDED}</p>
+</div>
+<div class="paragraph">
+<p>The process is similar for the other 2 variants, except images or images from a specific album are retrieved instead. All retrieved results are always stored in their respective maps. i.e A Map for Albums, one for images, and another for images from a specific Album.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>1. Performance Issues</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The larger the amount of pictures stored in Google Photos, the longer amount of time a <code>g ls</code> command will take.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Current Solution: A fair warning of this issue is provided in the User Guide for users, and alternative command <code>g ls &lt;ALBUM_NAME&gt;</code> has been provided to encourage the user to input narrower searches</p>
+</li>
+<li>
+<p>Improved Solution (to be implemented in earliest v1.4): The current implementation makes it so that the list of photos/albums is re-retrieved upon every <code>ls</code> call. As it is not likely that the set of photos in Google Photos will constantly change, a better alternative, a <code>refresh</code> command can be implemented alongside the other commands, such that the list is only re-retrieved when a user refreshes.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>2. Duplicated Naming</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Google Photos allows for multiples images and albums to be stored with the same name, making it difficult to list item names as names might overlap.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 1 (Current): Before storing names of images/albums into the map, names are checked against the map for duplicates, and are appended with a suitable index if a file/album with the same name is found. This ensures that all files/albums are uniquely named.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Con: If there are multiple images with the same name, the process of any <code>g ls</code> will take a much longer time to run.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Alternative 2: Instead of storing the name of the image/album as the key inside the Map, the unique ID (that is retrieved together with the files from Google) can be used instead. This approach was however avoided for convenience of the user (ID too complicated to input)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>3. Album Traversal</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 1: Treat the album as a category, thus <code>g ls &lt;ALBUM_NAME&gt;</code> acts as a filter that filters photos by category.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Con: The command to download from an album needs to be extended such that users need to specify in which album the image to download is in.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Alternative 2: Handle the concept of albums like directories, such that a user can cd in and out of an album. This was avoided for fear of causing confusion in users (having to view both google and local directories concurrently).</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="googledlcommand-download"><a class="link" href="#googledlcommand-download">GoogleDlCommand (download)</a></h3>
+<div class="paragraph">
+<p>Step 1. The user executes a <code>g ls /a</code> command.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The command goes through parsing, firstly by <code>GoogleCommandParser</code> and secondly filtered by GoogleLsCommand. It is determined to be for listing albums, and <code>model.getPhotoHandler().returnAllAlbumsList()</code> is called.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. Within that method, it makes a request to Google Photos, retrieves a list of <code>Album`s, and stores them in a `Map&lt;String, Album&gt;</code> with each key being the album name.</p>
+</div>
+<div class="paragraph">
+<p>Step 4. The entire list is converted into a String, and returned to the <code>CommandBox</code> ui as feedback to the user</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For all upload/download related commands, the amount of time taken to process the task varies with the number of images to upload/download.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">Current Implementation</a></h4>
+<div class="paragraph">
+<p>The GoogleDlCommand allows users to browse through their stored images on Google Photos. Currently, it is overloaded with three types of commands the user can type</p>
+</div>
+<div class="paragraph">
+<p><code>g dl /i&lt;IMAGE_NAME&gt;</code>: Downloads specified image from Google Photos<br>
+<code>g dl /a&lt;ALBUM_NAME&gt;</code>: Downloads all images from specified album in Google Photos, takes a longer amount of time depending on the number of images stored in the album.<br>
+<code>g dl /a&lt;ALBUM_NAME&gt; /i&lt;IMAGE_NAME&gt;</code>: Downloads a specific photo from a specific album in Google Photos.</p>
+</div>
+<div class="paragraph">
+<p>As such, parsing will be done twice. Once by GoogleCommandParser, and another within GoogleDlCommand itself.</p>
+</div>
+<div class="paragraph">
+<p>{To be updated}</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="googleuploadcommand-upload"><a class="link" href="#googleuploadcommand-upload">GoogleUploadCommand (upload)</a></h3>
+<div class="paragraph">
+<p>{to be updated}</p>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-02 04:27:49 UTC</div></div></div></body></html>
