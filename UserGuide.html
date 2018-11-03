@@ -21,14 +21,16 @@
 <li><a href="#applying-a-transformation-to-an-image-code-convert-code">3.6. Applying a transformation to an image : <code>convert</code></a></li>
 <li><a href="#customizing-transformation-for-imageprocessing-code-create-code">3.7. Customizing transformation for imageProcessing : <code>create</code></a></li>
 <li><a href="#saving-images-code-save-code">3.8. Saving images : <code>save</code></a></li>
-<li><a href="#undoing-previous-actions-code-undo-code">3.9. Undoing previous actions : <code>undo</code></a></li>
-<li><a href="#redoing-the-previous-actions-code-redo-code">3.10. Redoing the previous actions : <code>redo</code></a></li>
-<li><a href="#listing-files-in-directory-code-ls-code">3.11. Listing files in directory : <code>ls</code></a></li>
-<li><a href="#changing-directories-code-cd-code">3.12. Changing directories : <code>cd</code></a></li>
-<li><a href="#logging-in-to-google-photos-code-login-code">3.13. Logging in to Google Photos: <code>login</code></a></li>
-<li><a href="#google-photos-related-commands-code-g-code">3.14. Google Photos related commands: <code>g</code></a></li>
-<li><a href="#logging-out-of-google-photos-code-logout-code">3.15. Logging out of Google Photos: <code>logout</code></a></li>
-<li><a href="#exiting-the-application-code-exit-code">3.16. Exiting the application: <code>exit</code></a></li>
+<li><a href="#undoing-a-transformation-code-undo-code">3.9. Undoing a transformation : <code>undo</code></a></li>
+<li><a href="#undoing-all-transformations-code-undo-all-code">3.10. Undoing all transformations : <code>undo-all</code></a></li>
+<li><a href="#redoing-a-transformation-code-redo-code">3.11. Redoing a transformation : <code>redo</code></a></li>
+<li><a href="#redoing-all-transformations-code-redo-all-code">3.12. Redoing all transformations : <code>redo-all</code></a></li>
+<li><a href="#listing-files-in-directory-code-ls-code">3.13. Listing files in directory : <code>ls</code></a></li>
+<li><a href="#changing-directories-code-cd-code">3.14. Changing directories : <code>cd</code></a></li>
+<li><a href="#logging-in-to-google-photos-code-login-code">3.15. Logging in to Google Photos: <code>login</code></a></li>
+<li><a href="#google-photos-related-commands-code-g-code">3.16. Google Photos related commands: <code>g</code></a></li>
+<li><a href="#logging-out-of-google-photos-code-logout-code">3.17. Logging out of Google Photos: <code>logout</code></a></li>
+<li><a href="#exiting-the-application-code-exit-code">3.18. Exiting the application: <code>exit</code></a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -251,12 +253,14 @@
 transformation base on the operation specified</p>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Example:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>create blurR blur|0x8 rotate|90</code></p>
+<p><code>create blurAndRotate blur|0x8 rotate|90</code><br>
+To use the newly created command, use:<br>
+<code>convert @blurAndRotate</code></p>
 </li>
 </ul>
 </div>
@@ -267,7 +271,7 @@ transformation base on the operation specified</p>
 <p>Format: <code>save [IMAGE_NAME]</code>: saves the transformed image, supporting jpg, jpeg, png, tiff, gif</p>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Example:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -276,11 +280,25 @@ transformation base on the operation specified</p>
 </li>
 </ul>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The image will be saved in the same directory as the original image.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect2">
-<h3 id="undoing-previous-actions-code-undo-code"><a class="link" href="#undoing-previous-actions-code-undo-code">3.9. Undoing previous actions : <code>undo</code></a></h3>
+<h3 id="undoing-a-transformation-code-undo-code"><a class="link" href="#undoing-a-transformation-code-undo-code">3.9. Undoing a transformation : <code>undo</code></a></h3>
 <div class="paragraph">
-<p>Format: <code>undo</code>: Step back to the previous transformation</p>
+<p>Format: <code>undo</code>: Step back to the previous image state (in current layer)</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -297,49 +315,90 @@ transformation base on the operation specified</p>
 </table>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Example:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p><code>convert blur 0x8</code><br>
-<code>undo</code> (reverses the <code>convert blur 0x8</code> command)<br></p>
+<code>convert contrast</code><br>
+<code>undo</code> (undoes the <code>convert contrast</code> command, image will be at <code>blur 0x8</code> state)<br></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="redoing-the-previous-actions-code-redo-code"><a class="link" href="#redoing-the-previous-actions-code-redo-code">3.10. Redoing the previous actions : <code>redo</code></a></h3>
+<h3 id="undoing-all-transformations-code-undo-all-code"><a class="link" href="#undoing-all-transformations-code-undo-all-code">3.10. Undoing all transformations : <code>undo-all</code></a></h3>
+<div class="paragraph">
+<p>Format: <code>undo-all</code>: Undoes all transformations (reverts image to original state)</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>convert blur 0x8</code><br>
+<code>convert contrast</code><br>
+<code>convert rotate 90</code><br>
+<code>undo-all</code> (undoes all 3 <code>convert</code> commands, image will be at original state)<br></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="redoing-a-transformation-code-redo-code"><a class="link" href="#redoing-a-transformation-code-redo-code">3.11. Redoing a transformation : <code>redo</code></a></h3>
 <div class="paragraph">
 <p>Format: <code>redo</code>: Step forward to the previously undone transformation</p>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Example:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p><code>convert blur 0x8</code><br>
-<code>undo</code> (reverses the <code>convert blur 0x8</code> command)<br>
-<code>redo</code> (reapplies the <code>convert blur 0x8</code> command)<br></p>
+<code>convert contrast</code><br>
+<code>undo</code> (undoes the <code>convert contrast</code> command, image will be at <code>blur 0x8</code> state)<br>
+<code>redo</code> (reapplies the <code>convert contrast</code> command)<br></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-files-in-directory-code-ls-code"><a class="link" href="#listing-files-in-directory-code-ls-code">3.11. Listing files in directory : <code>ls</code></a></h3>
+<h3 id="redoing-all-transformations-code-redo-all-code"><a class="link" href="#redoing-all-transformations-code-redo-all-code">3.12. Redoing all transformations : <code>redo-all</code></a></h3>
+<div class="paragraph">
+<p>Format: <code>redo-all</code>: Redoes all undone transformations</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>convert blur 0x8</code><br>
+<code>convert contrast</code><br>
+<code>convert rotate 90</code><br>
+<code>undo-all</code> (undoes all 3 <code>convert</code> commands, image will be at original state)<br>
+<code>redo-all</code> (reapplies all 3 <code>convert</code> commands)<br></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listing-files-in-directory-code-ls-code"><a class="link" href="#listing-files-in-directory-code-ls-code">3.13. Listing files in directory : <code>ls</code></a></h3>
 <div class="paragraph">
 <p>Format: <code>ls</code>: lists files in the current directory</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="changing-directories-code-cd-code"><a class="link" href="#changing-directories-code-cd-code">3.12. Changing directories : <code>cd</code></a></h3>
+<h3 id="changing-directories-code-cd-code"><a class="link" href="#changing-directories-code-cd-code">3.14. Changing directories : <code>cd</code></a></h3>
 <div class="paragraph">
 <p>Format: <code>cd [DIRECTORY_NAME]</code>: changes directory</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging-in-to-google-photos-code-login-code"><a class="link" href="#logging-in-to-google-photos-code-login-code">3.13. Logging in to Google Photos: <code>login</code></a></h3>
+<h3 id="logging-in-to-google-photos-code-login-code"><a class="link" href="#logging-in-to-google-photos-code-login-code">3.15. Logging in to Google Photos: <code>login</code></a></h3>
 <div class="paragraph">
 <p>Format: <code>login</code>: allows you to log in to Google Photos</p>
 </div>
@@ -363,7 +422,7 @@ Once the <code>login</code> command is launched, you <strong>MUST</strong> proce
 </div>
 </div>
 <div class="sect2">
-<h3 id="google-photos-related-commands-code-g-code"><a class="link" href="#google-photos-related-commands-code-g-code">3.14. Google Photos related commands: <code>g</code></a></h3>
+<h3 id="google-photos-related-commands-code-g-code"><a class="link" href="#google-photos-related-commands-code-g-code">3.16. Google Photos related commands: <code>g</code></a></h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -379,7 +438,7 @@ Once the <code>login</code> command is launched, you <strong>MUST</strong> proce
 </table>
 </div>
 <div class="sect3">
-<h4 id="traversing-google-photos-code-g-ls-code"><a class="link" href="#traversing-google-photos-code-g-ls-code">3.14.1. Traversing Google Photos: <code>g ls</code></a></h4>
+<h4 id="traversing-google-photos-code-g-ls-code"><a class="link" href="#traversing-google-photos-code-g-ls-code">3.16.1. Traversing Google Photos: <code>g ls</code></a></h4>
 <div class="paragraph">
 <p>Format: <code>g ls</code>: lists all photos in your Google Photos, takes a longer amount of time depending on the number of images stored.<br>
 Format: <code>g ls /a</code>: lists all albums in your Google Photos.<br>
@@ -397,7 +456,7 @@ Format: <code>g ls &lt;ALBUM_NAME&gt;</code>: lists all photos in specified albu
 </div>
 </div>
 <div class="sect3">
-<h4 id="downloading-photos-from-google-photos-code-g-dl-code"><a class="link" href="#downloading-photos-from-google-photos-code-g-dl-code">3.14.2. Downloading photos from Google Photos: <code>g dl</code></a></h4>
+<h4 id="downloading-photos-from-google-photos-code-g-dl-code"><a class="link" href="#downloading-photos-from-google-photos-code-g-dl-code">3.16.2. Downloading photos from Google Photos: <code>g dl</code></a></h4>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -436,7 +495,7 @@ Format: <code>g dl /a&lt;ALBUM_NAME&gt; /i&lt;IMAGE_NAME&gt;</code>: downloads a
 </div>
 </div>
 <div class="sect3">
-<h4 id="uploading-photos-to-google-photos-code-g-ul-code"><a class="link" href="#uploading-photos-to-google-photos-code-g-ul-code">3.14.3. Uploading photos to Google Photos: <code>g ul</code></a></h4>
+<h4 id="uploading-photos-to-google-photos-code-g-ul-code"><a class="link" href="#uploading-photos-to-google-photos-code-g-ul-code">3.16.3. Uploading photos to Google Photos: <code>g ul</code></a></h4>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -468,13 +527,13 @@ Format: <code>g ul all</code>: uploads all images in current directory to Google
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging-out-of-google-photos-code-logout-code"><a class="link" href="#logging-out-of-google-photos-code-logout-code">3.15. Logging out of Google Photos: <code>logout</code></a></h3>
+<h3 id="logging-out-of-google-photos-code-logout-code"><a class="link" href="#logging-out-of-google-photos-code-logout-code">3.17. Logging out of Google Photos: <code>logout</code></a></h3>
 <div class="paragraph">
 <p>Format: <code>logout</code>: logs you out of Google Photos</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-application-code-exit-code"><a class="link" href="#exiting-the-application-code-exit-code">3.16. Exiting the application: <code>exit</code></a></h3>
+<h3 id="exiting-the-application-code-exit-code"><a class="link" href="#exiting-the-application-code-exit-code">3.18. Exiting the application: <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Format: <code>exit</code>: closes the application</p>
 </div>
@@ -520,7 +579,13 @@ e.g. <code>save exampleImage.jpg</code><br></p>
 <p><strong>Undo</strong> : <code>undo</code><br></p>
 </li>
 <li>
+<p><strong>Undo All</strong> : <code>undo-all</code><br></p>
+</li>
+<li>
 <p><strong>Redo</strong> : <code>redo</code><br></p>
+</li>
+<li>
+<p><strong>Redo All</strong> : <code>redo-all</code><br></p>
 </li>
 <li>
 <p><strong>Ls</strong> : <code>ls</code><br></p>
@@ -549,4 +614,4 @@ e.g. <code>save exampleImage.jpg</code><br></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-03 08:50:52 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-03 10:14:39 UTC</div></div></div></body></html>
