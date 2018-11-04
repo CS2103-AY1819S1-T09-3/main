@@ -27,10 +27,12 @@
 <li><a href="#redoing-all-transformations-code-redo-all-code">3.12. Redoing all transformations : <code>redo-all</code></a></li>
 <li><a href="#listing-files-in-directory-code-ls-code">3.13. Listing files in directory : <code>ls</code></a></li>
 <li><a href="#changing-directories-code-cd-code">3.14. Changing directories : <code>cd</code></a></li>
-<li><a href="#logging-in-to-google-photos-code-login-code">3.15. Logging in to Google Photos: <code>login</code></a></li>
-<li><a href="#google-photos-related-commands-code-g-code">3.16. Google Photos related commands: <code>g</code></a></li>
-<li><a href="#logging-out-of-google-photos-code-logout-code">3.17. Logging out of Google Photos: <code>logout</code></a></li>
-<li><a href="#exiting-the-application-code-exit-code">3.18. Exiting the application: <code>exit</code></a></li>
+<li><a href="#canvas-operations-code-canvas-code">3.15. Canvas operations : <code>canvas</code></a></li>
+<li><a href="#layer-operations-code-layer-code">3.16. Layer operations : <code>layer</code></a></li>
+<li><a href="#logging-in-to-google-photos-code-login-code">3.17. Logging in to Google Photos: <code>login</code></a></li>
+<li><a href="#google-photos-related-commands-code-g-code">3.18. Google Photos related commands: <code>g</code></a></li>
+<li><a href="#logging-out-of-google-photos-code-logout-code">3.19. Logging out of Google Photos: <code>logout</code></a></li>
+<li><a href="#exiting-the-application-code-exit-code">3.20. Exiting the application: <code>exit</code></a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -81,6 +83,9 @@
 <ul>
 <li>
 <p>Items in square brackets are compulsory parameters to be added e.g <code>convert [TRANSFORMATION]</code><br></p>
+</li>
+<li>
+<p>Items in round brackets are optional parameters and can be omitted, e.g <code>canvas size (NEW_SIZE)</code><br></p>
 </li>
 <li>
 <p>For items surrounded by <code>&lt; &gt;</code>, they are compulsory parameters to be added that need to be typed with <code>&lt; &gt;</code><br></p>
@@ -398,7 +403,281 @@ To use the newly created command, use:<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging-in-to-google-photos-code-login-code"><a class="link" href="#logging-in-to-google-photos-code-login-code">3.15. Logging in to Google Photos: <code>login</code></a></h3>
+<h3 id="canvas-operations-code-canvas-code"><a class="link" href="#canvas-operations-code-canvas-code">3.15. Canvas operations : <code>canvas</code></a></h3>
+<div class="sect3">
+<h4 id="changing-the-size-of-the-canvas-code-canvas-size-code"><a class="link" href="#changing-the-size-of-the-canvas-code-canvas-size-code">3.15.1. Changing the size of the canvas: <code>canvas size</code></a></h4>
+<div class="paragraph">
+<p>Format: <code>canvas size (NEW_SIZE)</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If the optional parameter NEW_SIZE is not provided, the current size will be displayed in the output instead.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>canvas size 800x600</code> - Sets the canvas to have a height of 800 pixels and a width of 600px.</p>
+</li>
+<li>
+<p><code>canvas size</code> - Prints the current size.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="changing-the-background-color-of-the-canvas-code-canvas-bgcolour-code"><a class="link" href="#changing-the-background-color-of-the-canvas-code-canvas-bgcolour-code">3.15.2. Changing the background color of the canvas: <code>canvas bgcolour</code></a></h4>
+<div class="paragraph">
+<p>Format: <code>canvas bgcolour (NEW_COLOR)</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If the optional parameter NEW_COLOUR is not provided, the current colour will be displayed in the output instead.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>canvas bgcolour none</code> - Sets the canvas to have a transparent background.</p>
+</li>
+<li>
+<p><code>canvas bgcolour #0f0</code> - Sets the canvas to the hex colour #00ff00 <span class="image"><img src="images/00ff00.png" alt="width:15"></span>.</p>
+</li>
+<li>
+<p><code>canvas bgcolour #00ff00</code> - Sets the canvas to the hex colour #00ff00 <span class="image"><img src="images/00ff00.png" alt="width:15"></span>.</p>
+</li>
+<li>
+<p><code>canvas bgcolour rgba(0,255,0,0.7)</code> - Sets the canvas to the hex colour #00ff00 but with 70% opacity <span class="image"><img src="images/00ff00-70.png" alt="width:15"></span>.</p>
+</li>
+<li>
+<p><code>canvas bgcolour</code> - Prints the background colour.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="allowing-the-canvas-to-auto-resize-code-canvas-auto-resize-on-off-code"><a class="link" href="#allowing-the-canvas-to-auto-resize-code-canvas-auto-resize-on-off-code">3.15.3. Allowing the canvas to auto-resize: <code>canvas auto-resize [ON|OFF]</code></a></h4>
+<div class="paragraph">
+<p>Format : canvas auto-resize [ON|OFF]</p>
+</div>
+<div class="paragraph">
+<p>Turns on/off the auto-resize for the canvas.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>New canvases default to having auto-resize off.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>canvas auto-resize on</code>: Allows the canvas to expand and prevent cropping.</p>
+</li>
+<li>
+<p><code>canvas auto-resize off</code>: The height and width of the output canvas will remain as is.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="saving-the-output-code-canvas-save-code"><a class="link" href="#saving-the-output-code-canvas-save-code">3.15.4. Saving the output: <code>canvas save</code></a></h4>
+<div class="paragraph">
+<p>Format: <code>canvas size [FILE_NAME]</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>canvas save out.png</code> - Saves the current canvas as an image in the <code>PNG</code> format.</p>
+</li>
+<li>
+<p><code>canvas save out.jpg</code> - Saves the current canvas as an image in the <code>JPG</code> format.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="layer-operations-code-layer-code"><a class="link" href="#layer-operations-code-layer-code">3.16. Layer operations : <code>layer</code></a></h3>
+<div class="sect3">
+<h4 id="adding-a-new-layer-code-layer-add-index-layer_name-code"><a class="link" href="#adding-a-new-layer-code-layer-add-index-layer_name-code">3.16.1. Adding a new layer: <code>layer add [INDEX] (LAYER_NAME)</code></a></h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If the optional parameter LAYER_NAME is not provided, one will be automatically generated.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Selects the image at the provided index and adds it to the current canvas at the very top.</p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>layer add 4</code> - Adds the image at index 4 to the canvas.</p>
+</li>
+<li>
+<p><code>layer add 1 background layer</code> - Adds the image at index 1 to the canvas as a layer named <code>backround layer</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="removing-a-layer-code-layer-remove-index-code"><a class="link" href="#removing-a-layer-code-layer-remove-index-code">3.16.2. Removing a layer: <code>layer remove [INDEX]</code></a></h4>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This operation is not reversible! Be careful when removing layers!</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The last layer of a canvas is protected from removal.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Permanently removes a layer from canvas.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="selecting-a-layer-to-work-on-code-layer-select-index-code"><a class="link" href="#selecting-a-layer-to-work-on-code-layer-select-index-code">3.16.3. Selecting a layer to work on: <code>layer select [INDEX]</code></a></h4>
+<div class="paragraph">
+<p>Selects a layer to that all <code>convert</code> operations will work on.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="selecting-a-layer-to-work-on-code-layer-swap-to_index-from_index-code"><a class="link" href="#selecting-a-layer-to-work-on-code-layer-swap-to_index-from_index-code">3.16.4. Selecting a layer to work on: <code>layer swap [TO_INDEX] [FROM_INDEX]</code></a></h4>
+<div class="paragraph">
+<p>Changes the order of any two distinct layers.</p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>layer swap 1 2</code> : Changes the order of layer 1 and layer 2.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="locking-a-layer-to-prevent-accidental-edits-code-layer-lock-index-code"><a class="link" href="#locking-a-layer-to-prevent-accidental-edits-code-layer-lock-index-code">3.16.5. Locking a layer to prevent accidental edits: <code>layer lock [INDEX]</code></a></h4>
+<div class="paragraph">
+<p>Locks a layer. Locked layers are protected from all <code>convert</code>, <code>swap</code> and <code>delete</code> operations.</p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>layer lock 2</code> : Locks layer 2</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="unlocking-a-layer-code-layer-unlock-index-code"><a class="link" href="#unlocking-a-layer-code-layer-unlock-index-code">3.16.6. Unlocking a layer: <code>layer unlock [INDEX]</code></a></h4>
+<div class="paragraph">
+<p>Unlocks a layer.</p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>layer unlock 3</code> : Unlocks layer 3.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="unlocking-a-layer-code-layer-position-position-code"><a class="link" href="#unlocking-a-layer-code-layer-position-position-code">3.16.7. Unlocking a layer: <code>layer position [POSITION]</code></a></h4>
+<div class="paragraph">
+<p>Sets the x and y co-ordinates of the current layer.
+(0,0) is defined to be the top left of the screen.</p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>layer position 50x100</code> : Sets the layer&#8217;s top right corner to be at position (50, 100).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging-in-to-google-photos-code-login-code"><a class="link" href="#logging-in-to-google-photos-code-login-code">3.17. Logging in to Google Photos: <code>login</code></a></h3>
 <div class="paragraph">
 <p>Format: <code>login</code>: allows you to log in to Google Photos</p>
 </div>
@@ -422,7 +701,7 @@ Once the <code>login</code> command is launched, you <strong>MUST</strong> proce
 </div>
 </div>
 <div class="sect2">
-<h3 id="google-photos-related-commands-code-g-code"><a class="link" href="#google-photos-related-commands-code-g-code">3.16. Google Photos related commands: <code>g</code></a></h3>
+<h3 id="google-photos-related-commands-code-g-code"><a class="link" href="#google-photos-related-commands-code-g-code">3.18. Google Photos related commands: <code>g</code></a></h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -438,7 +717,7 @@ Once the <code>login</code> command is launched, you <strong>MUST</strong> proce
 </table>
 </div>
 <div class="sect3">
-<h4 id="traversing-google-photos-code-g-ls-code"><a class="link" href="#traversing-google-photos-code-g-ls-code">3.16.1. Traversing Google Photos: <code>g ls</code></a></h4>
+<h4 id="traversing-google-photos-code-g-ls-code"><a class="link" href="#traversing-google-photos-code-g-ls-code">3.18.1. Traversing Google Photos: <code>g ls</code></a></h4>
 <div class="paragraph">
 <p>Format: <code>g ls</code>: lists all photos in your Google Photos, takes a longer amount of time depending on the number of images stored.<br>
 Format: <code>g ls /a</code>: lists all albums in your Google Photos.<br>
@@ -456,7 +735,7 @@ Format: <code>g ls &lt;ALBUM_NAME&gt;</code>: lists all photos in specified albu
 </div>
 </div>
 <div class="sect3">
-<h4 id="downloading-photos-from-google-photos-code-g-dl-code"><a class="link" href="#downloading-photos-from-google-photos-code-g-dl-code">3.16.2. Downloading photos from Google Photos: <code>g dl</code></a></h4>
+<h4 id="downloading-photos-from-google-photos-code-g-dl-code"><a class="link" href="#downloading-photos-from-google-photos-code-g-dl-code">3.18.2. Downloading photos from Google Photos: <code>g dl</code></a></h4>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -495,7 +774,7 @@ Format: <code>g dl /a&lt;ALBUM_NAME&gt; /i&lt;IMAGE_NAME&gt;</code>: downloads a
 </div>
 </div>
 <div class="sect3">
-<h4 id="uploading-photos-to-google-photos-code-g-ul-code"><a class="link" href="#uploading-photos-to-google-photos-code-g-ul-code">3.16.3. Uploading photos to Google Photos: <code>g ul</code></a></h4>
+<h4 id="uploading-photos-to-google-photos-code-g-ul-code"><a class="link" href="#uploading-photos-to-google-photos-code-g-ul-code">3.18.3. Uploading photos to Google Photos: <code>g ul</code></a></h4>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -527,13 +806,13 @@ Format: <code>g ul all</code>: uploads all images in current directory to Google
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging-out-of-google-photos-code-logout-code"><a class="link" href="#logging-out-of-google-photos-code-logout-code">3.17. Logging out of Google Photos: <code>logout</code></a></h3>
+<h3 id="logging-out-of-google-photos-code-logout-code"><a class="link" href="#logging-out-of-google-photos-code-logout-code">3.19. Logging out of Google Photos: <code>logout</code></a></h3>
 <div class="paragraph">
 <p>Format: <code>logout</code>: logs you out of Google Photos</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-application-code-exit-code"><a class="link" href="#exiting-the-application-code-exit-code">3.18. Exiting the application: <code>exit</code></a></h3>
+<h3 id="exiting-the-application-code-exit-code"><a class="link" href="#exiting-the-application-code-exit-code">3.20. Exiting the application: <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Format: <code>exit</code>: closes the application</p>
 </div>
@@ -614,4 +893,4 @@ e.g. <code>save exampleImage.jpg</code><br></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-04 13:26:12 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-04 15:28:13 UTC</div></div></div></body></html>
