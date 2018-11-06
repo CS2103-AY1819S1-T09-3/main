@@ -110,7 +110,166 @@
 <div class="sect1">
 <h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
 <div class="sectionbody">
-
+<div class="sect2">
+<h3 id="applying-a-transformation-to-an-image-code-convert-code"><a class="link" href="#applying-a-transformation-to-an-image-code-convert-code">Applying a transformation to an image : <code>convert</code></a></h3>
+<div class="paragraph">
+<p>Format: <code>convert [operation] [arg1] [arg2] &#8230;&#8203;</code>: apply the specified processing to the selected image</p>
+</div>
+<div class="paragraph">
+<p>Custom defined transformation by user (see create transformation, 3.6)</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>create [Name_Of_operation] [op1|arg1|arg2|&#8230;&#8203;] [op2|arg1|arg2|&#8230;&#8203;]</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Available transformations</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>resize</code>: resize the image to the specified percentage of the original one</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>convert resize [percentage]</code></p>
+</li>
+<li>
+<p>Example: <code>convert resize 50%</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>blur</code>: performs gaussian blur on the currently opened image, with the argument specified with radius and sigama</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>convert blur [RadiusxSigama]</code></p>
+</li>
+<li>
+<p>Example: <code>convert blur 0x8</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>colorspace</code>: change the color space of the current image</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>convert colorspace [color space]</code></p>
+</li>
+<li>
+<p>Example: <code>convert colorspace GRAY</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>contrast</code>: contrast of the image.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>convert contrast</code></p>
+</li>
+<li>
+<p>Example: <code>convert contrast</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>sigmoidal-contrast</code>: contrast the image with certain degree and percentage</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>convert sigmoidal-contrast [DegreexPercentage]</code></p>
+</li>
+<li>
+<p>Example: <code>convert sigmoidal-contrast 10x10%</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>rotate</code>: rotates an image. DIRECTION [left, right]</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Format: <code>convert rotate [vlaue]</code></p>
+</li>
+<li>
+<p>Example: <code>convert rotate 90</code>
+=== Saving images : <code>save</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Format: <code>save [IMAGE_NAME]</code>: saves the transformed image, supporting jpg, jpeg, png, tiff, gif</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>save modified.png</code></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The image will be saved in the same directory as the original image.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="customizing-transformation-for-imageprocessing-code-create-code"><a class="link" href="#customizing-transformation-for-imageprocessing-code-create-code">Customizing transformation for imageProcessing : <code>create</code></a></h3>
+<div class="paragraph">
+<p>Format: <code>create [Name_Of_operation] [op1|arg1|arg2|&#8230;&#8203;] [op2|arg1|arg2|&#8230;&#8203;]</code>: create a customized operation for
+transformation base on the operation specified</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>create blurAndRotate blur|0x8 rotate|90</code><br>
+To use the newly created command, use:<br>
+<code>convert @blurAndRotate</code></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+for the command created, you should add a @ before the command when running the customised command, ie convert @blurR
+</td>
+</tr>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -118,7 +277,141 @@
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="given-below-are-sections-i-contributed-to-the-developer-guide-they-showcase-my-ability-to-write-technical-documentation-and-the-technical-depth-of-my-contributions-to-the-project-_"><a class="link" href="#given-below-are-sections-i-contributed-to-the-developer-guide-they-showcase-my-ability-to-write-technical-documentation-and-the-technical-depth-of-my-contributions-to-the-project-_">Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._</a></h3>
-
+<div class="sect3">
+<h4 id="convertcommand"><a class="link" href="#convertcommand">ConvertCommand:</a></h4>
+<div class="paragraph">
+<p>this command is exposed to the model as <code>Model#addTransformation()</code>, which is used to update the transformatioSet of the currentPreviewImage.</p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the transmission should behave at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The first time run the app, the corresponding zipped package of the ImageMagick will be copied outside, and unzipped,
+a temp folder will also be created.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The user selects an image with the <code>select</code> command. the method <code>model.getPreviewImage()</code> will be called to get he bufferedImage of the current preview scene.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. The user enter the command which need processing to the image selected with arguments, for instance "blur 0x8" "resize 50%",
+the entered command will be parsed and the corresponding transformation will be created.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the input is invalid for the command enter, the processing of the image will not be done, and a reminder will be given to the user.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 4. the transformation will be added to the transformation set store in the preview image in the model.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+if the transformation Set got from the model is invalid, an error should be prompted
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 5. An process builder will be built inside the method <code>processImage</code> which will take the image stored,
+the processing info stored in the transmission set, use the ImageMagic executable file to do the processing,
+then store the modified image in the temp folder created.</p>
+</div>
+<div class="paragraph">
+<p>Step 6. The output bufferedImage will be generated by the modified file stored in the temp folder, and the stored file will be removed.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ConvertCommand.png" alt="ConvertCommand" width="800">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="createconvertcommand"><a class="link" href="#createconvertcommand">CreateConvertCommand:</a></h4>
+<div class="paragraph">
+<p>This command is to create a customised command and store in the disk, will check the transformations specified by <code>checkValidation()</code> first.</p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the transmission should behave at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user enters the name of the customized, the transformations specified sequentially.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The specified transformations will be parsed and checked by the templates store in the app.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+if the specified transformations has invalid name or arguments, error will be thrown and user will be reminded.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 3. The validated new command will be stored in the json for in the PiconsoCommands folder create when first time run the app.
+==== Design Considerations</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>As the ImageMagic executable file is only able to handle the command line input and need the path of the image, we have to store the file in some tmp folder adn then, remove the modified image.</p>
+</li>
+<li>
+<p>As in the processing process, it could be slow, and it is for one image only, then, in the mass images processing, multiple threads might be needed.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="save-feature"><a class="link" href="#save-feature">Save feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
+<div class="paragraph">
+<p>The save command is to save the current preview image to the disk where the current image is selected,
+use enter the name of the image and the format of the name will be validated.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>isFormatValid()</code> is to validate the format of the filename user enters</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Given is an example of how to use the command</p>
+</div>
+<div class="paragraph">
+<p>Step 1. parse the image name user enters, get the name and the format of the filename.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. check whether the file exists or not, throw error is existing</p>
+</div>
+<div class="paragraph">
+<p>Step 3. check the format of the image, if the format is not supported, error will be thrown</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SaveCommand.png" alt="SaveCommand" width="800">
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -127,4 +420,4 @@
 <div class="sectionbody">
 
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-06 19:08:38 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-06 20:01:37 UTC</div></div></div></body></html>

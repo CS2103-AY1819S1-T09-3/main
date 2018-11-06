@@ -18,21 +18,18 @@
 <li><a href="#selecting-images-for-editing-code-select-code">3.3. Selecting images for editing: <code>select</code></a></li>
 <li><a href="#retrieving-the-next-batch-of-images-code-next-code">3.4. Retrieving the next batch of images: <code>next</code></a></li>
 <li><a href="#retrieving-the-previous-batch-of-images-code-prev-code">3.5. Retrieving the previous batch of images: <code>prev</code></a></li>
-<li><a href="#applying-a-transformation-to-an-image-code-convert-code">3.6. Applying a transformation to an image : <code>convert</code></a></li>
-<li><a href="#customizing-transformation-for-imageprocessing-code-create-code">3.7. Customizing transformation for imageProcessing : <code>create</code></a></li>
-<li><a href="#saving-images-code-save-code">3.8. Saving images : <code>save</code></a></li>
-<li><a href="#undoing-a-transformation-code-undo-code">3.9. Undoing a transformation : <code>undo</code></a></li>
-<li><a href="#undoing-all-transformations-code-undo-all-code">3.10. Undoing all transformations : <code>undo-all</code></a></li>
-<li><a href="#redoing-a-transformation-code-redo-code">3.11. Redoing a transformation : <code>redo</code></a></li>
-<li><a href="#redoing-all-transformations-code-redo-all-code">3.12. Redoing all transformations : <code>redo-all</code></a></li>
-<li><a href="#listing-files-in-directory-code-ls-code">3.13. Listing files in directory : <code>ls</code></a></li>
-<li><a href="#changing-directories-code-cd-code">3.14. Changing directories : <code>cd</code></a></li>
-<li><a href="#canvas-operations-code-canvas-code">3.15. Canvas operations : <code>canvas</code></a></li>
-<li><a href="#layer-operations-code-layer-code">3.16. Layer operations : <code>layer</code></a></li>
-<li><a href="#logging-in-to-google-photos-code-login-code">3.17. Logging in to Google Photos: <code>login</code></a></li>
-<li><a href="#google-photos-related-commands-code-g-code">3.18. Google Photos related commands: <code>g</code></a></li>
-<li><a href="#logging-out-of-google-photos-code-logout-code">3.19. Logging out of Google Photos: <code>logout</code></a></li>
-<li><a href="#exiting-the-application-code-exit-code">3.20. Exiting the application: <code>exit</code></a></li>
+<li><a href="#undoing-a-transformation-code-undo-code">3.6. Undoing a transformation : <code>undo</code></a></li>
+<li><a href="#undoing-all-transformations-code-undo-all-code">3.7. Undoing all transformations : <code>undo-all</code></a></li>
+<li><a href="#redoing-a-transformation-code-redo-code">3.8. Redoing a transformation : <code>redo</code></a></li>
+<li><a href="#redoing-all-transformations-code-redo-all-code">3.9. Redoing all transformations : <code>redo-all</code></a></li>
+<li><a href="#listing-files-in-directory-code-ls-code">3.10. Listing files in directory : <code>ls</code></a></li>
+<li><a href="#changing-directories-code-cd-code">3.11. Changing directories : <code>cd</code></a></li>
+<li><a href="#canvas-operations-code-canvas-code">3.12. Canvas operations : <code>canvas</code></a></li>
+<li><a href="#layer-operations-code-layer-code">3.13. Layer operations : <code>layer</code></a></li>
+<li><a href="#logging-in-to-google-photos-code-login-code">3.14. Logging in to Google Photos: <code>login</code></a></li>
+<li><a href="#google-photos-related-commands-code-g-code">3.15. Google Photos related commands: <code>g</code></a></li>
+<li><a href="#logging-out-of-google-photos-code-logout-code">3.16. Logging out of Google Photos: <code>logout</code></a></li>
+<li><a href="#exiting-the-application-code-exit-code">3.17. Exiting the application: <code>exit</code></a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -147,11 +144,9 @@
 <div class="sect2">
 <h3 id="retrieving-the-previous-batch-of-images-code-prev-code"><a class="link" href="#retrieving-the-previous-batch-of-images-code-prev-code">3.5. Retrieving the previous batch of images: <code>prev</code></a></h3>
 <div class="paragraph">
-<p>Format: <code>prev</code>: Retrieves the previous 10 images for editing</p>
+<p>Format: <code>prev</code>: Retrieves the previous 10 images for editing
+=== Applying a transformation to an image : <code>convert</code></p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="applying-a-transformation-to-an-image-code-convert-code"><a class="link" href="#applying-a-transformation-to-an-image-code-convert-code">3.6. Applying a transformation to an image : <code>convert</code></a></h3>
 <div class="paragraph">
 <p>Format: <code>convert [operation] [arg1] [arg2] &#8230;&#8203;</code>: apply the specified processing to the selected image</p>
 </div>
@@ -204,7 +199,7 @@
 <p>Format: <code>convert colorspace [color space]</code></p>
 </li>
 <li>
-<p>Example: <code>convert colorspave GRAY</code></p>
+<p>Example: <code>convert colorspace GRAY</code></p>
 </li>
 </ul>
 </div>
@@ -243,16 +238,14 @@
 <p>Format: <code>convert rotate [vlaue]</code></p>
 </li>
 <li>
-<p>Example: <code>convert rotate 90</code></p>
+<p>Example: <code>convert rotate 90</code>
+=== Customizing transformation for imageProcessing : <code>create</code></p>
 </li>
 </ul>
 </div>
 </li>
 </ul>
 </div>
-</div>
-<div class="sect2">
-<h3 id="customizing-transformation-for-imageprocessing-code-create-code"><a class="link" href="#customizing-transformation-for-imageprocessing-code-create-code">3.7. Customizing transformation for imageProcessing : <code>create</code></a></h3>
 <div class="paragraph">
 <p>Format: <code>create [Name_Of_operation] [op1|arg1|arg2|&#8230;&#8203;] [op2|arg1|arg2|&#8230;&#8203;]</code>: create a customized operation for
 transformation base on the operation specified</p>
@@ -269,9 +262,19 @@ To use the newly created command, use:<br>
 </li>
 </ul>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+for the command created, you should add a @ before the command when running the customised command, ie convert @blurR
+=== Saving images : <code>save</code>
+</td>
+</tr>
+</table>
 </div>
-<div class="sect2">
-<h3 id="saving-images-code-save-code"><a class="link" href="#saving-images-code-save-code">3.8. Saving images : <code>save</code></a></h3>
 <div class="paragraph">
 <p>Format: <code>save [IMAGE_NAME]</code>: saves the transformed image, supporting jpg, jpeg, png, tiff, gif</p>
 </div>
@@ -301,7 +304,7 @@ To use the newly created command, use:<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-a-transformation-code-undo-code"><a class="link" href="#undoing-a-transformation-code-undo-code">3.9. Undoing a transformation : <code>undo</code></a></h3>
+<h3 id="undoing-a-transformation-code-undo-code"><a class="link" href="#undoing-a-transformation-code-undo-code">3.6. Undoing a transformation : <code>undo</code></a></h3>
 <div class="paragraph">
 <p>Format: <code>undo</code>: Step back to the previous image state (in current layer)</p>
 </div>
@@ -333,7 +336,7 @@ To use the newly created command, use:<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-all-transformations-code-undo-all-code"><a class="link" href="#undoing-all-transformations-code-undo-all-code">3.10. Undoing all transformations : <code>undo-all</code></a></h3>
+<h3 id="undoing-all-transformations-code-undo-all-code"><a class="link" href="#undoing-all-transformations-code-undo-all-code">3.7. Undoing all transformations : <code>undo-all</code></a></h3>
 <div class="paragraph">
 <p>Format: <code>undo-all</code>: Undoes all transformations (reverts image to original state)</p>
 </div>
@@ -352,7 +355,7 @@ To use the newly created command, use:<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="redoing-a-transformation-code-redo-code"><a class="link" href="#redoing-a-transformation-code-redo-code">3.11. Redoing a transformation : <code>redo</code></a></h3>
+<h3 id="redoing-a-transformation-code-redo-code"><a class="link" href="#redoing-a-transformation-code-redo-code">3.8. Redoing a transformation : <code>redo</code></a></h3>
 <div class="paragraph">
 <p>Format: <code>redo</code>: Step forward to the previously undone transformation</p>
 </div>
@@ -371,7 +374,7 @@ To use the newly created command, use:<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="redoing-all-transformations-code-redo-all-code"><a class="link" href="#redoing-all-transformations-code-redo-all-code">3.12. Redoing all transformations : <code>redo-all</code></a></h3>
+<h3 id="redoing-all-transformations-code-redo-all-code"><a class="link" href="#redoing-all-transformations-code-redo-all-code">3.9. Redoing all transformations : <code>redo-all</code></a></h3>
 <div class="paragraph">
 <p>Format: <code>redo-all</code>: Redoes all undone transformations</p>
 </div>
@@ -391,13 +394,13 @@ To use the newly created command, use:<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-files-in-directory-code-ls-code"><a class="link" href="#listing-files-in-directory-code-ls-code">3.13. Listing files in directory : <code>ls</code></a></h3>
+<h3 id="listing-files-in-directory-code-ls-code"><a class="link" href="#listing-files-in-directory-code-ls-code">3.10. Listing files in directory : <code>ls</code></a></h3>
 <div class="paragraph">
 <p>Format: <code>ls</code>: lists files in the current directory</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="changing-directories-code-cd-code"><a class="link" href="#changing-directories-code-cd-code">3.14. Changing directories : <code>cd</code></a></h3>
+<h3 id="changing-directories-code-cd-code"><a class="link" href="#changing-directories-code-cd-code">3.11. Changing directories : <code>cd</code></a></h3>
 <div class="paragraph">
 <p>Format: <code>cd [DIRECTORY_NAME]</code>: changes directory</p>
 </div>
@@ -427,9 +430,9 @@ To use the newly created command, use:<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="canvas-operations-code-canvas-code"><a class="link" href="#canvas-operations-code-canvas-code">3.15. Canvas operations : <code>canvas</code></a></h3>
+<h3 id="canvas-operations-code-canvas-code"><a class="link" href="#canvas-operations-code-canvas-code">3.12. Canvas operations : <code>canvas</code></a></h3>
 <div class="sect3">
-<h4 id="changing-the-size-of-the-canvas-code-canvas-size-code"><a class="link" href="#changing-the-size-of-the-canvas-code-canvas-size-code">3.15.1. Changing the size of the canvas: <code>canvas size</code></a></h4>
+<h4 id="changing-the-size-of-the-canvas-code-canvas-size-code"><a class="link" href="#changing-the-size-of-the-canvas-code-canvas-size-code">3.12.1. Changing the size of the canvas: <code>canvas size</code></a></h4>
 <div class="paragraph">
 <p>Format: <code>canvas size (NEW_SIZE)</code></p>
 </div>
@@ -462,7 +465,7 @@ To use the newly created command, use:<br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="changing-the-background-color-of-the-canvas-code-canvas-bgcolor-code"><a class="link" href="#changing-the-background-color-of-the-canvas-code-canvas-bgcolor-code">3.15.2. Changing the background color of the canvas: <code>canvas bgcolor</code></a></h4>
+<h4 id="changing-the-background-color-of-the-canvas-code-canvas-bgcolor-code"><a class="link" href="#changing-the-background-color-of-the-canvas-code-canvas-bgcolor-code">3.12.2. Changing the background color of the canvas: <code>canvas bgcolor</code></a></h4>
 <div class="paragraph">
 <p>Format: <code>canvas bgcolor (NEW_COLOR)</code></p>
 </div>
@@ -504,7 +507,7 @@ To use the newly created command, use:<br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowing-the-canvas-to-auto-resize-code-canvas-auto-resize-on-off-code"><a class="link" href="#allowing-the-canvas-to-auto-resize-code-canvas-auto-resize-on-off-code">3.15.3. Allowing the canvas to auto-resize: <code>canvas auto-resize [ON|OFF]</code></a></h4>
+<h4 id="allowing-the-canvas-to-auto-resize-code-canvas-auto-resize-on-off-code"><a class="link" href="#allowing-the-canvas-to-auto-resize-code-canvas-auto-resize-on-off-code">3.12.3. Allowing the canvas to auto-resize: <code>canvas auto-resize [ON|OFF]</code></a></h4>
 <div class="paragraph">
 <p>Format : canvas auto-resize [ON|OFF]</p>
 </div>
@@ -540,7 +543,7 @@ To use the newly created command, use:<br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="saving-the-output-code-canvas-save-code"><a class="link" href="#saving-the-output-code-canvas-save-code">3.15.4. Saving the output: <code>canvas save</code></a></h4>
+<h4 id="saving-the-output-code-canvas-save-code"><a class="link" href="#saving-the-output-code-canvas-save-code">3.12.4. Saving the output: <code>canvas save</code></a></h4>
 <div class="paragraph">
 <p>Format: <code>canvas size [FILE_NAME]</code></p>
 </div>
@@ -560,9 +563,9 @@ To use the newly created command, use:<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="layer-operations-code-layer-code"><a class="link" href="#layer-operations-code-layer-code">3.16. Layer operations : <code>layer</code></a></h3>
+<h3 id="layer-operations-code-layer-code"><a class="link" href="#layer-operations-code-layer-code">3.13. Layer operations : <code>layer</code></a></h3>
 <div class="sect3">
-<h4 id="adding-a-new-layer-code-layer-add-index-layer_name-code"><a class="link" href="#adding-a-new-layer-code-layer-add-index-layer_name-code">3.16.1. Adding a new layer: <code>layer add [INDEX] (LAYER_NAME)</code></a></h4>
+<h4 id="adding-a-new-layer-code-layer-add-index-layer_name-code"><a class="link" href="#adding-a-new-layer-code-layer-add-index-layer_name-code">3.13.1. Adding a new layer: <code>layer add [INDEX] (LAYER_NAME)</code></a></h4>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -595,7 +598,7 @@ To use the newly created command, use:<br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="removing-a-layer-code-layer-remove-index-code"><a class="link" href="#removing-a-layer-code-layer-remove-index-code">3.16.2. Removing a layer: <code>layer remove [INDEX]</code></a></h4>
+<h4 id="removing-a-layer-code-layer-remove-index-code"><a class="link" href="#removing-a-layer-code-layer-remove-index-code">3.13.2. Removing a layer: <code>layer remove [INDEX]</code></a></h4>
 <div class="admonitionblock warning">
 <table>
 <tr>
@@ -629,13 +632,13 @@ To use the newly created command, use:<br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="selecting-a-layer-to-work-on-code-layer-select-index-code"><a class="link" href="#selecting-a-layer-to-work-on-code-layer-select-index-code">3.16.3. Selecting a layer to work on: <code>layer select [INDEX]</code></a></h4>
+<h4 id="selecting-a-layer-to-work-on-code-layer-select-index-code"><a class="link" href="#selecting-a-layer-to-work-on-code-layer-select-index-code">3.13.3. Selecting a layer to work on: <code>layer select [INDEX]</code></a></h4>
 <div class="paragraph">
 <p>Selects a layer to that all <code>convert</code> operations will work on.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="selecting-a-layer-to-work-on-code-layer-swap-to_index-from_index-code"><a class="link" href="#selecting-a-layer-to-work-on-code-layer-swap-to_index-from_index-code">3.16.4. Selecting a layer to work on: <code>layer swap [TO_INDEX] [FROM_INDEX]</code></a></h4>
+<h4 id="selecting-a-layer-to-work-on-code-layer-swap-to_index-from_index-code"><a class="link" href="#selecting-a-layer-to-work-on-code-layer-swap-to_index-from_index-code">3.13.4. Selecting a layer to work on: <code>layer swap [TO_INDEX] [FROM_INDEX]</code></a></h4>
 <div class="paragraph">
 <p>Changes the order of any two distinct layers.</p>
 </div>
@@ -651,7 +654,7 @@ To use the newly created command, use:<br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="locking-a-layer-to-prevent-accidental-edits-code-layer-lock-index-code"><a class="link" href="#locking-a-layer-to-prevent-accidental-edits-code-layer-lock-index-code">3.16.5. Locking a layer to prevent accidental edits: <code>layer lock [INDEX]</code></a></h4>
+<h4 id="locking-a-layer-to-prevent-accidental-edits-code-layer-lock-index-code"><a class="link" href="#locking-a-layer-to-prevent-accidental-edits-code-layer-lock-index-code">3.13.5. Locking a layer to prevent accidental edits: <code>layer lock [INDEX]</code></a></h4>
 <div class="paragraph">
 <p>Locks a layer. Locked layers are protected from all <code>convert</code>, <code>swap</code> and <code>delete</code> operations.</p>
 </div>
@@ -667,7 +670,7 @@ To use the newly created command, use:<br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="unlocking-a-layer-code-layer-unlock-index-code"><a class="link" href="#unlocking-a-layer-code-layer-unlock-index-code">3.16.6. Unlocking a layer: <code>layer unlock [INDEX]</code></a></h4>
+<h4 id="unlocking-a-layer-code-layer-unlock-index-code"><a class="link" href="#unlocking-a-layer-code-layer-unlock-index-code">3.13.6. Unlocking a layer: <code>layer unlock [INDEX]</code></a></h4>
 <div class="paragraph">
 <p>Unlocks a layer.</p>
 </div>
@@ -683,7 +686,7 @@ To use the newly created command, use:<br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="unlocking-a-layer-code-layer-position-position-code"><a class="link" href="#unlocking-a-layer-code-layer-position-position-code">3.16.7. Unlocking a layer: <code>layer position [POSITION]</code></a></h4>
+<h4 id="unlocking-a-layer-code-layer-position-position-code"><a class="link" href="#unlocking-a-layer-code-layer-position-position-code">3.13.7. Unlocking a layer: <code>layer position [POSITION]</code></a></h4>
 <div class="paragraph">
 <p>Sets the x and y co-ordinates of the current layer.
 (0,0) is defined to be the top left of the screen.</p>
@@ -701,7 +704,7 @@ To use the newly created command, use:<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging-in-to-google-photos-code-login-code"><a class="link" href="#logging-in-to-google-photos-code-login-code">3.17. Logging in to Google Photos: <code>login</code></a></h3>
+<h3 id="logging-in-to-google-photos-code-login-code"><a class="link" href="#logging-in-to-google-photos-code-login-code">3.14. Logging in to Google Photos: <code>login</code></a></h3>
 <div class="paragraph">
 <p>Format: <code>login</code>: allows you to log in to Google Photos</p>
 </div>
@@ -725,7 +728,7 @@ Once the <code>login</code> command is launched, you <strong>MUST</strong> proce
 </div>
 </div>
 <div class="sect2">
-<h3 id="google-photos-related-commands-code-g-code"><a class="link" href="#google-photos-related-commands-code-g-code">3.18. Google Photos related commands: <code>g</code></a></h3>
+<h3 id="google-photos-related-commands-code-g-code"><a class="link" href="#google-photos-related-commands-code-g-code">3.15. Google Photos related commands: <code>g</code></a></h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -741,7 +744,7 @@ Once the <code>login</code> command is launched, you <strong>MUST</strong> proce
 </table>
 </div>
 <div class="sect3">
-<h4 id="traversing-google-photos-code-g-ls-code"><a class="link" href="#traversing-google-photos-code-g-ls-code">3.18.1. Traversing Google Photos: <code>g ls</code></a></h4>
+<h4 id="traversing-google-photos-code-g-ls-code"><a class="link" href="#traversing-google-photos-code-g-ls-code">3.15.1. Traversing Google Photos: <code>g ls</code></a></h4>
 <div class="paragraph">
 <p>Format: <code>g ls</code>: lists all photos in your Google Photos, takes a longer amount of time depending on the number of images stored.<br>
 Format: <code>g ls /a</code>: lists all albums in your Google Photos.<br>
@@ -759,7 +762,7 @@ Format: <code>g ls &lt;ALBUM_NAME&gt;</code>: lists all photos in specified albu
 </div>
 </div>
 <div class="sect3">
-<h4 id="downloading-photos-from-google-photos-code-g-dl-code"><a class="link" href="#downloading-photos-from-google-photos-code-g-dl-code">3.18.2. Downloading photos from Google Photos: <code>g dl</code></a></h4>
+<h4 id="downloading-photos-from-google-photos-code-g-dl-code"><a class="link" href="#downloading-photos-from-google-photos-code-g-dl-code">3.15.2. Downloading photos from Google Photos: <code>g dl</code></a></h4>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -798,7 +801,7 @@ Format: <code>g dl /a&lt;ALBUM_NAME&gt; /i&lt;IMAGE_NAME&gt;</code>: downloads a
 </div>
 </div>
 <div class="sect3">
-<h4 id="uploading-photos-to-google-photos-code-g-ul-code"><a class="link" href="#uploading-photos-to-google-photos-code-g-ul-code">3.18.3. Uploading photos to Google Photos: <code>g ul</code></a></h4>
+<h4 id="uploading-photos-to-google-photos-code-g-ul-code"><a class="link" href="#uploading-photos-to-google-photos-code-g-ul-code">3.15.3. Uploading photos to Google Photos: <code>g ul</code></a></h4>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -830,13 +833,13 @@ Format: <code>g ul all</code>: uploads all images in current directory to Google
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging-out-of-google-photos-code-logout-code"><a class="link" href="#logging-out-of-google-photos-code-logout-code">3.19. Logging out of Google Photos: <code>logout</code></a></h3>
+<h3 id="logging-out-of-google-photos-code-logout-code"><a class="link" href="#logging-out-of-google-photos-code-logout-code">3.16. Logging out of Google Photos: <code>logout</code></a></h3>
 <div class="paragraph">
 <p>Format: <code>logout</code>: logs you out of Google Photos</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-application-code-exit-code"><a class="link" href="#exiting-the-application-code-exit-code">3.20. Exiting the application: <code>exit</code></a></h3>
+<h3 id="exiting-the-application-code-exit-code"><a class="link" href="#exiting-the-application-code-exit-code">3.17. Exiting the application: <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Format: <code>exit</code>: closes the application</p>
 </div>
@@ -917,4 +920,4 @@ e.g. <code>save exampleImage.jpg</code><br></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-06 19:08:38 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-06 20:01:37 UTC</div></div></div></body></html>
