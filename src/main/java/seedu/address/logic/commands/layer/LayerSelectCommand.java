@@ -3,8 +3,10 @@ package seedu.address.logic.commands.layer;
 //@author j-lum
 import java.util.logging.Logger;
 
+import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.events.ui.LayerSelectEvent;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
@@ -44,9 +46,12 @@ public class LayerSelectCommand extends LayerCommand {
             }
             index = Index.fromOneBased(i);
             model.getCanvas().setCurrentLayer(index);
+            EventsCenter.getInstance().post(new LayerSelectEvent(i));
+
         } catch (NumberFormatException e) {
             return new CommandResult(OUTPUT_FAILURE);
         }
+
 
         return new CommandResult(String.format(OUTPUT_SUCCESS, index.getOneBased()));
     }

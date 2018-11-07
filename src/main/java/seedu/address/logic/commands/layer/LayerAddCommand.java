@@ -9,9 +9,11 @@ import java.util.logging.Logger;
 
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
+import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.events.ui.LayerAddEvent;
 import seedu.address.commons.util.ImageMagickUtil;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.CommandResult;
@@ -74,6 +76,7 @@ public class LayerAddCommand extends LayerCommand {
         }
 
         ImageMagickUtil.render(model.getCanvas(), logger, "preview");
+        EventsCenter.getInstance().post(new LayerAddEvent());
 
         return new CommandResult(String.format(OUTPUT_SUCCESS));
     }

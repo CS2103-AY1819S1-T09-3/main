@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 //@@author chivent
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.logging.Logger;
@@ -18,9 +19,7 @@ import javafx.scene.layout.Region;
 
 import javafx.scene.text.Text;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.events.ui.AllTransformationEvent;
-import seedu.address.commons.events.ui.ClearHistoryEvent;
-import seedu.address.commons.events.ui.TransformationEvent;
+import seedu.address.commons.events.ui.*;
 
 
 /**
@@ -33,12 +32,16 @@ public class HistoryListPanel extends UiPart<Region> {
     private static final String DEFAULT_STYLE = "-fx-background-color: transparent;  -fx-text-fill: #6e6e6e;";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
-    private ObservableList<String> items = FXCollections.observableArrayList();
+    //private ObservableList<String> items = FXCollections.observableArrayList();
+
+    private ArrayList<ObservableList<String>> itemsArray = new ArrayList<>();
+    private int currentLayer = 1;
 
     /**
      * Stores transformations that have been undone.
      */
-    private Queue<String> redoQueue = new LinkedList<>();
+    //private Queue<String> redoQueue = new LinkedList<>();
+    private ArrayList<Queue<String>> redoQueueArray = new ArrayList<>();
 
     @FXML
     private ListView<String> historyListView;
@@ -48,10 +51,22 @@ public class HistoryListPanel extends UiPart<Region> {
 
     public HistoryListPanel() {
         super(FXML);
-        historyTitle.setText("Transformation History");
-        historyListView.setItems(items);
+        historyTitle.setText("T.History @ Layer-" + currentLayer);
+        itemsArray.add(FXCollections.observableArrayList()); // index 0 (filler)
+        itemsArray.add(FXCollections.observableArrayList()); // index 1
+        redoQueueArray.add(new LinkedList<>()); // index 0 (filler)
+        redoQueueArray.add(new LinkedList<>()); // index 1
+        historyListView.setItems(itemsArray.get(currentLayer));
         historyListView.setCellFactory(listView -> new HistoryListPanel.HistoryListViewCell());
         registerAsAnEventHandler(this);
+    }
+
+    private ObservableList<String> getCurrentLayerList() {
+        return itemsArray.get(currentLayer);
+    }
+
+    private Queue<String> getCurrentRedoQueue() {
+        return redoQueueArray.get(currentLayer);
     }
 
     /**
@@ -65,29 +80,31 @@ public class HistoryListPanel extends UiPart<Region> {
     @Subscribe
     private void handleTransformationEvent(TransformationEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
+        ObservableList<String> currentLayerList = getCurrentLayerList();
+        Queue<String> currentRedoQueue = getCurrentRedoQueue();
 
         if (event.isRemove) {
             //undo command
-            if (items.size() > 0) {
-                redoQueue.add(items.get(items.size() - 1));
-                items.remove(items.size() - 1, items.size());
+            if (getCurrentLayerList().size() > 0) {
+                currentRedoQueue.add(currentLayerList.get(getCurrentLayerList().size() - 1));
+                currentLayerList.remove(currentLayerList.size() - 1, currentLayerList.size());
             }
         } else {
             if (event.transformation.isEmpty()) {
                 //redo command
-                if (redoQueue.size() > 0) {
-                    items.add(redoQueue.poll());
+                if (currentRedoQueue.size() > 0) {
+                    currentLayerList.add(currentRedoQueue.poll());
                 }
             } else {
                 //add command
-                items.add(event.transformation);
-                redoQueue.clear();
+                currentLayerList.add(event.transformation);
+                currentRedoQueue.clear();
             }
         }
 
-        if (items.size() > 0) {
+        if (currentLayerList.size() > 0) {
             Platform.runLater(() -> {
-                historyListView.scrollTo(items.size() - 1);
+                historyListView.scrollTo(currentLayerList.size() - 1);
             });
         }
     }
@@ -99,12 +116,19 @@ public class HistoryListPanel extends UiPart<Region> {
      */
     @Subscribe
     private void handleClearHistoryEvent(ClearHistoryEvent event) {
-        logger.info(LogsCenter.getEventHandlingLogMessage(event));
-        int size = items.size();
-        for (; 0 < size; size--) {
-            items.remove(items.size() - 1, items.size());
-        }
-        redoQueue.clear();
+//        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+//        int size = items.size();
+//        for (; 0 < size; size--) {
+//            items.remove(items.size() - 1, items.size());
+//        }
+//        redoQueue.clear();
+        currentLayer = 1;
+        historyTitle.setText("T.History @ Layer-" + currentLayer);
+        itemsArray.add(FXCollections.observableArrayList()); // index 0 (filler)
+        itemsArray.add(FXCollections.observableArrayList()); // index 1
+        redoQueueArray.add(new LinkedList<>()); // index 0 (filler)
+        redoQueueArray.add(new LinkedList<>()); // index 1
+        historyListView.setItems(itemsArray.get(currentLayer));
     }
 
     //@@author ihwk1996
@@ -117,28 +141,56 @@ public class HistoryListPanel extends UiPart<Region> {
     @Subscribe
     private void handleAllTransformationEvent(AllTransformationEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
+        ObservableList<String> currentLayerList = getCurrentLayerList();
+        Queue<String> currentRedoQueue = getCurrentRedoQueue();
 
         if (event.isRemove) {
             //undo-all command
-            if (items.size() > 0) {
-                for (String item: items) {
-                    redoQueue.add(item);
+            if (currentLayerList.size() > 0) {
+                for (String item: currentLayerList) {
+                    currentRedoQueue.add(item);
                 }
-                items.remove(0, items.size());
+                currentLayerList.remove(0, currentLayerList.size());
             }
         } else {
             //redo-all command
-            while (redoQueue.size() > 0) {
-                items.add(redoQueue.poll());
+            while (currentRedoQueue.size() > 0) {
+                currentLayerList.add(currentRedoQueue.poll());
             }
 
         }
 
-        if (items.size() > 0) {
+        if (currentLayerList.size() > 0) {
             Platform.runLater(() -> {
-                historyListView.scrollTo(items.size() - 1);
+                historyListView.scrollTo(currentLayerList.size() - 1);
             });
         }
+    }
+
+    /**
+     * Event that triggers when layer is added
+     *
+     * @param event
+     */
+    @Subscribe
+    private void handleLayerAddEvent(LayerAddEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+        currentLayer++;
+        itemsArray.add(FXCollections.observableArrayList());
+        redoQueueArray.add(new LinkedList<>());
+    }
+
+    /**
+     * Event that triggers when layer is selected
+     *
+     * @param event
+     */
+    @Subscribe
+    private void handleLayerSelectEvent(LayerSelectEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+        currentLayer = event.layerIndex;
+        historyTitle.setText("T.History @ Layer-" + currentLayer);
+        historyListView.setItems(itemsArray.get(currentLayer));
     }
 
     /**

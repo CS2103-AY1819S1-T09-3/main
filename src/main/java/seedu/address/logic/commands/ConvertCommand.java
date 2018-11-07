@@ -6,9 +6,7 @@ import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.util.logging.Logger;
 
-import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.events.ui.TransformationEvent;
 import seedu.address.commons.util.ImageMagickUtil;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -60,7 +58,6 @@ public class ConvertCommand extends Command {
                     transformation);
             model.updateCurrentPreviewImage(modifiedImage, transformation);
             ImageMagickUtil.render(model.getCanvas(), logger, "preview");
-            EventsCenter.getInstance().post(new TransformationEvent(transformation.toString()));
         } catch (Exception e) {
             throw new CommandException(e.toString());
         }
