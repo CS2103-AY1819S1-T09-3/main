@@ -53,11 +53,11 @@ public class ConvertCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
         try {
-            model.addTransformation(transformation);
             BufferedImage modifiedImage = ImageMagickUtil.processImage(model.getCurrentPreviewImagePath(),
                     transformation);
             model.updateCurrentPreviewImage(modifiedImage, transformation);
             ImageMagickUtil.render(model.getCanvas(), logger, "preview");
+            model.addTransformation(transformation);
         } catch (Exception e) {
             throw new CommandException(e.toString());
         }

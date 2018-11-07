@@ -175,7 +175,6 @@ public class HistoryListPanel extends UiPart<Region> {
     @Subscribe
     private void handleLayerAddEvent(LayerAddEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
-        currentLayer++;
         itemsArray.add(FXCollections.observableArrayList());
         redoQueueArray.add(new LinkedList<>());
     }
