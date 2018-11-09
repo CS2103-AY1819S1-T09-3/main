@@ -46,6 +46,7 @@
 <li><a href="#general-overview">4.1. General overview</a></li>
 <li><a href="#canvas-canvas-command">4.2. Canvas (canvas) command</a></li>
 <li><a href="#layer-layer-commands">4.3. Layer (layer) commands</a></li>
+<li><a href="#canvas-and-layers-in-action">4.4. Canvas and Layers in action</a></li>
 </ul>
 </li>
 <li><a href="#documentation">5. Documentation</a>
@@ -1515,8 +1516,6 @@ This is in line with good defensive coding practices and separation of concerns.
 </div>
 <div class="sect2">
 <h3 id="canvas-canvas-command"><a class="link" href="#canvas-canvas-command">4.2. Canvas (canvas) command</a></h3>
-<div class="sect3">
-<h4 id="current-implementation-9"><a class="link" href="#current-implementation-9">4.2.1. Current implementation</a></h4>
 <div class="paragraph">
 <p>Similar to the <code>google</code> set of commands, there are a set of overloaded command types inheriting from <code>CanvasCommand</code>
 , namely:</p>
@@ -1534,24 +1533,97 @@ This is in line with good defensive coding practices and separation of concerns.
 </li>
 </ul>
 </div>
+<div class="sect3">
+<h4 id="current-implementation-9"><a class="link" href="#current-implementation-9">4.2.1. Current implementation</a></h4>
+<div class="paragraph">
+<p>Canvas manages various properties made accessible through the <code>ModelManager</code> class.
+Layer order is preserved as it important for image composition.</p>
+</div>
+<div class="paragraph">
+<p>Canvas implements the following accessors and utility functions:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>getLayers</code> - returns an ordered list of layers which is guaranteed to be neither <code>null</code> or empty.</p>
+</li>
+<li>
+<p><code>getLayerNames</code> - returns a list of layer names in order.</p>
+</li>
+<li>
+<p><code>addLayer</code> - adds a given <code>PreviewImage</code> into the canvas on its own layer.</p>
+</li>
+<li>
+<p><code>getCurrentLayer</code> - returns the current instance of the layer that is being operated on.</p>
+</li>
+<li>
+<p><code>getCurrentLayerIndex</code> - returns the index of the current instance of the layer that is being operated on.</p>
+</li>
+<li>
+<p><code>setCurrentLayer</code> - sets the layer to be operated on.</p>
+</li>
+<li>
+<p><code>removeLayer</code> - removes a layer at a given index. The current layer and the last remaining layer in a canvas cannot be removed.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>All of these functions are exposed through the <code>Model</code> interface.
+Implementations in <code>ModelManager</code> usually include a call to the corresponding accessor along with utility functions to manage the state of the UI.</p>
+</div>
 <div class="paragraph">
 <p>Beneath the hood <code>Canvas</code> manipulation is powered by ImageMagick.
-All of the operation are accessors for various properties of the <code>Canvas</code> class
-and the heavy lifting is done by the <code>processCanvas</code> function.</p>
+All of the properties represented in <code>Canvas</code> are transformed into their respective flags or arguments in ImageMagick.
+For example, the <code>isCanvasAuto</code> property is transformed into the flag <code>-flatten</code> if false and <code>-layers merge</code> if true.</p>
 </div>
 <div class="paragraph">
-<p>The <code>processCanvas</code> is a factory method that returns an instance of a <code>ProcessBuilder</code>
-which is then handled by the utility method <code>ImageMagickUtils#runProcessBuilder</code>.</p>
+<p>The <code>processCanvas</code> is a factory method that handles this transformation, returning an instance of a <code>ProcessBuilder</code>.
+The <code>ProcessBuilder</code> is then passed to <code>ImageMagickUtils#runProcessBuilder</code> which executes the process and stores the output in a BufferedImage.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CanvasSequenceDiagram.png" alt="CanvasSequenceDiagram" width="2000">
+</div>
+<div class="title">Figure 4. Sequence Diagram for Canvas Command</div>
 </div>
 <div class="paragraph">
-<p>The rendered <code>Canvas</code> object is then shown to the user.</p>
+<p>The above diagram illustrates the process of parsing and executing of <code>canvas</code> commands.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user executes any command beginning with <code>canvas</code>.</p>
+</li>
+<li>
+<p>The command is first parsed by <code>PiconsoParser</code> which picks up the <code>canvas</code> keyword and passes any remaining arguments to <code>CanvasCommandParser</code>.</p>
+</li>
+<li>
+<p><code>CanvasCommandParser</code> determines the appropriate sub-command being executed and performs the requested operation on the canvas.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.2.2. Design considerations</a></h4>
+<div class="paragraph">
+<p><strong>Manipulation of the <code>ProcessBuilder</code></strong></p>
+</div>
+<div class="paragraph">
+<p><span class="underline">Alternatives</span></p>
+</div>
+<div class="paragraph">
+<p>Storing arguments directly in a <code>List&lt;T&gt;</code> where T is a custom type that implements <code>Comparable&lt;T&gt;</code> to ensure that arguments are in the correct order. A helper function will then map the <code>T</code> to a <code>String</code> and the resultant <code>List&lt;String&gt;</code> will be used to construct the necessary <code>ProcessBuilder</code>.</p>
+</div>
+<div class="paragraph">
+<p><span class="underline">Evaluation</span></p>
+</div>
+<div class="paragraph">
+<p>While insertion of new layers and properties will be extremely easy, modifying or removal of existing properties will involve searching through the entire list. As a result, this method is extremely hard to grok and performs poorly upon update or deletion of existing properties.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="layer-layer-commands"><a class="link" href="#layer-layer-commands">4.3. Layer (layer) commands</a></h3>
-<div class="sect3">
-<h4 id="current-implementation-10"><a class="link" href="#current-implementation-10">4.3.1. Current implementation</a></h4>
 <div class="paragraph">
 <p>The <code>layer</code> command follows a similar pattern as the <code>canvas</code> command.
 The following sub-commands inherit from <code>LayerCommand</code>:</p>
@@ -1559,50 +1631,157 @@ The following sub-commands inherit from <code>LayerCommand</code>:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>swap</code> - Swaps the order of two distinct layers.</p>
+<p><code>add</code> - Adds a layer from the <code>Canvas</code> and generates a layer name.</p>
 </li>
 <li>
-<p><code>lock</code> - Toggles the lock on a layer. A locked layer is protected from all operations.</p>
-</li>
-<li>
-<p><code>delete</code> - Removes a layer from the <code>Canvas</code></p>
-</li>
-<li>
-<p><code>add</code> - Adds a layer from the <code>Canvas</code>.</p>
+<p><code>delete</code> - Removes a layer from the <code>Canvas</code>. The current layer and the last remaining layer cannot be removed.</p>
 </li>
 <li>
 <p><code>select</code> - Selects a layer to work on.</p>
 </li>
+<li>
+<p><code>swap</code> - Swaps the order of two distinct layers.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-10"><a class="link" href="#current-implementation-10">4.3.1. Current implementation</a></h4>
+<div class="paragraph">
+<p><code>Layer</code> implements a few key accessors and utility functions. Some of them include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>addTranformation</code> - Adds a given transformation into its <code>PreviewImage</code>'s <code>TransformationSet</code>.</p>
+</li>
+<li>
+<p><code>getName</code> - Gets the name of the layer.</p>
+</li>
+<li>
+<p><code>setHeight</code> - Sets the height of the layer.</p>
+</li>
+<li>
+<p><code>setWidth</code> - Sets the width of the layer.</p>
+</li>
+<li>
+<p><code>setPosition</code> - Sets the x and y coordinates of the layer.</p>
+</li>
 </ul>
 </div>
 <div class="paragraph">
-<p>As the <code>canvas</code> and <code>layer</code> commands works best in tandem, a use case that spans both commands is as follows:</p>
+<p>The following image illustrates the coordinate system adopted in Piconso.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/coords.png" alt="coords" width="2000">
+</div>
 </div>
 <div class="paragraph">
-<p>Step 1) The user executes a valid <code>select</code> command. A <code>Canvas</code> is constructed holding exactly one <code>Layer</code>
+<p>The default anchor point is the top-left corner, this means that a <code>layer position -10x-10</code> command will set that layer&#8217;s top left corner at <code>(-10, -10)</code>.
+It is possible to have negative co-ordinates although clipping will occur unless the canvas is set to auto-resize.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/LayerSequenceDiagram.png" alt="LayerSequenceDiagram" width="2000">
+</div>
+<div class="title">Figure 5. Sequence Diagram for Layer Command</div>
+</div>
+<div class="paragraph">
+<p>The above diagram illustrates the process of parsing and executing of <code>canvas</code> commands.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user executes any command beginning with <code>layer</code>.</p>
+</li>
+<li>
+<p>The command is first parsed by <code>PiconsoParser</code> which picks up the <code>layer</code> keyword and passes any remaining arguments to <code>LayerCommandParser</code>.</p>
+</li>
+<li>
+<p><code>LayerCommandParser</code> determines the appropriate sub-command being executed and performs the requested operation on the canvas and current layer.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.3.2. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Further manipulation of the <code>ProcessBuilder</code></strong></p>
+</div>
+<div class="paragraph">
+<p><span class="underline">Alternatives</span></p>
+</div>
+<div class="paragraph">
+<p>It is actually possible to nest <code>ImageMagick</code> commands which means that it was possible to keep separate <code>List&lt;T&gt;</code>s and conjugate them when the canvas needs to be rendered.
+The resultant ImageMagick command will take the form :</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>magick [overall canvas flags] {[canvas flag] (individual layer flags)}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Where blocks enclosed by <code>{ }</code> need to be repeated per layer.</p>
+</div>
+<div class="paragraph">
+<p><span class="underline">Evaluation</span></p>
+</div>
+<div class="paragraph">
+<p>This solution is the most straight-forward and results in no intermediate files which is usually desirable. However, the resultant ImageMagick command will short circuit and cause the entire expression to fail if any of flags are incompatible or incorrect. Caching is also impossible, causing the whole canvas and all of its layers to be composed again from scratch.</p>
+</div>
+<div class="paragraph">
+<p>This results in a poor user experience and hence we have decided against it.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="canvas-and-layers-in-action"><a class="link" href="#canvas-and-layers-in-action">4.4. Canvas and Layers in action</a></h3>
+<div class="paragraph">
+<p>As the <code>canvas</code> and <code>layer</code> commands compliment each other, let&#8217;s walk through a typical user&#8217;s session in Piconso from start to finish.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user executes a valid <code>open</code> command:
+A <code>Canvas</code> is constructed holding exactly one <code>Layer</code>
 with the default height and width being that of the image selected.</p>
+</li>
+<li>
+<p>The user adds a new layer to the canvas:
+<code>Canvas#addLayer</code> is executed and the helper functions in <code>ModelManager</code> refreshes the UI.</p>
+</li>
+<li>
+<p>The user swaps the order of the two layers to such that the original image is back on top:
+<code>Canvas#swapLayer</code> makes the magic happen by swapping the two entries in the list of layers.</p>
+</li>
+<li>
+<p>While still on the original layer, the user moves it to the top left: <code>Layer#setPosition</code> moves the first layer out of the way.</p>
+</li>
+<li>
+<p>The user changes decides to work on the second layer and enters <code>layer select 2</code>:
+<code>Canvas#setCurrentLayer</code> changes the current layer to the given index and internally keeps track of the index as well.</p>
+</li>
+<li>
+<p>A transformation is applied by the user to the current layer: <code>Canvas#addTransformation</code> appends the new Transformation to the current Layer&#8217;s.
+Note that no image processing occurs until a new render is requested. The <code>Canvas</code> class provides mutators and accessors.</p>
+</li>
+<li>
+<p>After a <code>canvas size 80x60`command: The new `Canvas#setSize</code> is applied upon the next render and it crops the image to a fraction of what it used to be.
+Remember that resizing and scaling is accomplished with the <code>apply resize</code> command!</p>
+</li>
+<li>
+<p>Quickly realising his mistake, the user sets the canvas to fit his all of his layers: <code>Canvas#setCanvasAuto</code> toggles a boolean.</p>
+</li>
+<li>
+<p>The user finishes his piece by filling in the default transparent background with a <code>canvas bgcolor #707070</code> : a hex color code is accepted by <code>Canvas#setBackgroundColor</code>.</p>
+</li>
+</ol>
 </div>
-<div class="paragraph">
-<p>Step 2) The user executes a valid <code>convert</code> command.</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/CanvasLayersDemo.png" alt="CanvasLayersDemo" width="2000">
 </div>
-<div class="paragraph">
-<p>Step 3) <code>Canvas#getCurrentLayer</code> returns the current working layer
-and a transformation is pushed onto its <code>TransformationSet</code>.</p>
-</div>
-<div class="paragraph">
-<p>Step 4) The user then executes a <code>layer add</code> command.</p>
-</div>
-<div class="paragraph">
-<p>Step 5) <code>Canvas#addLayer</code> pushes the new layer to the end of the list of <code>Layer</code> objects.
-Keep in mind that rendering is a First-In-Last-Out operation which means that the new <code>Layer</code>
-is rendered at the very top.</p>
-</div>
-<div class="paragraph">
-<p>Step 6) The user finally saves the output with the <code>save</code> command.</p>
-</div>
-<div class="paragraph">
-<p>Step 7) <code>save</code> then saves the output to disk.</p>
-</div>
+<div class="title">Figure 6. Results of various commands. The black bounding rectangle indicate the canvas size.</div>
 </div>
 </div>
 </div>
@@ -1666,7 +1845,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <div class="content">
 <img src="images/chrome_save_as_pdf.png" alt="chrome save as pdf" width="300">
 </div>
-<div class="title">Figure 4. Saving documentation as PDF files in Chrome</div>
+<div class="title">Figure 7. Saving documentation as PDF files in Chrome</div>
 </div>
 </div>
 <div class="sect2">
@@ -2335,4 +2514,4 @@ b. Require developers to download those libraries manually (this creates extra w
 <p><em>{To be updated}</em></p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-09 13:48:38 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-09 22:18:05 UTC</div></div></div></body></html>
