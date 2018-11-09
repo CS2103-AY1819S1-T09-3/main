@@ -1,125 +1,105 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Jeffry - Project Portfolio</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="../images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link active" href="../index.html">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">Piconso</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://cs2103-ay1819s1-t09-3.github.io/main/index.html"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Jeffry - Project Portfolio</h1></div><div id="content"><div class="sect1">
-<h2 id="project-addressbook-level-4"><a class="link" href="#project-addressbook-level-4">PROJECT: AddressBook - Level 4</a></h2>
+<h2 id="project-piconso"><a class="link" href="#project-piconso">Project: Piconso</a></h2>
 <div class="sectionbody">
-<hr>
+
 </div>
 </div>
 <div class="sect1">
 <h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>AddressBook - Level 4 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.</p>
+<p>Piconso is a powerful general-purpose image editing tool. The user interacts with it through a flexible command-line interface and receives instant visual feedback through the Graphical User Interface (GUI) written in JavaFX. The application is mainly written in Java and span a considerable 10k Lines of Code (LoC). The codebase is well-maintained with a rigorous system of checks and tests in place to ensure that code quality is consistently high.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Major enhancement</strong>: added <strong>the ability to undo/redo previous commands</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.</p>
-</li>
-<li>
-<p>Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.</p>
-</li>
-<li>
-<p>Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.</p>
-</li>
-<li>
-<p>Credits: <em>{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}</em></p>
-</li>
-</ul>
+<div class="paragraph">
+<p>As the point man of the group, I led the group through discussions spanning from idea generation to delegation of work. As a result, my team was able to morph the given codebase from a trivial application into a polished product.</p>
 </div>
-</li>
-<li>
-<p><strong>Minor enhancement</strong>: added a history command that allows the user to navigate to previous commands using up/down keys.</p>
-</li>
-<li>
-<p><strong>Code contributed</strong>: [<a href="https://github.com">Functional code</a>] [<a href="https://github.com">Test code</a>] <em>{give links to collated code files}</em></p>
-</li>
-<li>
-<p><strong>Other contributions</strong>:</p>
+<div class="paragraph">
+<p>I put my considerable experience to use by being available at all times to help out with various tasks like design considerations and debugging. I believe that my contribution has improved the unlying engineering of the codebase which in turn sped up the application manyfold.</p>
+</div>
+<div class="paragraph">
+<p>My major contributions are as follows:</p>
+</div>
+<div class="paragraph">
+<p><strong>Designed and implemented the unlying data structures and models for the manipulation of canvases and layers.</strong></p>
+</div>
+<div class="paragraph">
+<p>This allowed other team members to maintain a clear separation of concerns and reduce dependencies which in turn made the code base less prone to breaking changes. This is a major change that affects virtually all of the code base and future developers looking to add or improve Piconso will have to build upon my models.</p>
+</div>
+<div class="paragraph">
+<p>In fact, I have built upon my models to provide end-users with a hassle-free and easily understandable way to navigate more intricate image editing features such as layer ordering and canvas size. This improves the user experience significantly as these features are expected of any modern image editing tool. It also reduces the friction of users migrating to Piconso from other competitors.</p>
+</div>
+<div class="paragraph">
+<p><strong>Added a sub-command targeted at tech-savvy users : <code>raw</code>.</strong></p>
+</div>
+<div class="paragraph">
+<p>In line with our goal of being a powerful and flexible tool, I have added a feature that allows users to tap into the full power of Piconso. This is a notable departure from the other commands in the application which can be fairly restrictive but easy to learn. The raw command allows users to quickly experiment and iterate upon their image editing process without excessive hand-holding from the application.</p>
+</div>
+<div class="paragraph">
+<p>By giving advanced users the freedom to do as they please, I have brought Piconso closer in terms of feature parity as compared to commercial heavy-weights like Photoshop.</p>
+</div>
+<div class="paragraph">
+<p>Developers will also save time on manually implementing obscure functionalities that the majority of the end-users will likely never use. This results in a more streamlined code base unlike Photoshop which clocks in at over 10 million LoCs.</p>
+</div>
+<div class="paragraph">
+<p>Besides that, I have also made multiple smaller contributions which significantly improves the user experience.</p>
+</div>
+<div class="paragraph">
+<p><strong>Implemented the ImagePanel</strong></p>
+</div>
+<div class="paragraph">
+<p>The ImagePanel is at the heart of Piconso, displaying the output of Piconso to the user visually. It was carefully engineered with reuse in mind and its usage painstakingly documented for future developers.</p>
+</div>
+<div class="paragraph">
+<p><strong>Improved upon the HistoryListPanel</strong></p>
+</div>
+<div class="paragraph">
+<p>Building upon the work of other teammates, I have improved the HistoryListPanel to reflect past operations on across multiple layers. Now users can quickly see what operations they have performed on each layer.</p>
+</div>
+<div class="paragraph">
+<p><strong>Implemented the LayerPanel</strong></p>
+</div>
+<div class="paragraph">
+<p>Similar to the HistoryListPanel, the LayerPanel displays information that that users might have trouble keeping track of in a clean and easily grokkable fashion. Users can clearly see which layer they are operating on as well as the order of layers.</p>
+</div>
+<div class="paragraph">
+<p><strong>Executed upon the change in layout</strong></p>
+</div>
+<div class="paragraph">
+<p>I rearranged the layout of the user interface components from the initial code base to one that was designed by the team to be more user-friendly.</p>
+</div>
+<div class="paragraph">
+<p>Here is the code that I have written for this product: [<a href="https://github.com/CS2103-AY1819S1-T09-3/main/commits?author=j-lum">All commits</a>] [<a href="https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&amp;search=j-lum">Dashboard</a>]</p>
+</div>
+<div class="paragraph">
+<p><strong>Other contributions</strong></p>
+</div>
 <div class="ulist">
 <ul>
 <li>
 <p>Project management:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Managed releases <code>v1.3</code> - <code>v1.5rc</code> (3 releases) on GitHub</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Enhancements to existing features:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Updated the GUI color scheme (Pull requests <a href="https://github.com">#33</a>, <a href="https://github.com">#34</a>)</p>
-</li>
-<li>
-<p>Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests <a href="https://github.com">#36</a>, <a href="https://github.com">#38</a>)</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Documentation:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Did cosmetic tweaks to existing contents of the User Guide: <a href="https://github.com">#14</a></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Community:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>PRs reviewed (with non-trivial review comments): <a href="https://github.com">#12</a>, <a href="https://github.com">#32</a>, <a href="https://github.com">#19</a>, <a href="https://github.com">#42</a></p>
-</li>
-<li>
-<p>Contributed to forum discussions (examples:  <a href="https://github.com">1</a>, <a href="https://github.com">2</a>, <a href="https://github.com">3</a>, <a href="https://github.com">4</a>)</p>
-</li>
-<li>
-<p>Reported bugs and suggestions for other teams in the class (examples:  <a href="https://github.com">1</a>, <a href="https://github.com">2</a>, <a href="https://github.com">3</a>)</p>
-</li>
-<li>
-<p>Some parts of the history feature I added was adopted by several other class mates (<a href="https://github.com">1</a>, <a href="https://github.com">2</a>)</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Tools:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Integrated a third party library (Natty) to the project (<a href="https://github.com">#42</a>)</p>
-</li>
-<li>
-<p>Integrated a new Github plugin (CircleCI) to the team repo</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p><em>{you can add/remove categories in the list above}</em></p>
+<p>I commented on critical pull requests.
+I also extensively tested and reported bugs along with a comprehensive reproduction reports: <a href="https://github.com/CS2103-AY1819S1-W14-4/main/issues/170">#170</a> <a href="https://github.com/CS2103-AY1819S1-W14-4/main/issues/175">#175</a></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Documentation:</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>I wrote a quick start guide to walk users through the on-boarding process with a sample project that demonstrates most of the key features of our application.</p>
 </div>
 </div>
 </div>
@@ -137,9 +117,11 @@
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="undoing-a-transformation-code-undo-code"><a class="link" href="#undoing-a-transformation-code-undo-code">Undoing a transformation : <code>undo</code></a></h3>
+<h3 id="canvas-operations-code-canvas-code"><a class="link" href="#canvas-operations-code-canvas-code">Canvas operations : <code>canvas</code></a></h3>
+<div class="sect3">
+<h4 id="changing-the-size-of-the-canvas-code-canvas-size-code"><a class="link" href="#changing-the-size-of-the-canvas-code-canvas-size-code">Changing the size of the canvas: <code>canvas size</code></a></h4>
 <div class="paragraph">
-<p>Format: <code>undo</code>: Step back to the previous image state (in current layer)</p>
+<p>Format: <code>canvas size (NEW_SIZE)</code></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -149,81 +131,198 @@
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Commands that can be undone: those commands that modify the image&#8217;s transformation (anything done with <code>convert</code>).</p>
+<p>If the optional parameter NEW_SIZE is not provided, the current size will be displayed in the output instead.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Example:</p>
+<p>Examples:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>convert blur 0x8</code><br>
-<code>convert contrast</code><br>
-<code>undo</code> (undoes the <code>convert contrast</code> command, image will be at <code>blur 0x8</code> state)<br></p>
+<p><code>canvas size 800x600</code> - Sets the canvas to have a height of 800 pixels and a width of 600px.</p>
+</li>
+<li>
+<p><code>canvas size</code> - Prints the current size.</p>
 </li>
 </ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="changing-the-background-color-of-the-canvas-code-canvas-bgcolor-code"><a class="link" href="#changing-the-background-color-of-the-canvas-code-canvas-bgcolor-code">Changing the background color of the canvas: <code>canvas bgcolor</code></a></h4>
+<div class="paragraph">
+<p>Format: <code>canvas bgcolor (NEW_COLOR)</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If the optional parameter NEW_COLOUR is not provided, the current colour will be displayed in the output instead.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>canvas bgcolor none</code> - Sets the canvas to have a transparent background.</p>
+</li>
+<li>
+<p><code>canvas bgcolor #0f0</code> - Sets the canvas to the hex colour #00ff00 <span class="image"><img src="../images/00ff00.png" alt="width:15"></span>.</p>
+</li>
+<li>
+<p><code>canvas bgcolor #00ff00</code> - Sets the canvas to the hex colour #00ff00 <span class="image"><img src="../images/00ff00.png" alt="width:15"></span>.</p>
+</li>
+<li>
+<p><code>canvas bgcolor rgba(0,255,0,0.7)</code> - Sets the canvas to the hex colour #00ff00 but with 70% opacity <span class="image"><img src="../images/00ff00-70.png" alt="width:15"></span>.</p>
+</li>
+<li>
+<p><code>canvas bgcolor</code> - Prints the background colour.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="allowing-the-canvas-to-auto-resize-code-canvas-auto-resize-on-off-code"><a class="link" href="#allowing-the-canvas-to-auto-resize-code-canvas-auto-resize-on-off-code">Allowing the canvas to auto-resize: <code>canvas auto-resize [ON|OFF]</code></a></h4>
+<div class="paragraph">
+<p>Format : canvas auto-resize [ON|OFF]</p>
+</div>
+<div class="paragraph">
+<p>Turns on/off the auto-resize for the canvas.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>New canvases default to having auto-resize off.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>canvas auto-resize on</code>: Allows the canvas to expand and prevent cropping.</p>
+</li>
+<li>
+<p><code>canvas auto-resize off</code>: The height and width of the output canvas will remain as is.</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-all-transformations-code-undo-all-code"><a class="link" href="#undoing-all-transformations-code-undo-all-code">Undoing all transformations : <code>undo-all</code></a></h3>
+<h3 id="layer-operations-code-layer-code"><a class="link" href="#layer-operations-code-layer-code">Layer operations : <code>layer</code></a></h3>
+<div class="sect3">
+<h4 id="adding-a-new-layer-code-layer-add-index-layer_name-code"><a class="link" href="#adding-a-new-layer-code-layer-add-index-layer_name-code">Adding a new layer: <code>layer add [INDEX] (LAYER_NAME)</code></a></h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>Format: <code>undo-all</code>: Undoes all transformations (reverts image to original state)</p>
+<p>If the optional parameter LAYER_NAME is not provided, one will be automatically generated.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>Example:</p>
+<p>Selects the image at the provided index and adds it to the current canvas at the very top.</p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>convert blur 0x8</code><br>
-<code>convert contrast</code><br>
-<code>convert rotate 90</code><br>
-<code>undo-all</code> (undoes all 3 <code>convert</code> commands, image will be at original state)<br></p>
+<p><code>layer add 4</code> - Adds the image at index 4 to the canvas.</p>
+</li>
+<li>
+<p><code>layer add 1 background layer</code> - Adds the image at index 1 to the canvas as a layer named <code>backround layer</code>.</p>
 </li>
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="redoing-a-transformation-code-redo-code"><a class="link" href="#redoing-a-transformation-code-redo-code">Redoing a transformation : <code>redo</code></a></h3>
+<div class="sect3">
+<h4 id="removing-a-layer-code-layer-remove-index-code"><a class="link" href="#removing-a-layer-code-layer-remove-index-code">Removing a layer: <code>layer remove [INDEX]</code></a></h4>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>Format: <code>redo</code>: Step forward to the previously undone transformation</p>
+<p>This operation is not reversible! Be careful when removing layers!</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>Example:</p>
+<p>Permanently removes a layer from canvas.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="selecting-a-layer-to-work-on-code-layer-select-index-code"><a class="link" href="#selecting-a-layer-to-work-on-code-layer-select-index-code">Selecting a layer to work on: <code>layer select [INDEX]</code></a></h4>
+<div class="paragraph">
+<p>Selects a layer to that all <code>convert</code> operations will work on.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="swapping-the-order-of-two-layers-code-layer-swap-to_index-from_index-code"><a class="link" href="#swapping-the-order-of-two-layers-code-layer-swap-to_index-from_index-code">Swapping the order of two layers: <code>layer swap [TO_INDEX] [FROM_INDEX]</code></a></h4>
+<div class="paragraph">
+<p>Changes the order of any two distinct layers.</p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>convert blur 0x8</code><br>
-<code>convert contrast</code><br>
-<code>undo</code> (undoes the <code>convert contrast</code> command, image will be at <code>blur 0x8</code> state)<br>
-<code>redo</code> (reapplies the <code>convert contrast</code> command)<br></p>
+<p><code>layer swap 1 2</code> : Changes the order of layer 1 and layer 2.</p>
 </li>
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="redoing-all-transformations-code-redo-all-code"><a class="link" href="#redoing-all-transformations-code-redo-all-code">Redoing all transformations : <code>redo-all</code></a></h3>
+<div class="sect3">
+<h4 id="positioning-a-layer-code-layer-position-position-code"><a class="link" href="#positioning-a-layer-code-layer-position-position-code">Positioning a layer: <code>layer position [POSITION]</code></a></h4>
 <div class="paragraph">
-<p>Format: <code>redo-all</code>: Redoes all undone transformations</p>
+<p>Sets the x and y co-ordinates of the current layer.
+(0,0) is defined to be the top left of the screen.</p>
 </div>
 <div class="paragraph">
-<p>Example:</p>
+<p>Examples:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>convert blur 0x8</code><br>
-<code>convert contrast</code><br>
-<code>convert rotate 90</code><br>
-<code>undo-all</code> (undoes all 3 <code>convert</code> commands, image will be at original state)<br>
-<code>redo-all</code> (reapplies all 3 <code>convert</code> commands)<br></p>
+<p><code>layer position 50x100</code> : Sets the layer&#8217;s top left corner to be at position (50, 100).</p>
 </li>
 </ul>
+</div>
 </div>
 </div>
 </div>
@@ -244,11 +343,106 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="project-powerpointlabs"><a class="link" href="#project-powerpointlabs">PROJECT: PowerPointLabs</a></h2>
+<h2 id="canvas-and-layer-features"><a class="link" href="#canvas-and-layer-features">Canvas and Layer features</a></h2>
 <div class="sectionbody">
-<hr>
+<div class="sect2">
+<h3 id="general-overview"><a class="link" href="#general-overview">General overview</a></h3>
 <div class="paragraph">
-<p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
+<p>The <code>Canvas</code> and <code>Layer</code> classes serve as a layer of encapsulation for handling one or more instances of <code>PreviewImage</code>.
+This is in line with good defensive coding practices and separation of concerns.</p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-08 11:17:05 UTC</div></div></div></body></html>
+<div class="sect2">
+<h3 id="canvas-canvas-command"><a class="link" href="#canvas-canvas-command">Canvas (canvas) command</a></h3>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current implementation</a></h4>
+<div class="paragraph">
+<p>Similar to the <code>google</code> set of commands, there are a set of overloaded command types inheriting from <code>CanvasCommand</code>
+, namely:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>bgcolor</code> - Sets the background colour of the canvas.</p>
+</li>
+<li>
+<p><code>size</code> - Sets the height and the width of the canvas.</p>
+</li>
+<li>
+<p><code>auto-resize</code> - Toggles the auto-resize property of the canvas.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Beneath the hood <code>Canvas</code> manipulation is powered by ImageMagick.
+All of the operation are accessors for various properties of the <code>Canvas</code> class
+and the heavy lifting is done by the <code>processCanvas</code> function.</p>
+</div>
+<div class="paragraph">
+<p>The <code>processCanvas</code> is a factory method that returns an instance of a <code>ProcessBuilder</code>
+which is then handled by the utility method <code>ImageMagickUtils#runProcessBuilder</code>.</p>
+</div>
+<div class="paragraph">
+<p>The rendered <code>Canvas</code> object is then shown to the user.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="layer-layer-commands"><a class="link" href="#layer-layer-commands">Layer (layer) commands</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current implementation</a></h4>
+<div class="paragraph">
+<p>The <code>layer</code> command follows a similar pattern as the <code>canvas</code> command.
+The following sub-commands inherit from <code>LayerCommand</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>swap</code> - Swaps the order of two distinct layers.</p>
+</li>
+<li>
+<p><code>lock</code> - Toggles the lock on a layer. A locked layer is protected from all operations.</p>
+</li>
+<li>
+<p><code>delete</code> - Removes a layer from the <code>Canvas</code></p>
+</li>
+<li>
+<p><code>add</code> - Adds a layer from the <code>Canvas</code>.</p>
+</li>
+<li>
+<p><code>select</code> - Selects a layer to work on.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>As the <code>canvas</code> and <code>layer</code> commands works best in tandem, a use case that spans both commands is as follows:</p>
+</div>
+<div class="paragraph">
+<p>Step 1) The user executes a valid <code>select</code> command. A <code>Canvas</code> is constructed holding exactly one <code>Layer</code>
+with the default height and width being that of the image selected.</p>
+</div>
+<div class="paragraph">
+<p>Step 2) The user executes a valid <code>convert</code> command.</p>
+</div>
+<div class="paragraph">
+<p>Step 3) <code>Canvas#getCurrentLayer</code> returns the current working layer
+and a transformation is pushed onto its <code>TransformationSet</code>.</p>
+</div>
+<div class="paragraph">
+<p>Step 4) The user then executes a <code>layer add</code> command.</p>
+</div>
+<div class="paragraph">
+<p>Step 5) <code>Canvas#addLayer</code> pushes the new layer to the end of the list of <code>Layer</code> objects.
+Keep in mind that rendering is a First-In-Last-Out operation which means that the new <code>Layer</code>
+is rendered at the very top.</p>
+</div>
+<div class="paragraph">
+<p>Step 6) The user finally saves the output with the <code>save</code> command.</p>
+</div>
+<div class="paragraph">
+<p>Step 7) <code>save</code> then saves the output to disk.</p>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-09 13:48:39 UTC</div></div></div></body></html>

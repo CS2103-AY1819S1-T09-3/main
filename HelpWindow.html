@@ -631,25 +631,6 @@ for the command created, you should add a @ before the command when running the 
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="saving-the-output-code-canvas-save-code"><a class="link" href="#saving-the-output-code-canvas-save-code">4.15.4. Saving the output: <code>canvas save</code></a></h4>
-<div class="paragraph">
-<p>Format: <code>canvas size [FILE_NAME]</code></p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>canvas save out.png</code> - Saves the current canvas as an image in the <code>PNG</code> format.</p>
-</li>
-<li>
-<p><code>canvas save out.jpg</code> - Saves the current canvas as an image in the <code>JPG</code> format.</p>
-</li>
-</ul>
-</div>
-</div>
 </div>
 <div class="sect2">
 <h3 id="layer-operations-code-layer-code"><a class="link" href="#layer-operations-code-layer-code">4.16. Layer operations : <code>layer</code></a></h3>
@@ -702,20 +683,6 @@ for the command created, you should add a @ before the command when running the 
 </tr>
 </table>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>The last layer of a canvas is protected from removal.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
 <div class="paragraph">
 <p>Permanently removes a layer from canvas.</p>
 </div>
@@ -727,7 +694,7 @@ for the command created, you should add a @ before the command when running the 
 </div>
 </div>
 <div class="sect3">
-<h4 id="selecting-a-layer-to-work-on-code-layer-swap-to_index-from_index-code"><a class="link" href="#selecting-a-layer-to-work-on-code-layer-swap-to_index-from_index-code">4.16.4. Selecting a layer to work on: <code>layer swap [TO_INDEX] [FROM_INDEX]</code></a></h4>
+<h4 id="swapping-the-order-of-two-layers-code-layer-swap-to_index-from_index-code"><a class="link" href="#swapping-the-order-of-two-layers-code-layer-swap-to_index-from_index-code">4.16.4. Swapping the order of two layers: <code>layer swap [TO_INDEX] [FROM_INDEX]</code></a></h4>
 <div class="paragraph">
 <p>Changes the order of any two distinct layers.</p>
 </div>
@@ -743,39 +710,7 @@ for the command created, you should add a @ before the command when running the 
 </div>
 </div>
 <div class="sect3">
-<h4 id="locking-a-layer-to-prevent-accidental-edits-code-layer-lock-index-code"><a class="link" href="#locking-a-layer-to-prevent-accidental-edits-code-layer-lock-index-code">4.16.5. Locking a layer to prevent accidental edits: <code>layer lock [INDEX]</code></a></h4>
-<div class="paragraph">
-<p>Locks a layer. Locked layers are protected from all <code>convert</code>, <code>swap</code> and <code>delete</code> operations.</p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>layer lock 2</code> : Locks layer 2</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="unlocking-a-layer-code-layer-unlock-index-code"><a class="link" href="#unlocking-a-layer-code-layer-unlock-index-code">4.16.6. Unlocking a layer: <code>layer unlock [INDEX]</code></a></h4>
-<div class="paragraph">
-<p>Unlocks a layer.</p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>layer unlock 3</code> : Unlocks layer 3.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="unlocking-a-layer-code-layer-position-position-code"><a class="link" href="#unlocking-a-layer-code-layer-position-position-code">4.16.7. Unlocking a layer: <code>layer position [POSITION]</code></a></h4>
+<h4 id="positioning-a-layer-code-layer-position-position-code"><a class="link" href="#positioning-a-layer-code-layer-position-position-code">4.16.5. Positioning a layer: <code>layer position [POSITION]</code></a></h4>
 <div class="paragraph">
 <p>Sets the x and y co-ordinates of the current layer.
 (0,0) is defined to be the top left of the screen.</p>
@@ -786,7 +721,7 @@ for the command created, you should add a @ before the command when running the 
 <div class="ulist">
 <ul>
 <li>
-<p><code>layer position 50x100</code> : Sets the layer&#8217;s top right corner to be at position (50, 100).</p>
+<p><code>layer position 50x100</code> : Sets the layer&#8217;s top left corner to be at position (50, 100).</p>
 </li>
 </ul>
 </div>
@@ -1009,4 +944,4 @@ e.g. <code>save exampleImage.jpg</code><br></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-08 11:17:05 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-09 13:48:38 UTC</div></div></div></body></html>
