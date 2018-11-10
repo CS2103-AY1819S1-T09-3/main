@@ -86,7 +86,6 @@
 <li><a href="#use-cases">Appendix C: Use Cases</a></li>
 <li><a href="#non-functional-requirements">Appendix D: Non Functional Requirements</a></li>
 <li><a href="#glossary">Appendix E: Glossary</a></li>
-<li><a href="#instructions-for-manual-testing">Appendix F: Instructions for Manual Testing</a></li>
 </ul>
 </div>
 </div>
@@ -2610,18 +2609,6 @@ b. Require developers to download those libraries manually (this creates extra w
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">photographer</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">mass edit images</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">avoid repeating similar tasks</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">photographer</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">see detailed information about a photo</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">immidiately know what post-processing tools to apply</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">photographer</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">define my own set of transformations</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">avoid repetitive typing of commands</p></td>
 </tr>
@@ -2638,22 +2625,19 @@ b. Require developers to download those libraries manually (this creates extra w
 <td class="tableblock halign-left valign-top"><p class="tableblock">safely store and share my photos across devices</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">web developer</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">generate static image assets</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">convert, compress and resize images to be ready for web deployment from raw images</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">web developer or photographer</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">add captions or watermarks to images</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">to protect my intellectual property</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">web developer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">quickly recolor icons</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">easily use them in re-skinning my application</p></td>
+</tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p><em>{More to be added}</em></p>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -2728,7 +2712,7 @@ b. Require developers to download those libraries manually (this creates extra w
 <p>User edits an image (from use case Editing an image)</p>
 </li>
 <li>
-<p>Piconso displays transformations done on the right side pane</p>
+<p>Piconso displays transformations done on the left side pane</p>
 </li>
 <li>
 <p>User enters command to save the set of transformations</p>
@@ -2767,49 +2751,6 @@ b. Require developers to download those libraries manually (this creates extra w
 </li>
 </ul>
 </div>
-<h3 id="use-case-mass-edit-images" class="discrete">Use case: Mass edit images</h3>
-<div class="paragraph">
-<p><strong>MSS</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>User selects a range of images</p>
-</li>
-<li>
-<p>User defines an optional alternate directory to save output</p>
-</li>
-<li>
-<p>User applies a known set of transformations to the set of images</p>
-</li>
-<li>
-<p>Output from step 3 is saved in directory defined in step 2 and user is notified</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><strong>Extensions</strong></p>
-</div>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>1a. Selected range is an empty set.</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>1a1. Piconso shows an error message.</p>
-<div class="paragraph">
-<p>Use case resumes at step 1.</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
 <h3 id="use-case-add-caption-or-watermark-to-image" class="discrete">Use case: Add caption or watermark to image</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
@@ -2823,10 +2764,42 @@ b. Require developers to download those libraries manually (this creates extra w
 <p>Piconso displays the image in the preview pane</p>
 </li>
 <li>
-<p>User inputs caption or watermark text into input</p>
+<p>User adds caption or watermark image through input</p>
 </li>
 <li>
-<p>Piconso displays the caption/watermark in the preview pane</p>
+<p>Piconso displays the caption/watermark in the preview pane atop the first layer.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<h3 id="use-case-upload-to-google-photos" class="discrete">Use case: Upload to Google Photos</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User request to login to Google Photos</p>
+</li>
+<li>
+<p>Piconso redirects the user to a login browser page</p>
+</li>
+<li>
+<p>User logs in through browser page</p>
+</li>
+<li>
+<p>Piconso shows feedback message for success</p>
+</li>
+<li>
+<p>User uploads a photo</p>
+</li>
+<li>
+<p>Piconso contacts Google Photos and uploads the photo</p>
+</li>
+<li>
+<p>Piconso shows feedback for successful upload</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2834,7 +2807,55 @@ b. Require developers to download those libraries manually (this creates extra w
 </ol>
 </div>
 <div class="paragraph">
-<p><em>{More to be added}</em></p>
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a. User does not login through browser window.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a1. User can resume on any use case not involving Google interaction.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3b. Piconso loses internet connection.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3b1. Piconso informs user of disconnection and suggests for them to try again.</p>
+<div class="paragraph">
+<p>Use case resumes at step 1.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>5a. An error occurs while uploading.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>5a1. Piconso informs user of upload failure and suggests for them to try again.</p>
+<div class="paragraph">
+<p>Use case resumes at step 5.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -2844,16 +2865,16 @@ b. Require developers to download those libraries manually (this creates extra w
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Export images in different formats and sizes.</p>
+<p>Should work on any mainstream OS as long as it has Java 9 or higher installed.</p>
 </li>
 <li>
-<p>Have quick access to various filter options.</p>
+<p>A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.</p>
 </li>
 <li>
-<p>View detailed information about images.</p>
+<p>Should have easy to understand and remember user commands.</p>
 </li>
 <li>
-<p>Navigate directories efficiently.</p>
+<p>Allows users to navigate directories efficiently.</p>
 </li>
 </ol>
 </div>
@@ -2875,12 +2896,4 @@ b. Require developers to download those libraries manually (this creates extra w
 </dl>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="instructions-for-manual-testing"><a class="link" href="#instructions-for-manual-testing">Appendix F: Instructions for Manual Testing</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><em>{To be updated}</em></p>
-</div>
-</div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 21:03:54 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 21:33:05 UTC</div></div></div></body></html>
