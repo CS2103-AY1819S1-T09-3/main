@@ -924,7 +924,7 @@ If a command fails its execution, it will not call <code>Model#updateCurrentPrev
 </div>
 </div>
 <div class="paragraph">
-<p>Step 3. The user wants to undo the previous action by using the <code>undo</code> command. It will call <code>Model#undoPreviewImage()</code> which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous <code>PreviewImage</code> state. After which, a <code>ChangeImageEvent</code> posted with the new image state by calling <code>PreviewImage#getImage()</code> to update the UI&#8217;s preview image pane.</p>
+<p>Step 3. The user wants to undo the previous action by using the <code>undo</code> command. It will call <code>Model#undoPreviewImage()</code> which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous <code>PreviewImage</code> state. After which, that previously cached <code>BufferedImage</code> will be read and rendered to update the UI&#8217;s preview image pane.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -982,9 +982,54 @@ If the <code>currentStatePointer</code> is at index <code>currentSize - 1</code>
 <img src="images/undoRedoActivityDiagram.png" alt="undoRedoActivityDiagram" width="800">
 </div>
 </div>
+<div class="paragraph">
+<p>The following activity diagram summarizes what happens when a user executes the undo command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/undoRedoActivityDiagram2.png" alt="undoRedoActivityDiagram2" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarizes what happens when a user executes the redo command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/undoRedoActivityDiagram3.png" alt="undoRedoActivityDiagram3" width="800">
+</div>
+</div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.4.2. Design Considerations</a></h4>
+<h4 id="undo-all-and-redo-all"><a class="link" href="#undo-all-and-redo-all">3.4.2. Undo-all and Redo-all</a></h4>
+<div class="paragraph">
+<p>The commands <code>undo-all</code> and <code>redo-all</code> follow the same implementation as undo and redo. They provide a convenient way to quickly undo and redo all transformations to the current layer&#8217;s <code>PreviewImage</code> for the user.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>undo-all</code> shifts the <code>PreviewImage&#8217;s</code> pointer to 0, pointing at the original state.</p>
+</li>
+<li>
+<p><code>redo-all</code> shifts the <code>PreviewImage&#8217;s</code> pointer to <code>currentSize - 1</code>, the state with all the applied transformations.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="historylistpanel"><a class="link" href="#historylistpanel">3.4.3. HistoryListPanel</a></h4>
+<div class="paragraph">
+<p>The HistoryListPanel provides a view for the user to see the history of transformations applied.
+Whenever a transformation is done or when a undo/redo command is executed, the <code>Model#refreshHistoryList()</code> is executed which refreshes the <code>HistoryListPanel</code> with a <code>HistoryUpdateEvent</code> containing the current layer&#8217;s <code>PreviewImage&#8217;s</code> list of transformations.
+A view of the panel is shown below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/historyPanel.png" alt="historyPanel" width="200">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.4.4. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
 <div class="ulist">
@@ -2514,4 +2559,4 @@ b. Require developers to download those libraries manually (this creates extra w
 <p><em>{To be updated}</em></p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 08:55:44 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 15:52:22 UTC</div></div></div></body></html>

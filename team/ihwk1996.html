@@ -10,10 +10,9 @@
 <h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Piconso is an CLI (Command Line Interface) Image Editor designed and developed for quick and efficient image-editing. Many image-editors are complex and difficult to pick up, having a steep learning curve and sometimes even a steep price!</p>
-</div>
-<div class="paragraph">
-<p>Unlike them, Piconso offers the same features, in a much more simplified manner. With Piconso, all traditional image-editing features can be performed solely through text commands, removing the hassle of working with a mouse. The interface can be used by photographers, designers, developers and more, and is very easy to pick up.</p>
+<p>Piconso is a robust yet simple image-editing tool. Catered towards power users, Piconso is a uses the Command Line Interface (CLI), while providing visual feedback through Graphical User Interface (GUI).
+Unlike other heavy image editors, Piconso has a very gentle learning curve as it abstracts out clutter by providing the more essential features (complex editing can still be done with special commands). The features and implementations are well documented in guides for users and developers respectively.
+In addition, Piconso is well maintained with high reliability and code quality as it is covered by rigorous tests and checks.</p>
 </div>
 </div>
 </div>
@@ -27,21 +26,33 @@
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: allows the user to undo all previous transformations one at a time. Preceding undo transformations can be reversed by using the redo command.</p>
+<p>What it does: allows the user to undo previous transformations one at a time. Preceding undone transformations can be reversed by using the redo command.</p>
 </li>
 <li>
 <p>Justification: This feature improves the product significantly because a user can make mistakes in transformations and the app should provide a convenient way to rectify them.</p>
 </li>
 <li>
-<p>Highlights: This enhancement uses memoization ensure undo/redo commands are almost instant. Since transformations to images take significant time (especially large images) and that users typically want to quickly inspect the before and after of their transformation, it is necessary  for undo and redo to be fast. As such, after each transformation, the resulting transformed image is cached into a temporary folder. Undo and redo operations will shift a pointer leftwards or rightwards and read the selected image, instead of reapplying or reversing a transformation process which is time consuming.</p>
+<p>Highlights: This enhancement uses memoization ensure undo/redo commands are almost instant. Since transformations to images take significant time (especially on large images) and that users typically want to quickly inspect the before and after of their transformation, it is necessary  for undo and redo to be fast. As such, after each transformation, the resulting transformed image is cached into a temporary folder. Undo and redo operations will shift a pointer leftwards or rightwards and read the selected image, instead of reapplying or reversing a transformation process which is time consuming.</p>
 </li>
 </ul>
 </div>
 </li>
-</ul>
-</div>
+<li>
+<p><strong>Minor enhancement</strong>: added <strong>the ability to undo/redo all transformations at once</strong></p>
 <div class="ulist">
 <ul>
+<li>
+<p>What it does: allows the user to undo all previous transformations swiftly with a single <code>undo-all</code> command. Likewise, all preceding undone transformations can be redone with a single <code>redo-all</code> command.</p>
+</li>
+<li>
+<p>Justification: This feature provides the user with an extra layer of convenience. At times, the user might feel that he wants to revert back to the original state but has applied many transformations. It would be tedious to apply the undo command one by one, hence having command to undo all transformations would be handy. Similarly, if he feels that undoing all commands is a mistake, he can quickly revert back all transformations with the <code>redo-all</code> command.</p>
+</li>
+<li>
+<p>Highlights: Similar the the undo/redo feature, undo-all/redo-all commands are also almost instant with the help of memoization.</p>
+</li>
+</ul>
+</div>
+</li>
 <li>
 <p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103-AY1819S1-T09-3/main/commits?author=ihwk1996">All commits</a>] [<a href="https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&amp;search=ihwk1996">Project Code Dashboard</a>]</p>
 </li>
@@ -311,7 +322,7 @@ If a command fails its execution, it will not call <code>Model#updateCurrentPrev
 </div>
 </div>
 <div class="paragraph">
-<p>Step 3. The user wants to undo the previous action by using the <code>undo</code> command. It will call <code>Model#undoPreviewImage()</code> which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous <code>PreviewImage</code> state. After which, a <code>ChangeImageEvent</code> posted with the new image state by calling <code>PreviewImage#getImage()</code> to update the UI&#8217;s preview image pane.</p>
+<p>Step 3. The user wants to undo the previous action by using the <code>undo</code> command. It will call <code>Model#undoPreviewImage()</code> which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous <code>PreviewImage</code> state. After which, that previously cached <code>BufferedImage</code> will be read and rendered to update the UI&#8217;s preview image pane.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -369,6 +380,51 @@ If the <code>currentStatePointer</code> is at index <code>currentSize - 1</code>
 <img src="../images/undoRedoActivityDiagram.png" alt="undoRedoActivityDiagram" width="800">
 </div>
 </div>
+<div class="paragraph">
+<p>The following activity diagram summarizes what happens when a user executes the undo command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/undoRedoActivityDiagram2.png" alt="undoRedoActivityDiagram2" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarizes what happens when a user executes the redo command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/undoRedoActivityDiagram3.png" alt="undoRedoActivityDiagram3" width="800">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="undo-all-and-redo-all"><a class="link" href="#undo-all-and-redo-all">Undo-all and Redo-all</a></h4>
+<div class="paragraph">
+<p>The commands <code>undo-all</code> and <code>redo-all</code> follow the same implementation as undo and redo. They provide a convenient way to quickly undo and redo all transformations to the current layer&#8217;s <code>PreviewImage</code> for the user.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>undo-all</code> shifts the <code>PreviewImage&#8217;s</code> pointer to 0, pointing at the original state.</p>
+</li>
+<li>
+<p><code>redo-all</code> shifts the <code>PreviewImage&#8217;s</code> pointer to <code>currentSize - 1</code>, the state with all the applied transformations.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="historylistpanel"><a class="link" href="#historylistpanel">HistoryListPanel</a></h4>
+<div class="paragraph">
+<p>The HistoryListPanel provides a view for the user to see the history of transformations applied.
+Whenever a transformation is done or when a undo/redo command is executed, the <code>Model#refreshHistoryList()</code> is executed which refreshes the <code>HistoryListPanel</code> with a <code>HistoryUpdateEvent</code> containing the current layer&#8217;s <code>PreviewImage&#8217;s</code> list of transformations.
+A view of the panel is shown below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/historyPanel.png" alt="historyPanel" width="200">
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
@@ -408,4 +464,4 @@ If the <code>currentStatePointer</code> is at index <code>currentSize - 1</code>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 08:55:44 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 15:52:22 UTC</div></div></div></body></html>
