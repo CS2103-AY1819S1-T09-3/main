@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link active" href="index.html">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">Piconso</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link active" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://cs2103-ay1819s1-t09-3.github.io/main/index.html"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Piconso - Developer Guide</h1></div><div id="content"><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>By: <code>Team SE-EDU</code>      Since: <code>Jun 2016</code>      Licence: <code>MIT</code></p>
+<p>By: <code>CS2103-AY1819S1-T09-3</code>      Since: <code>Aug 2018</code>      Licence: <code>MIT</code></p>
 </div>
 </div>
 <div id="toc" class="toc">
@@ -24,7 +24,7 @@
 <li><a href="#Design-Logic">2.3. Logic component</a></li>
 <li><a href="#Design-Model">2.4. Model component</a></li>
 <li><a href="#Design-Storage">2.5. Storage component</a></li>
-<li><a href="#Design-Commons">2.6. Commons component</a></li>
+<li><a href="#Design-Commons">2.6. Common classes</a></li>
 </ul>
 </li>
 <li><a href="#implementation">3. Implementation</a>
@@ -34,14 +34,10 @@
 <li><a href="#next-prev-feature">3.3. Next/Prev feature</a></li>
 <li><a href="#undo-redo-feature">3.4. Undo/Redo feature</a></li>
 <li><a href="#transmission-feature">3.5. Transmission feature</a></li>
-<li><a href="#google-features">3.6. Google Features</a></li>
-<li><a href="#login-login-command">3.7. Login(login) Command</a></li>
-<li><a href="#googlelscommand-list">3.8. GoogleLsCommand (list)</a></li>
-<li><a href="#googledlcommand-download">3.9. GoogleDlCommand (download)</a></li>
-<li><a href="#googleuploadcommand-upload">3.10. GoogleUploadCommand (upload)</a></li>
+<li><a href="#save-save-feature">3.6. Save (save) feature</a></li>
 </ul>
 </li>
-<li><a href="#canvas-and-layer-features">4. Canvas and Layer features</a>
+<li><a href="#implementation-canvas-and-layer-features">4. Implementation: Canvas and Layer features</a>
 <ul class="sectlevel2">
 <li><a href="#general-overview">4.1. General overview</a></li>
 <li><a href="#canvas-canvas-command">4.2. Canvas (canvas) command</a></li>
@@ -49,31 +45,40 @@
 <li><a href="#canvas-and-layers-in-action">4.4. Canvas and Layers in action</a></li>
 </ul>
 </li>
-<li><a href="#documentation">5. Documentation</a>
+<li><a href="#implementation-google-features">5. Implementation: Google features</a>
 <ul class="sectlevel2">
-<li><a href="#editing-documentation">5.1. Editing Documentation</a></li>
-<li><a href="#publishing-documentation">5.2. Publishing Documentation</a></li>
-<li><a href="#converting-documentation-to-pdf-format">5.3. Converting Documentation to PDF format</a></li>
-<li><a href="#Docs-SiteWideDocSettings">5.4. Site-wide Documentation Settings</a></li>
-<li><a href="#Docs-PerFileDocSettings">5.5. Per-file Documentation Settings</a></li>
-<li><a href="#site-template">5.6. Site Template</a></li>
+<li><a href="#overall-introduction">5.1. Overall Introduction</a></li>
+<li><a href="#login-login-command">5.2. Login (login) Command</a></li>
+<li><a href="#googlelscommand-ls">5.3. GoogleLsCommand (ls)</a></li>
+<li><a href="#googledlcommand-dl">5.4. GoogleDlCommand (dl)</a></li>
+<li><a href="#googleuploadcommand-ul">5.5. GoogleUploadCommand (ul)</a></li>
 </ul>
 </li>
-<li><a href="#Testing">6. Testing</a>
+<li><a href="#documentation">6. Documentation</a>
 <ul class="sectlevel2">
-<li><a href="#running-tests">6.1. Running Tests</a></li>
-<li><a href="#types-of-tests">6.2. Types of tests</a></li>
-<li><a href="#troubleshooting-testing">6.3. Troubleshooting Testing</a></li>
+<li><a href="#editing-documentation">6.1. Editing Documentation</a></li>
+<li><a href="#publishing-documentation">6.2. Publishing Documentation</a></li>
+<li><a href="#converting-documentation-to-pdf-format">6.3. Converting Documentation to PDF format</a></li>
+<li><a href="#Docs-SiteWideDocSettings">6.4. Site-wide Documentation Settings</a></li>
+<li><a href="#Docs-PerFileDocSettings">6.5. Per-file Documentation Settings</a></li>
+<li><a href="#site-template">6.6. Site Template</a></li>
 </ul>
 </li>
-<li><a href="#dev-ops">7. Dev Ops</a>
+<li><a href="#Testing">7. Testing</a>
 <ul class="sectlevel2">
-<li><a href="#build-automation">7.1. Build Automation</a></li>
-<li><a href="#continuous-integration">7.2. Continuous Integration</a></li>
-<li><a href="#coverage-reporting">7.3. Coverage Reporting</a></li>
-<li><a href="#documentation-previews">7.4. Documentation Previews</a></li>
-<li><a href="#making-a-release">7.5. Making a Release</a></li>
-<li><a href="#managing-dependencies">7.6. Managing Dependencies</a></li>
+<li><a href="#running-tests">7.1. Running Tests</a></li>
+<li><a href="#types-of-tests">7.2. Types of tests</a></li>
+<li><a href="#troubleshooting-testing">7.3. Troubleshooting Testing</a></li>
+</ul>
+</li>
+<li><a href="#dev-ops">8. Dev Ops</a>
+<ul class="sectlevel2">
+<li><a href="#build-automation">8.1. Build Automation</a></li>
+<li><a href="#continuous-integration">8.2. Continuous Integration</a></li>
+<li><a href="#coverage-reporting">8.3. Coverage Reporting</a></li>
+<li><a href="#documentation-previews">8.4. Documentation Previews</a></li>
+<li><a href="#making-a-release">8.5. Making a Release</a></li>
+<li><a href="#managing-dependencies">8.6. Managing Dependencies</a></li>
 </ul>
 </li>
 <li><a href="#product-scope">Appendix A: Product Scope</a></li>
@@ -233,52 +238,9 @@ This will generate all resources required by the application and tests.<br></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="setting-up-ci"><a class="link" href="#setting-up-ci">1.4.2. Setting up CI</a></h4>
+<h4 id="getting-started-with-coding"><a class="link" href="#getting-started-with-coding">1.4.2. Getting started with coding</a></h4>
 <div class="paragraph">
-<p>Set up Travis to perform Continuous Integration (CI) for your fork. See <a href="UsingTravis.html">UsingTravis.adoc</a> to learn how to set it up.</p>
-</div>
-<div class="paragraph">
-<p>After setting up Travis, you can optionally set up coverage reporting for your team fork (see <a href="UsingCoveralls.html">UsingCoveralls.adoc</a>).</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Coverage reporting could be useful for a team repository that hosts the final version but it is not that useful for your personal fork.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Optionally, you can set up AppVeyor as a second CI (see <a href="UsingAppVeyor.html">UsingAppVeyor.adoc</a>).</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Having both Travis and AppVeyor ensures your App works on both Unix-based platforms and Windows-based platforms (Travis is Unix-based and AppVeyor is Windows-based).
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect3">
-<h4 id="getting-started-with-coding"><a class="link" href="#getting-started-with-coding">1.4.3. Getting started with coding</a></h4>
-<div class="paragraph">
-<p>When you are ready to start coding,</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Get some sense of the overall design by reading <a href="#Design-Architecture">Section 2.1, &#8220;Architecture&#8221;</a>.</p>
-</li>
-</ol>
+<p>When you are ready to start coding, get some sense of the overall design by reading <a href="#Design-Architecture">Section 2.1, &#8220;Architecture&#8221;</a>.</p>
 </div>
 </div>
 </div>
@@ -305,13 +267,13 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-The <code>.pptx</code> files used to create diagrams in this document can be found in the <a href="https://github.com/se-edu/addressbook-level4/tree/master/docs/diagrams/">diagrams</a> folder. To update a diagram, modify the diagram in the pptx file, select the objects of the diagram, and choose <code>Save as picture</code>.
+The <code>.pptx</code> files used to create diagrams in this document can be found in the <a href="https://github.com/CS2103-AY1819S1-T09-3/main/docs/diagrams/">diagrams</a> folder. To update a diagram, modify the diagram in the pptx file, select the objects of the diagram, and choose <code>Save as picture</code>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p><code>Main</code> has only one class called <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/MainApp.java"><code>MainApp</code></a>. It is responsible for,</p>
+<p><code>Main</code> has only one class called <a href="https://github.com/CS2103-AY1819S1-T09-3/main/src/main/java/seedu/address/MainApp.java"><code>MainApp</code></a>. It is responsible for,</p>
 </div>
 <div class="ulist">
 <ul>
@@ -377,7 +339,9 @@ The <code>.pptx</code> files used to create diagrams in this document can be fou
 </div>
 <div class="title">Figure 2. Class Diagram of the Logic Component</div>
 </div>
-<h4 id="events-driven-nature-of-the-design" class="discrete">Events-Driven nature of the design</h4>
+<div class="paragraph">
+<p>The sections below give more details of each component.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="Design-Ui"><a class="link" href="#Design-Ui">2.2. UI component</a></h3>
@@ -385,9 +349,10 @@ The <code>.pptx</code> files used to create diagrams in this document can be fou
 <div class="content">
 <img src="images/UiClassDiagram_Piconso.png" alt="UiClassDiagram Piconso" width="800">
 </div>
+<div class="title">Figure 3. Structure of the UI Component</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-T09-3/main/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
 </div>
 <div class="paragraph">
 <p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>,
@@ -396,7 +361,7 @@ inherit from the abstract <code>UiPart</code> class.</p>
 </div>
 <div class="paragraph">
 <p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that
-are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
+are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/CS2103-AY1819S1-T09-3/main/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/CS2103-AY1819S1-T09-3/main/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>UI</code> component,</p>
@@ -414,9 +379,6 @@ are in the <code>src/main/resources/view</code> folder. For example, the layout 
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p><em>{To be updated}</em></p>
-</div>
 </div>
 <div class="sect2">
 <h3 id="Design-Logic"><a class="link" href="#Design-Logic">2.3. Logic component</a></h3>
@@ -424,10 +386,11 @@ are in the <code>src/main/resources/view</code> folder. For example, the layout 
 <div class="content">
 <img src="images/LogicClassDiagram1.png" alt="LogicClassDiagram1" width="800">
 </div>
+<div class="title">Figure 4. Structure of the Logic Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> :
-<a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/logic/Logic.java"><code>Logic.java</code></a></p>
+<a href="https://github.com/CS2103-AY1819S1-T09-3/main/src/main/java/seedu/address/logic/Logic.java"><code>Logic.java</code></a></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -446,7 +409,13 @@ are in the <code>src/main/resources/view</code> folder. For example, the layout 
 </ol>
 </div>
 <div class="paragraph">
-<p><em>{To be updated}</em></p>
+<p>Given below is the Sequence Diagram for interactions within the Logic component for the execute("cd") API call.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/LogicComponentClassDiagram.png" alt="LogicComponentClassDiagram" width="800">
+</div>
+<div class="title">Figure 5. Interactions inside the Logic Component for the <code>cd</code> command</div>
 </div>
 </div>
 <div class="sect2">
@@ -455,9 +424,10 @@ are in the <code>src/main/resources/view</code> folder. For example, the layout 
 <div class="content">
 <img src="images/ModelClassDiagram_Piconso.png" alt="ModelClassDiagram Piconso" width="800">
 </div>
+<div class="title">Figure 6. Structure of the Model Component</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-T09-3/main/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>Model</code>,</p>
@@ -475,20 +445,33 @@ are in the <code>src/main/resources/view</code> folder. For example, the layout 
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p><em>{To be updated}</em></p>
-</div>
 </div>
 <div class="sect2">
 <h3 id="Design-Storage"><a class="link" href="#Design-Storage">2.5. Storage component</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/StorageClassDiagram.png" alt="StorageClassDiagram" width="800">
+</div>
+<div class="title">Figure 7. Structure of the Storage Component</div>
+</div>
 <div class="paragraph">
-<p><em>{To be updated}</em></p>
+<p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-T09-3/main/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
+</div>
+<div class="paragraph">
+<p>The <code>Storage</code> component,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>can save <code>UserPref</code> objects in json format and read it back.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Commons"><a class="link" href="#Design-Commons">2.6. Commons component</a></h3>
+<h3 id="Design-Commons"><a class="link" href="#Design-Commons">2.6. Common classes</a></h3>
 <div class="paragraph">
-<p><em>{To be updated}</em></p>
+<p>Classes used by multiple components are in the <code>seedu.address.commons</code> package.</p>
 </div>
 </div>
 </div>
@@ -497,8 +480,7 @@ are in the <code>src/main/resources/view</code> folder. For example, the layout 
 <h2 id="implementation"><a class="link" href="#implementation">3. Implementation</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><em>{In Progress}</em><br>
-This section describes some noteworthy details on how certain features are implemented.</p>
+<p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
 <h3 id="change-directory-cd-feature"><a class="link" href="#change-directory-cd-feature">3.1. Change Directory (Cd) feature</a></h3>
@@ -509,8 +491,8 @@ This removes the restrictions of accessing only images from one particular folde
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">3.1.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The Cd mechanism is facilitated by the <code>ModelManager</code>. It contains the operations <code>Model#getCurrDirectory</code> and
-<code>Model#updateCurrDirectory(Path)</code> respectively.</p>
+<p>The Cd mechanism is facilitated by the <code>ModelManager</code>. It contains the operations <code>Model#getCurrDirectory()</code> and
+<code>Model#updateCurrDirectory(Path)</code>.</p>
 </div>
 <div class="paragraph">
 <p>The Model calls upon <code>UserPrefs</code> within the respective operations. The <code>UserPrefs</code> class contains the current directory
@@ -528,7 +510,7 @@ the user&#8217;s in, stored internally as <code>currDirectory</code> and impleme
 </div>
 <div class="paragraph">
 <p>Within the operation <code>UserPrefs#updateUserPrefs(Path)</code>, it also retrieves the list of images within the directory,
-which are stored internally as <code>imageList</code>. This would facilitates the <code>Select</code> feature in our application
+which are stored internally as <code>imageList</code>. This would facilitate the <code>select</code> feature in our application
 (refer to 3.2).</p>
 </div>
 <div class="paragraph">
@@ -538,14 +520,18 @@ function to auto-complete the directory name if it exists.</p>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the cd mechanism behaves at each step.</p>
 </div>
-<div class="paragraph">
-<p>Step 1. The user launches the application for the first time. The <code>UserPrefs</code> will be initialized with the <code>currDirectory</code>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user launches the application for the first time. The <code>UserPrefs</code> will be initialized with the <code>currDirectory</code>
 as the user&#8217;s home directory.</p>
-</div>
-<div class="paragraph">
-<p>Step 2. The user executes <code>cd Desktop</code> command to navigate into the Desktop directory. The cd command calls
+</li>
+<li>
+<p>The user executes <code>cd Desktop</code> command to navigate into the Desktop directory. The cd command calls
 <code>Model#getCurrDirectory()</code> and appends <code>Desktop</code> to the end of the current directory. It then checks if the new Path is
-a directory and calls <code>Model#updateCurrDirectory(Path)</code> and update the new Path in <code>UserPrefs</code> if the check returns true.</p>
+a directory and calls <code>Model#updateCurrDirectory(Path)</code> and updates the new Path in <code>UserPrefs</code> if the check returns true.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <p>The following sequence diagram shows how the cd command works:</p>
@@ -554,6 +540,7 @@ a directory and calls <code>Model#updateCurrDirectory(Path)</code> and update th
 <div class="content">
 <img src="images/CdSequenceDiagram.png" alt="CdSequenceDiagram" width="800">
 </div>
+<div class="title">Figure 8. Sequence Diagram for CdCommand</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -610,22 +597,21 @@ If the <code>newCurrDirectory</code> is not a directory, i.e. <code>isDirectory(
 <div class="sect2">
 <h3 id="select-feature"><a class="link" href="#select-feature">3.2. Select feature</a></h3>
 <div class="paragraph">
-<p>The Select Command allow users to select the images in a batch of 10 images within the directory for image-editing.
-This command is further facilitated by the Next Command.</p>
+<p><code>SelectCommand</code> allow users to select from the currently viewed batch of 10 images within the directory for image-editing.
+This command is further facilitated by the <code>NextCommand</code>.</p>
 </div>
 <div class="sect3">
 <h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The implementation of the Select feature is largely similar to the <code>Cd Command</code>. It is facilitated by the <code>ModelManager</code>
-and contains the following operations:</p>
+<p>The implementation of the Select feature is largely similar to <code>CdCommand</code>. It is facilitated by the following operations in <code>ModelManager</code>:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>Model#getDirectoryImageList()</code>&#8201;&#8212;&#8201;Retrieves the stored list of images in UserPrefs.</p>
+<p><code>Model#getDirectoryImageList()</code> - Retrieves the stored list of images in UserPrefs.</p>
 </li>
 <li>
-<p><code>Model#updateCurrentOriginalImage(Image, Path)</code>&#8201;&#8212;&#8201;Updates the model with the current selected images.</p>
+<p><code>Model#updateCurrentOriginalImage(Image, Path)</code> - Updates the model with the current selected images.</p>
 </li>
 </ul>
 </div>
@@ -636,44 +622,56 @@ batch. The <code>UserPrefs</code> class implements the following operation:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>UserPrefs#getCurrImageListBatch()</code>&#8201;&#8212;&#8201;Returns the current batch of images.</p>
+<p><code>UserPrefs#getCurrImageListBatch()</code> - Returns the current batch of images.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
 <p>The <code>Model#updateCurrentOriginalImage(Image, Path)</code> operation stores the path of the selected image and the
-<code>PreviewImage</code> instance of it as <code>currOriginalImage</code> and <code>currentPreviewImage</code> respectively within the <code>ModelManager</code>.
-Additionally, the operation also creates a canvas and a layer to facilitate the <code>transmission</code> feature.</p>
+<code>PreviewImage</code> instance of it as <code>currOriginalImage</code> and <code>currentPreviewImage</code> within the <code>ModelManager</code>.
+Additionally, the operation also creates a canvas and a layer to facilitate the <code>transmission</code> feature. (refer to 3.5)</p>
 </div>
 <div class="paragraph">
-<p>Given below is an example usage scenario and how the select and next mechanism behaves at each step.</p>
+<p>Given below is an example usage scenario of how the select and next mechanism behaves at each step.</p>
 </div>
-<div class="paragraph">
-<p>Step 1. The user launches the application for the first time. The <code>UserPrefs</code> will be initialized with the <code>currDirectory</code>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user launches the application for the first time. The <code>UserPrefs</code> will be initialized with the <code>currDirectory</code>
 as the user&#8217;s home directory.</p>
-</div>
-<div class="paragraph">
-<p>Step 2. The user executes <code>cd Desktop</code> command to navigate into the Desktop directory. The cd command will initialise
+</li>
+<li>
+<p>The user executes <code>cd Desktop</code> command to navigate into the Desktop directory. The cd command will initialise
 the <code>imageList</code> with all the images within Desktop.</p>
+</li>
+</ol>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/SelectCommand1.png" alt="SelectCommand1" width="800">
 </div>
 </div>
-<div class="paragraph">
-<p>Step 3. The user executes <code>select 1</code> command to select the first image in the first batch of 10 images. The select
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user executes <code>select 1</code> command to select the first image in the first batch of 10 images. The select
 command calls <code>Model#getDirectoryImageList()</code> to retrieve the first batch of images within Desktop. The first image is
 then retrieved and displayed on the GUI.</p>
+</li>
+</ol>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/SelectCommand2.png" alt="SelectCommand2" width="500">
 </div>
 </div>
-<div class="paragraph">
-<p>Step 4. The user then executes <code>select 5</code> command to select the fifth image in the batch of 10 images. The fifth image
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user then executes <code>select 5</code> command to select the fifth image in the batch of 10 images. The fifth image
 is then retrieved similarly and displayed on the GUI.</p>
+</li>
+</ol>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -687,6 +685,7 @@ is then retrieved similarly and displayed on the GUI.</p>
 <div class="content">
 <img src="images/SelectSequenceDiagram.png" alt="SelectSequenceDiagram" width="800">
 </div>
+<div class="title">Figure 9. Sequence Diagram for SelectCommand</div>
 </div>
 </div>
 <div class="sect3">
@@ -729,15 +728,15 @@ is then retrieved similarly and displayed on the GUI.</p>
 <div class="sect2">
 <h3 id="next-prev-feature"><a class="link" href="#next-prev-feature">3.3. Next/Prev feature</a></h3>
 <div class="paragraph">
-<p>The Next Command retrieves the next 10 images in the image list.</p>
+<p><code>NextCommand</code> retrieves the next 10 images in the image list (image list refers to images in the current directory).</p>
 </div>
 <div class="paragraph">
-<p>On the contrary, the Previous Command retrieves the previous 10 images in the image list.</p>
+<p>On the contrary, the <code>PrevCommand</code> retrieves the previous 10 images in the image list.</p>
 </div>
 <div class="sect3">
 <h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.3.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The implementation of the Next/Previous feature is also similar to the <code>Cd Command</code>. It is facilitated by the <code>ModelManager</code>
+<p>The implementation of the Next/Previous feature is similar to the <code>CdCommand</code>. It is facilitated by the <code>ModelManager</code>
 and contains the operations: <code>Model#updateImageListNextBatch()</code> and <code>Model#updateImageListPrevBatch()</code>.</p>
 </div>
 <div class="paragraph">
@@ -747,39 +746,51 @@ batch of images using the <code>currBatchPointer</code>. The <code>UserPrefs</co
 <div class="ulist">
 <ul>
 <li>
-<p><code>UserPrefs#updateImageListNextBatch()</code>&#8201;&#8212;&#8201;Adds the <code>currBatchPointer</code> by 10.</p>
+<p><code>UserPrefs#updateImageListNextBatch()</code> - Adds the <code>currBatchPointer</code> by 10.</p>
 </li>
 <li>
-<p><code>UserPrefs#updateImageListPrevBatch()</code>&#8201;&#8212;&#8201;Minus the <code>currBatchPointer</code> by 10.</p>
+<p><code>UserPrefs#updateImageListPrevBatch()</code> - Minus the <code>currBatchPointer</code> by 10.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the next/previous mechanism behaves at each step.</p>
 </div>
-<div class="paragraph">
-<p>Step 1. The user launches the application for the first time. The <code>UserPrefs</code> will be initialized with the <code>currDirectory</code>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user launches the application for the first time. The <code>UserPrefs</code> will be initialized with the <code>currDirectory</code>
 as the user&#8217;s home directory.</p>
-</div>
-<div class="paragraph">
-<p>Step 2. The user executes <code>cd Desktop</code> command to navigate into the Desktop directory. The cd command will initialise
+</li>
+<li>
+<p>The user executes <code>cd Desktop</code> command to navigate into the Desktop directory. The cd command will initialise
 the <code>imageList</code> with all the images within Desktop.</p>
+</li>
+</ol>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/SelectCommand1.png" alt="SelectCommand1" width="800">
 </div>
 </div>
-<div class="paragraph">
-<p>Step 3. The user executes <code>next</code> command to retrieve the next 10 images within Desktop.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user executes <code>next</code> command to retrieve the next 10 images within Desktop.</p>
+</li>
+</ol>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/NextPrevCommand2.png" alt="NextPrevCommand2" width="800">
 </div>
 </div>
-<div class="paragraph">
-<p>Step 4. The user executes <code>prev</code> command to retrieve the previous 10 images within Desktop.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user executes <code>prev</code> command to retrieve the previous 10 images within Desktop.</p>
+</li>
+</ol>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -793,6 +804,7 @@ the <code>imageList</code> with all the images within Desktop.</p>
 <div class="content">
 <img src="images/NextSequenceDiagram.png" alt="NextSequenceDiagram" width="800">
 </div>
+<div class="title">Figure 10. Sequence Diagram for NextCommand</div>
 </div>
 <div class="paragraph">
 <p>The following sequence diagram shows how the prev command works:</p>
@@ -801,6 +813,7 @@ the <code>imageList</code> with all the images within Desktop.</p>
 <div class="content">
 <img src="images/PrevSequenceDiagram.png" alt="PrevSequenceDiagram" width="800">
 </div>
+<div class="title">Figure 11. Sequence Diagram for PrevCommand</div>
 </div>
 <div class="sect4">
 <h5 id="aspect-how-next-previous-executes"><a class="link" href="#aspect-how-next-previous-executes">Aspect: How next/previous executes</a></h5>
@@ -842,7 +855,7 @@ the <code>imageList</code> with all the images within Desktop.</p>
 <div class="sect3">
 <h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The undo/redo works on the <code>currentLayer</code> the user is working on. Each <code>Layer</code> contains a <code>PreviewImage</code> which facilitates the undo/redo mechanism.
+<p>The <code>undo/redo</code> works on the <code>currentLayer</code> the user is working on. Each <code>Layer</code> contains a <code>PreviewImage</code> which facilitates the undo/redo mechanism.
 The mechanism works by caching the original image and transformed images in a temporary <code>cache</code> folder, and using <code>currentStatePointer</code> as a pointer together with <code>currentSize</code> as an indicator to manage the caching.
 Undoing and redoing will shift the <code>currentStatePointer</code> accordingly while each transformation commits the image by writing to the <code>cache</code> folder (purging redundant images if needed).</p>
 </div>
@@ -864,16 +877,16 @@ To work with multiple layers, each <code>Layer</code> has a single <code>Preview
 <div class="ulist">
 <ul>
 <li>
-<p><code>PreviewImage#commit()</code>&#8201;&#8212;&#8201;Writes the newly transformed <code>BufferedImage</code> into the <code>cache</code> folder (purge redundant images if needed).</p>
+<p><code>PreviewImage#commit()</code> - Writes the newly transformed <code>BufferedImage</code> into the <code>cache</code> folder (purge redundant images if needed).</p>
 </li>
 <li>
-<p><code>PreviewImage#getImage()</code>&#8201;&#8212;&#8201;Returns the current <code>BufferedImage</code> state of the <code>previewImage</code> by reading from the <code>cache</code> folder.</p>
+<p><code>PreviewImage#getImage()</code> - Returns the current <code>BufferedImage</code> state of the <code>previewImage</code> by reading from the <code>cache</code> folder.</p>
 </li>
 <li>
-<p><code>PreviewImage#undo()</code>&#8201;&#8212;&#8201;Shifts the <code>currentStatePointer</code> to the left, pointing to the previous state.</p>
+<p><code>PreviewImage#undo()</code> - Shifts the <code>currentStatePointer</code> to the left, pointing to the previous state.</p>
 </li>
 <li>
-<p><code>PreviewImage#redo()</code>&#8201;&#8212;&#8201;Shifts the <code>currentStatePointer</code> to the right, pointing to a previously undone state.</p>
+<p><code>PreviewImage#redo()</code> - Shifts the <code>currentStatePointer</code> to the right, pointing to a previously undone state.</p>
 </li>
 </ul>
 </div>
@@ -883,8 +896,12 @@ To work with multiple layers, each <code>Layer</code> has a single <code>Preview
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.</p>
 </div>
-<div class="paragraph">
-<p>Step 1. The user selects an image with the <code>select</code> command. The <code>Canvas</code> is initialized with a new <code>Layer</code> which initializes its own <code>PreviewImage</code> with the selected image. The <code>currentStatePointer</code> pointing to that state.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user selects an image with the <code>select</code> command. The <code>Canvas</code> is initialized with a new <code>Layer</code> which initializes its own <code>PreviewImage</code> with the selected image. The <code>currentStatePointer</code> pointing to that state.</p>
+</li>
+</ol>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -903,8 +920,12 @@ A <code>Canvas</code> can already be initialized, meaning this is an additional 
 <img src="images/undoRedo1.png" alt="undoRedo1" width="800">
 </div>
 </div>
-<div class="paragraph">
-<p>Step 2. The user executes a series of transformations. Each time, the newly transformed <code>BufferedImage</code> is stored by writing it to the <code>cache</code> folder. The <code>currentStatePointer</code> is also incremented. Eg. <code>hue</code>, <code>mirror</code>, <code>blur</code></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user executes a series of transformations. Each time, the newly transformed <code>BufferedImage</code> is stored by writing it to the <code>cache</code> folder. The <code>currentStatePointer</code> is also incremented. Eg. <code>hue</code>, <code>mirror</code>, <code>blur</code></p>
+</li>
+</ol>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -923,8 +944,12 @@ If a command fails its execution, it will not call <code>Model#updateCurrentPrev
 <img src="images/undoRedo2.png" alt="undoRedo2" width="800">
 </div>
 </div>
-<div class="paragraph">
-<p>Step 3. The user wants to undo the previous action by using the <code>undo</code> command. It will call <code>Model#undoPreviewImage()</code> which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous <code>PreviewImage</code> state. After which, that previously cached <code>BufferedImage</code> will be read and rendered to update the UI&#8217;s preview image pane.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user wants to undo the previous action by using the <code>undo</code> command. It will call <code>Model#undoPreviewImage()</code> which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous <code>PreviewImage</code> state. After which, that previously cached <code>BufferedImage</code> will be read and rendered to update the UI&#8217;s preview image pane.</p>
+</li>
+</ol>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -943,8 +968,12 @@ If the <code>currentStatePointer</code> is at index 0, pointing to the initial s
 <img src="images/undoRedo3.png" alt="undoRedo3" width="800">
 </div>
 </div>
-<div class="paragraph">
-<p>Step 4. The user executes another transformation, which calls <code>Model#updateCurrentPreviewImage</code>. Since the <code>currentStatePointer</code> is not pointing at the end state (<code>currentSize - 1</code>), and the states after the <code>currentStatePointer</code> will not make sense, all states after the pointer will be purged.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user executes another transformation, which calls <code>Model#updateCurrentPreviewImage</code>. Since the <code>currentStatePointer</code> is not pointing at the end state (<code>currentSize - 1</code>), and the states after the <code>currentStatePointer</code> will not make sense, all states after the pointer will be purged.</p>
+</li>
+</ol>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -958,6 +987,7 @@ If the <code>currentStatePointer</code> is at index 0, pointing to the initial s
 <div class="content">
 <img src="images/undoRedoSequenceDiagram.png" alt="undoRedoSequenceDiagram" width="800">
 </div>
+<div class="title">Figure 12. Sequence Diagram for Undo/RedoCommand</div>
 </div>
 <div class="paragraph">
 <p>The redo command does the opposite — it calls <code>Model#redoPreviewImage()</code>, which shifts the currentStatePointer once to the right, pointing to the previously undone state.</p>
@@ -981,6 +1011,7 @@ If the <code>currentStatePointer</code> is at index <code>currentSize - 1</code>
 <div class="content">
 <img src="images/undoRedoActivityDiagram.png" alt="undoRedoActivityDiagram" width="800">
 </div>
+<div class="title">Figure 13. Activity Diagram for performing a new image transformation</div>
 </div>
 <div class="paragraph">
 <p>The following activity diagram summarizes what happens when a user executes the undo command:</p>
@@ -989,6 +1020,7 @@ If the <code>currentStatePointer</code> is at index <code>currentSize - 1</code>
 <div class="content">
 <img src="images/undoRedoActivityDiagram2.png" alt="undoRedoActivityDiagram2" width="800">
 </div>
+<div class="title">Figure 14. Activity Diagram for using <code>undoCommand</code></div>
 </div>
 <div class="paragraph">
 <p>The following activity diagram summarizes what happens when a user executes the redo command:</p>
@@ -997,6 +1029,7 @@ If the <code>currentStatePointer</code> is at index <code>currentSize - 1</code>
 <div class="content">
 <img src="images/undoRedoActivityDiagram3.png" alt="undoRedoActivityDiagram3" width="800">
 </div>
+<div class="title">Figure 15. Activity Diagram for using <code>redoCommand</code></div>
 </div>
 </div>
 <div class="sect3">
@@ -1026,6 +1059,7 @@ A view of the panel is shown below:</p>
 <div class="content">
 <img src="images/historyPanel.png" alt="historyPanel" width="200">
 </div>
+<div class="title">Figure 16. Image of HistoryListPanel</div>
 </div>
 </div>
 <div class="sect3">
@@ -1070,77 +1104,77 @@ A view of the panel is shown below:</p>
 <div class="sect3">
 <h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.5.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The transmission mechanism is facilitated by ImageMagick execute file.
-It is an execute file which can be use to do the processing to the target image with specified commands given.
-There is a ImageMaigcUtil class which will check, create, and run the imagemagick executable file,
-a convertCommand to apply the specified transformation to the image,
-a createConvertCommand to customise the transformation and store the command.
-Additionally, there is a demo given in the example command, which is able to do the blur, resize, contrast&#8230;&#8203; on the target image just for demo testing.
-There are some main operations and processes in the class above.</p>
+<p>The transmission mechanism is facilitated by <a href="https://www.imagemagick.org/script/index.php"><code>ImageMagick</code></a>, an external API Library that helps process the target image by the specified commands given.
+The transmission feature mainly consists of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ImageMagicUtil</code>: A class which will check, create, and run the imageMagick executable file</p>
+</li>
+<li>
+<p><code>convertCommand</code>: Applies the specified transformation to the image</p>
+</li>
+<li>
+<p><code>createConvertCommand</code>: Allows users to define their own custom transformation set.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following describes main operations and processes contained in the classes above.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="imagemagicutil"><a class="link" href="#imagemagicutil">3.5.2. ImageMagicUtil:</a></h4>
 <div class="paragraph">
-<p>This class is used to provide the methods touching the ImageMagic package</p>
+<p>This class is used as a gateway to interact with the ImageMagick library.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>getImageMagickZipUrl()</code>&#8201;&#8212;&#8201;get the Url of the ImageMagick zipped package inside the resource.</p>
+<p><code>getImageMagickZipUrl()</code> - Retrieves the Url of the ImageMagick zipped package inside the resource.</p>
 </li>
 <li>
-<p><code>getPlatform()</code>&#8201;&#8212;&#8201;get the platform of the current OS.</p>
+<p><code>getPlatform()</code> - Returns the platform of the current OS.</p>
 </li>
 <li>
-<p><code>getExecuteImageMagick()</code>&#8201;&#8212;&#8201;get the path to the execute file of the ImageMagic.</p>
+<p><code>getExecuteImageMagick()</code> - Returns the path to the execute file of the ImageMagick.</p>
 </li>
 <li>
-<p><code>parseArguments()</code>&#8201;&#8212;&#8201;parse the argument from the operation.</p>
+<p><code>parseArguments()</code> - Parses the argument from the operation.</p>
 </li>
 <li>
-<p><code>processImage()</code>&#8201;&#8212;&#8201;process the specified transformation to the image.</p>
+<p><code>processImage()</code> - Processes the specified transformation to the image.</p>
 </li>
 <li>
-<p><code>runProcessBuilder()</code>&#8201;&#8212;&#8201;run the process builder with the arguments given</p>
+<p><code>runProcessBuilder()</code> - Runs the process builder with the arguments given</p>
 </li>
 <li>
-<p><code>copyOutside()</code>&#8201;&#8212;&#8201;copy the ImageMagick outside and unzip
-==== ConvertCommand:</p>
+<p><code>copyOutside()</code> - Copies the ImageMagick package out of the jar and unzips it.</p>
 </li>
 </ul>
 </div>
+</div>
+<div class="sect3">
+<h4 id="convertcommand-convert"><a class="link" href="#convertcommand-convert">3.5.3. ConvertCommand (convert):</a></h4>
 <div class="paragraph">
-<p>this command is exposed to the model as <code>Model#addTransformation()</code>, which is used to update the transformatioSet of the currentPreviewImage.</p>
+<p>This command is exposed to the model as <code>Model#addTransformation()</code>, which is used to update the <code>transformationSet</code> of the <code>currentPreviewImage</code>.</p>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the transmission should behave at each step.</p>
 </div>
-<div class="paragraph">
-<p>Step 1. The first time run the app, the corresponding zipped package of the ImageMagick will be copied outside, and unzipped,
-a temp folder will also be created.</p>
-</div>
-<div class="paragraph">
-<p>Step 2. The user selects an image with the <code>select</code> command. the method <code>model.getPreviewImage()</code> will be called to get he bufferedImage of the current preview scene.</p>
-</div>
-<div class="paragraph">
-<p>Step 3. The user enter the command which need processing to the image selected with arguments, for instance "blur 0x8" "resize 50%",
-the entered command will be parsed and the corresponding transformation will be created.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If the input is invalid for the command enter, the processing of the image will not be done, and a reminder will be given to the user.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Step 4. the transformation will be added to the transformation set store in the preview image in the model.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Upon first running the app, the corresponding zip package of ImageMagick will be copied out of the jar and unzipped. A temp folder is also created.</p>
+</li>
+<li>
+<p>The user selects an image with the <code>select</code> command. the method <code>model.getPreviewImage()</code> will be called to get the bufferedImage of the current preview scene.</p>
+</li>
+<li>
+<p>The user enters the command <code>convert blur 0x8</code>. The entered command is parsed and the corresponding transformation is created.</p>
+</li>
+</ol>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1149,39 +1183,64 @@ If the input is invalid for the command enter, the processing of the image will 
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-if the transformation Set got from the model is invalid, an error should be prompted
+If the arguments for a convert command are invalid, processing of the image will not be carried out, and an error message is shown instead.
 </td>
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>Step 5. An process builder will be built inside the method <code>processImage</code> which will take the image stored,
-the processing info stored in the transmission set, use the ImageMagic executable file to do the processing,
-then store the modified image in the temp folder created.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The transformation is added to the transformation set stored in the preview image in the model.</p>
+</li>
+</ol>
 </div>
-<div class="paragraph">
-<p>Step 6. The output bufferedImage will be generated by the modified file stored in the temp folder, and the stored file will be removed.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+An error is prompted if the transformation set gotten from the model is invalid.
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>A process builder is built inside the method <code>processImage</code>, which will then take the image and
+the processing information stored in the transmission set, and use it with the ImageMagick executable file to carry out the actual image processing,
+The modified image in then stored in the temp folder created.</p>
+</li>
+<li>
+<p>The output <code>bufferedImage</code> will be generated by the modified file stored in the temp folder, and the previous stored file will be removed.</p>
+</li>
+</ol>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/ConvertCommand.png" alt="ConvertCommand" width="800">
 </div>
+<div class="title">Figure 17. Sequence Diagram for ConvertCommand</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="createconvertcommand"><a class="link" href="#createconvertcommand">3.5.3. CreateConvertCommand:</a></h4>
+<h4 id="createconvertcommand-create"><a class="link" href="#createconvertcommand-create">3.5.4. CreateConvertCommand (create):</a></h4>
 <div class="paragraph">
-<p>This command is to create a customised command and store in the disk, will check the transformations specified by <code>checkValidation()</code> first.</p>
+<p>This command allows users to create a customised command (custom set of transformations) and store in the disk, All transformation sets will first be checked by <code>checkValidation()</code>.</p>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the transmission should behave at each step.</p>
 </div>
-<div class="paragraph">
-<p>Step 1. The user enters the name of the customized, the transformations specified sequentially.</p>
-</div>
-<div class="paragraph">
-<p>Step 2. The specified transformations will be parsed and checked by the templates store in the app.</p>
-</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user sequentially enters the transformations he wants to store, in the form of <code>create blurgray blur|0x8 colorspace|GRAY</code>.</p>
+</li>
+<li>
+<p>The specified transformations are parsed and checked by the templates stored in the app.</p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1189,368 +1248,74 @@ then store the modified image in the temp folder created.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-if the specified transformations has invalid name or arguments, error will be thrown and user will be reminded.
+If any of the specified transformations have an invalid name or argument, an error will be thrown.
 </td>
 </tr>
 </table>
 </div>
+</li>
+<li>
+<p>If validation checks have passed, the specified transformations are stored as a new command in the a json file within the PiconsoCommands folder created upon first running the app.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.5.5. Design Considerations</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>As the ImageMagick executable file is only able to handle command line input and requires the path of the image to modify. The image has to first be stored in a temp folder, and replaces any previous modified image when modified.</p>
+</li>
+<li>
+<p>Processing transformations for a single image already incurs a long processing time. For any plans to allow mass image processing, it is recommended that multi-threading be implemented.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="save-save-feature"><a class="link" href="#save-save-feature">3.6. Save (save) feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">3.6.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>Step 3. The validated new command will be stored in the json for in the PiconsoCommands folder create when first time run the app.
-==== Design Considerations</p>
+<p><code>SaveCommand</code> saves the current preview image in the currently opened directory by its original name.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>As the ImageMagic executable file is only able to handle the command line input and need the path of the image, we have to store the file in some tmp folder adn then, remove the modified image.</p>
-</li>
-<li>
-<p>As in the processing process, it could be slow, and it is for one image only, then, in the mass images processing, multiple threads might be needed.
-=== Save feature
-==== Current Implementation
-The save command is to save the current preview image to the disk where the current image is selected,
-use enter the name of the image and the format of the name will be validated.</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>isFormatValid()</code> is to validate the format of the filename user enters</p>
-</li>
-</ul>
-</div>
+<p><code>isFormatValid()</code>: Validates the format of the file name user enters</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Given is an example of how to use the command</p>
+<p>Given below is an example of how to use the <code>save</code> command</p>
 </div>
-<div class="paragraph">
-<p>Step 1. parse the image name user enters, get the name and the format of the filename.</p>
-</div>
-<div class="paragraph">
-<p>Step 2. check whether the file exists or not, throw error is existing</p>
-</div>
-<div class="paragraph">
-<p>Step 3. check the format of the image, if the format is not supported, error will be thrown</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User enters <code>save a.png</code>. The image name is parsed and checked for a valid name format.</p>
+</li>
+<li>
+<p>If a file with the same name already exists, an error is thrown, else the argument (<code>a.png</code>) is checked for a valid image extension format.</p>
+</li>
+<li>
+<p>If the format is not supported, an error is thrown, else the image is saved as <code>a.png</code> in the currently opened directory.</p>
+</li>
+</ol>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/SaveCommand.png" alt="SaveCommand" width="800">
 </div>
+<div class="title">Figure 18. Sequence Diagram for SaveCommand</div>
 </div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="google-features"><a class="link" href="#google-features">3.6. Google Features</a></h3>
-<div class="sect3">
-<h4 id="overall-introduction"><a class="link" href="#overall-introduction">3.6.1. Overall Introduction</a></h4>
-<div class="paragraph">
-<p>The Google commands allow for access to <a href="https://developers.google.com/photos/library/guides/get-started-java">Google Photos</a> through a logged-in instance of the user, and are held up by two main components.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>PhotosLibraryClientFactory</code> - Initiates and carries out the login process. Produces a <code>PhotoHandler</code> instance, which handles matters related to Google commands.</p>
-</li>
-<li>
-<p><code>PhotoHandler</code> - Mainly consists of a <code>PhotoLibraryClient</code> instance and user&#8217;s logged in state. Performs all explicit calls to Google Photos through the <code>PhotosLibraryClient</code> instance.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>The <code>PhotoHandler</code> instance is later accessed through <code>Model#getPhotoHandler()</code> and <code>Model#setPhotoHandler()`</code>.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>There are 5 main google-related commands, with the first two commands to login/logout a user, and the latter 3 being overloaded command types with <code>GoogleCommand</code> as the abstract parent class.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>LoginCommand</code> - Logs in user to their Google Account.</p>
-</li>
-<li>
-<p><code>LogoutCommand</code> - Logs a user out of their Google Account.</p>
-</li>
-<li>
-<p><code>GoogleLsCommand</code> - Returns the files from Google Photos.</p>
-</li>
-<li>
-<p><code>GoogleDlCommand</code> - Downloads the specified image(s) from Google Photos to the user&#8217;s currently viewed local directory.</p>
-</li>
-<li>
-<p><code>GoogleUploadCommand</code> - Uploads the specified image(s) from the user&#8217;s currently viewed local directory to Google Photos.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>To use Google Photos API in Piconso, we have connected and generated <code>client_credentials.json</code> via our own Google Account to enable usage of the API. It is suggested that you <a href="https://developers.google.com/photos/library/guides/get-started-java">configure</a> Piconso to use Google Photos Library API with your own account rather than the provided.<br>
-If you are not familiar with how Google Photos work, it would be advisable to first try out Google Photos as a consumer before proceeding.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="login-login-command"><a class="link" href="#login-login-command">3.7. Login(login) Command</a></h3>
-<div class="sect3">
-<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">3.7.1. Current Implementation</a></h4>
-<div class="paragraph">
-<p>The Login command currently authenticates a user via Google OAuth. To learn more about the implementation of OAuth methods, you may refer to <a href="https://developers.google.com/identity/protocols/OAuth2#installed">O-Auth Explanation</a> and <a href="https://developers.google.com/api-client-library/java/google-api-java-client/oauth2#installed_applications">Google API examples</a>. As the workings of Google OAuth are rather complicated, it is suggested that you go through the examples/documentations in those links.<br></p>
-</div>
-<div class="paragraph">
-<p>Below are some examples on how the login command will work.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If connection to the internet is lost at any point during authentication with Google&#8217;s server, login will fail and an error message will be sent to user as feedback.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect3">
-<h4 id="scenario-1-explicit-code-login-code-command-executed-user-not-logged-in-yet"><a class="link" href="#scenario-1-explicit-code-login-code-command-executed-user-not-logged-in-yet">3.7.2. Scenario 1: Explicit <code>login</code> command executed, user not logged in yet.</a></h4>
-<div class="paragraph">
-<p>Step 1. The user executes a <code>login</code> command.</p>
-</div>
-<div class="paragraph">
-<p>Step 2. The login command calls <code>Model#getPhotoHandler()</code> and checks if a PhotoHandler instance already exists, if false, it calls <code>PhotoLibraryClientFactory#createClient()</code> to set up the requirements for log in and redirects the user to the browser.</p>
-</div>
-<div class="paragraph">
-<p>Step 3. The returned refresh token is stored, and PhotoLibraryClientFactory instance then calls <code>PhotoLibraryClientFactory#createPhotosLibraryClient()</code> and <code>PhotoLibraryClientFactory#getUserEmail() to instantiate a `PhotoHandler</code> instance</p>
-</div>
-<div class="paragraph">
-<p>Step 4. The <code>PhotoHandler</code> instance is set by model as <code>Model#photoLibrary</code>, and confirmation of login is sent to user.</p>
-</div>
-<div class="paragraph">
-<p>The following sequence diagram illustrates how the above steps work:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/LoginSequenceDiagram.png" alt="LoginSequenceDiagram" width="2000">
-</div>
-<div class="title">Figure 3. Sequence Diagram for Login Command</div>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-Currently, the user MUST go through with the login process once activated else Piconso will freeze. Suggestions are to implement asynchronous login in v1.4 or by v2.0
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect3">
-<h4 id="scenario-2-implicit-login-where-piconso-auto-logs-in-user-upon-re-launch"><a class="link" href="#scenario-2-implicit-login-where-piconso-auto-logs-in-user-upon-re-launch">3.7.3. Scenario 2: Implicit login, where Piconso auto logs in user upon re-launch</a></h4>
-<div class="paragraph">
-<p>Step 1: Upon Piconso start up, <code>PhotoLibraryClientFactory#loginUserIfPossible()</code> is run by <code>ModelManager</code><br>
-Step 2: The method checks for stored credentials (refresh token), and logs in the user if it exists via <code>PhotoLibraryClientFactory#createClient()</code>, else the log in process is skipped.</p>
-</div>
-<div class="paragraph">
-<p>In both scenarios, whenever a refresh token is found stored the user is logged in without having to face browser re-direct again. At no point in any scenario will we be storing a user&#8217;s actual credentials. The only thing we will store is a refresh token that allows us to keep a user logged in, actual credentials are handled by Google OAuth<br></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="logout-logout-command"><a class="link" href="#logout-logout-command">3.7.4. Logout (logout) Command</a></h4>
-<div class="paragraph">
-<p>The logout command works in a simple manner. It deletes the stored credential file if it exists, and does nothing if it does not. Upon deleting the file, the user will no longer have a refresh token to stay logged in, and thus is effectively logged out.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="googlelscommand-list"><a class="link" href="#googlelscommand-list">3.8. GoogleLsCommand (list)</a></h3>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-For all Google Commands (excluding login and logout), they will be called by commands appended with a g (i.e <code>g ls</code>, <code>g dl image.png</code>).<br>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Thus a <code>g</code> command will always be passed through a <code>GoogleCommandParser</code> before launching its respective command os launched.</p>
-</div>
-<div class="sect3">
-<h4 id="current-implementation-7"><a class="link" href="#current-implementation-7">3.8.1. Current Implementation</a></h4>
-<div class="paragraph">
-<p>The GoogleLsCommand allows users to browse through their stored images on Google Photos. Currently, it is overloaded with three types of commands the user can type</p>
-</div>
-<div class="paragraph">
-<p><code>g ls</code> &#8594; Lists all photos in user&#8217;s Google Photos, takes a longer amount of time depending on the number of images stored.<br>
-<code>g ls /a</code> &#8594; Lists all albums in user&#8217;s Google Photos.<br>
-<code>g ls &lt;ALBUM_NAME&gt;</code> &#8594; Lists all photos in specified album from Google Photos.</p>
-</div>
-<div class="paragraph">
-<p>As such, parsing will be done twice. Once by GoogleCommandParser, and another within GoogleLsCommand itself.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="example-code-g-ls-code-where-user-wants-to-list-all-albums-in-google-photos"><a class="link" href="#example-code-g-ls-code-where-user-wants-to-list-all-albums-in-google-photos">3.8.2. Example: <code>g ls</code>, where user wants to list all albums in Google Photos.</a></h4>
-<div class="paragraph">
-<p>Step 1. The user executes a <code>g ls /a</code> command.</p>
-</div>
-<div class="paragraph">
-<p>Step 2. The command goes through parsing, firstly by <code>GoogleCommandParser</code> and secondly filtered by GoogleLsCommand. It is determined to be for listing albums, and <code>model.getPhotoHandler().returnAllAlbumsList()</code> is called.</p>
-</div>
-<div class="paragraph">
-<p>Step 3. Within that method, it makes a request to Google Photos, retrieves a list of <code>Album`s, and stores them in a `Map&lt;String, Album&gt;</code> with each key being the album name.</p>
-</div>
-<div class="paragraph">
-<p>Step 4. The entire list is converted into a String, and returned to the <code>CommandBox</code> ui as feedback to the user</p>
-</div>
-<div class="paragraph">
-<p>The following sequence diagram illustrates how the above steps work:</p>
-</div>
-<div class="paragraph">
-<div class="title">Sequence Diagram for GoogleLsCommand</div>
-<p>{IMAGE TO BE ADDED}</p>
-</div>
-<div class="paragraph">
-<p>The process is similar for the other 2 variants, except images or images from a specific album are retrieved instead. All retrieved results are always stored in their respective maps. i.e A Map for Albums, one for images, and another for images from a specific Album.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.8.3. Design Considerations</a></h4>
-<div class="ulist">
-<ul>
-<li>
-<p>1. Performance Issues</p>
-<div class="ulist">
-<ul>
-<li>
-<p>The larger the amount of pictures stored in Google Photos, the longer amount of time a <code>g ls</code> command will take.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Current Solution: A fair warning of this issue is provided in the User Guide for users, and alternative command <code>g ls &lt;ALBUM_NAME&gt;</code> has been provided to encourage the user to input narrower searches</p>
-</li>
-<li>
-<p>Improved Solution (to be implemented in earliest v1.4): The current implementation makes it so that the list of photos/albums is re-retrieved upon every <code>ls</code> call. As it is not likely that the set of photos in Google Photos will constantly change, a better alternative, a <code>refresh</code> command can be implemented alongside the other commands, such that the list is only re-retrieved when a user refreshes.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>2. Duplicated Naming</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Google Photos allows for multiples images and albums to be stored with the same name, making it difficult to list item names as names might overlap.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Alternative 1 (Current): Before storing names of images/albums into the map, names are checked against the map for duplicates, and are appended with a suitable index if a file/album with the same name is found. This ensures that all files/albums are uniquely named.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Con: If there are multiple images with the same name, the process of any <code>g ls</code> will take a much longer time to run.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Alternative 2: Instead of storing the name of the image/album as the key inside the Map, the unique ID (that is retrieved together with the files from Google) can be used instead. This approach was however avoided for convenience of the user (ID too complicated to input)</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>3. Album Traversal</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Alternative 1: Treat the album as a category, thus <code>g ls &lt;ALBUM_NAME&gt;</code> acts as a filter that filters photos by category.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Con: The command to download from an album needs to be extended such that users need to specify in which album the image to download is in.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Alternative 2: Handle the concept of albums like directories, such that a user can cd in and out of an album. This was avoided for fear of causing confusion in users (having to view both google and local directories concurrently).</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="googledlcommand-download"><a class="link" href="#googledlcommand-download">3.9. GoogleDlCommand (download)</a></h3>
-<div class="paragraph">
-<p>Step 1. The user executes a <code>g ls /a</code> command.</p>
-</div>
-<div class="paragraph">
-<p>Step 2. The command goes through parsing, firstly by <code>GoogleCommandParser</code> and secondly filtered by GoogleLsCommand. It is determined to be for listing albums, and <code>model.getPhotoHandler().returnAllAlbumsList()</code> is called.</p>
-</div>
-<div class="paragraph">
-<p>Step 3. Within that method, it makes a request to Google Photos, retrieves a list of <code>Album`s, and stores them in a `Map&lt;String, Album&gt;</code> with each key being the album name.</p>
-</div>
-<div class="paragraph">
-<p>Step 4. The entire list is converted into a String, and returned to the <code>CommandBox</code> ui as feedback to the user</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-For all upload/download related commands, the amount of time taken to process the task varies with the number of images to upload/download.
-</td>
-</tr>
-</table>
-</div>
-<div class="sect3">
-<h4 id="current-implementation-8"><a class="link" href="#current-implementation-8">3.9.1. Current Implementation</a></h4>
-<div class="paragraph">
-<p>The GoogleDlCommand allows users to browse through their stored images on Google Photos. Currently, it is overloaded with three types of commands the user can type</p>
-</div>
-<div class="paragraph">
-<p><code>g dl /i&lt;IMAGE_NAME&gt;</code>: Downloads specified image from Google Photos<br>
-<code>g dl /a&lt;ALBUM_NAME&gt;</code>: Downloads all images from specified album in Google Photos, takes a longer amount of time depending on the number of images stored in the album.<br>
-<code>g dl /a&lt;ALBUM_NAME&gt; /i&lt;IMAGE_NAME&gt;</code>: Downloads a specific photo from a specific album in Google Photos.</p>
-</div>
-<div class="paragraph">
-<p>As such, parsing will be done twice. Once by GoogleCommandParser, and another within GoogleDlCommand itself.</p>
-</div>
-<div class="paragraph">
-<p>{To be updated}</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="googleuploadcommand-upload"><a class="link" href="#googleuploadcommand-upload">3.10. GoogleUploadCommand (upload)</a></h3>
-<div class="paragraph">
-<p>{to be updated}</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="canvas-and-layer-features"><a class="link" href="#canvas-and-layer-features">4. Canvas and Layer features</a></h2>
+<h2 id="implementation-canvas-and-layer-features"><a class="link" href="#implementation-canvas-and-layer-features">4. Implementation: Canvas and Layer features</a></h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="general-overview"><a class="link" href="#general-overview">4.1. General overview</a></h3>
@@ -1562,8 +1327,7 @@ This is in line with good defensive coding practices and separation of concerns.
 <div class="sect2">
 <h3 id="canvas-canvas-command"><a class="link" href="#canvas-canvas-command">4.2. Canvas (canvas) command</a></h3>
 <div class="paragraph">
-<p>Similar to the <code>google</code> set of commands, there are a set of overloaded command types inheriting from <code>CanvasCommand</code>
-, namely:</p>
+<p>There are a set of overloaded command types inheriting from <code>CanvasCommand</code>, namely:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1579,7 +1343,7 @@ This is in line with good defensive coding practices and separation of concerns.
 </ul>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-9"><a class="link" href="#current-implementation-9">4.2.1. Current implementation</a></h4>
+<h4 id="current-implementation-7"><a class="link" href="#current-implementation-7">4.2.1. Current implementation</a></h4>
 <div class="paragraph">
 <p>Canvas manages various properties made accessible through the <code>ModelManager</code> class.
 Layer order is preserved as it important for image composition.</p>
@@ -1590,25 +1354,25 @@ Layer order is preserved as it important for image composition.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>getLayers</code> - returns an ordered list of layers which is guaranteed to be neither <code>null</code> or empty.</p>
+<p><code>getLayers()</code> - Returns an ordered list of layers which is guaranteed to be neither <code>null</code> or empty.</p>
 </li>
 <li>
-<p><code>getLayerNames</code> - returns a list of layer names in order.</p>
+<p><code>getLayerNames()</code> - Returns a list of layer names in order.</p>
 </li>
 <li>
-<p><code>addLayer</code> - adds a given <code>PreviewImage</code> into the canvas on its own layer.</p>
+<p><code>addLayer(PreviewImage, String)</code> - Adds a given <code>PreviewImage</code> into the canvas on its own layer.</p>
 </li>
 <li>
-<p><code>getCurrentLayer</code> - returns the current instance of the layer that is being operated on.</p>
+<p><code>getCurrentLayer()</code> - Returns the current instance of the layer that is being operated on.</p>
 </li>
 <li>
-<p><code>getCurrentLayerIndex</code> - returns the index of the current instance of the layer that is being operated on.</p>
+<p><code>getCurrentLayerIndex()</code> - Returns the index of the current instance of the layer that is being operated on.</p>
 </li>
 <li>
-<p><code>setCurrentLayer</code> - sets the layer to be operated on.</p>
+<p><code>setCurrentLayer(Index)</code> - Sets the layer to be operated on.</p>
 </li>
 <li>
-<p><code>removeLayer</code> - removes a layer at a given index. The current layer and the last remaining layer in a canvas cannot be removed.</p>
+<p><code>removeLayer(Index)</code> - Removes a layer at a given index. The current layer and the last remaining layer in a canvas cannot be removed.</p>
 </li>
 </ul>
 </div>
@@ -1617,7 +1381,7 @@ Layer order is preserved as it important for image composition.</p>
 Implementations in <code>ModelManager</code> usually include a call to the corresponding accessor along with utility functions to manage the state of the UI.</p>
 </div>
 <div class="paragraph">
-<p>Beneath the hood <code>Canvas</code> manipulation is powered by ImageMagick.
+<p>Beneath the hood, <code>Canvas</code> manipulation is powered by ImageMagick.
 All of the properties represented in <code>Canvas</code> are transformed into their respective flags or arguments in ImageMagick.
 For example, the <code>isCanvasAuto</code> property is transformed into the flag <code>-flatten</code> if false and <code>-layers merge</code> if true.</p>
 </div>
@@ -1629,10 +1393,10 @@ The <code>ProcessBuilder</code> is then passed to <code>ImageMagickUtils#runProc
 <div class="content">
 <img src="images/CanvasSequenceDiagram.png" alt="CanvasSequenceDiagram" width="2000">
 </div>
-<div class="title">Figure 4. Sequence Diagram for Canvas Command</div>
+<div class="title">Figure 19. Sequence Diagram for Canvas Command</div>
 </div>
 <div class="paragraph">
-<p>The above diagram illustrates the process of parsing and executing of <code>canvas</code> commands.</p>
+<p>The above diagram illustrates the process of parsing and executing <code>canvas</code> commands.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -1690,26 +1454,26 @@ The following sub-commands inherit from <code>LayerCommand</code>:</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-10"><a class="link" href="#current-implementation-10">4.3.1. Current implementation</a></h4>
+<h4 id="current-implementation-8"><a class="link" href="#current-implementation-8">4.3.1. Current implementation</a></h4>
 <div class="paragraph">
 <p><code>Layer</code> implements a few key accessors and utility functions. Some of them include:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>addTranformation</code> - Adds a given transformation into its <code>PreviewImage</code>'s <code>TransformationSet</code>.</p>
+<p><code>addTranformation(Transformation)</code> - Adds a given transformation into its <code>PreviewImage</code>'s <code>TransformationSet</code>.</p>
 </li>
 <li>
-<p><code>getName</code> - Gets the name of the layer.</p>
+<p><code>getName()</code> - Gets the name of the layer.</p>
 </li>
 <li>
-<p><code>setHeight</code> - Sets the height of the layer.</p>
+<p><code>setHeight(int)</code> - Sets the height of the layer.</p>
 </li>
 <li>
-<p><code>setWidth</code> - Sets the width of the layer.</p>
+<p><code>setWidth(int)</code> - Sets the width of the layer.</p>
 </li>
 <li>
-<p><code>setPosition</code> - Sets the x and y coordinates of the layer.</p>
+<p><code>setPosition(int, int)</code> - Sets the x and y coordinates of the layer.</p>
 </li>
 </ul>
 </div>
@@ -1729,7 +1493,7 @@ It is possible to have negative co-ordinates although clipping will occur unless
 <div class="content">
 <img src="images/LayerSequenceDiagram.png" alt="LayerSequenceDiagram" width="2000">
 </div>
-<div class="title">Figure 5. Sequence Diagram for Layer Command</div>
+<div class="title">Figure 20. Sequence Diagram for Layer Command</div>
 </div>
 <div class="paragraph">
 <p>The above diagram illustrates the process of parsing and executing of <code>canvas</code> commands.</p>
@@ -1754,10 +1518,8 @@ It is possible to have negative co-ordinates although clipping will occur unless
 <p><strong>Further manipulation of the <code>ProcessBuilder</code></strong></p>
 </div>
 <div class="paragraph">
-<p><span class="underline">Alternatives</span></p>
-</div>
-<div class="paragraph">
-<p>It is actually possible to nest <code>ImageMagick</code> commands which means that it is possible to keep separate <code>List&lt;T&gt;</code>s and conjugate them when the canvas needs to be rendered.
+<p><em>Alternatives</em>
+* It is actually possible to nest <code>ImageMagick</code> commands which means that it is possible to keep separate <code>List&lt;T&gt;</code>s and conjugate them when the canvas needs to be rendered.
 The resultant ImageMagick command will take the form :</p>
 </div>
 <div class="literalblock">
@@ -1769,13 +1531,17 @@ The resultant ImageMagick command will take the form :</p>
 <p>Where blocks enclosed by <code>{ }</code> need to be repeated per layer.</p>
 </div>
 <div class="paragraph">
-<p><span class="underline">Evaluation</span></p>
+<p><em>Evaluation</em></p>
 </div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>This solution is the most straight-forward and results in no intermediate files which is usually desirable. However, the resultant ImageMagick command will short circuit and cause the entire expression to fail if any of flags are incompatible or incorrect. Caching is also impossible, causing the whole canvas and all of its layers to be composed again from scratch.</p>
-</div>
-<div class="paragraph">
-<p>This results in a poor user experience and hence we have decided against it.</p>
+</li>
+<li>
+<p>Con: This results in a poor user experience and hence we have decided against it.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -1797,28 +1563,28 @@ with the default height and width being that of the image selected.</p>
 </li>
 <li>
 <p>The user swaps the order of the two layers to such that the original image is back on top:
-<code>Canvas#swapLayer</code> makes the magic happen by swapping the two entries in the list of layers.</p>
+<code>Canvas#swapLayer</code> swaps the two entries in the list of layers.</p>
 </li>
 <li>
 <p>While still on the original layer, the user moves it to the top left: <code>Layer#setPosition</code> moves the first layer out of the way.</p>
 </li>
 <li>
-<p>The user changes decides to work on the second layer and enters <code>layer select 2</code>:
+<p>The user decides to work on the second layer and enters <code>layer select 2</code>:
 <code>Canvas#setCurrentLayer</code> changes the current layer to the given index and internally keeps track of the index as well.</p>
 </li>
 <li>
-<p>A transformation is applied by the user to the current layer: <code>Canvas#addTransformation</code> appends the new Transformation to the current Layer&#8217;s.
-Note that no image processing occurs until a new render is requested. The <code>Canvas</code> class provides mutators and accessors.</p>
+<p>A transformation is applied by the user to the current layer: <code>Canvas#addTransformation</code> appends the new Transformation to the current Layer.
+Note that no image processing occurs until a new render is requested.</p>
 </li>
 <li>
 <p>After a <code>canvas size 80x60`command: The new `Canvas#setSize</code> is applied upon the next render and it crops the image to a fraction of what it used to be.
-Remember that resizing and scaling is accomplished with the <code>apply resize</code> command!</p>
+Remember that resizing and scaling is accomplished with the <code>apply resize</code> command.</p>
 </li>
 <li>
-<p>Quickly realising his mistake, the user sets the canvas to fit his all of his layers: <code>Canvas#setCanvasAuto</code> toggles a boolean.</p>
+<p>Realising his mistake, the user sets the canvas to fit his all of his layers: <code>Canvas#setCanvasAuto</code> toggles a boolean.</p>
 </li>
 <li>
-<p>The user finishes his piece by filling in the default transparent background with a <code>canvas bgcolor #707070</code> : a hex color code is accepted by <code>Canvas#setBackgroundColor</code>.</p>
+<p>The user fills in the default transparent background with a <code>canvas bgcolor #707070</code> : a hex color code is accepted by <code>Canvas#setBackgroundColor</code>.</p>
 </li>
 </ol>
 </div>
@@ -1826,13 +1592,583 @@ Remember that resizing and scaling is accomplished with the <code>apply resize</
 <div class="content">
 <img src="images/CanvasLayersDemo.png" alt="CanvasLayersDemo" width="2000">
 </div>
-<div class="title">Figure 6. Results of various commands. The black bounding rectangle indicate the canvas size.</div>
+<div class="title">Figure 21. Results of various commands. The black bounding rectangle indicates the canvas size.</div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="documentation"><a class="link" href="#documentation">5. Documentation</a></h2>
+<h2 id="implementation-google-features"><a class="link" href="#implementation-google-features">5. Implementation: Google features</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="overall-introduction"><a class="link" href="#overall-introduction">5.1. Overall Introduction</a></h3>
+<div class="paragraph">
+<p>The Google commands allow for access to <a href="https://developers.google.com/photos/library/guides/get-started-java">Google Photos</a> through a logged-in instance of the user, and are held up by two main components.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>PhotosLibraryClientFactory</code> - Initiates and carries out the login process. Produces a <code>PhotoHandler</code> instance, which handles matters related to Google commands.</p>
+</li>
+<li>
+<p><code>PhotoHandler</code> - Mainly consists of a <code>PhotoLibraryClient</code> instance, the user&#8217;s logged in state, and 3 maps for storing images, albums, and specific images from an album. Performs all explicit calls to Google Photos through the <code>PhotosLibraryClient</code> instance and parses results.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>PhotoHandler</code> instance is later accessed through <code>Model#getPhotoHandler()</code> and <code>Model#setPhotoHandler()`</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>There are 6 main google-related commands. The first two commands login/logout a user, and the latter 4 are mostly overloaded command types with <code>GoogleCommand</code> as the abstract parent class.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>LoginCommand</code> - Logs in user to their Google Account.</p>
+</li>
+<li>
+<p><code>LogoutCommand</code> - Logs a user out of their Google Account.</p>
+</li>
+<li>
+<p><code>GoogleLsCommand</code> - Lists files in Google Photos.</p>
+</li>
+<li>
+<p><code>GoogleRefreshCommand</code> - Refreshes the displayed list from Google Photos.</p>
+</li>
+<li>
+<p><code>GoogleDlCommand</code> - Downloads the specified image(s) from Google Photos to the user&#8217;s currently opened local directory.</p>
+</li>
+<li>
+<p><code>GoogleUploadCommand</code> - Uploads the specified image(s) from the user&#8217;s currently opened local directory to Google Photos.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>We have connected and generated <code>client_credentials.json</code> via our own Google Account to enable usage of Google Photos API in Piconso. It is recommended that you <a href="https://developers.google.com/photos/library/guides/get-started-java">configure</a> Piconso to use Google Photos Library API with your own account rather than the provided.<br></p>
+</div>
+<div class="paragraph">
+<p>If you are not familiar with how Google Photos works, it would be advisable to first try out Google Photos as a consumer before proceeding.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="login-login-command"><a class="link" href="#login-login-command">5.2. Login (login) Command</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-9"><a class="link" href="#current-implementation-9">5.2.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The Login command currently authenticates a user via Google OAuth. To learn more about the implementation of OAuth methods, you may refer to <a href="https://developers.google.com/identity/protocols/OAuth2#installed">O-Auth Explanation</a> and <a href="https://developers.google.com/api-client-library/java/google-api-java-client/oauth2#installed_applications">Google API examples</a>. As the workings of Google OAuth are rather complicated, it is suggested that you first go through the examples/documentations in those links.<br></p>
+</div>
+<div class="paragraph">
+<p>The following static methods of <code>PhotosLibraryClientFactory</code> will be involved:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>createClient()</code> - Creates a PhotoLibrary instance, contains calls to Google OAuth related methods.</p>
+</li>
+<li>
+<p><code>createPhotosLibraryClient(Credentials)</code> - Creates an instance of Google&#8217;s PhotosLibraryClient using the provided credentials.</p>
+</li>
+<li>
+<p><code>getUserEmail(Credential)</code> - Retrieves the user&#8217;s email from Google+.</p>
+</li>
+<li>
+<p><code>loginUserIfPossible()</code> - Logs in a user if a valid credential file can be found during start up.</p>
+</li>
+<li>
+<p><code>logoutUserIfPossible()</code> - Logs a user out if a credential file can be found.</p>
+</li>
+<li>
+<p><code>checkUserLogin()</code> - Checks if any users are currently logged in.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Below are some examples on how the login command will work.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If connection to the internet is lost at any point during authentication with Google&#8217;s server, login will fail and an error message will be sent to user as feedback.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="scenario-1-explicit-code-login-code-command-executed-user-not-logged-in-yet"><a class="link" href="#scenario-1-explicit-code-login-code-command-executed-user-not-logged-in-yet">5.2.2. Scenario 1: Explicit <code>login</code> command executed, user not logged in yet.</a></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user executes a <code>login</code> command.</p>
+</li>
+<li>
+<p>The login command calls <code>Model#getPhotoHandler()</code> and checks if a PhotoHandler instance already exists. If not, it calls static method <code>PhotoLibraryClientFactory#createClient()</code> to set up the requirements for log in and redirects the user to the browser.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>This occurs asynchronously, and a user can close the redirect window and proceed as usual with the application if they have changed their mind.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User logs in through redirect window and a refresh token is returned and stored. PhotoLibraryClientFactory class then calls <code>PhotoLibraryClientFactory#createPhotosLibraryClient()</code> and <code>PhotoLibraryClientFactory#getUserEmail()</code> to instantiate a <code>PhotoHandler</code> instance</p>
+</li>
+<li>
+<p>The <code>PhotoHandler</code> instance is set by model as <code>Model#photoLibrary</code>, and confirmation of login is sent to user.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram illustrates how the above steps work:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/LoginSequenceDiagram.png" alt="LoginSequenceDiagram" width="1000">
+</div>
+<div class="title">Figure 22. Sequence Diagram for LoginCommand</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="scenario-2-implicit-login-where-piconso-auto-logs-in-user-upon-re-launch"><a class="link" href="#scenario-2-implicit-login-where-piconso-auto-logs-in-user-upon-re-launch">5.2.3. Scenario 2: Implicit login, where Piconso auto logs in user upon re-launch</a></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Upon Piconso start up, <code>PhotoLibraryClientFactory#loginUserIfPossible()</code> is run by <code>ModelManager</code><br></p>
+</li>
+<li>
+<p>The method checks for stored credentials (refresh token), and logs in user via <code>PhotoLibraryClientFactory#createClient()</code> if possible, else the log in process is skipped.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>In both scenarios, whenever a valid refresh token is found stored the user is logged in without having to face browser re-direct again. At no point in time will we be storing a user&#8217;s actual credentials, but only a refresh token that allows us to keep a user logged in, actual credentials are handled by Google OAuth<br></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">5.2.4. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Asynchronous Login</strong>: By default, as long as a user has not logged in after <code>login</code> command is launched, Piconso freezes and waits for user input.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>Current Solution</em>: An asynchronous approach has been implemented instead such that Piconso continues working as usual even if the user has not logged in. Once a user is logged in, Piconso will simply show feedback.</p>
+</li>
+<li>
+<p><em>Cons</em>: Google allows max 3 login requests to be made in an interval, hence the <code>login</code> command will stop redirecting after 3 consecutive logins made in a short period of time. While it is unlikely this will pose a problem for users, it would be advisable to display the redirect URL in the Piconso CLI during future development.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="logout-logout-command"><a class="link" href="#logout-logout-command">5.2.5. Logout (logout) Command</a></h4>
+<div class="paragraph">
+<p>The logout command deletes the stored credential file (and any other login-related files) if it exists, and does nothing if it does not. Upon deleting the file, the user will no longer have a refresh token to stay logged in, and thus is effectively logged out.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="googlelscommand-ls"><a class="link" href="#googlelscommand-ls">5.3. GoogleLsCommand (ls)</a></h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For all Google-related Commands (excluding login and logout), their command word is appended with a g (i.e <code>g ls</code>). Thus all children of <code>GoogleCommand</code> are first passed through a <code>GoogleCommandParser</code> to determine its type.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-10"><a class="link" href="#current-implementation-10">5.3.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The <code>GoogleLsCommand</code> allows users to browse through their stored images on Google Photos. Currently, it is overloaded with three types of commands the user can type</p>
+</div>
+<div class="paragraph">
+<p><code>g ls</code> &#8594; Lists all photos in user&#8217;s Google Photos, takes a longer amount of time depending on the number of images stored.<br>
+<code>g ls /a</code> &#8594; Lists all albums in user&#8217;s Google Photos.<br>
+<code>g ls &lt;ALBUM_NAME&gt;</code> &#8594; Lists all photos in specified album from Google Photos.</p>
+</div>
+<div class="paragraph">
+<p>As such, parsing will be done twice. Once by <code>GoogleCommandParser</code>, and another within <code>GoogleLsCommand</code> itself.</p>
+</div>
+<div class="paragraph">
+<p>The following methods and components of <code>PhotoHandler</code> will be involved:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>imageMap</code> - Map&lt;String, MediaItem&gt; that contains the list of images retrieved from Google API call. Uses image names as keys.</p>
+</li>
+<li>
+<p><code>albumMap</code> - Map&lt;String, Album&gt; that contains the list of albums retrieved from Google API call. Uses album names as keys.</p>
+</li>
+<li>
+<p><code>specificAlbumMap</code> - Map&lt;String, MediaItem&gt; that contains the list of images from a specific album retrieved from Google API call. Uses image names as keys.</p>
+</li>
+<li>
+<p><code>getUniqueName(Map, String, String)</code> - Checks for existence of a name in the map. If it exists, append a sutiable index at the end of the name.</p>
+</li>
+<li>
+<p><code>refreshLists()</code> - Re-retrieves all images and albums from Google Photos and updates <code>imageMap</code> and <code>albumMap</code></p>
+</li>
+<li>
+<p><code>returnAllAlbumsList()</code> - Calls <code>retrieveAllAlbumsFromGoogle()</code> and returns a <code>List</code> of Album names for easy display</p>
+</li>
+<li>
+<p><code>retrieveAllAlbumsFromGoogle()</code> - Makes a Google API call and retrieves all albums stored in Google Photos, storing it in <code>albumMap</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Similar methods for other variants exist, but only methods used for the example below will be listed.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="example-first-call-for-code-g-ls-a-code-where-user-wants-to-list-all-albums-in-google-photos"><a class="link" href="#example-first-call-for-code-g-ls-a-code-where-user-wants-to-list-all-albums-in-google-photos">5.3.2. Example: First call for <code>g ls /a</code>, where user wants to list all albums in Google Photos.</a></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user executes a <code>g ls /a</code> command.</p>
+</li>
+<li>
+<p>The command goes through parsing, firstly by <code>GoogleCommandParser</code> and secondly filtered by GoogleLsCommand. It is determined to be for listing albums, and <code>model.getPhotoHandler().returnAllAlbumsList()</code> is called.</p>
+</li>
+<li>
+<p>Within that method, it makes a request to Google Photos, retrieves a <code>List&lt;Album&gt;</code>, and stores them in a <code>Map&lt;String, Album&gt;</code> within the PhotoHandler instance, with each key being the album name, any duplicate names are renamed.</p>
+</li>
+<li>
+<p>The entire list is converted into a String, and returned to the <code>CommandBox</code> UI as feedback to the user</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The following activity diagram illustrates how the above steps work:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/GoogleLsActivityDiagram.png" alt="GoogleLsActivityDiagram" width="1000">
+</div>
+<div class="title">Figure 23. Activity Diagram for GoogleLsCommand</div>
+</div>
+<div class="paragraph">
+<p>The process is similar for the other 2 variants, except images or images from a specific album are retrieved instead. All retrieved results are always stored in their respective maps.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-8"><a class="link" href="#design-considerations-8">5.3.3. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Performance Issues</strong>: The larger the amount of pictures stored in Google Photos, the longer amount of time a <code>g ls</code> command takes.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>Alternative 1</em>: Re-retrieve the list of photos/albums upon every <code>ls</code> call</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pro: Displayed list of images/albums is always up-to-date.</p>
+</li>
+<li>
+<p>Con: Each Google Photos API call takes a notable amount of time to execute. Constantly re-retrieving the list of images/albums causes multiples API calls and incurs heavy waiting time for users.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><em>Alternative 2 (Current)</em>: Adding a refresh command. As it is not likely that the set of photos in Google Photos will constantly change, the list of images/albums is retrieved and stored upon first <code>g ls</code> call and is only refreshed upon <code>g refresh</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pro: Shortens the waiting time for user on every <code>g ls</code> call</p>
+</li>
+<li>
+<p>Con: More work on user&#8217;s behalf to remember to refresh.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Duplicated Naming</strong>: Google Photos allows for multiples images and albums to be stored with the same name, making it difficult to list item names as names might overlap.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>Alternative 1 (Current)</em>: Upon a retrieval of images/albums from Google, image/album names are checked for duplicates. Every duplicate will have a suitable index appended at the end of its original name to ensures that unique naming occurs.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Con: If there are multiple images with the same name, the process of any <code>g ls</code> or <code>g refresh</code> will take a longer time to run.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><em>Alternative 2</em>: Instead of storing the name of the image/album as the key inside the Map, its unique ID (that is retrieved together with the files from Google) can be used instead.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Con: The ID too complicated for a user to input and remember.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Album Traversal: How to display and use Albums from Google</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>Alternative 1</em>: Treat the album as a category, thus <code>g ls &lt;ALBUM_NAME&gt;</code> acts as a filter that filters photos by category.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pro: Easy for users to understand and remember.</p>
+</li>
+<li>
+<p>Con: The command to download from an album needs to be extended such that users need to specify which album the image to download is in i.e <code>g dl /a&lt;Album&gt; /i&lt;image.png&gt;</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><em>Alternative 2</em>: Handle the concept of albums like directories, such that a user can cd in and out of an album.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Con: Confusing for users to concurrently navigate and differentiate both google and local directories.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="googlerefreshcommand-refresh"><a class="link" href="#googlerefreshcommand-refresh">5.3.4. GoogleRefreshCommand (refresh)</a></h4>
+<div class="paragraph">
+<p>The refresh command re-retrieves and stores the list of images/albums from Google Photos into respective maps in <code>Model#getPhotoHandler()</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="googledlcommand-dl"><a class="link" href="#googledlcommand-dl">5.4. GoogleDlCommand (dl)</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-11"><a class="link" href="#current-implementation-11">5.4.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The GoogleDlCommand allows users to download their stored images on Google Photos. Currently, it is overloaded with three types of commands the user can type</p>
+</div>
+<div class="paragraph">
+<p><code>g dl /i&lt;IMAGE_NAME&gt;</code>: Downloads specified image from Google Photos<br>
+<code>g dl /a&lt;ALBUM_NAME&gt;</code>: Downloads all images from specified album in Google Photos, takes a longer amount of time depending on the number of images stored in the album.<br>
+<code>g dl /a&lt;ALBUM_NAME&gt; /i&lt;IMAGE_NAME&gt;</code>: Downloads a specific photo from a specific album in Google Photos.</p>
+</div>
+<div class="paragraph">
+<p>As such, parsing will be done twice. Once by GoogleCommandParser, and another within GoogleDlCommand itself.</p>
+</div>
+<div class="paragraph">
+<p>The following components of <code>PhotoHandler</code> will be involved:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>downloadImage(String, String, String)</code> - Ensures the request is valid and calls saveImageInDir()` if true.</p>
+</li>
+<li>
+<p><code>saveImageInDir(MediaItem, String)</code> - Saves the image using the baseURL of the <code>MediaItem</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Similar methods for other variants exist, but only methods used for the example below will be listed.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="example-g-dl-i-b-png"><a class="link" href="#example-g-dl-i-b-png">5.4.2. Example: g dl /i&lt;b.png&gt;`</a></h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For all upload/download related commands, the amount of time taken to process the task varies with the number of images to upload/download.
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user executes a <code>g dl /i&lt;b.png&gt;</code> command.</p>
+</li>
+<li>
+<p>The command goes through parsing, firstly by <code>GoogleCommandParser</code> and secondly filtered by GoogleDlCommand. It is determined to be for downloading one image, and <code>model.getPhotoHandler().downloadImage()</code> is called.</p>
+</li>
+<li>
+<p>Within that method, it makes a request to Google Photos with the image&#8217;s respective ID, and successfully downloads the image into the user&#8217;s local directory.</p>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+If the local directory contains any image with the same name as the one to download, the image in the local directory will be replaced.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Feedback of success is sent to the user</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/GoogleDlSequenceDiagram.png" alt="GoogleDlSequenceDiagram" width="800">
+</div>
+<div class="title">Figure 24. Sequence Diagram for GoogleDlCommand</div>
+</div>
+<div class="paragraph">
+<p>The process is similar for the other 2 variants, except images or images from a specific album are downloaded instead.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-9"><a class="link" href="#design-considerations-9">5.4.3. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Location of downloaded images</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>Alternative 1 (Current)</em>: Download the image into user&#8217;s currently opened local directory.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pro: User is able to easily find the new downloaded photo</p>
+</li>
+<li>
+<p>Con: Images with the same name WILL be replaced and it will be messy when multiple photos are downloaded</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><em>Alternative 2 (Recommended for future)</em>: Images are downloaded into a specific directory which can be navigated to and fro via quick commands (i.e <code>jump to PicDir</code>, <code>jump back PicDir</code>)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pro: Easier for user to retrieve and view downloaded photos. Photos with the same name can also be safely replaced as they are likely earlier versions downloaded from Google Photos.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="googleuploadcommand-ul"><a class="link" href="#googleuploadcommand-ul">5.5. GoogleUploadCommand (ul)</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-12"><a class="link" href="#current-implementation-12">5.5.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The GoogleUploadCommand allows users to upload their images onto Google Photos. Currently, it is overloaded with two types of commands the user can type</p>
+</div>
+<div class="paragraph">
+<p><code>g ul &lt;IMAGE_NAME&gt;</code>: Uploads specified image from currently opened directory to Google Photos<br>
+<code>g ul all</code>: Uploads all images in currently open local directory.</p>
+</div>
+<div class="paragraph">
+<p>As such, parsing will be done twice. Once by GoogleCommandParser, and another within GoogleUploadCommand itself.</p>
+</div>
+<div class="paragraph">
+<p>As the implementation of GoogleUploadCommand is mostly dependent on understanding of the upload aspects of Google Photos API, an example will not be given. Please refer to <a href="https://developers.google.com/photos/library/guides/upload-media">this link</a>.</p>
+</div>
+<div class="paragraph">
+<p>The following components of <code>PhotoHandler</code> will be involved:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>uploadImage(String, String)</code> - Uploads the image from the current opened local directory.</p>
+</li>
+<li>
+<p><code>retrievePiconsoAlbum()</code> - Retrieves the ID of the Piconso Album in Google Photos. If it does not exist, command creates one.</p>
+</li>
+<li>
+<p><code>uploadMediaItemsToGoogle(List&lt;NewMediaItem&gt;)</code> - Highly Google Photos API based, returns a <code>NewMediaItem</code></p>
+</li>
+<li>
+<p><code>generateNewMediaImage(String, String)</code> - Highly Google Photos API based, carries out actual upload to Google Photos with NewMediaItem.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Similar methods for other variants exist, but only methods used for the example below will be listed.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-10"><a class="link" href="#design-considerations-10">5.5.2. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Google Photos does not allow duplicate photos</strong>: Illustrated in the diagram below</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>No renaming of photos after upload allowed.</p>
+</li>
+<li>
+<p>If an image is uploaded as "a.png", but exists with the exact same bytes as "b.png" on Google Photos, the image will replace the old image as b.png instead.</p>
+</li>
+<li>
+<p>If two images with the same bytes are sent for upload, only the first will be uploaded.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/uploadExplanation.png" alt="uploadExplanation" width="800">
+</div>
+<div class="title">Figure 25. Illustrates when how Google Photos handles images</div>
+</div>
+<div class="paragraph">
+<p>Currently the only measure taken has been to state this to the user. As this issue was only discovered in the later stages of development, it does not have a workaround yet. Though a lot of refactoring will be required,  switching from Google Photos to Google Drive might be a fix for the problem.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="documentation"><a class="link" href="#documentation">6. Documentation</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>We use asciidoc for writing documentation.</p>
@@ -1850,20 +2186,20 @@ We chose asciidoc over Markdown because asciidoc, although a bit more complex th
 </table>
 </div>
 <div class="sect2">
-<h3 id="editing-documentation"><a class="link" href="#editing-documentation">5.1. Editing Documentation</a></h3>
+<h3 id="editing-documentation"><a class="link" href="#editing-documentation">6.1. Editing Documentation</a></h3>
 <div class="paragraph">
 <p>See <a href="UsingGradle.html#rendering-asciidoc-files">UsingGradle.adoc</a> to learn how to render <code>.adoc</code> files locally to preview the end result of your edits.
 Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows you to preview the changes you have made to your <code>.adoc</code> files in real-time.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="publishing-documentation"><a class="link" href="#publishing-documentation">5.2. Publishing Documentation</a></h3>
+<h3 id="publishing-documentation"><a class="link" href="#publishing-documentation">6.2. Publishing Documentation</a></h3>
 <div class="paragraph">
 <p>See <a href="UsingTravis.html#deploying-github-pages">UsingTravis.adoc</a> to learn how to deploy GitHub Pages using Travis.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="converting-documentation-to-pdf-format"><a class="link" href="#converting-documentation-to-pdf-format">5.3. Converting Documentation to PDF format</a></h3>
+<h3 id="converting-documentation-to-pdf-format"><a class="link" href="#converting-documentation-to-pdf-format">6.3. Converting Documentation to PDF format</a></h3>
 <div class="paragraph">
 <p>We use <a href="https://www.google.com/chrome/browser/desktop/">Google Chrome</a> for converting documentation to PDF format, as Chrome&#8217;s PDF engine preserves hyperlinks used in webpages.</p>
 </div>
@@ -1890,13 +2226,13 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <div class="content">
 <img src="images/chrome_save_as_pdf.png" alt="chrome save as pdf" width="300">
 </div>
-<div class="title">Figure 7. Saving documentation as PDF files in Chrome</div>
+<div class="title">Figure 26. Saving documentation as PDF files in Chrome</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Docs-SiteWideDocSettings"><a class="link" href="#Docs-SiteWideDocSettings">5.4. Site-wide Documentation Settings</a></h3>
+<h3 id="Docs-SiteWideDocSettings"><a class="link" href="#Docs-SiteWideDocSettings">6.4. Site-wide Documentation Settings</a></h3>
 <div class="paragraph">
-<p>The <a href="https://github.com/se-edu/addressbook-level4/tree/master/build.gradle"><code>build.gradle</code></a> file specifies some project-specific <a href="https://asciidoctor.org/docs/user-manual/#attributes">asciidoc attributes</a> which affects how all documentation files within this project are rendered.</p>
+<p>The <a href="https://github.com/CS2103-AY1819S1-T09-3/main/build.gradle"><code>build.gradle</code></a> file specifies some project-specific <a href="https://asciidoctor.org/docs/user-manual/#attributes">asciidoc attributes</a> which affects how all documentation files within this project are rendered.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1953,7 +2289,7 @@ This will render the SE-EDU navigation bar at the top of the page, and add some 
 </table>
 </div>
 <div class="sect2">
-<h3 id="Docs-PerFileDocSettings"><a class="link" href="#Docs-PerFileDocSettings">5.5. Per-file Documentation Settings</a></h3>
+<h3 id="Docs-PerFileDocSettings"><a class="link" href="#Docs-PerFileDocSettings">6.5. Per-file Documentation Settings</a></h3>
 <div class="paragraph">
 <p>Each <code>.adoc</code> file may also specify some file-specific <a href="https://asciidoctor.org/docs/user-manual/#attributes">asciidoc attributes</a> which affects how the file is rendered.</p>
 </div>
@@ -2010,13 +2346,13 @@ One of: <code>UserGuide</code>, <code>DeveloperGuide</code>, <code>LearningOutco
 </table>
 </div>
 <div class="sect2">
-<h3 id="site-template"><a class="link" href="#site-template">5.6. Site Template</a></h3>
+<h3 id="site-template"><a class="link" href="#site-template">6.6. Site Template</a></h3>
 <div class="paragraph">
-<p>The files in <a href="https://github.com/se-edu/addressbook-level4/tree/master/docs/stylesheets"><code>docs/stylesheets</code></a> are the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS stylesheets</a> of the site.
+<p>The files in <a href="https://github.com/CS2103-AY1819S1-T09-3/main/docs/stylesheets"><code>docs/stylesheets</code></a> are the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS stylesheets</a> of the site.
 You can modify them to change some properties of the site&#8217;s design.</p>
 </div>
 <div class="paragraph">
-<p>The files in <a href="https://github.com/se-edu/addressbook-level4/tree/master/docs/templates"><code>docs/templates</code></a> controls the rendering of <code>.adoc</code> files into HTML5.
+<p>The files in <a href="https://github.com/CS2103-AY1819S1-T09-3/main/docs/templates"><code>docs/templates</code></a> controls the rendering of <code>.adoc</code> files into HTML5.
 These template files are written in a mixture of <a href="https://www.ruby-lang.org">Ruby</a> and <a href="http://slim-lang.com">Slim</a>.</p>
 </div>
 <div class="admonitionblock warning">
@@ -2027,7 +2363,7 @@ These template files are written in a mixture of <a href="https://www.ruby-lang.
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Modifying the template files in <a href="https://github.com/se-edu/addressbook-level4/tree/master/docs/templates"><code>docs/templates</code></a> requires some knowledge and experience with Ruby and Asciidoctor&#8217;s API.
+<p>Modifying the template files in <a href="https://github.com/CS2103-AY1819S1-T09-3/main/docs/templates"><code>docs/templates</code></a> requires some knowledge and experience with Ruby and Asciidoctor&#8217;s API.
 You should only modify them if you need greater control over the site&#8217;s layout than what stylesheets can provide.
 The SE-EDU team does not provide support for modified template files.</p>
 </div>
@@ -2039,10 +2375,10 @@ The SE-EDU team does not provide support for modified template files.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="Testing"><a class="link" href="#Testing">6. Testing</a></h2>
+<h2 id="Testing"><a class="link" href="#Testing">7. Testing</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="running-tests"><a class="link" href="#running-tests">6.1. Running Tests</a></h3>
+<h3 id="running-tests"><a class="link" href="#running-tests">7.1. Running Tests</a></h3>
 <div class="paragraph">
 <p>There are three ways to run tests.</p>
 </div>
@@ -2104,7 +2440,7 @@ See <a href="UsingGradle.html">UsingGradle.adoc</a> for more info on how to run 
 </div>
 </div>
 <div class="sect2">
-<h3 id="types-of-tests"><a class="link" href="#types-of-tests">6.2. Types of tests</a></h3>
+<h3 id="types-of-tests"><a class="link" href="#types-of-tests">7.2. Types of tests</a></h3>
 <div class="paragraph">
 <p>We have two types of tests:</p>
 </div>
@@ -2146,7 +2482,7 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="troubleshooting-testing"><a class="link" href="#troubleshooting-testing">6.3. Troubleshooting Testing</a></h3>
+<h3 id="troubleshooting-testing"><a class="link" href="#troubleshooting-testing">7.3. Troubleshooting Testing</a></h3>
 <div class="paragraph">
 <p><strong>Problem: <code>HelpWindowTest</code> fails with a <code>NullPointerException</code>.</strong></p>
 </div>
@@ -2164,41 +2500,41 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="dev-ops"><a class="link" href="#dev-ops">7. Dev Ops</a></h2>
+<h2 id="dev-ops"><a class="link" href="#dev-ops">8. Dev Ops</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="build-automation"><a class="link" href="#build-automation">7.1. Build Automation</a></h3>
+<h3 id="build-automation"><a class="link" href="#build-automation">8.1. Build Automation</a></h3>
 <div class="paragraph">
 <p>See <a href="UsingGradle.html">UsingGradle.adoc</a> to learn how to use Gradle for build automation.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="continuous-integration"><a class="link" href="#continuous-integration">7.2. Continuous Integration</a></h3>
+<h3 id="continuous-integration"><a class="link" href="#continuous-integration">8.2. Continuous Integration</a></h3>
 <div class="paragraph">
 <p>We use <a href="https://travis-ci.org/">Travis CI</a> and <a href="https://www.appveyor.com/">AppVeyor</a> to perform <em>Continuous Integration</em> on our projects. See <a href="UsingTravis.html">UsingTravis.adoc</a> and <a href="UsingAppVeyor.html">UsingAppVeyor.adoc</a> for more details.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="coverage-reporting"><a class="link" href="#coverage-reporting">7.3. Coverage Reporting</a></h3>
+<h3 id="coverage-reporting"><a class="link" href="#coverage-reporting">8.3. Coverage Reporting</a></h3>
 <div class="paragraph">
 <p>We use <a href="https://coveralls.io/">Coveralls</a> to track the code coverage of our projects. See <a href="UsingCoveralls.html">UsingCoveralls.adoc</a> for more details.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="documentation-previews"><a class="link" href="#documentation-previews">7.4. Documentation Previews</a></h3>
+<h3 id="documentation-previews"><a class="link" href="#documentation-previews">8.4. Documentation Previews</a></h3>
 <div class="paragraph">
 <p>When a pull request has changes to asciidoc files, you can use <a href="https://www.netlify.com/">Netlify</a> to see a preview of how the HTML version of those asciidoc files will look like when the pull request is merged. See <a href="UsingNetlify.html">UsingNetlify.adoc</a> for more details.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="making-a-release"><a class="link" href="#making-a-release">7.5. Making a Release</a></h3>
+<h3 id="making-a-release"><a class="link" href="#making-a-release">8.5. Making a Release</a></h3>
 <div class="paragraph">
 <p>Here are the steps to create a new release.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Update the version number in <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/MainApp.java"><code>MainApp.java</code></a>.</p>
+<p>Update the version number in <a href="https://github.com/CS2103-AY1819S1-T09-3/main/src/main/java/seedu/address/MainApp.java"><code>MainApp.java</code></a>.</p>
 </li>
 <li>
 <p>Generate a JAR file <a href="UsingGradle.html#creating-the-jar-file">using Gradle</a>.</p>
@@ -2213,7 +2549,7 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="managing-dependencies"><a class="link" href="#managing-dependencies">7.6. Managing Dependencies</a></h3>
+<h3 id="managing-dependencies"><a class="link" href="#managing-dependencies">8.6. Managing Dependencies</a></h3>
 <div class="paragraph">
 <p>A project often depends on third-party libraries. For example, Address Book depends on the <a href="http://wiki.fasterxml.com/JacksonHome">Jackson library</a> for XML parsing. Managing these <em>dependencies</em> can be automated using Gradle. For example, Gradle can download the dependencies automatically, which is better than these alternatives.<br>
 a. Include those libraries in the repo (this bloats the repo size)<br>
@@ -2559,4 +2895,4 @@ b. Require developers to download those libraries manually (this creates extra w
 <p><em>{To be updated}</em></p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 19:02:05 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 20:27:16 UTC</div></div></div></body></html>

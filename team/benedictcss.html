@@ -264,8 +264,8 @@ This removes the restrictions of accessing only images from one particular folde
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
 <div class="paragraph">
-<p>The Cd mechanism is facilitated by the <code>ModelManager</code>. It contains the operations <code>Model#getCurrDirectory</code> and
-<code>Model#updateCurrDirectory(Path)</code> respectively.</p>
+<p>The Cd mechanism is facilitated by the <code>ModelManager</code>. It contains the operations <code>Model#getCurrDirectory()</code> and
+<code>Model#updateCurrDirectory(Path)</code>.</p>
 </div>
 <div class="paragraph">
 <p>The Model calls upon <code>UserPrefs</code> within the respective operations. The <code>UserPrefs</code> class contains the current directory
@@ -283,7 +283,7 @@ the user&#8217;s in, stored internally as <code>currDirectory</code> and impleme
 </div>
 <div class="paragraph">
 <p>Within the operation <code>UserPrefs#updateUserPrefs(Path)</code>, it also retrieves the list of images within the directory,
-which are stored internally as <code>imageList</code>. This would facilitates the <code>Select</code> feature in our application
+which are stored internally as <code>imageList</code>. This would facilitate the <code>select</code> feature in our application
 (refer to 3.2).</p>
 </div>
 <div class="paragraph">
@@ -293,14 +293,18 @@ function to auto-complete the directory name if it exists.</p>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the cd mechanism behaves at each step.</p>
 </div>
-<div class="paragraph">
-<p>Step 1. The user launches the application for the first time. The <code>UserPrefs</code> will be initialized with the <code>currDirectory</code>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user launches the application for the first time. The <code>UserPrefs</code> will be initialized with the <code>currDirectory</code>
 as the user&#8217;s home directory.</p>
-</div>
-<div class="paragraph">
-<p>Step 2. The user executes <code>cd Desktop</code> command to navigate into the Desktop directory. The cd command calls
+</li>
+<li>
+<p>The user executes <code>cd Desktop</code> command to navigate into the Desktop directory. The cd command calls
 <code>Model#getCurrDirectory()</code> and appends <code>Desktop</code> to the end of the current directory. It then checks if the new Path is
-a directory and calls <code>Model#updateCurrDirectory(Path)</code> and update the new Path in <code>UserPrefs</code> if the check returns true.</p>
+a directory and calls <code>Model#updateCurrDirectory(Path)</code> and updates the new Path in <code>UserPrefs</code> if the check returns true.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <p>The following sequence diagram shows how the cd command works:</p>
@@ -309,6 +313,7 @@ a directory and calls <code>Model#updateCurrDirectory(Path)</code> and update th
 <div class="content">
 <img src="../images/CdSequenceDiagram.png" alt="CdSequenceDiagram" width="800">
 </div>
+<div class="title">Figure 1. Sequence Diagram for CdCommand</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -365,22 +370,21 @@ If the <code>newCurrDirectory</code> is not a directory, i.e. <code>isDirectory(
 <div class="sect2">
 <h3 id="select-feature"><a class="link" href="#select-feature">Select feature</a></h3>
 <div class="paragraph">
-<p>The Select Command allow users to select the images in a batch of 10 images within the directory for image-editing.
-This command is further facilitated by the Next Command.</p>
+<p><code>SelectCommand</code> allow users to select from the currently viewed batch of 10 images within the directory for image-editing.
+This command is further facilitated by the <code>NextCommand</code>.</p>
 </div>
 <div class="sect3">
 <h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current Implementation</a></h4>
 <div class="paragraph">
-<p>The implementation of the Select feature is largely similar to the <code>Cd Command</code>. It is facilitated by the <code>ModelManager</code>
-and contains the following operations:</p>
+<p>The implementation of the Select feature is largely similar to <code>CdCommand</code>. It is facilitated by the following operations in <code>ModelManager</code>:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>Model#getDirectoryImageList()</code>&#8201;&#8212;&#8201;Retrieves the stored list of images in UserPrefs.</p>
+<p><code>Model#getDirectoryImageList()</code> - Retrieves the stored list of images in UserPrefs.</p>
 </li>
 <li>
-<p><code>Model#updateCurrentOriginalImage(Image, Path)</code>&#8201;&#8212;&#8201;Updates the model with the current selected images.</p>
+<p><code>Model#updateCurrentOriginalImage(Image, Path)</code> - Updates the model with the current selected images.</p>
 </li>
 </ul>
 </div>
@@ -391,44 +395,56 @@ batch. The <code>UserPrefs</code> class implements the following operation:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>UserPrefs#getCurrImageListBatch()</code>&#8201;&#8212;&#8201;Returns the current batch of images.</p>
+<p><code>UserPrefs#getCurrImageListBatch()</code> - Returns the current batch of images.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
 <p>The <code>Model#updateCurrentOriginalImage(Image, Path)</code> operation stores the path of the selected image and the
-<code>PreviewImage</code> instance of it as <code>currOriginalImage</code> and <code>currentPreviewImage</code> respectively within the <code>ModelManager</code>.
-Additionally, the operation also creates a canvas and a layer to facilitate the <code>transmission</code> feature.</p>
+<code>PreviewImage</code> instance of it as <code>currOriginalImage</code> and <code>currentPreviewImage</code> within the <code>ModelManager</code>.
+Additionally, the operation also creates a canvas and a layer to facilitate the <code>transmission</code> feature. (refer to 3.5)</p>
 </div>
 <div class="paragraph">
-<p>Given below is an example usage scenario and how the select and next mechanism behaves at each step.</p>
+<p>Given below is an example usage scenario of how the select and next mechanism behaves at each step.</p>
 </div>
-<div class="paragraph">
-<p>Step 1. The user launches the application for the first time. The <code>UserPrefs</code> will be initialized with the <code>currDirectory</code>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user launches the application for the first time. The <code>UserPrefs</code> will be initialized with the <code>currDirectory</code>
 as the user&#8217;s home directory.</p>
-</div>
-<div class="paragraph">
-<p>Step 2. The user executes <code>cd Desktop</code> command to navigate into the Desktop directory. The cd command will initialise
+</li>
+<li>
+<p>The user executes <code>cd Desktop</code> command to navigate into the Desktop directory. The cd command will initialise
 the <code>imageList</code> with all the images within Desktop.</p>
+</li>
+</ol>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/SelectCommand1.png" alt="SelectCommand1" width="800">
 </div>
 </div>
-<div class="paragraph">
-<p>Step 3. The user executes <code>select 1</code> command to select the first image in the first batch of 10 images. The select
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user executes <code>select 1</code> command to select the first image in the first batch of 10 images. The select
 command calls <code>Model#getDirectoryImageList()</code> to retrieve the first batch of images within Desktop. The first image is
 then retrieved and displayed on the GUI.</p>
+</li>
+</ol>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/SelectCommand2.png" alt="SelectCommand2" width="500">
 </div>
 </div>
-<div class="paragraph">
-<p>Step 4. The user then executes <code>select 5</code> command to select the fifth image in the batch of 10 images. The fifth image
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user then executes <code>select 5</code> command to select the fifth image in the batch of 10 images. The fifth image
 is then retrieved similarly and displayed on the GUI.</p>
+</li>
+</ol>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -442,6 +458,7 @@ is then retrieved similarly and displayed on the GUI.</p>
 <div class="content">
 <img src="../images/SelectSequenceDiagram.png" alt="SelectSequenceDiagram" width="800">
 </div>
+<div class="title">Figure 2. Sequence Diagram for SelectCommand</div>
 </div>
 </div>
 <div class="sect3">
@@ -484,15 +501,15 @@ is then retrieved similarly and displayed on the GUI.</p>
 <div class="sect2">
 <h3 id="next-prev-feature"><a class="link" href="#next-prev-feature">Next/Prev feature</a></h3>
 <div class="paragraph">
-<p>The Next Command retrieves the next 10 images in the image list.</p>
+<p><code>NextCommand</code> retrieves the next 10 images in the image list (image list refers to images in the current directory).</p>
 </div>
 <div class="paragraph">
-<p>On the contrary, the Previous Command retrieves the previous 10 images in the image list.</p>
+<p>On the contrary, the <code>PrevCommand</code> retrieves the previous 10 images in the image list.</p>
 </div>
 <div class="sect3">
 <h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">Current Implementation</a></h4>
 <div class="paragraph">
-<p>The implementation of the Next/Previous feature is also similar to the <code>Cd Command</code>. It is facilitated by the <code>ModelManager</code>
+<p>The implementation of the Next/Previous feature is similar to the <code>CdCommand</code>. It is facilitated by the <code>ModelManager</code>
 and contains the operations: <code>Model#updateImageListNextBatch()</code> and <code>Model#updateImageListPrevBatch()</code>.</p>
 </div>
 <div class="paragraph">
@@ -502,39 +519,51 @@ batch of images using the <code>currBatchPointer</code>. The <code>UserPrefs</co
 <div class="ulist">
 <ul>
 <li>
-<p><code>UserPrefs#updateImageListNextBatch()</code>&#8201;&#8212;&#8201;Adds the <code>currBatchPointer</code> by 10.</p>
+<p><code>UserPrefs#updateImageListNextBatch()</code> - Adds the <code>currBatchPointer</code> by 10.</p>
 </li>
 <li>
-<p><code>UserPrefs#updateImageListPrevBatch()</code>&#8201;&#8212;&#8201;Minus the <code>currBatchPointer</code> by 10.</p>
+<p><code>UserPrefs#updateImageListPrevBatch()</code> - Minus the <code>currBatchPointer</code> by 10.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the next/previous mechanism behaves at each step.</p>
 </div>
-<div class="paragraph">
-<p>Step 1. The user launches the application for the first time. The <code>UserPrefs</code> will be initialized with the <code>currDirectory</code>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user launches the application for the first time. The <code>UserPrefs</code> will be initialized with the <code>currDirectory</code>
 as the user&#8217;s home directory.</p>
-</div>
-<div class="paragraph">
-<p>Step 2. The user executes <code>cd Desktop</code> command to navigate into the Desktop directory. The cd command will initialise
+</li>
+<li>
+<p>The user executes <code>cd Desktop</code> command to navigate into the Desktop directory. The cd command will initialise
 the <code>imageList</code> with all the images within Desktop.</p>
+</li>
+</ol>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/SelectCommand1.png" alt="SelectCommand1" width="800">
 </div>
 </div>
-<div class="paragraph">
-<p>Step 3. The user executes <code>next</code> command to retrieve the next 10 images within Desktop.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user executes <code>next</code> command to retrieve the next 10 images within Desktop.</p>
+</li>
+</ol>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/NextPrevCommand2.png" alt="NextPrevCommand2" width="800">
 </div>
 </div>
-<div class="paragraph">
-<p>Step 4. The user executes <code>prev</code> command to retrieve the previous 10 images within Desktop.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user executes <code>prev</code> command to retrieve the previous 10 images within Desktop.</p>
+</li>
+</ol>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -548,6 +577,7 @@ the <code>imageList</code> with all the images within Desktop.</p>
 <div class="content">
 <img src="../images/NextSequenceDiagram.png" alt="NextSequenceDiagram" width="800">
 </div>
+<div class="title">Figure 3. Sequence Diagram for NextCommand</div>
 </div>
 <div class="paragraph">
 <p>The following sequence diagram shows how the prev command works:</p>
@@ -556,6 +586,7 @@ the <code>imageList</code> with all the images within Desktop.</p>
 <div class="content">
 <img src="../images/PrevSequenceDiagram.png" alt="PrevSequenceDiagram" width="800">
 </div>
+<div class="title">Figure 4. Sequence Diagram for PrevCommand</div>
 </div>
 <div class="sect4">
 <h5 id="aspect-how-next-previous-executes"><a class="link" href="#aspect-how-next-previous-executes">Aspect: How next/previous executes</a></h5>
@@ -593,4 +624,4 @@ the <code>imageList</code> with all the images within Desktop.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 19:02:05 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 20:27:16 UTC</div></div></div></body></html>

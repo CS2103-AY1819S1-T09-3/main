@@ -353,7 +353,7 @@ The illustrations are included in my contributions below.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="canvas-and-layer-features"><a class="link" href="#canvas-and-layer-features">Canvas and Layer features</a></h2>
+<h2 id="implementation-canvas-and-layer-features"><a class="link" href="#implementation-canvas-and-layer-features">Implementation: Canvas and Layer features</a></h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="general-overview"><a class="link" href="#general-overview">General overview</a></h3>
@@ -365,8 +365,7 @@ This is in line with good defensive coding practices and separation of concerns.
 <div class="sect2">
 <h3 id="canvas-canvas-command"><a class="link" href="#canvas-canvas-command">Canvas (canvas) command</a></h3>
 <div class="paragraph">
-<p>Similar to the <code>google</code> set of commands, there are a set of overloaded command types inheriting from <code>CanvasCommand</code>
-, namely:</p>
+<p>There are a set of overloaded command types inheriting from <code>CanvasCommand</code>, namely:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -393,25 +392,25 @@ Layer order is preserved as it important for image composition.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>getLayers</code> - returns an ordered list of layers which is guaranteed to be neither <code>null</code> or empty.</p>
+<p><code>getLayers()</code> - Returns an ordered list of layers which is guaranteed to be neither <code>null</code> or empty.</p>
 </li>
 <li>
-<p><code>getLayerNames</code> - returns a list of layer names in order.</p>
+<p><code>getLayerNames()</code> - Returns a list of layer names in order.</p>
 </li>
 <li>
-<p><code>addLayer</code> - adds a given <code>PreviewImage</code> into the canvas on its own layer.</p>
+<p><code>addLayer(PreviewImage, String)</code> - Adds a given <code>PreviewImage</code> into the canvas on its own layer.</p>
 </li>
 <li>
-<p><code>getCurrentLayer</code> - returns the current instance of the layer that is being operated on.</p>
+<p><code>getCurrentLayer()</code> - Returns the current instance of the layer that is being operated on.</p>
 </li>
 <li>
-<p><code>getCurrentLayerIndex</code> - returns the index of the current instance of the layer that is being operated on.</p>
+<p><code>getCurrentLayerIndex()</code> - Returns the index of the current instance of the layer that is being operated on.</p>
 </li>
 <li>
-<p><code>setCurrentLayer</code> - sets the layer to be operated on.</p>
+<p><code>setCurrentLayer(Index)</code> - Sets the layer to be operated on.</p>
 </li>
 <li>
-<p><code>removeLayer</code> - removes a layer at a given index. The current layer and the last remaining layer in a canvas cannot be removed.</p>
+<p><code>removeLayer(Index)</code> - Removes a layer at a given index. The current layer and the last remaining layer in a canvas cannot be removed.</p>
 </li>
 </ul>
 </div>
@@ -420,7 +419,7 @@ Layer order is preserved as it important for image composition.</p>
 Implementations in <code>ModelManager</code> usually include a call to the corresponding accessor along with utility functions to manage the state of the UI.</p>
 </div>
 <div class="paragraph">
-<p>Beneath the hood <code>Canvas</code> manipulation is powered by ImageMagick.
+<p>Beneath the hood, <code>Canvas</code> manipulation is powered by ImageMagick.
 All of the properties represented in <code>Canvas</code> are transformed into their respective flags or arguments in ImageMagick.
 For example, the <code>isCanvasAuto</code> property is transformed into the flag <code>-flatten</code> if false and <code>-layers merge</code> if true.</p>
 </div>
@@ -435,7 +434,7 @@ The <code>ProcessBuilder</code> is then passed to <code>ImageMagickUtils#runProc
 <div class="title">Figure 1. Sequence Diagram for Canvas Command</div>
 </div>
 <div class="paragraph">
-<p>The above diagram illustrates the process of parsing and executing of <code>canvas</code> commands.</p>
+<p>The above diagram illustrates the process of parsing and executing <code>canvas</code> commands.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -500,19 +499,19 @@ The following sub-commands inherit from <code>LayerCommand</code>:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>addTranformation</code> - Adds a given transformation into its <code>PreviewImage</code>'s <code>TransformationSet</code>.</p>
+<p><code>addTranformation(Transformation)</code> - Adds a given transformation into its <code>PreviewImage</code>'s <code>TransformationSet</code>.</p>
 </li>
 <li>
-<p><code>getName</code> - Gets the name of the layer.</p>
+<p><code>getName()</code> - Gets the name of the layer.</p>
 </li>
 <li>
-<p><code>setHeight</code> - Sets the height of the layer.</p>
+<p><code>setHeight(int)</code> - Sets the height of the layer.</p>
 </li>
 <li>
-<p><code>setWidth</code> - Sets the width of the layer.</p>
+<p><code>setWidth(int)</code> - Sets the width of the layer.</p>
 </li>
 <li>
-<p><code>setPosition</code> - Sets the x and y coordinates of the layer.</p>
+<p><code>setPosition(int, int)</code> - Sets the x and y coordinates of the layer.</p>
 </li>
 </ul>
 </div>
@@ -557,10 +556,8 @@ It is possible to have negative co-ordinates although clipping will occur unless
 <p><strong>Further manipulation of the <code>ProcessBuilder</code></strong></p>
 </div>
 <div class="paragraph">
-<p><span class="underline">Alternatives</span></p>
-</div>
-<div class="paragraph">
-<p>It is actually possible to nest <code>ImageMagick</code> commands which means that it is possible to keep separate <code>List&lt;T&gt;</code>s and conjugate them when the canvas needs to be rendered.
+<p><em>Alternatives</em>
+* It is actually possible to nest <code>ImageMagick</code> commands which means that it is possible to keep separate <code>List&lt;T&gt;</code>s and conjugate them when the canvas needs to be rendered.
 The resultant ImageMagick command will take the form :</p>
 </div>
 <div class="literalblock">
@@ -572,13 +569,17 @@ The resultant ImageMagick command will take the form :</p>
 <p>Where blocks enclosed by <code>{ }</code> need to be repeated per layer.</p>
 </div>
 <div class="paragraph">
-<p><span class="underline">Evaluation</span></p>
+<p><em>Evaluation</em></p>
 </div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>This solution is the most straight-forward and results in no intermediate files which is usually desirable. However, the resultant ImageMagick command will short circuit and cause the entire expression to fail if any of flags are incompatible or incorrect. Caching is also impossible, causing the whole canvas and all of its layers to be composed again from scratch.</p>
-</div>
-<div class="paragraph">
-<p>This results in a poor user experience and hence we have decided against it.</p>
+</li>
+<li>
+<p>Con: This results in a poor user experience and hence we have decided against it.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -600,28 +601,28 @@ with the default height and width being that of the image selected.</p>
 </li>
 <li>
 <p>The user swaps the order of the two layers to such that the original image is back on top:
-<code>Canvas#swapLayer</code> makes the magic happen by swapping the two entries in the list of layers.</p>
+<code>Canvas#swapLayer</code> swaps the two entries in the list of layers.</p>
 </li>
 <li>
 <p>While still on the original layer, the user moves it to the top left: <code>Layer#setPosition</code> moves the first layer out of the way.</p>
 </li>
 <li>
-<p>The user changes decides to work on the second layer and enters <code>layer select 2</code>:
+<p>The user decides to work on the second layer and enters <code>layer select 2</code>:
 <code>Canvas#setCurrentLayer</code> changes the current layer to the given index and internally keeps track of the index as well.</p>
 </li>
 <li>
-<p>A transformation is applied by the user to the current layer: <code>Canvas#addTransformation</code> appends the new Transformation to the current Layer&#8217;s.
-Note that no image processing occurs until a new render is requested. The <code>Canvas</code> class provides mutators and accessors.</p>
+<p>A transformation is applied by the user to the current layer: <code>Canvas#addTransformation</code> appends the new Transformation to the current Layer.
+Note that no image processing occurs until a new render is requested.</p>
 </li>
 <li>
 <p>After a <code>canvas size 80x60`command: The new `Canvas#setSize</code> is applied upon the next render and it crops the image to a fraction of what it used to be.
-Remember that resizing and scaling is accomplished with the <code>apply resize</code> command!</p>
+Remember that resizing and scaling is accomplished with the <code>apply resize</code> command.</p>
 </li>
 <li>
-<p>Quickly realising his mistake, the user sets the canvas to fit his all of his layers: <code>Canvas#setCanvasAuto</code> toggles a boolean.</p>
+<p>Realising his mistake, the user sets the canvas to fit his all of his layers: <code>Canvas#setCanvasAuto</code> toggles a boolean.</p>
 </li>
 <li>
-<p>The user finishes his piece by filling in the default transparent background with a <code>canvas bgcolor #707070</code> : a hex color code is accepted by <code>Canvas#setBackgroundColor</code>.</p>
+<p>The user fills in the default transparent background with a <code>canvas bgcolor #707070</code> : a hex color code is accepted by <code>Canvas#setBackgroundColor</code>.</p>
 </li>
 </ol>
 </div>
@@ -629,8 +630,8 @@ Remember that resizing and scaling is accomplished with the <code>apply resize</
 <div class="content">
 <img src="../images/CanvasLayersDemo.png" alt="CanvasLayersDemo" width="2000">
 </div>
-<div class="title">Figure 3. Results of various commands. The black bounding rectangle indicate the canvas size.</div>
+<div class="title">Figure 3. Results of various commands. The black bounding rectangle indicates the canvas size.</div>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 19:02:05 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 20:27:16 UTC</div></div></div></body></html>
