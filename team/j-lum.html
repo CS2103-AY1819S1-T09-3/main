@@ -151,7 +151,7 @@ In this tutorial, you will learn how to create some of the dankest memes startin
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Head over to the link <a href="https://github.com/CS2103-AY1819S1-T09-3/main/blob/master/docs/images/tutorial.zip">here</a> to get a zip file with all the assets you need to get started!</p>
+<p>Head over to the link <a href="https://github.com/CS2103-AY1819S1-T09-3/main/blob/master/docs/images/tutorial/tutorial.zip?raw=true">here</a> to get a zip file with all the assets you need to get started!</p>
 </li>
 <li>
 <p>Unzip the files into somewhere easy to access, like your Pictures folder.</p>
@@ -169,7 +169,7 @@ You can use the <code>TAB</code> key to auto-complete pesky folder names! If eve
 <div class="content">
 <img src="../images/tutorial/step%201.png" alt="width:2000">
 </div>
-<div class="title">Figure 2. Images and index are showing up!</div>
+<div class="title">Figure 2. Images and their corresponding indexes are showing up!</div>
 </div>
 <div class="olist arabic">
 <ol class="arabic" start="5">
@@ -184,184 +184,12 @@ You can use the <code>TAB</code> key to auto-complete pesky folder names! If eve
 </li>
 </ol>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/tutorial/step%202.png" alt="width:2000">
-</div>
-<div class="title">Figure 3. Ready to rumble.</div>
-</div>
-<div class="olist arabic">
-<ol class="arabic" start="8">
-<li>
-<p>Now we can start layering the other images on top of the base image. Let&#8217;s start by adding the coveralls logo.
-We do that by using the <code>layer add</code> command. The logo is at index 3 for us so we enter <code>layer add 3</code>.</p>
-</li>
-</ol>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/tutorial/step%203.png" alt="width:2000">
-</div>
-<div class="title">Figure 4. Not exactly where we want it but it&#8217;s a start.</div>
-</div>
-<div class="olist arabic">
-<ol class="arabic" start="9">
-<li>
-<p>The logo is a bit too big for our liking so let&#8217;s resize it a bit. Start by selecting the layer that the logo is on with a quick <code>layer select 2</code>.</p>
-</li>
-<li>
-<p>Follow up with <code>apply resize 70%</code> and put Coveralls down a peg or two.</p>
-</li>
-</ol>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/tutorial/step%204.png" alt="width:2000">
-</div>
-<div class="title">Figure 5. Why don&#8217;t you pick on someone your own <strong>SIZE</strong> huh? Get it? Size?</div>
-</div>
-<div class="olist arabic">
-<ol class="arabic" start="11">
-<li>
-<p>The logo isn&#8217;t where we want it so let&#8217;s move it right to the balloon.
-Hit it with a <code>layer position 295x50</code>.</p>
-</li>
-</ol>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/tutorial/step%205.png" alt="width:2000">
-</div>
-<div class="title">Figure 6. And that&#8217;s for rejecting my pull request!</div>
-</div>
-<div class="olist arabic">
-<ol class="arabic" start="12">
-<li>
-<p>Repeat steps 8 - 11 to place <code>regret.png</code> somewhere on the pink monster. Remember to select the new layer before you start to resize and reposition! <em>(Psst. resize for 60% and move it to (5, 450) if you don&#8217;t feel like experimenting.)</em></p>
-</li>
-</ol>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/tutorial/step%206.png" alt="width:2000">
-</div>
-<div class="title">Figure 7. Do androids dream of 100% code coverage?</div>
-</div>
-<div class="olist arabic">
-<ol class="arabic" start="13">
-<li>
-<p>Let&#8217;s save our work before we <strong>DEEP FRY</strong> the living daylights out of it! You can do that by typing <code>save arrangement.png</code> or if you&#8217;re feeling adventurous just <code>save</code> will overwrite your current file irreversibly.</p>
-</li>
-<li>
-<p>Open our file again, refer to step 5 and 6 if you need help.</p>
-</li>
-<li>
-<p>Now we can begin to use some of the more advanced features in Piconso! We add some noise to the image with <code>apply raw +noise gaussian</code>.</p>
-</li>
-<li>
-<p>Feel free to repeat the step 15 a few times to get the desired amount of noise! We did it five times to be sure. If you ever go overboard, use the <code>undo</code> command to &#8230;&#8203; undo the previous command. But face it, you&#8217;re going to <code>redo</code> it anyway.</p>
-</li>
-</ol>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/tutorial/step%207.png" alt="width:2000">
-</div>
-<div class="title">Figure 8. Noisy indeed.</div>
-</div>
-<div class="olist arabic">
-<ol class="arabic" start="17">
-<li>
-<p>Now we bump the contrast up, <strong>way <em>way</em></strong> up with <code>apply raw -contrast-stretch 15%</code>.</p>
-</li>
-<li>
-<p>Brightness and saturation gets the same boost with <code>apply raw -modulate 120,120</code>.</p>
-</li>
-<li>
-<p>Apply the finishing touches with an unsharp mask! <code>apply raw -unsharp 0x05</code>. Now the meme is starting to take shape!</p>
-</li>
-</ol>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/tutorial/step%208.png" alt="width:2000">
-</div>
-<div class="title">Figure 9. New and improved image, now with 500% more noise, 120% more brightness, 120% more saturation!</div>
-</div>
-<div class="olist arabic">
-<ol class="arabic" start="20">
-<li>
-<p>We are almost done! Repeat steps 8 - 11 again to slap some of the emojis on.
-You can use the <code>apply rotate [degree]</code> command to spice the meme up a bit. If you&#8217;re short on time, we&#8217;ve provided the exact resize and new positions:</p>
-<div class="literalblock">
-<div class="content">
-<pre>For the crying emoji:
-   layer position 125x330
-   apply resize 20%
-   apply rotate 75</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>For the 2 OK emojis:
-   apply resize 10%
-   layer position 270x390
-   apply rotate 80</pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/tutorial/step%209.png" alt="width:2000">
-</div>
-<div class="title">Figure 10. You&#8217;re finna gonna yeet this image.</div>
-</div>
-<div class="olist arabic">
-<ol class="arabic" start="21">
-<li>
-<p>Save the image again (<code>save lit_meme.png</code>) and we&#8217;re ready to upload our image!</p>
-</li>
-<li>
-<p>Login with the aptly named <code>login</code> command. Don&#8217;t worry, Piconso will never store your password in any shape or form!</p>
-</li>
-<li>
-<p>Upload the file with <code>g ul &lt;lit_meme.png&gt;</code>. You should see a confirmation message when the upload is complete.</p>
-</li>
-<li>
-<p><code>logout</code> when you&#8217;re done! Congrats, you have just went from to a Piconso-certified meme hero!</p>
-</li>
-</ol>
-</div>
 <div class="paragraph">
-<p>Before we let you go, wonder how we made the very first image you saw? Try this before you go!</p>
+<p>The tutorial is truncated to account for the page limit.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic" start="25">
-<li>
-<p>Add the base image back in, the base image will take up all the canvas space but don&#8217;t worry.</p>
-</li>
-<li>
-<p>Select the layer which the original image is on and move it out of the way</p>
-<div class="literalblock">
-<div class="content">
-<pre>layer select 5
-layer position -450x0</pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-<div class="olist arabic">
-<ol class="arabic" start="28">
-<li>
-<p>Use <code>canvas auto-resize on</code> to expand the canvas to show both of them.</p>
-</li>
-<li>
-<p>Remove the background color of the canvas with <code>canvas bgcolor none</code> or change it to something you like!</p>
-</li>
-</ol>
+<div class="sect2">
+<h3 id="user-guide-command-documentation"><a class="link" href="#user-guide-command-documentation">User guide command documentation</a></h3>
+<hr>
 </div>
 <div class="sect2">
 <h3 id="canvas-operations-code-canvas-code"><a class="link" href="#canvas-operations-code-canvas-code">Canvas operations : <code>canvas</code></a></h3>
@@ -487,109 +315,6 @@ When <code>on</code>, the canvas expands as required to ensure that no clipping 
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="layer-operations-code-layer-code"><a class="link" href="#layer-operations-code-layer-code">Layer operations : <code>layer</code></a></h3>
-<div class="sect3">
-<h4 id="adding-a-new-layer-code-layer-add-index-layer_name-code"><a class="link" href="#adding-a-new-layer-code-layer-add-index-layer_name-code">Adding a new layer: <code>layer add [INDEX] (LAYER_NAME)</code></a></h4>
-<div class="paragraph">
-<p>You can select the image at the provided index and add it to the current canvas with this command.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>If the optional parameter LAYER_NAME is not provided, one will be automatically generated.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>layer add 4</code> - Adds the image at index 4 to the canvas.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="removing-a-layer-code-layer-remove-index-code"><a class="link" href="#removing-a-layer-code-layer-remove-index-code">Removing a layer: <code>layer remove [INDEX]</code></a></h4>
-<div class="paragraph">
-<p>This command allows you to permanently removes a layer from canvas.</p>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>This operation is not reversible! Be careful when removing layers!</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect3">
-<h4 id="selecting-a-layer-to-work-on-code-layer-select-index-code"><a class="link" href="#selecting-a-layer-to-work-on-code-layer-select-index-code">Selecting a layer to work on: <code>layer select [INDEX]</code></a></h4>
-<div class="paragraph">
-<p>This command allows you to a layer to that all <code>apply</code> and <code>layer position</code> operations will work on.
-The index of a layer is displayed before its name in the Layers panel.</p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>layer select 2</code> : Selects the layer at index 2.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="swapping-the-order-of-two-layers-code-layer-swap-to_index-from_index-code"><a class="link" href="#swapping-the-order-of-two-layers-code-layer-swap-to_index-from_index-code">Swapping the order of two layers: <code>layer swap [TO_INDEX] [FROM_INDEX]</code></a></h4>
-<div class="paragraph">
-<p>You can change the order of any two distinct layers with this command. The lower the index, the further behind it will be.</p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>layer swap 1 2</code> : Changes the order of layer 1 and layer 2.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="positioning-a-layer-code-layer-position-position-code"><a class="link" href="#positioning-a-layer-code-layer-position-position-code">Positioning a layer: <code>layer position [POSITION]</code></a></h4>
-<div class="paragraph">
-<p>This command allows you to set the x and y co-ordinates of the current layer.
-(0,0) is defined to be the top left of the screen.</p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>layer position 50x100</code> : Sets the layer&#8217;s top left corner to be at position (50, 100).</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -605,125 +330,6 @@ The index of a layer is displayed before its name in the Layers panel.</p>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<div class="sect1">
-<h2 id="implementation-canvas-and-layer-features"><a class="link" href="#implementation-canvas-and-layer-features">Implementation: Canvas and Layer features</a></h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="general-overview"><a class="link" href="#general-overview">General overview</a></h3>
-<div class="paragraph">
-<p>The <code>Canvas</code> and <code>Layer</code> classes serve as a layer of encapsulation for handling one or more instances of <code>PreviewImage</code>.
-This is in line with good defensive coding practices and separation of concerns.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="canvas-canvas-command"><a class="link" href="#canvas-canvas-command">Canvas (canvas) command</a></h3>
-<div class="paragraph">
-<p>There are a set of overloaded command types inheriting from <code>CanvasCommand</code>, namely:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>bgcolor</code> - Sets the background colour of the canvas.</p>
-</li>
-<li>
-<p><code>size</code> - Sets the height and the width of the canvas.</p>
-</li>
-<li>
-<p><code>auto-resize</code> - Toggles the auto-resize property of the canvas.</p>
-</li>
-</ul>
-</div>
-<div class="sect3">
-<h4 id="current-implementation"><a class="link" href="#current-implementation">Current implementation</a></h4>
-<div class="paragraph">
-<p>Canvas manages various properties made accessible through the <code>ModelManager</code> class.
-Layer order is preserved as it important for image composition.</p>
-</div>
-<div class="paragraph">
-<p>Canvas implements the following accessors and utility functions:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>getLayers()</code> - Returns an ordered list of layers which is guaranteed to be neither <code>null</code> or empty.</p>
-</li>
-<li>
-<p><code>getLayerNames()</code> - Returns a list of layer names in order.</p>
-</li>
-<li>
-<p><code>addLayer(PreviewImage, String)</code> - Adds a given <code>PreviewImage</code> into the canvas on its own layer.</p>
-</li>
-<li>
-<p><code>getCurrentLayer()</code> - Returns the current instance of the layer that is being operated on.</p>
-</li>
-<li>
-<p><code>getCurrentLayerIndex()</code> - Returns the index of the current instance of the layer that is being operated on.</p>
-</li>
-<li>
-<p><code>setCurrentLayer(Index)</code> - Sets the layer to be operated on.</p>
-</li>
-<li>
-<p><code>removeLayer(Index)</code> - Removes a layer at a given index. The current layer and the last remaining layer in a canvas cannot be removed.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>All of these functions are exposed through the <code>Model</code> interface.
-Implementations in <code>ModelManager</code> usually include a call to the corresponding accessor along with utility functions to manage the state of the UI.</p>
-</div>
-<div class="paragraph">
-<p>Beneath the hood, <code>Canvas</code> manipulation is powered by ImageMagick.
-All of the properties represented in <code>Canvas</code> are transformed into their respective flags or arguments in ImageMagick.
-For example, the <code>isCanvasAuto</code> property is transformed into the flag <code>-flatten</code> if false and <code>-layers merge</code> if true.</p>
-</div>
-<div class="paragraph">
-<p>The <code>processCanvas</code> is a factory method that handles this transformation, returning an instance of a <code>ProcessBuilder</code>.
-The <code>ProcessBuilder</code> is then passed to <code>ImageMagickUtils#runProcessBuilder</code> which executes the process and stores the output in a BufferedImage.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/CanvasSequenceDiagram.png" alt="CanvasSequenceDiagram" width="2000">
-</div>
-<div class="title">Figure 11. Sequence Diagram for Canvas Command</div>
-</div>
-<div class="paragraph">
-<p>The above diagram illustrates the process of parsing and executing <code>canvas</code> commands.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>The user executes any command beginning with <code>canvas</code>.</p>
-</li>
-<li>
-<p>The command is first parsed by <code>PiconsoParser</code> which picks up the <code>canvas</code> keyword and passes any remaining arguments to <code>CanvasCommandParser</code>.</p>
-</li>
-<li>
-<p><code>CanvasCommandParser</code> determines the appropriate sub-command being executed and performs the requested operation on the canvas.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">Design considerations</a></h4>
-<div class="paragraph">
-<p><strong>Manipulation of the <code>ProcessBuilder</code></strong></p>
-</div>
-<div class="paragraph">
-<p><span class="underline">Alternatives</span></p>
-</div>
-<div class="paragraph">
-<p>Storing arguments directly in a <code>List&lt;T&gt;</code> where T is a custom type that implements <code>Comparable&lt;T&gt;</code> to ensure that arguments are in the correct order. A helper function will then map the <code>T</code> to a <code>String</code> and the resultant <code>List&lt;String&gt;</code> will be used to construct the necessary <code>ProcessBuilder</code>.</p>
-</div>
-<div class="paragraph">
-<p><span class="underline">Evaluation</span></p>
-</div>
-<div class="paragraph">
-<p>While insertion of new layers and properties will be extremely easy, modifying or removal of existing properties will involve searching through the entire list. As a result, this method is extremely hard to grok and performs poorly upon update or deletion of existing properties.</p>
-</div>
-</div>
-</div>
 <div class="sect2">
 <h3 id="layer-layer-commands"><a class="link" href="#layer-layer-commands">Layer (layer) commands</a></h3>
 <div class="paragraph">
@@ -747,7 +353,7 @@ The following sub-commands inherit from <code>LayerCommand</code>:</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current implementation</a></h4>
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current implementation</a></h4>
 <div class="paragraph">
 <p><code>Layer</code> implements a few key accessors and utility functions. Some of them include:</p>
 </div>
@@ -775,7 +381,7 @@ The following sub-commands inherit from <code>LayerCommand</code>:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/coords.png" alt="coords" width="2000">
+<img src="../images/coords.png" alt="coords" width="300">
 </div>
 </div>
 <div class="paragraph">
@@ -786,7 +392,7 @@ It is possible to have negative co-ordinates although clipping will occur unless
 <div class="content">
 <img src="../images/LayerSequenceDiagram.png" alt="LayerSequenceDiagram" width="2000">
 </div>
-<div class="title">Figure 12. Sequence Diagram for Layer Command</div>
+<div class="title">Figure 3. Sequence Diagram for Layer Command</div>
 </div>
 <div class="paragraph">
 <p>The above diagram illustrates the process of parsing and executing of <code>canvas</code> commands.</p>
@@ -806,7 +412,7 @@ It is possible to have negative co-ordinates although clipping will occur unless
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Further manipulation of the <code>ProcessBuilder</code></strong></p>
 </div>
@@ -885,8 +491,8 @@ Remember that resizing and scaling is accomplished with the <code>apply resize</
 <div class="content">
 <img src="../images/CanvasLayersDemo.png" alt="CanvasLayersDemo" width="2000">
 </div>
-<div class="title">Figure 13. Results of various commands. The black bounding rectangle indicates the canvas size.</div>
+<div class="title">Figure 4. Results of various commands in sequence. The black bounding rectangle indicates the canvas size.</div>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 14:39:55 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 15:04:15 UTC</div></div></div></body></html>
