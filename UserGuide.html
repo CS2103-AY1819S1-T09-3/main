@@ -16,18 +16,18 @@
 <ul class="sectlevel2">
 <li><a href="#command-format">4.1. Command Format</a></li>
 <li><a href="#viewing-help-code-help-code">4.2. Viewing help : <code>help</code></a></li>
-<li><a href="#selecting-images-for-editing-code-select-code">4.3. Selecting images for editing: <code>select</code></a></li>
-<li><a href="#retrieving-the-next-batch-of-images-code-next-code">4.4. Retrieving the next batch of images: <code>next</code></a></li>
-<li><a href="#retrieving-the-previous-batch-of-images-code-prev-code">4.5. Retrieving the previous batch of images: <code>prev</code></a></li>
-<li><a href="#applying-a-transformation-to-an-image-code-apply-code">4.6. Applying a transformation to an image : <code>apply</code></a></li>
-<li><a href="#customizing-transformation-for-imageprocessing-code-create-code">4.7. Customizing transformation for imageProcessing : <code>create</code></a></li>
-<li><a href="#saving-images-code-save-code">4.8. Saving images : <code>save</code></a></li>
-<li><a href="#undoing-a-transformation-code-undo-code">4.9. Undoing a transformation : <code>undo</code></a></li>
-<li><a href="#undoing-all-transformations-code-undo-all-code">4.10. Undoing all transformations : <code>undo-all</code></a></li>
-<li><a href="#redoing-a-transformation-code-redo-code">4.11. Redoing a transformation : <code>redo</code></a></li>
-<li><a href="#redoing-all-transformations-code-redo-all-code">4.12. Redoing all transformations : <code>redo-all</code></a></li>
-<li><a href="#listing-files-in-directory-code-ls-code">4.13. Listing files in directory : <code>ls</code></a></li>
-<li><a href="#changing-directories-code-cd-code">4.14. Changing directories : <code>cd</code></a></li>
+<li><a href="#listing-files-in-directory-code-ls-code">4.3. Listing files in directory : <code>ls</code></a></li>
+<li><a href="#changing-directories-code-cd-code">4.4. Changing directories : <code>cd</code></a></li>
+<li><a href="#opening-images-for-editing-code-open-code">4.5. Opening images for editing: <code>open</code></a></li>
+<li><a href="#retrieving-the-next-batch-of-images-code-next-code">4.6. Retrieving the next batch of images: <code>next</code></a></li>
+<li><a href="#retrieving-the-previous-batch-of-images-code-prev-code">4.7. Retrieving the previous batch of images: <code>prev</code></a></li>
+<li><a href="#applying-a-transformation-to-an-image-code-apply-code">4.8. Applying a transformation to an image : <code>apply</code></a></li>
+<li><a href="#customizing-transformation-for-imageprocessing-code-create-code">4.9. Customizing transformation for imageProcessing : <code>create</code></a></li>
+<li><a href="#saving-images-code-save-code">4.10. Saving images : <code>save</code></a></li>
+<li><a href="#undoing-a-transformation-code-undo-code">4.11. Undoing a transformation : <code>undo</code></a></li>
+<li><a href="#undoing-all-transformations-code-undo-all-code">4.12. Undoing all transformations : <code>undo-all</code></a></li>
+<li><a href="#redoing-a-transformation-code-redo-code">4.13. Redoing a transformation : <code>redo</code></a></li>
+<li><a href="#redoing-all-transformations-code-redo-all-code">4.14. Redoing all transformations : <code>redo-all</code></a></li>
 <li><a href="#canvas-operations-code-canvas-code">4.15. Canvas operations : <code>canvas</code></a></li>
 <li><a href="#layer-operations-code-layer-code">4.16. Layer operations : <code>layer</code></a></li>
 <li><a href="#logging-in-to-google-photos-code-login-code">4.17. Logging in to Google Photos: <code>login</code></a></li>
@@ -126,12 +126,48 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="selecting-images-for-editing-code-select-code"><a class="link" href="#selecting-images-for-editing-code-select-code">4.3. Selecting images for editing: <code>select</code></a></h3>
+<h3 id="listing-files-in-directory-code-ls-code"><a class="link" href="#listing-files-in-directory-code-ls-code">4.3. Listing files in directory : <code>ls</code></a></h3>
 <div class="paragraph">
-<p>Format: <code>select [INDEX 1-10]</code>: selects an image for image-editing</p>
+<p>Format: <code>ls</code>: lists files in the current directory</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="changing-directories-code-cd-code"><a class="link" href="#changing-directories-code-cd-code">4.4. Changing directories : <code>cd</code></a></h3>
+<div class="paragraph">
+<p>Format: <code>cd [DIRECTORY_NAME]</code>: changes directory</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>For changing of drives in Windows, add '//' after the drive name. In addition, pressing <code>Tab</code> key will autocomplete the directory name.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>Format: <code>select -all</code>: adds all images in current directory from working set [Coming in v2.0]</p>
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>cd C://Users</code> - Changes the directory to Users in C:/ drive.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="opening-images-for-editing-code-open-code"><a class="link" href="#opening-images-for-editing-code-open-code">4.5. Opening images for editing: <code>open</code></a></h3>
+<div class="paragraph">
+<p>Format: <code>open [INDEX 1-10]</code>: opens an image for image-editing</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>open -all</code>: adds all images in current directory from working set [Coming in v2.0]</p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -139,28 +175,28 @@
 <div class="ulist">
 <ul>
 <li>
-<p><code>select 1</code><br></p>
+<p><code>open 1</code><br></p>
 </li>
 <li>
-<p><code>select -all</code> [Coming in v2.0]</p>
+<p><code>open -all</code> [Coming in v2.0]</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="retrieving-the-next-batch-of-images-code-next-code"><a class="link" href="#retrieving-the-next-batch-of-images-code-next-code">4.4. Retrieving the next batch of images: <code>next</code></a></h3>
+<h3 id="retrieving-the-next-batch-of-images-code-next-code"><a class="link" href="#retrieving-the-next-batch-of-images-code-next-code">4.6. Retrieving the next batch of images: <code>next</code></a></h3>
 <div class="paragraph">
 <p>Format: <code>next</code>: Retrieves the next 10 images for editing</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="retrieving-the-previous-batch-of-images-code-prev-code"><a class="link" href="#retrieving-the-previous-batch-of-images-code-prev-code">4.5. Retrieving the previous batch of images: <code>prev</code></a></h3>
+<h3 id="retrieving-the-previous-batch-of-images-code-prev-code"><a class="link" href="#retrieving-the-previous-batch-of-images-code-prev-code">4.7. Retrieving the previous batch of images: <code>prev</code></a></h3>
 <div class="paragraph">
 <p>Format: <code>prev</code>: Retrieves the previous 10 images for editing</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="applying-a-transformation-to-an-image-code-apply-code"><a class="link" href="#applying-a-transformation-to-an-image-code-apply-code">4.6. Applying a transformation to an image : <code>apply</code></a></h3>
+<h3 id="applying-a-transformation-to-an-image-code-apply-code"><a class="link" href="#applying-a-transformation-to-an-image-code-apply-code">4.8. Applying a transformation to an image : <code>apply</code></a></h3>
 <div class="paragraph">
 <p>You can use the apply command with the given format</p>
 </div>
@@ -332,7 +368,7 @@ on the canvas
 <div class="ulist">
 <ul>
 <li>
-<p>Format: <code>convert rotate [vlaue]</code></p>
+<p>Format: <code>convert rotate [value]</code></p>
 </li>
 <li>
 <p>Limit: the value should between -999 to 999</p>
@@ -394,7 +430,7 @@ this format is for whom knows how to use ImageMagick, the effect for the argumen
 </div>
 </div>
 <div class="sect2">
-<h3 id="customizing-transformation-for-imageprocessing-code-create-code"><a class="link" href="#customizing-transformation-for-imageprocessing-code-create-code">4.7. Customizing transformation for imageProcessing : <code>create</code></a></h3>
+<h3 id="customizing-transformation-for-imageprocessing-code-create-code"><a class="link" href="#customizing-transformation-for-imageprocessing-code-create-code">4.9. Customizing transformation for imageProcessing : <code>create</code></a></h3>
 <div class="paragraph">
 <p>Format: <code>create [Name_Of_operation] [op1|arg1|arg2|&#8230;&#8203;] [op2|arg1|arg2|&#8230;&#8203;]</code>: create a customized transformation basing on the default transformations specified</p>
 </div>
@@ -424,7 +460,7 @@ for the command created, you should add a @ before the command when running the 
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-images-code-save-code"><a class="link" href="#saving-images-code-save-code">4.8. Saving images : <code>save</code></a></h3>
+<h3 id="saving-images-code-save-code"><a class="link" href="#saving-images-code-save-code">4.10. Saving images : <code>save</code></a></h3>
 <div class="paragraph">
 <p>Format: <code>save [IMAGE_NAME]</code>: saves the transformed image, supporting jpg, jpeg, png, tiff, gif</p>
 </div>
@@ -457,7 +493,7 @@ for the command created, you should add a @ before the command when running the 
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-a-transformation-code-undo-code"><a class="link" href="#undoing-a-transformation-code-undo-code">4.9. Undoing a transformation : <code>undo</code></a></h3>
+<h3 id="undoing-a-transformation-code-undo-code"><a class="link" href="#undoing-a-transformation-code-undo-code">4.11. Undoing a transformation : <code>undo</code></a></h3>
 <div class="paragraph">
 <p>Format: <code>undo</code>: Step back to the previous image state (in current layer)</p>
 </div>
@@ -489,7 +525,7 @@ for the command created, you should add a @ before the command when running the 
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-all-transformations-code-undo-all-code"><a class="link" href="#undoing-all-transformations-code-undo-all-code">4.10. Undoing all transformations : <code>undo-all</code></a></h3>
+<h3 id="undoing-all-transformations-code-undo-all-code"><a class="link" href="#undoing-all-transformations-code-undo-all-code">4.12. Undoing all transformations : <code>undo-all</code></a></h3>
 <div class="paragraph">
 <p>Format: <code>undo-all</code>: Undoes all transformations (reverts image to original state)</p>
 </div>
@@ -508,7 +544,7 @@ for the command created, you should add a @ before the command when running the 
 </div>
 </div>
 <div class="sect2">
-<h3 id="redoing-a-transformation-code-redo-code"><a class="link" href="#redoing-a-transformation-code-redo-code">4.11. Redoing a transformation : <code>redo</code></a></h3>
+<h3 id="redoing-a-transformation-code-redo-code"><a class="link" href="#redoing-a-transformation-code-redo-code">4.13. Redoing a transformation : <code>redo</code></a></h3>
 <div class="paragraph">
 <p>Format: <code>redo</code>: Step forward to the previously undone transformation</p>
 </div>
@@ -527,7 +563,7 @@ for the command created, you should add a @ before the command when running the 
 </div>
 </div>
 <div class="sect2">
-<h3 id="redoing-all-transformations-code-redo-all-code"><a class="link" href="#redoing-all-transformations-code-redo-all-code">4.12. Redoing all transformations : <code>redo-all</code></a></h3>
+<h3 id="redoing-all-transformations-code-redo-all-code"><a class="link" href="#redoing-all-transformations-code-redo-all-code">4.14. Redoing all transformations : <code>redo-all</code></a></h3>
 <div class="paragraph">
 <p>Format: <code>redo-all</code>: Redoes all undone transformations</p>
 </div>
@@ -542,42 +578,6 @@ for the command created, you should add a @ before the command when running the 
 <code>convert rotate 90</code><br>
 <code>undo-all</code> (undoes all 3 <code>convert</code> commands, image will be at original state)<br>
 <code>redo-all</code> (reapplies all 3 <code>convert</code> commands)<br></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="listing-files-in-directory-code-ls-code"><a class="link" href="#listing-files-in-directory-code-ls-code">4.13. Listing files in directory : <code>ls</code></a></h3>
-<div class="paragraph">
-<p>Format: <code>ls</code>: lists files in the current directory</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="changing-directories-code-cd-code"><a class="link" href="#changing-directories-code-cd-code">4.14. Changing directories : <code>cd</code></a></h3>
-<div class="paragraph">
-<p>Format: <code>cd [DIRECTORY_NAME]</code>: changes directory</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>For changing of drives in Windows, add '//' after the drive name.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>cd C://Users</code> - Changes the directory to Users in C:/ drive.</p>
 </li>
 </ul>
 </div>
@@ -952,8 +952,8 @@ Format: <code>g ul all</code>: uploads all images in current directory to Google
 <p><strong>Help</strong> : <code>help</code><br></p>
 </li>
 <li>
-<p><strong>Select</strong> : <code>select [INDEX]</code><br>
-e.g. <code>select 1</code><br></p>
+<p><strong>open</strong> : <code>open [INDEX 1-10]</code><br>
+e.g. <code>open 1</code><br></p>
 </li>
 <li>
 <p><strong>Next</strong> : <code>next</code><br></p>
@@ -962,8 +962,8 @@ e.g. <code>select 1</code><br></p>
 <p><strong>Previous</strong> : <code>prev</code><br></p>
 </li>
 <li>
-<p><strong>Convert</strong> <code>convert [TRANSFORMATION]</code><br>
-e.g. <code>add -rotate left 180</code><br></p>
+<p><strong>Apply</strong> <code>apply [TRANSFORMATION]</code><br>
+e.g. <code>apply rotate 180</code><br></p>
 </li>
 <li>
 <p><strong>Save</strong> : <code>save [IMAGE_NAME]/[SET_NAME]</code><br>
@@ -1008,4 +1008,4 @@ e.g. <code>save exampleImage.jpg</code><br></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 21:33:05 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 07:25:45 UTC</div></div></div></body></html>

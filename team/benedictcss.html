@@ -177,40 +177,6 @@
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="selecting-images-for-editing-code-select-code"><a class="link" href="#selecting-images-for-editing-code-select-code">Selecting images for editing: <code>select</code></a></h3>
-<div class="paragraph">
-<p>Format: <code>select [INDEX 1-10]</code>: selects an image for image-editing</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>select -all</code>: adds all images in current directory from working set [Coming in v2.0]</p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>select 1</code><br></p>
-</li>
-<li>
-<p><code>select -all</code> [Coming in v2.0]</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="retrieving-the-next-batch-of-images-code-next-code"><a class="link" href="#retrieving-the-next-batch-of-images-code-next-code">Retrieving the next batch of images: <code>next</code></a></h3>
-<div class="paragraph">
-<p>Format: <code>next</code>: Retrieves the next 10 images for editing</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="retrieving-the-previous-batch-of-images-code-prev-code"><a class="link" href="#retrieving-the-previous-batch-of-images-code-prev-code">Retrieving the previous batch of images: <code>prev</code></a></h3>
-<div class="paragraph">
-<p>Format: <code>prev</code>: Retrieves the previous 10 images for editing</p>
-</div>
-</div>
-<div class="sect2">
 <h3 id="changing-directories-code-cd-code"><a class="link" href="#changing-directories-code-cd-code">Changing directories : <code>cd</code></a></h3>
 <div class="paragraph">
 <p>Format: <code>cd [DIRECTORY_NAME]</code>: changes directory</p>
@@ -223,7 +189,7 @@
 </td>
 <td class="content">
 <div class="paragraph">
-<p>For changing of drives in Windows, add '//' after the drive name.</p>
+<p>For changing of drives in Windows, add '//' after the drive name. In addition, pressing <code>Tab</code> key will autocomplete the directory name.</p>
 </div>
 </td>
 </tr>
@@ -238,6 +204,40 @@
 <p><code>cd C://Users</code> - Changes the directory to Users in C:/ drive.</p>
 </li>
 </ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="opening-images-for-editing-code-open-code"><a class="link" href="#opening-images-for-editing-code-open-code">Opening images for editing: <code>open</code></a></h3>
+<div class="paragraph">
+<p>Format: <code>open [INDEX 1-10]</code>: opens an image for image-editing</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>open -all</code>: adds all images in current directory from working set [Coming in v2.0]</p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>open 1</code><br></p>
+</li>
+<li>
+<p><code>open -all</code> [Coming in v2.0]</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="retrieving-the-next-batch-of-images-code-next-code"><a class="link" href="#retrieving-the-next-batch-of-images-code-next-code">Retrieving the next batch of images: <code>next</code></a></h3>
+<div class="paragraph">
+<p>Format: <code>next</code>: Retrieves the next 10 images for editing</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="retrieving-the-previous-batch-of-images-code-prev-code"><a class="link" href="#retrieving-the-previous-batch-of-images-code-prev-code">Retrieving the previous batch of images: <code>prev</code></a></h3>
+<div class="paragraph">
+<p>Format: <code>prev</code>: Retrieves the previous 10 images for editing</p>
 </div>
 </div>
 </div>
@@ -289,6 +289,18 @@ which are stored internally as <code>imageList</code>. This would facilitate the
 <div class="paragraph">
 <p>Additionally, to ease user&#8217;s experience, similar to the actual usage of the cd command, this feature also uses the <code>tab</code>
 function to auto-complete the directory name if it exists.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Pressing tab again will display the next directory with the given prefix.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the cd mechanism behaves at each step.</p>
@@ -368,15 +380,16 @@ If the <code>newCurrDirectory</code> is not a directory, i.e. <code>isDirectory(
 </div>
 </div>
 <div class="sect2">
-<h3 id="select-feature"><a class="link" href="#select-feature">Select feature</a></h3>
+<h3 id="open-feature"><a class="link" href="#open-feature">Open feature</a></h3>
 <div class="paragraph">
-<p><code>SelectCommand</code> allow users to select from the currently viewed batch of 10 images within the directory for image-editing.
-This command is further facilitated by the <code>NextCommand</code>.</p>
+<p>The Open Command allow users to open the images in a batch of 10 images within the directory for image-editing.
+This command is further facilitated by the Next/Prev Command.</p>
 </div>
 <div class="sect3">
 <h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current Implementation</a></h4>
 <div class="paragraph">
-<p>The implementation of the Select feature is largely similar to <code>CdCommand</code>. It is facilitated by the following operations in <code>ModelManager</code>:</p>
+<p>The implementation of the Open feature is largely similar to the <code>Cd Command</code>. It is facilitated by the <code>ModelManager</code>
+and contains the following operations:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -405,7 +418,7 @@ batch. The <code>UserPrefs</code> class implements the following operation:</p>
 Additionally, the operation also creates a canvas and a layer to facilitate the <code>transmission</code> feature. (refer to 3.5)</p>
 </div>
 <div class="paragraph">
-<p>Given below is an example usage scenario of how the select and next mechanism behaves at each step.</p>
+<p>Given below is an example usage scenario and how the open mechanism behaves at each step.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -427,7 +440,7 @@ the <code>imageList</code> with all the images within Desktop.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>The user executes <code>select 1</code> command to select the first image in the first batch of 10 images. The select
+<p>The user executes <code>open 1</code> command to open the first image in the first batch of 10 images. The open
 command calls <code>Model#getDirectoryImageList()</code> to retrieve the first batch of images within Desktop. The first image is
 then retrieved and displayed on the GUI.</p>
 </li>
@@ -435,30 +448,30 @@ then retrieved and displayed on the GUI.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/SelectCommand2.png" alt="SelectCommand2" width="500">
+<img src="../images/OpenCommand2.png" alt="OpenCommand2" width="500">
 </div>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>The user then executes <code>select 5</code> command to select the fifth image in the batch of 10 images. The fifth image
+<p>The user then executes <code>open 5</code> command to select the fifth image in the batch of 10 images. The fifth image
 is then retrieved similarly and displayed on the GUI.</p>
 </li>
 </ol>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/SelectCommand3.png" alt="SelectCommand3" width="450">
+<img src="../images/OpenCommand3.png" alt="OpenCommand3" width="450">
 </div>
 </div>
 <div class="paragraph">
-<p>The following sequence diagram shows how the select command works:</p>
+<p>The following sequence diagram shows how the open command works:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/SelectSequenceDiagram.png" alt="SelectSequenceDiagram" width="800">
+<img src="../images/OpenSequenceDiagram.png" alt="OpenSequenceDiagram" width="800">
 </div>
-<div class="title">Figure 2. Sequence Diagram for SelectCommand</div>
+<div class="title">Figure 2. Sequence Diagram for OpenCommand</div>
 </div>
 </div>
 <div class="sect3">
@@ -468,7 +481,7 @@ is then retrieved similarly and displayed on the GUI.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice)</strong>: Select images within the BATCH_SIZE.</p>
+<p><strong>Alternative 1 (current choice)</strong>: Open images within the BATCH_SIZE.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -624,4 +637,4 @@ the <code>imageList</code> with all the images within Desktop.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 21:33:05 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 07:25:45 UTC</div></div></div></body></html>
