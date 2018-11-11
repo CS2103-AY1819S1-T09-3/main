@@ -1,21 +1,19 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>ZHANG TIANYANG - Project Portfolio</title><link rel="stylesheet" href="./gh-pages.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="./coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="../images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link active" href="../index.html">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">Piconso</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://cs2103-ay1819s1-t09-3.github.io/main/index.html"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>ZHANG TIANYANG - Project Portfolio</h1></div><div id="content"><div id="preamble">
+<link rel="stylesheet" href="./coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="../images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link active" href="../index.html">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">Piconso</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://cs2103-ay1819s1-t09-3.github.io/main/index.html"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>ZHANG TIANYANG - Project Portfolio</h1></div><div id="content"><div class="sect1">
+<h2 id="project-piconso"><a class="link" href="#project-piconso">Project: Piconso</a></h2>
 <div class="sectionbody">
-<hr>
-</div>
-</div>
-<div class="sect1">
-<h2 id="project-piconso"><a class="link" href="#project-piconso">PROJECT: Piconso</a></h2>
-<div class="sectionbody">
-<hr>
+
 </div>
 </div>
 <div class="sect1">
 <h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Piconso - The Piconso is a command line image processing tool, supported by ImageMagick, and is built to handle all the image processing in a light and efficient way.</p>
+<p>Piconso - The Piconso is a command line image processing tool, supported by ImageMagick, and is built to handle all the image processing in a light weight and efficient way. Users are able to use command line to perform operations, and visualize the result in GUI which is powered by JavaFx.</p>
+</div>
+<div class="paragraph">
+<p>Unlink other image processing tools, without a long term learning process, piconso aims to privides simple, strarightforward, and user-friendly features. Moreover, piconso can be mouse free, which woould be more confortable for designers and developers.</p>
 </div>
 </div>
 </div>
@@ -25,26 +23,76 @@
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Major morphing</strong>: added <strong>the ability to apply the transformation to image, customised transformation</strong></p>
+<p><strong>Major morphing</strong>:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: use convert command to apply the transformation, use the create command to create a new transformation.</p>
+<p><strong>Enable the use of Imagemagick</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: It determine the current operating system, prepare the zipped pacakge of ImageMagick, unzipp and prepare the ImageMagick package.</p>
 </li>
 <li>
-<p>Justification: This feature improves the product significantly because a user can apply the transformation he wants, customise and combine multiple transformations to save time.</p>
-</li>
-<li>
-<p>Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation was challenging as it required changes to existing commands, touching the external package and excutbale files.</p>
-</li>
-<li>
-<p>Credits: <em>{the processing is done by ImageMagic by calling the executable file in the processbuilder}</em></p>
+<p>Justification:This is important as Imagemagick is the core part behind the app, allowing the editing of the images.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Minor enhancement</strong>: added a save command that allows the user to save the transformation wanted.</p>
+<p><strong>The ability to apply the transformation to image</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: It parses the arguments specified by user, validate the transforamtion and apply the transformation to images.</p>
+</li>
+<li>
+<p>Justification: This feature improves the product significantly, because apply the transformations to the image is the main feature and purpose of piconso.</p>
+</li>
+<li>
+<p>Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation was challenging as it required changes to existing commands, preparing packages, and touching the external package and excutbale files.</p>
+</li>
+<li>
+<p>Credits: <em>{The processing of images is done by ImageMagic by calling the executable file in the processbuilder}</em>+</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>The ability to customise transformation basing on the transformations currectly</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: This feature allows user to design and apply their own transformation.</p>
+</li>
+<li>
+<p>Justification: This feature improves the product significantly as well, because when doing image editing, multiple transformations are used all the time. With this feature, the image editing will be much more efficient.</p>
+</li>
+<li>
+<p>Highlights: This enhancement also affects existing commands and commands to be added in future. The implementation was challenging as it need handle file creating, writing and accessing.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Add a save command that allows the user to save the transformation wanted.</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: It allows users to save the changes to the current image to the disk.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103-AY1819S1-T09-3/main/commits?author=lancelotwillow">All commits</a>] [<a href="https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&amp;search=lancelotwillow">Project Code Dashboard</a>]</p>
@@ -58,7 +106,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Managed releases jar file v1.3, v1.3.1(3 releases) on GitHub</p>
+<p>Managed releases jar file v1.3, v1.3.1 on GitHub</p>
+</li>
+<li>
+<p>Participating merging PRs, creating, handling issues.</p>
 </li>
 </ul>
 </div>
@@ -68,8 +119,12 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Add info to the User Guide and Developer Guide about the conver, create, save commands.
+<p>Add info to the User Guide and Developer Guide about the apply, create, save commands.
 <a href="https://github.com/CS2103-AY1819S1-T09-3/main/pull/125">#125</a></p>
+</li>
+<li>
+<p>Uploading User Guide for transforamtion and save features.
+<a href="https://github.com/CS2103-AY1819S1-T09-3/main/pull/177">#177</a></p>
 </li>
 </ul>
 </div>
@@ -79,13 +134,13 @@
 <div class="ulist">
 <ul>
 <li>
-<p>PRs reviewed (with non-trivial review comments): <a href="https://github.com">#131</a>, <a href="https://github.com">#124</a></p>
+<p>PRs reviewed (with non-trivial review comments): <a href="https://github.com/CS2103-AY1819S1-T09-3/main/pull/195">#195</a>, <a href="https://github.com/CS2103-AY1819S1-T09-3/main/pull/128">#128</a></p>
 </li>
 <li>
-<p>Contributed to forum discussions (examples:  <a href="https://github.com">131</a></p>
+<p>Contributed to forum discussions (examples:  <a href="https://github.com/nus-cs2103-AY1819S1/forum/issues/131">#131</a>, <a href="https://github.com/nus-cs2103-AY1819S1/forum/issues/167">#167</a>)</p>
 </li>
 <li>
-<p>Some parts of the history feature I added was adopted by several other class mates</p>
+<p>Create demo usage of the command, for testing of other team mates.(Example command, has been removed now)</p>
 </li>
 </ul>
 </div>
@@ -110,6 +165,16 @@
 <div class="sect1">
 <h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
 <div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
+</tr>
+</tbody>
+</table>
 <div class="sect2">
 <h3 id="applying-a-transformation-to-an-image-code-apply-code"><a class="link" href="#applying-a-transformation-to-an-image-code-apply-code">Applying a transformation to an image : <code>apply</code></a></h3>
 <div class="paragraph">
@@ -344,89 +409,84 @@ on the canvas
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="saving-images-code-save-code"><a class="link" href="#saving-images-code-save-code">Saving images : <code>save</code></a></h3>
-<div class="paragraph">
-<p>Format: <code>save [IMAGE_NAME]</code>: saves the transformed image, supporting jpg, jpeg, png, tiff, gif</p>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>save modified.png</code></p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>The image will be saved in the same directory as the original image. With no image name specified, it will save to the currently opened image.</p>
-</div>
-<div class="paragraph">
-<p>the format can also be all up cases.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="customizing-transformation-for-imageprocessing-code-create-code"><a class="link" href="#customizing-transformation-for-imageprocessing-code-create-code">Customizing transformation for imageProcessing : <code>create</code></a></h3>
-<div class="paragraph">
-<p>Format: <code>create [Name_Of_operation] [op1|arg1|arg2|&#8230;&#8203;] [op2|arg1|arg2|&#8230;&#8203;]</code>: create a customized transformation basing on the default transformations specified</p>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>create blurAndRotate blur|0x8 rotate|90</code>
-To use the newly created command, add an <code>@</code> before the command used:
-<code>apply @blurAndRotate</code></p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-for the command created, you should add a @ before the command when running the customised command, ie convert @blurR
-</td>
-</tr>
-</table>
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
 <div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
+</tr>
+</tbody>
+</table>
 <div class="sect2">
-<h3 id="given-below-are-sections-i-contributed-to-the-developer-guide-they-showcase-my-ability-to-write-technical-documentation-and-the-technical-depth-of-my-contributions-to-the-project-_"><a class="link" href="#given-below-are-sections-i-contributed-to-the-developer-guide-they-showcase-my-ability-to-write-technical-documentation-and-the-technical-depth-of-my-contributions-to-the-project-_">Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._</a></h3>
+<h3 id="transmission-feature"><a class="link" href="#transmission-feature">Transmission feature</a></h3>
 <div class="sect3">
-<h4 id="createapplycommand"><a class="link" href="#createapplycommand">CreateApplyCommand:</a></h4>
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
 <div class="paragraph">
-<p>This command allows users to create a customised command (custom set of transformations) and store in the disk, All transformation sets will first be checked by <code>checkValidation()</code>.</p>
+<p>The transmission mechanism is facilitated by <a href="https://www.imagemagick.org/script/index.php"><code>ImageMagick</code></a>, an external API Library that helps process the target image by the specified commands given.
+The transmission feature mainly consists of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ImageMagicUtil</code>: A class which will check, create, and run the imageMagick executable file</p>
+</li>
+<li>
+<p><code>applyCommand</code>: Applies the specified transformation to the image</p>
+</li>
+<li>
+<p><code>createApplyCommand</code>: Allows users to define their own custom transformation set.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following describes main operations and processes contained in the classes above.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="imagemagicutil"><a class="link" href="#imagemagicutil">ImageMagicUtil:</a></h4>
+<div class="paragraph">
+<p>This class is used to provide the methods touching the ImageMagic package, here are some methods related to applying transformation</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>copyOutside()</code>&#8201;&#8212;&#8201;copy the ImageMagick zipped package outside and unzip basing on the current OS</p>
+</li>
+<li>
+<p><code>parseArguments()</code>&#8201;&#8212;&#8201;parse the argument from the operation.</p>
+</li>
+<li>
+<p><code>processImage()</code>&#8201;&#8212;&#8201;process the specified transformation to the image.</p>
+</li>
+<li>
+<p><code>runProcessBuilder()</code>&#8201;&#8212;&#8201;run the process builder with the arguments given</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="applycommand"><a class="link" href="#applycommand">ApplyCommand:</a></h4>
+<div class="paragraph">
+<p>this command is exposed to the model as <code>Model#addTransformation()</code>, which is used to update the transformationSet of the currentPreviewImage.</p>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the transmission should behave at each step.</p>
 </div>
 <div class="paragraph">
-<p>Step 1. The user sequentially enters the transformations he wants to store, in the form of <code>create blurgray blur|0x8 colorspace|GRAY</code>.</p>
+<p>Step 1. Upon first running the app, the corresponding zip package of ImageMagick will be copied out of the jar and unzipped. A temp folder is also created.</p>
 </div>
 <div class="paragraph">
-<p>Step 2. The specified transformations are parsed and checked by the templates stored in the app.</p>
+<p>Step 2. The user opens an image with the <code>open</code> command. the method <code>model.getPreviewImage()</code> will be called to get the bufferedImage of the current preview scene.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. The user enters the command <code>apply blur 0x8</code>. The entered command is parsed and the corresponding transformation is created.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -435,53 +495,53 @@ for the command created, you should add a @ before the command when running the 
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If any of the specified transformations have an invalid name or argument, an error will be thrown. If validation checks have passed, the specified transformations are stored as a new command in the a json file within the PiconsoCommands folder created upon first running the app.
+If the input is invalid for the command enter, the processing of the image will not be started, and a reminder of how to use the command will be given to the user.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Step 3. The validated new command will be stored in the json for in the PiconsoCommands folder create when first time run the app.</p>
+<p>Step 4. An process builder will be built inside the method <code>processImage</code> which will take the image stored,
+        the processing info stored in the transmission set, use the ImageMagic executable file to do the processing,
+        then store the modified image in the temp folder created.</p>
 </div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="save-feature"><a class="link" href="#save-feature">Save feature</a></h3>
-<div class="sect3">
-<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
-<div class="paragraph">
-<p>The save command saves the current preview image to the same location it was opened in the local drive,
-User enters the name of the image and the format of the name will be validated.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>isFormatValid()</code> is to validate the format of the filename user enters</p>
-</li>
-</ul>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+if the arguments passed is invalid, a reminder about the limit of the passed command will be given
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>Given is an example of how to use the command</p>
+<p>Step 5. the transformation will be added to the transformation set store in the preview image in the model.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+An error is prompted if the transformation set gotten from the model is invalid.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>Step 1. parse the image name user enters, get the name and the format of the filename.</p>
-</div>
-<div class="paragraph">
-<p>Step 2. check the format of the image, if the format is not supported, error will be thrown</p>
+<p>Step 6. The output bufferedImage will be generated by the modified file stored in the temp folder, and the stored file will be removed.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/SaveCommand.png" alt="SaveCommand" width="800">
+<img src="../images/ApplyCommandSequenceDiagram.png" alt="ApplyCommandSequenceDiagram" width="800">
 </div>
-<div class="title">Figure 1. Sequence Diagram for Save Command</div>
-</div>
-</div>
+<div class="title">Figure 1. Sequence Diagram for Apply Command</div>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="project-powerpointlabs"><a class="link" href="#project-powerpointlabs">PROJECT: PowerPointLabs</a></h2>
-<div class="sectionbody">
-
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 16:08:48 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 19:39:45 UTC</div></div></div></body></html>
