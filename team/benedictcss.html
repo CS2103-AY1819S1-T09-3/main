@@ -10,18 +10,43 @@
 <h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This portfolio seeks to document my contributions to our team’s project, Piconso. Piconso is an CLI (Command Line Interface) Image Editor designed and developed for quick and efficient image-editing on your Desktop. With Piconso, all traditional image-editing features can be performed solely through text commands, removing the hassle of working with a mouse. Below is a list of main features of the application:</p>
+<p>This portfolio seeks to document my contributions to our team’s project, Piconso. Piconso is an CLI
+(Command Line Interface) Image Editor designed and developed for quick and efficient image-editing on your Desktop. With
+Piconso, all traditional image-editing features can be performed solely through text commands, removing the hassle of
+working with a mouse. Our project team consists of:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Several traditional image-editing features such as crop, blur etc.</p>
+<p>Jeffry Lum&#8201;&#8212;&#8201;Project Advisor.</p>
+</li>
+<li>
+<p>Ivan Ho&#8201;&#8212;&#8201;Team Lead. Responsible for UI component.</p>
+</li>
+<li>
+<p>Benedict Chua&#8201;&#8212;&#8201;Developer. Responsible for Data management.</p>
+</li>
+<li>
+<p>Ong Kai Le&#8201;&#8212;&#8201;Developer. Responsible for Development Operations and Threading.</p>
+</li>
+<li>
+<p>Zhang Tianyang&#8201;&#8212;&#8201;Developer. Responsible for UI component as well.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Below is a list of main features of our application:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Several traditional image-editing features such as rotate, blur etc.</p>
 </li>
 <li>
 <p>Capability to define own custom transformation set.</p>
 </li>
 <li>
-<p>Mass editing several images at once</p>
+<p>Ability to access all your images in your local drive.</p>
 </li>
 <li>
 <p>Direct access to images on Google Photos (download and upload).</p>
@@ -43,7 +68,7 @@
 <p>What it does: allows the user to traverse between folders in their home system.</p>
 </li>
 <li>
-<p>Justification: This feature improves the product significantly because it allows user to access images stored in different folders in the home system.</p>
+<p>Justification: This feature improves the product significantly because it allows user to access images stored in different folders in their drive.</p>
 </li>
 <li>
 <p>Highlights: This enhancement affects the model of the product as it now stores the current directory. The implementation was quite challenging as it required changes to the UserPrefs.</p>
@@ -75,7 +100,7 @@
 <p>What it does: allows the user to move through the list of images in the current directory.</p>
 </li>
 <li>
-<p>Justification: This feature is essential to the product because a user would need have access to all the images in the current directory for image-editing.</p>
+<p>Justification: This feature is essential to the product because a user would need to have access to all the images in the current directory for image-editing.</p>
 </li>
 <li>
 <p>Highlights: This enhancement affects existing commands and implemented together with the select feature.</p>
@@ -84,31 +109,11 @@
 </div>
 </li>
 <li>
-<p><strong>Other contributions</strong>:</p>
+<p><strong>Minor enhancement</strong>: added the tab function to auto-complete directory name in current folder and iterate through the list of directories with the given user input.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Project Management</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Created labels, milestones and issues for issue tracker on GitHub</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Enhancement to existing features:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Updated the icon and name of application</p>
-</li>
-<li>
-<p>Wrote additional test for existing features</p>
-</li>
-</ul>
-</div>
+<p>Justification: This feature improves users' usability as users are no longer required to enter the full name to access the folders.</p>
 </li>
 </ul>
 </div>
@@ -125,10 +130,13 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Creating and managing milestones and issues tracker.</p>
+<p>Managed labels, milestones and issues for issue tracker on GitHub</p>
 </li>
 <li>
-<p>Participating in tagging issues and merging/reviewing PRs</p>
+<p>Participated in tagging issues and merging/reviewing PRs</p>
+</li>
+<li>
+<p>Set up appveyor build and coveralls on Github</p>
 </li>
 </ul>
 </div>
@@ -142,6 +150,19 @@
 </li>
 <li>
 <p>Updated diagrams for Logic, Model and UI component. <a href="https://github.com/CS2103-AY1819S1-T09-3/main/pull/174">#174</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Enhancement to existing features:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated the icon of of the application</p>
+</li>
+<li>
+<p>Wrote additional test for existing features</p>
 </li>
 </ul>
 </div>
@@ -283,7 +304,7 @@ the user&#8217;s in, stored internally as <code>currDirectory</code> and impleme
 </div>
 <div class="paragraph">
 <p>Within the operation <code>UserPrefs#updateUserPrefs(Path)</code>, it also retrieves the list of images within the directory,
-which are stored internally as <code>imageList</code>. This would facilitate the <code>select</code> feature in our application
+which are stored internally as <code>imageList</code>. This would facilitate the <code>open</code> feature in our application
 (refer to 3.2).</p>
 </div>
 <div class="paragraph">
@@ -305,18 +326,14 @@ Pressing tab again will display the next directory with the given prefix.
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the cd mechanism behaves at each step.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>The user launches the application for the first time. The <code>UserPrefs</code> will be initialized with the <code>currDirectory</code>
+<div class="paragraph">
+<p>Step 1. The user launches the application for the first time. The <code>UserPrefs</code> will be initialized with the <code>currDirectory</code>
 as the user&#8217;s home directory.</p>
-</li>
-<li>
-<p>The user executes <code>cd Desktop</code> command to navigate into the Desktop directory. The cd command calls
+</div>
+<div class="paragraph">
+<p>Step 2. The user executes <code>cd Desktop</code> command to navigate into the Desktop directory. The cd command calls
 <code>Model#getCurrDirectory()</code> and appends <code>Desktop</code> to the end of the current directory. It then checks if the new Path is
 a directory and calls <code>Model#updateCurrDirectory(Path)</code> and updates the new Path in <code>UserPrefs</code> if the check returns true.</p>
-</li>
-</ol>
 </div>
 <div class="paragraph">
 <p>The following sequence diagram shows how the cd command works:</p>
@@ -344,6 +361,9 @@ If the <code>newCurrDirectory</code> is not a directory, i.e. <code>isDirectory(
 </div>
 <div class="sect3">
 <h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="paragraph">
+<p>This section contains the considerations and alternatives we had when implementing the cd command.</p>
+</div>
 <div class="sect4">
 <h5 id="aspect-how-cd-executes"><a class="link" href="#aspect-how-cd-executes">Aspect: How cd executes</a></h5>
 <div class="ulist">
@@ -397,7 +417,7 @@ and contains the following operations:</p>
 <p><code>Model#getDirectoryImageList()</code> - Retrieves the stored list of images in UserPrefs.</p>
 </li>
 <li>
-<p><code>Model#updateCurrentOriginalImage(Image, Path)</code> - Updates the model with the current selected images.</p>
+<p><code>Model#updateCurrentOriginalImage(Image, Path)</code> - Updates the model with the current image opened.</p>
 </li>
 </ul>
 </div>
@@ -413,51 +433,39 @@ batch. The <code>UserPrefs</code> class implements the following operation:</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>The <code>Model#updateCurrentOriginalImage(Image, Path)</code> operation stores the path of the selected image and the
+<p>The <code>Model#updateCurrentOriginalImage(Image, Path)</code> operation stores the path of the opened image and the
 <code>PreviewImage</code> instance of it as <code>currOriginalImage</code> and <code>currentPreviewImage</code> within the <code>ModelManager</code>.
 Additionally, the operation also creates a canvas and a layer to facilitate the <code>transmission</code> feature. (refer to 3.5)</p>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the open mechanism behaves at each step.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>The user launches the application for the first time. The <code>UserPrefs</code> will be initialized with the <code>currDirectory</code>
+<div class="paragraph">
+<p>Step 1. The user launches the application for the first time. The <code>UserPrefs</code> will be initialized with the <code>currDirectory</code>
 as the user&#8217;s home directory.</p>
-</li>
-<li>
-<p>The user executes <code>cd Desktop</code> command to navigate into the Desktop directory. The cd command will initialise
+</div>
+<div class="paragraph">
+<p>Step 2. The user executes <code>cd Desktop</code> command to navigate into the Desktop directory. The cd command will initialise
 the <code>imageList</code> with all the images within Desktop.</p>
-</li>
-</ol>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/SelectCommand1.png" alt="SelectCommand1" width="800">
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>The user executes <code>open 1</code> command to open the first image in the first batch of 10 images. The open
+<div class="paragraph">
+<p>Step 3. The user executes <code>open 1</code> command to open the first image in the first batch of 10 images. The open
 command calls <code>Model#getDirectoryImageList()</code> to retrieve the first batch of images within Desktop. The first image is
 then retrieved and displayed on the GUI.</p>
-</li>
-</ol>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/OpenCommand2.png" alt="OpenCommand2" width="500">
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>The user then executes <code>open 5</code> command to select the fifth image in the batch of 10 images. The fifth image
+<div class="paragraph">
+<p>Step 4. The user then executes <code>open 5</code> command to open the fifth image in the batch of 10 images. The fifth image
 is then retrieved similarly and displayed on the GUI.</p>
-</li>
-</ol>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -476,8 +484,10 @@ is then retrieved similarly and displayed on the GUI.</p>
 </div>
 <div class="sect3">
 <h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
-<div class="sect4">
-<h5 id="aspect-how-select-executes"><a class="link" href="#aspect-how-select-executes">Aspect: How select executes</a></h5>
+<div class="paragraph">
+<p>This section contains the considerations and alternatives we had when implementing the open command.
+===== Aspect: How open executes</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -494,7 +504,7 @@ is then retrieved similarly and displayed on the GUI.</p>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2</strong> : Select images within the <code>imageList</code> size.</p>
+<p><strong>Alternative 2</strong> : Open images within the <code>imageList</code> size.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -507,7 +517,6 @@ is then retrieved similarly and displayed on the GUI.</p>
 </div>
 </li>
 </ul>
-</div>
 </div>
 </div>
 </div>
@@ -542,41 +551,29 @@ batch of images using the <code>currBatchPointer</code>. The <code>UserPrefs</co
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the next/previous mechanism behaves at each step.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>The user launches the application for the first time. The <code>UserPrefs</code> will be initialized with the <code>currDirectory</code>
+<div class="paragraph">
+<p>Step 1. The user launches the application for the first time. The <code>UserPrefs</code> will be initialized with the <code>currDirectory</code>
 as the user&#8217;s home directory.</p>
-</li>
-<li>
-<p>The user executes <code>cd Desktop</code> command to navigate into the Desktop directory. The cd command will initialise
+</div>
+<div class="paragraph">
+<p>Step 2. The user executes <code>cd Desktop</code> command to navigate into the Desktop directory. The cd command will initialise
 the <code>imageList</code> with all the images within Desktop.</p>
-</li>
-</ol>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/SelectCommand1.png" alt="SelectCommand1" width="800">
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>The user executes <code>next</code> command to retrieve the next 10 images within Desktop.</p>
-</li>
-</ol>
+<div class="paragraph">
+<p>Step 3. The user executes <code>next</code> command to retrieve the next 10 images within Desktop.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/NextPrevCommand2.png" alt="NextPrevCommand2" width="800">
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>The user executes <code>prev</code> command to retrieve the previous 10 images within Desktop.</p>
-</li>
-</ol>
+<div class="paragraph">
+<p>Step 4. The user executes <code>prev</code> command to retrieve the previous 10 images within Desktop.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -601,6 +598,12 @@ the <code>imageList</code> with all the images within Desktop.</p>
 </div>
 <div class="title">Figure 4. Sequence Diagram for PrevCommand</div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">Design Considerations</a></h4>
+<div class="paragraph">
+<p>This section contains the considerations and alternatives we had when implementing the cd command.</p>
+</div>
 <div class="sect4">
 <h5 id="aspect-how-next-previous-executes"><a class="link" href="#aspect-how-next-previous-executes">Aspect: How next/previous executes</a></h5>
 <div class="ulist">
@@ -619,7 +622,7 @@ the <code>imageList</code> with all the images within Desktop.</p>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2</strong> : Separate images in batches and store in array.</p>
+<p><strong>Alternative 2</strong> : Store image batches in array.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -637,4 +640,4 @@ the <code>imageList</code> with all the images within Desktop.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 07:50:25 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 09:20:15 UTC</div></div></div></body></html>

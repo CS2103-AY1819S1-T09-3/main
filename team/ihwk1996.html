@@ -281,12 +281,8 @@ To work with multiple layers, each <code>Layer</code> has a single <code>Preview
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>The user selects an image with the <code>select</code> command. The <code>Canvas</code> is initialized with a new <code>Layer</code> which initializes its own <code>PreviewImage</code> with the selected image. The <code>currentStatePointer</code> pointing to that state.</p>
-</li>
-</ol>
+<div class="paragraph">
+<p>Step 1. The user opens an image with the <code>open</code> command. The <code>Canvas</code> is initialized with a new <code>Layer</code> which initializes its own <code>PreviewImage</code> with the opened image. The <code>currentStatePointer</code> pointing to that state.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -305,12 +301,8 @@ A <code>Canvas</code> can already be initialized, meaning this is an additional 
 <img src="../images/undoRedo1.png" alt="undoRedo1" width="800">
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>The user executes a series of transformations. Each time, the newly transformed <code>BufferedImage</code> is stored by writing it to the <code>cache</code> folder. The <code>currentStatePointer</code> is also incremented. Eg. <code>hue</code>, <code>mirror</code>, <code>blur</code></p>
-</li>
-</ol>
+<div class="paragraph">
+<p>Step 2. The user executes a series of transformations. Each time, the newly transformed <code>BufferedImage</code> is stored by writing it to the <code>cache</code> folder. The <code>currentStatePointer</code> is also incremented. Eg. <code>hue</code>, <code>mirror</code>, <code>blur</code></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -329,12 +321,8 @@ If a command fails its execution, it will not call <code>Model#updateCurrentPrev
 <img src="../images/undoRedo2.png" alt="undoRedo2" width="800">
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>The user wants to undo the previous action by using the <code>undo</code> command. It will call <code>Model#undoPreviewImage()</code> which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous <code>PreviewImage</code> state. After which, that previously cached <code>BufferedImage</code> will be read and rendered to update the UI&#8217;s preview image pane.</p>
-</li>
-</ol>
+<div class="paragraph">
+<p>Step 3. The user wants to undo the previous action by using the <code>undo</code> command. It will call <code>Model#undoPreviewImage()</code> which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous <code>PreviewImage</code> state. After which, that previously cached <code>BufferedImage</code> will be read and rendered to update the UI&#8217;s preview image pane.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -353,12 +341,8 @@ If the <code>currentStatePointer</code> is at index 0, pointing to the initial s
 <img src="../images/undoRedo3.png" alt="undoRedo3" width="800">
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>The user executes another transformation, which calls <code>Model#updateCurrentPreviewImage</code>. Since the <code>currentStatePointer</code> is not pointing at the end state (<code>currentSize - 1</code>), and the states after the <code>currentStatePointer</code> will not make sense, all states after the pointer will be purged.</p>
-</li>
-</ol>
+<div class="paragraph">
+<p>Step 4. The user executes another transformation, which calls <code>Model#updateCurrentPreviewImage</code>. Since the <code>currentStatePointer</code> is not pointing at the end state (<code>currentSize - 1</code>), and the states after the <code>currentStatePointer</code> will not make sense, all states after the pointer will be purged.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -485,4 +469,4 @@ A view of the panel is shown below:</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 07:50:25 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 09:20:15 UTC</div></div></div></body></html>
