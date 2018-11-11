@@ -176,155 +176,82 @@
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="applying-a-transformation-to-an-image-code-apply-code"><a class="link" href="#applying-a-transformation-to-an-image-code-apply-code">Applying a transformation to an image : <code>apply</code></a></h3>
+<h3 id="applies-a-transformation-to-an-image-code-apply-code"><a class="link" href="#applies-a-transformation-to-an-image-code-apply-code">Applies a transformation to an image : <code>apply</code></a></h3>
 <div class="paragraph">
-<p>You can use the apply command with the given format</p>
-</div>
-<div class="paragraph">
-<p>Format1: <code>apply [operation] [arg1] [arg2] &#8230;&#8203;</code>: apply the specified transformation to the selected image</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-you can also apply your own customized transformation, with the format <code>apply @Operation</code>, <code>@</code> is necessary
-</td>
-</tr>
-</table>
+<p>There are 3 different ways to apply a transformation to an image.<br></p>
 </div>
 <div class="paragraph">
-<p>Available transformations</p>
+<p>Format: <code>apply [operation] [arg1] [arg2] &#8230;&#8203;</code> &#8594; Applies the specified transformation to the selected layer (or the current image if there is only one layer).<br>
+Format: <code>apply @Operation</code> &#8594; Applies a custom transformation to the image, <code>@</code> is compulsory.<br></p>
 </div>
+<div class="paragraph">
+<p>There are many different transformations available, which we will briefly describe:</p>
+</div>
+<div class="sect3">
+<h4 id="code-blur-code-blurs-your-entire-layer-accordingly-to-the-specified-radius-sigma-values"><a class="link" href="#code-blur-code-blurs-your-entire-layer-accordingly-to-the-specified-radius-sigma-values"><code>blur</code>: Blurs your entire layer accordingly to the specified radius &amp; sigma values.</a></h4>
 <div class="ulist">
 <ul>
 <li>
-<p><code>blur</code>: you can performs gaussian blur on the currently opened image, with the argument specified with radius and sigama</p>
+<p><em>Format</em>: <code>apply blur [RadiusxSigma]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Format: <code>apply blur [RadiusxSigama]</code></p>
+<p>Radius (0-99): Helps in blur calculation, recommended to have a value at least twice of Sigma</p>
 </li>
 <li>
-<p>Limit: the value for radius should in between [0 - 99], for sigama should in between [0 - 99]</p>
-</li>
-<li>
-<p>Example: <code>apply blur 0x8</code></p>
+<p>Sigma (0-99): Determines the extent of the blur</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><code>colorspace</code>: you can change the color space of the current image</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Format: <code>apply colorspace [color space]</code></p>
-</li>
-<li>
-<p>Limit: only the provided color spaces is available, can be either up/low case</p>
-</li>
-<li>
-<p>Example: <code>apply colorspace GRAY</code></p>
+<p><em>Example</em>: <code>apply blur 16x8</code></p>
 </li>
 </ul>
 </div>
-</li>
-</ul>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-for some of the color spaces, the image effect may not change after changing the color space
-</td>
-</tr>
-</table>
-</div>
+<div class="sect3">
+<h4 id="code-motion-blur-code-simulates-a-motion-blur-on-the-layer"><a class="link" href="#code-motion-blur-code-simulates-a-motion-blur-on-the-layer"><code>motion-blur</code>: Simulates a motion blur on the layer</a></h4>
 <div class="ulist">
 <ul>
 <li>
-<p><code>contrast</code>: you can contrast of the image with the default setting.</p>
+<p><em>Format</em>: <code>apply motion-blur [RadiusxSigma+Angle]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Format: <code>apply contrast</code></p>
+<p>Radius (0-29): Helps in blur calculation, recommended to have a value at least twice of Sigma</p>
 </li>
 <li>
-<p>Example: <code>apply contrast</code></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-the default contrast just hences the effect of the image, the result may not be so obvious,
-use sigmodial-contrast if want to make the effect more impressive.
-</td>
-</tr>
-</table>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>motion-blur</code>: you can perform the motion blur to the image</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Format: <code>apply motion-blur [RadiusxSigama+Angle]</code></p>
+<p>Sigma (0-19): Determines the extent of the blur</p>
 </li>
 <li>
-<p>Limit: the value of radius should be between [0-29] the value of sigma should be between [0-19] the value of angle should between [0-99]</p>
-</li>
-<li>
-<p>Example: <code>apply motion-blur 0x8+45</code></p>
+<p>Angle (0-99): Direction of the blur</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><code>noise</code>: you can increase the noise of the image</p>
+<p><em>Example</em>: <code>apply motion-blur 0x8+45</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="code-colorspace-code-changes-the-color-range-of-the-current-layer"><a class="link" href="#code-colorspace-code-changes-the-color-range-of-the-current-layer"><code>colorspace</code>: Changes the color range of the current layer</a></h4>
 <div class="ulist">
 <ul>
 <li>
-<p>Format: <code>apply noise [Radius]</code></p>
-</li>
+<p><em>Format</em>: <code>apply colorspace [color space]</code></p>
+<div class="ulist">
+<ul>
 <li>
-<p>Limit: the value of radius should be between [0-29]</p>
-</li>
-<li>
-<p>Example: <code>apply noise 12</code></p>
+<p>color space (sRGB/RGB/GRAY/LAB/CMYK): Changes the range of colors allowed on the image. Can be typed as upper/lower case.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><code>resize</code>: you can resize the image to the specified percentage of the original one</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Format: <code>convert resize [percentage]</code></p>
-</li>
-<li>
-<p>Limit: the value for the percentage should in between [1% - 300%]</p>
-</li>
-<li>
-<p>Example: <code>convert resize 50%</code></p>
-</li>
-</ul>
-</div>
+<p><em>Example</em>: <code>apply colorspace GRAY</code></p>
 </li>
 </ul>
 </div>
@@ -335,55 +262,51 @@ use sigmodial-contrast if want to make the effect more impressive.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-as all the images will be resize to the canvas when displaying, the resize command may reduce a "same" image
-on the canvas
+For some color spaces, the image may appear to remain the same even after after changing color spaces.
 </td>
 </tr>
 </table>
 </div>
+</div>
+<div class="sect3">
+<h4 id="code-contrast-code-enhances-the-intensity-differences-between-the-lighter-and-darker-elements"><a class="link" href="#code-contrast-code-enhances-the-intensity-differences-between-the-lighter-and-darker-elements"><code>contrast</code>: Enhances the intensity differences between the lighter and darker elements</a></h4>
 <div class="ulist">
 <ul>
 <li>
-<p><code>rotate</code>: you can rotate an image. DIRECTION [left, right]</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Format: <code>convert rotate [value]</code></p>
+<p><em>Format</em>: <code>apply contrast</code></p>
 </li>
 <li>
-<p>Limit: the value should between -999 to 999</p>
-</li>
-<li>
-<p>Example: <code>convert rotate 90</code></p>
+<p><em>Example</em>: <code>apply contrast</code></p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p><code>sharpen</code>: you can sharpen the currently opened image, with the argument specified with radius and sigama</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Format: <code>apply sharpen [RadiusxSigama]</code></p>
-</li>
-<li>
-<p>Limit: the value for radius should in between [0 - 29], for sigama should in between [0 - 29]</p>
-</li>
-<li>
-<p>Example: <code>apply sharpen 0x8</code></p>
-</li>
-</ul>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The effect of <code>contrast</code> may not very obvious depending on the image you are using.
+You may repeat the transformation again or use <code>sigmodial-contrast</code> instead if want further enhance the effect.
+</td>
+</tr>
+</table>
 </div>
-</li>
-<li>
-<p><code>sigmoidal-contrast</code>: you can contrast the image with certain degree and percentage</p>
+</div>
+<div class="sect3">
+<h4 id="code-sigmoidal-contrast-code-contrasts-the-image-without-saturating-highlights-or-shadows"><a class="link" href="#code-sigmoidal-contrast-code-contrasts-the-image-without-saturating-highlights-or-shadows"><code>sigmoidal-contrast</code>: Contrasts the image without saturating highlights or shadows.</a></h4>
 <div class="ulist">
 <ul>
 <li>
-<p>Format: <code>convert sigmoidal-contrast [DegreexPercentage]</code></p>
+<p>Format: <code>convert sigmoidal-contrast [ContrastxMidpoint]</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Contrast (1-99): How much to increase the contrast.</p>
 </li>
 <li>
-<p>Limit: the value for degree should between 1 - 99, for percentage should between 1% to 99%</p>
+<p>Midpoint (1%-99%): Where the maximum change 'slope' in contrast should fall in the resultant image (0 is white; 50% is middle-gray; 100% is black).</p>
 </li>
 <li>
 <p>Example: <code>convert sigmoidal-contrast 10x10%</code></p>
@@ -393,8 +316,102 @@ on the canvas
 </li>
 </ul>
 </div>
+</div>
+<div class="sect3">
+<h4 id="code-noise-code-increases-the-noise-in-the-image"><a class="link" href="#code-noise-code-increases-the-noise-in-the-image"><code>noise</code>: Increases the noise in the image</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p><em>Format</em>: <code>apply noise [Radius]</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Radius (0-29): Determines the width of the affected area</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><em>Example</em>: <code>apply noise 12</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="code-resize-code-resizes-the-image"><a class="link" href="#code-resize-code-resizes-the-image"><code>resize</code>: Resizes the image</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p><em>Format</em>: <code>apply resize [percentage]</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Percentage (1%-300%): Percentage of resize relative to the original image.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><em>Example</em>: <code>convert resize 50%</code></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+As all the images will be resized to the canvas when displayed, the resize command may leave an image unaffected.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="code-rotate-code-rotates-an-image"><a class="link" href="#code-rotate-code-rotates-an-image"><code>rotate</code>: Rotates an image</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p><em>Format</em>: <code>apply rotate [value]</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Value (-360 to 360): Degree to rotate the image by. Negative values rotate the image to the anti-clockwise.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><em>Example</em>: <code>convert rotate 90</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="code-sharpen-code-sharpens-the-currently-opened-image"><a class="link" href="#code-sharpen-code-sharpens-the-currently-opened-image"><code>sharpen</code>: Sharpens the currently opened image</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p><em>Format</em>: <code>apply sharpen [RadiusxSigma]</code></p>
+</li>
+<li>
+<p>Radius (0-29): Helps in sharpen calculation.</p>
+</li>
+<li>
+<p>Sigma (0-29): Determines the extent of the sharpen</p>
+</li>
+<li>
+<p><em>Example</em>: <code>apply sharpen 0x8</code></p>
+</li>
+</ul>
+</div>
 <div class="paragraph">
-<p>Format2: <code>apply raw [arg1] [arg2]</code>: pass the arguments entered directly to ImageMagick</p>
+<p><strong>Advanced <code>apply</code> command</strong></p>
+</div>
+<div class="paragraph">
+<p>Format: <code>apply raw [arg1] [arg2]</code> &#8594;  Directly passes arguments entered to ImageMagick. You may refer to <a href="https://www.imagemagick.org/script/command-line-options.php">guide</a> to view all operations.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -407,6 +424,7 @@ on the canvas
 </td>
 </tr>
 </table>
+</div>
 </div>
 </div>
 </div>
@@ -544,4 +562,4 @@ An error is prompted if the transformation set gotten from the model is invalid.
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 19:39:45 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 20:17:24 UTC</div></div></div></body></html>

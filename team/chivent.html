@@ -122,9 +122,15 @@
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="logging-in-to-google-photos-code-login-code"><a class="link" href="#logging-in-to-google-photos-code-login-code">Logging in to Google Photos: <code>login</code></a></h3>
+<h3 id="interact-with-google-photos-code-g-code"><a class="link" href="#interact-with-google-photos-code-g-code">Interact with Google Photos: <code>g</code></a></h3>
 <div class="paragraph">
-<p>Format: <code>login</code>: allows you to log in to Google Photos</p>
+<p>Piconso allows you to connect to Google Photos so that you may easily upload and download photos for editing.</p>
+</div>
+<div class="paragraph">
+<p>All Google-related commands will require a stable internet connection. Additionally as the following are internet-dependant, the commands will take a longer amount of time to execute as compared to the other offline features.</p>
+</div>
+<div class="paragraph">
+<p>Connecting to Google Photos is <strong>NOT</strong> compulsory, it is simply an additional feature to supplement your experience with Piconso!</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -134,53 +140,51 @@
 </td>
 <td class="content">
 <div class="paragraph">
-<p><strong>Requires a stable internet connection</strong><br>
-Once the <code>login</code> command is launched, you <strong>MUST</strong> proceed with logging in from the redirected page, otherwise the application will freeze. You may use <code>logout</code> afterwards if you have changed your mind.<br></p>
-</div>
-<div class="paragraph">
-<p>A fix is upcoming in v2.0.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="google-photos-related-commands-code-g-code"><a class="link" href="#google-photos-related-commands-code-g-code">Google Photos related commands: <code>g</code></a></h3>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>All commands will require a stable internet connection.</p>
+<p>The higher the amount of images involved in your google command, the longer amount of time commands will take to process.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
 <div class="sect3">
-<h4 id="traversing-google-photos-code-g-ls-code"><a class="link" href="#traversing-google-photos-code-g-ls-code">Traversing Google Photos: <code>g ls</code></a></h4>
+<h4 id="logs-in-to-google-photos-code-login-code"><a class="link" href="#logs-in-to-google-photos-code-login-code">Logs in to Google Photos: <code>login</code></a></h4>
 <div class="paragraph">
-<p>Format: <code>g ls</code>: lists all photos in your Google Photos, takes a longer amount of time depending on the number of images stored.<br>
-Format: <code>g ls /a</code>: lists all albums in your Google Photos.<br>
-Format: <code>g ls &lt;ALBUM_NAME&gt;</code>: lists all photos in specified album from Google Photos.</p>
+<p>Format : <code>login</code> &#8594; Allows you to connect to Google Photos through a browser redirect</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="traverses-google-photos-code-g-ls-code"><a class="link" href="#traverses-google-photos-code-g-ls-code">Traverses Google Photos: <code>g ls</code></a></h4>
+<div class="paragraph">
+<p>Format: <code>g ls (parameters)</code> &#8594; Lists the images you have in Google Photos.</p>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>There are 3 ways you can list your images.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>g ls &lt;Vacation&gt;</code></p>
+<p><code>g ls</code>: Lists all images in your account<br></p>
+</li>
+<li>
+<p><code>g ls /a</code>: Lists all your available albums<br></p>
+</li>
+<li>
+<p><code>g ls &lt;ALBUM_NAME&gt;</code>: Lists all images in specified album from Google Photos.</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="paragraph">
+<p><code>* g ls &lt;Vacation&gt;</code> - Lists all images in the Vacation album.</p>
+</div>
 </div>
 <div class="sect3">
-<h4 id="downloading-photos-from-google-photos-code-g-dl-code"><a class="link" href="#downloading-photos-from-google-photos-code-g-dl-code">Downloading photos from Google Photos: <code>g dl</code></a></h4>
+<h4 id="downloads-photos-from-google-photos-code-g-dl-code"><a class="link" href="#downloads-photos-from-google-photos-code-g-dl-code">Downloads photos from Google Photos: <code>g dl</code></a></h4>
+<div class="paragraph">
+<p>Format: <code>g dl [parameters]</code> &#8594; Downloads your specified image from Google Photos.</p>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -197,9 +201,20 @@ Any files with duplicate naming existing in the targeted directory <strong>WILL<
 </table>
 </div>
 <div class="paragraph">
-<p>Format: <code>g dl /i&lt;IMAGE_NAME&gt;</code>: downloads specified image from Google Photos<br>
-Format: <code>g dl /a&lt;ALBUM_NAME&gt;</code>: downloads all images from specified album in Google Photos, takes a longer amount of time depending on the number of images stored in the album.<br>
-Format: <code>g dl /a&lt;ALBUM_NAME&gt; /i&lt;IMAGE_NAME&gt;</code>: downloads a specific photo from a specific album in Google Photos.</p>
+<p>There are 3 ways you can list your images:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>g dl /i&lt;IMAGE_NAME&gt;</code> : Downloads the specified image from Google Photos<br></p>
+</li>
+<li>
+<p><code>g dl /a&lt;ALBUM_NAME&gt;</code> : Downloads all images from the specified album into Google Photos.<br></p>
+</li>
+<li>
+<p><code>g dl /a&lt;ALBUM_NAME&gt; /i&lt;IMAGE_NAME&gt;</code> : Downloads a specific photo from a specific album in Google Photos.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -207,19 +222,22 @@ Format: <code>g dl /a&lt;ALBUM_NAME&gt; /i&lt;IMAGE_NAME&gt;</code>: downloads a
 <div class="ulist">
 <ul>
 <li>
-<p><code>g dl /i&lt;Beach.png&gt;</code> &#8594; Downloads Beach.png<br></p>
+<p><code>g dl /i&lt;Beach.png&gt;</code> - Downloads Beach.png<br></p>
 </li>
 <li>
-<p><code>g dl /a&lt;Vacation&gt;</code> &#8594; Downloads all photos from Vacation album<br></p>
+<p><code>g dl /a&lt;Vacation&gt;</code> - Downloads all photos from Vacation album<br></p>
 </li>
 <li>
-<p><code>g dl /a&lt;Vacation&gt; /i&lt;Beach.png&gt;</code> &#8594; Downloads Beach.png from Vacation album<br></p>
+<p><code>g dl /a&lt;Vacation&gt; /i&lt;Beach.png&gt;</code> - Downloads Beach.png from Vacation album<br></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="uploading-photos-to-google-photos-code-g-ul-code"><a class="link" href="#uploading-photos-to-google-photos-code-g-ul-code">Uploading photos to Google Photos: <code>g ul</code></a></h4>
+<h4 id="uploads-photos-to-google-photos-code-g-ul-code"><a class="link" href="#uploads-photos-to-google-photos-code-g-ul-code">Uploads photos to Google Photos: <code>g ul</code></a></h4>
+<div class="paragraph">
+<p>Format: <code>g ul [parameters]</code> &#8594; Uploads your specified image to Google Photos.</p>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -228,15 +246,24 @@ Format: <code>g dl /a&lt;ALBUM_NAME&gt; /i&lt;IMAGE_NAME&gt;</code>: downloads a
 </td>
 <td class="content">
 <div class="paragraph">
-<p>All uploaded photos will be automatically categorised into album 'Piconso Uploads'</p>
+<p>All uploaded photos will be automatically categorised into album 'Piconso Uploads' in Google Photos. Any duplicate images in Google Photos will be replaced by the new upload with the old name.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Format: <code>g ul &lt;IMAGE_NAME&gt;</code>: uploads specified image in currently open local directory to Google Photos<br>
-Format: <code>g ul all</code>: uploads all images in current directory to Google Photos, takes a longer amount of time depending on number of images to upload.</p>
+<p>There are 2 ways you can list your images:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>g ul &lt;IMAGE_NAME&gt;</code> : Uploads the specified image to Google Photos<br></p>
+</li>
+<li>
+<p><code>g ul all</code> : Uploads all images in current opened directory to Google Photos.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -244,22 +271,22 @@ Format: <code>g ul all</code>: uploads all images in current directory to Google
 <div class="ulist">
 <ul>
 <li>
-<p><code>g ul &lt;Cat.png&gt;</code> &#8594; Uploads Cat.png<br></p>
+<p><code>g ul &lt;Cat.png&gt;</code> - Uploads Cat.png<br></p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging-out-of-google-photos-code-logout-code"><a class="link" href="#logging-out-of-google-photos-code-logout-code">Logging out of Google Photos: <code>logout</code></a></h3>
+<h3 id="logs-out-of-google-photos-code-logout-code"><a class="link" href="#logs-out-of-google-photos-code-logout-code">Logs out of Google Photos: <code>logout</code></a></h3>
 <div class="paragraph">
-<p>Format: <code>logout</code>: logs you out of Google Photos</p>
+<p>Format: <code>logout</code> &#8594; Disconnects you from Google Photos</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-application-code-exit-code"><a class="link" href="#exiting-the-application-code-exit-code">Exiting the application: <code>exit</code></a></h3>
+<h3 id="exits-the-application-code-exit-code"><a class="link" href="#exits-the-application-code-exit-code">Exits the application: <code>exit</code></a></h3>
 <div class="paragraph">
-<p>Format: <code>exit</code>: closes the application</p>
+<p>Format: <code>exit</code> &#8594; Closes the application</p>
 </div>
 </div>
 </div>
@@ -950,4 +977,4 @@ If the local directory contains any image with the same name as the one to downl
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 19:39:45 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 20:17:24 UTC</div></div></div></body></html>

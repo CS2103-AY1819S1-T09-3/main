@@ -131,9 +131,9 @@ In addition, Piconso is well maintained with high reliability and code quality a
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="undoing-a-transformation-code-undo-code"><a class="link" href="#undoing-a-transformation-code-undo-code">Undoing a transformation : <code>undo</code></a></h3>
+<h3 id="undoes-a-transformation-code-undo-code"><a class="link" href="#undoes-a-transformation-code-undo-code">Undoes a transformation : <code>undo</code></a></h3>
 <div class="paragraph">
-<p>Format: <code>undo</code>: Step back to the previous image state (in current layer)</p>
+<p>Format: <code>undo</code> &#8594; Steps back to the previous image state (in current layer)</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -143,7 +143,7 @@ In addition, Piconso is well maintained with high reliability and code quality a
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Commands that can be undone: those commands that modify the image&#8217;s transformation (anything done with <code>convert</code>).</p>
+<p>Only commands that modify the image&#8217;s transformation (anything done with <code>apply</code>) can be undone.</p>
 </div>
 </td>
 </tr>
@@ -152,72 +152,56 @@ In addition, Piconso is well maintained with high reliability and code quality a
 <div class="paragraph">
 <p>Example:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>convert blur 0x8</code><br>
-<code>convert contrast</code><br>
-<code>undo</code> (undoes the <code>convert contrast</code> command, image will be at <code>blur 0x8</code> state)<br></p>
-</li>
-</ul>
+<div class="paragraph">
+<p><code>apply blur 0x8</code><br>
+<code>apply contrast</code><br>
+<code>undo</code> &#8594; (undos the <code>apply contrast</code> command, image will be returned to be <code>blur 0x8</code> state)<br></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-all-transformations-code-undo-all-code"><a class="link" href="#undoing-all-transformations-code-undo-all-code">Undoing all transformations : <code>undo-all</code></a></h3>
+<h3 id="undoes-all-transformations-code-undo-all-code"><a class="link" href="#undoes-all-transformations-code-undo-all-code">Undoes all transformations : <code>undo-all</code></a></h3>
 <div class="paragraph">
-<p>Format: <code>undo-all</code>: Undoes all transformations (reverts image to original state)</p>
+<p>Format: <code>undo-all</code> &#8594; Undoes all transformations (reverts image to original state)</p>
 </div>
 <div class="paragraph">
 <p>Example:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>convert blur 0x8</code><br>
-<code>convert contrast</code><br>
-<code>convert rotate 90</code><br>
-<code>undo-all</code> (undoes all 3 <code>convert</code> commands, image will be at original state)<br></p>
-</li>
-</ul>
+<div class="paragraph">
+<p><code>apply blur 0x8</code><br>
+<code>apply contrast</code><br>
+<code>apply rotate 90</code><br>
+<code>undo-all</code> &#8594; undoes all 3 <code>apply</code> commands, image will be at original state</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="redoing-a-transformation-code-redo-code"><a class="link" href="#redoing-a-transformation-code-redo-code">Redoing a transformation : <code>redo</code></a></h3>
+<h3 id="redoes-a-transformation-code-redo-code"><a class="link" href="#redoes-a-transformation-code-redo-code">Redoes a transformation : <code>redo</code></a></h3>
 <div class="paragraph">
-<p>Format: <code>redo</code>: Step forward to the previously undone transformation</p>
+<p>Format: <code>redo</code> &#8594; Steps forward to the previously undone transformation</p>
 </div>
 <div class="paragraph">
 <p>Example:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
+<div class="paragraph">
 <p><code>convert blur 0x8</code><br>
 <code>convert contrast</code><br>
-<code>undo</code> (undoes the <code>convert contrast</code> command, image will be at <code>blur 0x8</code> state)<br>
-<code>redo</code> (reapplies the <code>convert contrast</code> command)<br></p>
-</li>
-</ul>
+<code>undo</code> &#8594; (undoes the <code>apply contrast</code> command, image will be at <code>blur 0x8</code> state)<br>
+<code>redo</code> &#8594; (reapplies the <code>apply contrast</code> command)<br></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="redoing-all-transformations-code-redo-all-code"><a class="link" href="#redoing-all-transformations-code-redo-all-code">Redoing all transformations : <code>redo-all</code></a></h3>
+<h3 id="redoes-all-transformations-code-redo-all-code"><a class="link" href="#redoes-all-transformations-code-redo-all-code">Redoes all transformations : <code>redo-all</code></a></h3>
 <div class="paragraph">
-<p>Format: <code>redo-all</code>: Redoes all undone transformations</p>
+<p>Format: <code>redo-all</code> &#8594; Redoes all undone transformations</p>
 </div>
 <div class="paragraph">
 <p>Example:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>convert blur 0x8</code><br>
-<code>convert contrast</code><br>
-<code>convert rotate 90</code><br>
+<div class="paragraph">
+<p><code>apply blur 0x8</code><br>
+<code>apply contrast</code><br>
+<code>apply rotate 90</code><br>
 <code>undo-all</code> (undoes all 3 <code>convert</code> commands, image will be at original state)<br>
 <code>redo-all</code> (reapplies all 3 <code>convert</code> commands)<br></p>
-</li>
-</ul>
 </div>
 </div>
 </div>
@@ -469,4 +453,4 @@ A view of the panel is shown below:</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 19:39:45 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 20:17:24 UTC</div></div></div></body></html>
