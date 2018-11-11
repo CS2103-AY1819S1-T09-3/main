@@ -75,88 +75,235 @@ Even new users that are unfamiliar with CLI will be able to easily and quickly p
 <h2 id="getting-started"><a class="link" href="#getting-started">3. Getting started</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Let&#8217;s work through a simple project in Piconso from start to finish.</p>
+<p>Let&#8217;s work through a simple project in Piconso from start to finish.
+In this tutorial, you will learn how to create some of the dankest memes starting from a blank template.</p>
 </div>
 <div class="paragraph">
-<p>We&#8217;ll start with a scenario in which you would like to brighten an image and place a watermark on it.</p>
-</div>
-<div class="paragraph">
-<p><strong>Step 1</strong></p>
+<p>If you ever get stuck with a command, pop down to the Features section for reference!</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/exampleStep0.png" alt="width:600">
+<img src="images/tutorial/before-after.png" alt="width:2000">
 </div>
-<div class="title">Figure 1. Default Piconso view</div>
-</div>
-<div class="paragraph">
-<p>Let&#8217;s assume the image you would like to edit is located on your Desktop. Upon launching Piconso, it will always start at your home folder as listed on the bottom left of the application. i.e <code>/Users/Name</code></p>
+<div class="title">Figure 1. The Piconso team know how it feels.</div>
 </div>
 <div class="paragraph">
-<p><strong>Step 2</strong></p>
+<p><strong>Ready to start your Piconso journey?</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Head over to the link <a href="https://github.com/CS2103-AY1819S1-T09-3/main/blob/master/docs/images/tutorial.zip">here</a> to get a zip file with all the assets you need to get started!</p>
+</li>
+<li>
+<p>Unzip the files into somewhere easy to access, like your Pictures folder.</p>
+</li>
+<li>
+<p>Start Piconso!</p>
+</li>
+<li>
+<p>Use the <code>cd</code> and <code>ls</code> commands to get to the folder with your unzipped assets.
+You can use the <code>TAB</code> key to auto-complete pesky folder names! If everything went well, you should see all your images show up in the Image Panel.</p>
+</li>
+</ol>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/exampleStep1.png" alt="width:600">
+<img src="images/tutorial/step%201.png" alt="width:2000">
 </div>
-<div class="title">Figure 2. After typing <code>ls</code></div>
+<div class="title">Figure 2. Images and index are showing up!</div>
 </div>
-<div class="paragraph">
-<p>Next, we&#8217;ll type <code>ls</code> to see if the folder is relative to where you are now. <code>ls</code> lists all the folders and images located in <code>/Users/Desktop</code></p>
-</div>
-<div class="paragraph">
-<p><strong>Step 3</strong></p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/exampleStep2.png" alt="width:600">
-</div>
-<div class="title">Figure 3. After typing <code>cd Desktop</code></div>
-</div>
-<div class="paragraph">
-<p>Type <code>cd Desktop</code> to move to that folder. <code>cd</code> and <code>ls</code> are common notations used in CLI-based commands for file navigation, so no need to worry if you&#8217;re a new user!<br></p>
-</div>
-<div class="paragraph">
-<p>Upon moving into the <code>Desktop</code> folder, you may notice that the bottom left area labelled <strong>Image in directory batch</strong> is showing a few images. These are the first 10 images in your <code>Desktop</code>, and they will be labelled with an index based on alphabetical order of their names.</p>
-</div>
-<div class="paragraph">
-<p><strong>Step 4</strong></p>
+<div class="olist arabic">
+<ol class="arabic" start="5">
+<li>
+<p>See the number below the base image? That&#8217;s the <em>index</em> of the image. It might be different depending on your folder&#8217;s content. If you don&#8217;t see it within the first ten images, use the <code>next</code> and <code>prev</code> command to navigate!</p>
+</li>
+<li>
+<p>Open the image simply by typing <code>open [index]</code>. <em>(Substitute index with the number you noted down just now)</em></p>
+</li>
+<li>
+<p>You should see the base template in all its glory.</p>
+</li>
+</ol>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/exampleStep3.png" alt="width:600">
+<img src="images/tutorial/step%202.png" alt="width:2000">
 </div>
-<div class="title">Figure 4. After typing <code>open 1</code></div>
+<div class="title">Figure 3. Ready to rumble.</div>
 </div>
-<div class="paragraph">
-<p>For this example we&#8217;ll be selecting the second image for editing. We&#8217;ll open it with <code>open 2</code></p>
-</div>
-<div class="paragraph">
-<p><strong>Step 5</strong></p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/exampleStep4.png" alt="width:600">
-</div>
-<div class="title">Figure 5. After typing <code>apply contrast</code></div>
-</div>
-<div class="paragraph">
-<p>To increase the contrast of the image, type <code>apply contrast</code>.</p>
-</div>
-<div class="paragraph">
-<p><strong>Step 6</strong></p>
+<div class="olist arabic">
+<ol class="arabic" start="8">
+<li>
+<p>Now we can start layering the other images on top of the base image. Let&#8217;s start by adding the coveralls logo.
+We do that by using the <code>layer add</code> command. The logo is at index 3 for us so we enter <code>layer add 3</code>.</p>
+</li>
+</ol>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/exampleStep5.png" alt="width:600">
+<img src="images/tutorial/step%203.png" alt="width:2000">
 </div>
-<div class="title">Figure 6. After adding a layer`</div>
+<div class="title">Figure 4. Not exactly where we want it but it&#8217;s a start.</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="9">
+<li>
+<p>The logo is a bit too big for our liking so let&#8217;s resize it a bit. Start by selecting the layer that the logo is on with a quick <code>layer select 2</code>.</p>
+</li>
+<li>
+<p>Follow up with <code>apply resize 70%</code> and put Coveralls down a peg or two.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/tutorial/step%204.png" alt="width:2000">
+</div>
+<div class="title">Figure 5. Why don&#8217;t you pick on someone your own <strong>SIZE</strong> huh? Get it? Size?</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="11">
+<li>
+<p>The logo isn&#8217;t where we want it so let&#8217;s move it right to the balloon.
+Hit it with a <code>layer position 295x50</code>.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/tutorial/step%205.png" alt="width:2000">
+</div>
+<div class="title">Figure 6. And that&#8217;s for rejecting my pull request!</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="12">
+<li>
+<p>Repeat steps 8 - 11 to place <code>regret.png</code> somewhere on the pink monster. Remember to select the new layer before you start to resize and reposition! <em>(Psst. resize for 60% and move it to (5, 450) if you don&#8217;t feel like experimenting.)</em></p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/tutorial/step%206.png" alt="width:2000">
+</div>
+<div class="title">Figure 7. Do androids dream of 100% code coverage?</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="13">
+<li>
+<p>Let&#8217;s save our work before we <strong>DEEP FRY</strong> the living daylights out of it! You can do that by typing <code>save arrangement.png</code> or if you&#8217;re feeling adventurous just <code>save</code> will overwrite your current file irreversibly.</p>
+</li>
+<li>
+<p>Open our file again, refer to step 5 and 6 if you need help.</p>
+</li>
+<li>
+<p>Now we can begin to use some of the more advanced features in Piconso! We add some noise to the image with <code>apply raw +noise gaussian</code>.</p>
+</li>
+<li>
+<p>Feel free to repeat the step 15 a few times to get the desired amount of noise! We did it five times to be sure. If you ever go overboard, use the <code>undo</code> command to &#8230;&#8203; undo the previous command. But face it, you&#8217;re going to <code>redo</code> it anyway.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/tutorial/step%207.png" alt="width:2000">
+</div>
+<div class="title">Figure 8. Noisy indeed.</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="17">
+<li>
+<p>Now we bump the contrast up, <strong>way <em>way</em></strong> up with <code>apply raw -contrast-stretch 15%</code>.</p>
+</li>
+<li>
+<p>Brightness and saturation gets the same boost with <code>apply raw -modulate 120,120</code>.</p>
+</li>
+<li>
+<p>Apply the finishing touches with an unsharp mask! <code>apply raw -unsharp 0x05</code>. Now the meme is starting to take shape!</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/tutorial/step%208.png" alt="width:2000">
+</div>
+<div class="title">Figure 9. New and improved image, now with 500% more noise, 120% more brightness, 120% more saturation!</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="20">
+<li>
+<p>We are almost done! Repeat steps 8 - 11 again to slap some of the emojis on.
+You can use the <code>apply rotate [degree]</code> command to spice the meme up a bit. If you&#8217;re short on time, we&#8217;ve provided the exact resize and new positions:</p>
+<div class="literalblock">
+<div class="content">
+<pre>For the crying emoji:
+   layer position 125x330
+   apply resize 20%
+   apply rotate 75</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>For the 2 OK emojis:
+   apply resize 10%
+   layer position 270x390
+   apply rotate 80</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/tutorial/step%209.png" alt="width:2000">
+</div>
+<div class="title">Figure 10. You&#8217;re finna gonna yeet this image.</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="21">
+<li>
+<p>Save the image again (<code>save lit_meme.png</code>) and we&#8217;re ready to upload our image!</p>
+</li>
+<li>
+<p>Login with the aptly named <code>login</code> command. Don&#8217;t worry, Piconso will never store your password in any shape or form!</p>
+</li>
+<li>
+<p>Upload the file with <code>g ul &lt;lit_meme.png&gt;</code>. You should see a confirmation message when the upload is complete.</p>
+</li>
+<li>
+<p><code>logout</code> when you&#8217;re done! Congrats, you have just went from to a Piconso-certified meme hero!</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
-<p>After increasing the contrast of the image, we&#8217;ll be adding our watermark (image 1) onto the image. Type <code>layer add 1</code>. The new image is complete!</p>
+<p>Before we let you go, wonder how we made the very first image you saw? Try this before you go!</p>
 </div>
-<div class="paragraph">
-<p>There are a range of <code>apply</code> commands we provide to cater many different transformations. We&#8217;ll be explaining each of them in Section 4.6 below.</p>
+<div class="olist arabic">
+<ol class="arabic" start="25">
+<li>
+<p>Add the base image back in, the base image will take up all the canvas space but don&#8217;t worry.</p>
+</li>
+<li>
+<p>Select the layer which the original image is on and move it out of the way</p>
+<div class="literalblock">
+<div class="content">
+<pre>layer select 5
+layer position -450x0</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="28">
+<li>
+<p>Use <code>canvas auto-resize on</code> to expand the canvas to show both of them.</p>
+</li>
+<li>
+<p>Remove the background color of the canvas with <code>canvas bgcolor none</code> or change it to something you like!</p>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -500,7 +647,7 @@ on the canvas
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-this format is for whom knows how to use ImageMagick, the effect for the arguments cannot be ensured.
+<strong>Here be dragons!</strong> The raw command allows for powerful transformations but with power comes great responsibility to get your commands right. While we can tell you if an error occurs, we can&#8217;t help you more than that so be careful!
 </td>
 </tr>
 </table>
@@ -664,6 +811,10 @@ for the command created, you should add a @ before the command when running the 
 <div class="sect3">
 <h4 id="changing-the-size-of-the-canvas-code-canvas-size-code"><a class="link" href="#changing-the-size-of-the-canvas-code-canvas-size-code">4.15.1. Changing the size of the canvas: <code>canvas size</code></a></h4>
 <div class="paragraph">
+<p>You can change the size of the canvas to with this command. Remember that the effects of <code>canvas auto-resize</code> takes precedence!
+If <code>canvas auto-resize</code> is <code>off</code>, cropping might potentially occur.</p>
+</div>
+<div class="paragraph">
 <p>Format: <code>canvas size (NEW_SIZE)</code></p>
 </div>
 <div class="admonitionblock note">
@@ -696,6 +847,10 @@ for the command created, you should add a @ before the command when running the 
 </div>
 <div class="sect3">
 <h4 id="changing-the-background-color-of-the-canvas-code-canvas-bgcolor-code"><a class="link" href="#changing-the-background-color-of-the-canvas-code-canvas-bgcolor-code">4.15.2. Changing the background color of the canvas: <code>canvas bgcolor</code></a></h4>
+<div class="paragraph">
+<p>You can change the background color of the canvas with this command. This is only visible if the canvas is larger than all the images placed on it.
+See the examples for the formats that your colors can take.</p>
+</div>
 <div class="paragraph">
 <p>Format: <code>canvas bgcolor (NEW_COLOR)</code></p>
 </div>
@@ -739,10 +894,12 @@ for the command created, you should add a @ before the command when running the 
 <div class="sect3">
 <h4 id="allowing-the-canvas-to-auto-resize-code-canvas-auto-resize-on-off-code"><a class="link" href="#allowing-the-canvas-to-auto-resize-code-canvas-auto-resize-on-off-code">4.15.3. Allowing the canvas to auto-resize: <code>canvas auto-resize [ON|OFF]</code></a></h4>
 <div class="paragraph">
-<p>Format : canvas auto-resize [ON|OFF]</p>
+<p>This command allows you to turns the auto-resize for the canvas on or off.
+When auto-resize is on, it can potentially override the size manually specified with the <code>canvas size</code> command.
+When <code>on</code>, the canvas expands as required to ensure that no clipping occurs.</p>
 </div>
 <div class="paragraph">
-<p>Turns on/off the auto-resize for the canvas.</p>
+<p>Format : canvas auto-resize [ON|OFF]</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -777,6 +934,9 @@ for the command created, you should add a @ before the command when running the 
 <h3 id="layer-operations-code-layer-code"><a class="link" href="#layer-operations-code-layer-code">4.16. Layer operations : <code>layer</code></a></h3>
 <div class="sect3">
 <h4 id="adding-a-new-layer-code-layer-add-index-layer_name-code"><a class="link" href="#adding-a-new-layer-code-layer-add-index-layer_name-code">4.16.1. Adding a new layer: <code>layer add [INDEX] (LAYER_NAME)</code></a></h4>
+<div class="paragraph">
+<p>You can select the image at the provided index and add it to the current canvas with this command.</p>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -792,9 +952,6 @@ for the command created, you should add a @ before the command when running the 
 </table>
 </div>
 <div class="paragraph">
-<p>Selects the image at the provided index and adds it to the current canvas at the very top.</p>
-</div>
-<div class="paragraph">
 <p>Examples:</p>
 </div>
 <div class="ulist">
@@ -802,14 +959,14 @@ for the command created, you should add a @ before the command when running the 
 <li>
 <p><code>layer add 4</code> - Adds the image at index 4 to the canvas.</p>
 </li>
-<li>
-<p><code>layer add 1 background layer</code> - Adds the image at index 1 to the canvas as a layer named <code>backround layer</code>.</p>
-</li>
 </ul>
 </div>
 </div>
 <div class="sect3">
 <h4 id="removing-a-layer-code-layer-remove-index-code"><a class="link" href="#removing-a-layer-code-layer-remove-index-code">4.16.2. Removing a layer: <code>layer remove [INDEX]</code></a></h4>
+<div class="paragraph">
+<p>This command allows you to permanently removes a layer from canvas.</p>
+</div>
 <div class="admonitionblock warning">
 <table>
 <tr>
@@ -824,20 +981,28 @@ for the command created, you should add a @ before the command when running the 
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>Permanently removes a layer from canvas.</p>
-</div>
 </div>
 <div class="sect3">
 <h4 id="selecting-a-layer-to-work-on-code-layer-select-index-code"><a class="link" href="#selecting-a-layer-to-work-on-code-layer-select-index-code">4.16.3. Selecting a layer to work on: <code>layer select [INDEX]</code></a></h4>
 <div class="paragraph">
-<p>Selects a layer to that all <code>convert</code> operations will work on.</p>
+<p>This command allows you to a layer to that all <code>apply</code> and <code>layer position</code> operations will work on.
+The index of a layer is displayed before its name in the Layers panel.</p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>layer select 2</code> : Selects the layer at index 2.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
 <h4 id="swapping-the-order-of-two-layers-code-layer-swap-to_index-from_index-code"><a class="link" href="#swapping-the-order-of-two-layers-code-layer-swap-to_index-from_index-code">4.16.4. Swapping the order of two layers: <code>layer swap [TO_INDEX] [FROM_INDEX]</code></a></h4>
 <div class="paragraph">
-<p>Changes the order of any two distinct layers.</p>
+<p>You can change the order of any two distinct layers with this command. The lower the index, the further behind it will be.</p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -853,7 +1018,7 @@ for the command created, you should add a @ before the command when running the 
 <div class="sect3">
 <h4 id="positioning-a-layer-code-layer-position-position-code"><a class="link" href="#positioning-a-layer-code-layer-position-position-code">4.16.5. Positioning a layer: <code>layer position [POSITION]</code></a></h4>
 <div class="paragraph">
-<p>Sets the x and y co-ordinates of the current layer.
+<p>This command allows you to set the x and y co-ordinates of the current layer.
 (0,0) is defined to be the top left of the screen.</p>
 </div>
 <div class="paragraph">
@@ -1065,6 +1230,30 @@ e.g. <code>save exampleImage.jpg</code><br></p>
 <p><strong>Redo All</strong> : <code>redo-all</code><br></p>
 </li>
 <li>
+<p><strong>Canvas auto-resize</strong> : <code>canvas auto-resize [on/off]</code></p>
+</li>
+<li>
+<p><strong>Background color</strong> : <code>canvas bgcolor [color]</code></p>
+</li>
+<li>
+<p><strong>Canvas size</strong> : <code>canvas size (heightxwidth)</code></p>
+</li>
+<li>
+<p><strong>Add layer</strong> : <code>layer add [INDEX]</code></p>
+</li>
+<li>
+<p><strong>Delete layer</strong> : <code>layer delete [INDEX]</code></p>
+</li>
+<li>
+<p><strong>Reposition layer</strong> : <code>layer position [newXxnewY]</code></p>
+</li>
+<li>
+<p><strong>Select layer</strong> : <code>layer select [INDEX]</code></p>
+</li>
+<li>
+<p><strong>Swap the order of two layers</strong> : <code>layer swap [INDEX 1] [INDEX 2]</code></p>
+</li>
+<li>
 <p><strong>Login</strong> : <code>login</code><br></p>
 </li>
 <li>
@@ -1085,4 +1274,4 @@ e.g. <code>save exampleImage.jpg</code><br></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 12:25:28 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 14:39:54 UTC</div></div></div></body></html>
