@@ -10,9 +10,17 @@
 <h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Piconso is a robust yet simple image-editing tool. Catered towards power users, Piconso is a uses the Command Line Interface (CLI), while providing visual feedback through Graphical User Interface (GUI).
+<p>Piconso is a robust yet simple image-editing tool. Catered towards power users, Piconso users interact through the Command Line Interface (CLI), while providing visual feedback through Graphical User Interface (GUI).
 Unlike other heavy image editors, Piconso has a very gentle learning curve as it abstracts out clutter by providing the more essential features (complex editing can still be done with special commands). The features and implementations are well documented in guides for users and developers respectively.
 In addition, Piconso is well maintained with high reliability and code quality as it is covered by rigorous tests and checks.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="role"><a class="link" href="#role">Role</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>My role was to facilitate the history of transformations of images within each layer. As the undo and redo feature is done using memoization, images need to be cached after each transformation. I constructed the base class to manage the caching and retrieval of images, then linked it to the Model and Storage components. In addition, I wrote rigorous tests and test utilities to ensure high reliability and simpler maintenance.</p>
 </div>
 </div>
 </div>
@@ -29,10 +37,10 @@ In addition, Piconso is well maintained with high reliability and code quality a
 <p>What it does: allows the user to undo previous transformations one at a time. Preceding undone transformations can be reversed by using the redo command.</p>
 </li>
 <li>
-<p>Justification: This feature improves the product significantly because a user can make mistakes in transformations and the app should provide a convenient way to rectify them.</p>
+<p>Justification: This feature improves the product significantly because a user can make mistakes by applying incorrect transformations and the app should provide a convenient way to rectify them.</p>
 </li>
 <li>
-<p>Highlights: This enhancement uses memoization ensure undo/redo commands are almost instant. Since transformations to images take significant time (especially on large images) and that users typically want to quickly inspect the before and after of their transformation, it is necessary  for undo and redo to be fast. As such, after each transformation, the resulting transformed image is cached into a temporary folder. Undo and redo operations will shift a pointer leftwards or rightwards and read the selected image, instead of reapplying or reversing a transformation process which is time consuming.</p>
+<p>Highlights: This enhancement uses memoization to ensure undo/redo commands are almost instant. Since transformations to images take significant time (especially on large images) and that users typically want to quickly inspect the before and after of their transformation, it is necessary  for undo and redo to be fast. As such, after each transformation, the resulting transformed image is cached into a temporary folder. Undo and redo operations will shift a pointer leftwards or rightwards and read the selected image, instead of reapplying or reversing a transformation process which is time consuming.</p>
 </li>
 </ul>
 </div>
@@ -75,7 +83,7 @@ In addition, Piconso is well maintained with high reliability and code quality a
 <div class="ulist">
 <ul>
 <li>
-<p>Wrote tests for undo/redo feature including various test utility classes for team to use for testing (Pull requests <a href="https://github.com/CS2103-AY1819S1-T09-3/main/pull/105">#105</a>, <a href="https://github.com/CS2103-AY1819S1-T09-3/main/pull/110">#110</a>)</p>
+<p>Wrote tests for undo/redo feature including various test utility classes to assist other team members in their testing (Pull requests <a href="https://github.com/CS2103-AY1819S1-T09-3/main/pull/105">#105</a>, <a href="https://github.com/CS2103-AY1819S1-T09-3/main/pull/110">#110</a>)</p>
 </li>
 </ul>
 </div>
@@ -133,7 +141,7 @@ In addition, Piconso is well maintained with high reliability and code quality a
 <div class="sect2">
 <h3 id="undoes-a-transformation-code-undo-code"><a class="link" href="#undoes-a-transformation-code-undo-code">Undoes a transformation : <code>undo</code></a></h3>
 <div class="paragraph">
-<p>Format: <code>undo</code> &#8594; Steps back to the previous image state (in current layer)</p>
+<p>Format: <code>undo</code> &#8594; Undoes your previous transformation, putting your image to its previous state (in current layer)</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -155,13 +163,13 @@ In addition, Piconso is well maintained with high reliability and code quality a
 <div class="paragraph">
 <p><code>apply blur 0x8</code><br>
 <code>apply contrast</code><br>
-<code>undo</code> &#8594; (undos the <code>apply contrast</code> command, image will be returned to be <code>blur 0x8</code> state)<br></p>
+<code>undo</code> &#8594; (undoes the <code>apply contrast</code> command, image will be returned to be <code>blur 0x8</code> state)<br></p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="undoes-all-transformations-code-undo-all-code"><a class="link" href="#undoes-all-transformations-code-undo-all-code">Undoes all transformations : <code>undo-all</code></a></h3>
 <div class="paragraph">
-<p>Format: <code>undo-all</code> &#8594; Undoes all transformations (reverts image to original state)</p>
+<p>Format: <code>undo-all</code> &#8594; Undoes all your transformations, reverting your image to its original state</p>
 </div>
 <div class="paragraph">
 <p>Example:</p>
@@ -176,14 +184,14 @@ In addition, Piconso is well maintained with high reliability and code quality a
 <div class="sect2">
 <h3 id="redoes-a-transformation-code-redo-code"><a class="link" href="#redoes-a-transformation-code-redo-code">Redoes a transformation : <code>redo</code></a></h3>
 <div class="paragraph">
-<p>Format: <code>redo</code> &#8594; Steps forward to the previously undone transformation</p>
+<p>Format: <code>redo</code> &#8594; Reapplies your previously undone transformation, putting your image in its next state (in current layer)</p>
 </div>
 <div class="paragraph">
 <p>Example:</p>
 </div>
 <div class="paragraph">
-<p><code>convert blur 0x8</code><br>
-<code>convert contrast</code><br>
+<p><code>apply blur 0x8</code><br>
+<code>apply contrast</code><br>
 <code>undo</code> &#8594; (undoes the <code>apply contrast</code> command, image will be at <code>blur 0x8</code> state)<br>
 <code>redo</code> &#8594; (reapplies the <code>apply contrast</code> command)<br></p>
 </div>
@@ -191,7 +199,7 @@ In addition, Piconso is well maintained with high reliability and code quality a
 <div class="sect2">
 <h3 id="redoes-all-transformations-code-redo-all-code"><a class="link" href="#redoes-all-transformations-code-redo-all-code">Redoes all transformations : <code>redo-all</code></a></h3>
 <div class="paragraph">
-<p>Format: <code>redo-all</code> &#8594; Redoes all undone transformations</p>
+<p>Format: <code>redo-all</code> &#8594; Reapplies all your undone transformations, putting your image in the state with all transformations applied</p>
 </div>
 <div class="paragraph">
 <p>Example:</p>
@@ -200,8 +208,8 @@ In addition, Piconso is well maintained with high reliability and code quality a
 <p><code>apply blur 0x8</code><br>
 <code>apply contrast</code><br>
 <code>apply rotate 90</code><br>
-<code>undo-all</code> (undoes all 3 <code>convert</code> commands, image will be at original state)<br>
-<code>redo-all</code> (reapplies all 3 <code>convert</code> commands)<br></p>
+<code>undo-all</code> (undoes all 3 <code>apply</code> commands, image will be at original state)<br>
+<code>redo-all</code> (reapplies all 3 <code>apply</code> commands)<br></p>
 </div>
 </div>
 </div>
@@ -266,7 +274,7 @@ To work with multiple layers, each <code>Layer</code> has a single <code>Preview
 <p>Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.</p>
 </div>
 <div class="paragraph">
-<p>Step 1. The user opens an image with the <code>open</code> command. The <code>Canvas</code> is initialized with a new <code>Layer</code> which initializes its own <code>PreviewImage</code> with the opened image. The <code>currentStatePointer</code> pointing to that state.</p>
+<p>Step 1. The user opens an image with the <code>open</code> command. The <code>Canvas</code> is initialized with a new <code>Layer</code> which initializes its own <code>PreviewImage</code> with the opened image. The <code>currentStatePointer</code> is pointing to that state.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -453,4 +461,4 @@ A view of the panel is shown below:</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 07:17:16 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 10:01:33 UTC</div></div></div></body></html>
