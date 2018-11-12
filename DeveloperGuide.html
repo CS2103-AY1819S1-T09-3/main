@@ -874,7 +874,7 @@ To work with multiple layers, each <code>Layer</code> has a single <code>Preview
 <p><code>PreviewImage#commit()</code> - Writes the newly transformed <code>BufferedImage</code> into the <code>cache</code> folder (purge redundant images if needed).</p>
 </li>
 <li>
-<p><code>PreviewImage#getImage()</code> - Returns the current <code>BufferedImage</code> state of the <code>previewImage</code> by reading from the <code>cache</code> folder.</p>
+<p><code>PreviewImage#getCurrentPath()</code> - Returns the current state&#8217;s <code>Path</code> in the <code>cache</code> folder for ImageMagick to use.</p>
 </li>
 <li>
 <p><code>PreviewImage#undo()</code> - Shifts the <code>currentStatePointer</code> to the left, pointing to the previous state.</p>
@@ -1051,10 +1051,10 @@ A view of the panel is shown below:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Easy to implement.</p>
+<p>Pros: Fast execution of undo/redo as only reading the cached file is needed. Easy to implement.</p>
 </li>
 <li>
-<p>Cons: Uses user&#8217;s storage space for caching.</p>
+<p>Cons: Uses the user’s storage space temporarily for caching.</p>
 </li>
 </ul>
 </div>
@@ -2871,4 +2871,4 @@ b. Require developers to download those libraries manually (this creates extra w
 </dl>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 06:21:05 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 07:03:30 UTC</div></div></div></body></html>
