@@ -93,6 +93,12 @@
 <li><a href="#opening-an-image">F.3. Opening an image</a></li>
 <li><a href="#traversing-between-image-batches">F.4. Traversing between image batches</a></li>
 <li><a href="#saving-data">F.5. Saving data</a></li>
+<li><a href="#applying-transformation-to-image">F.6. Applying transformation to image</a></li>
+<li><a href="#applying-raw-transformation-to-image">F.7. Applying raw transformation to image</a></li>
+<li><a href="#creating-new-transformation">F.8. Creating new transformation</a></li>
+<li><a href="#apply-a-customised-transformation">F.9. Apply a customised transformation</a></li>
+<li><a href="#save-a-image">F.10. Save a image</a></li>
+<li><a href="#canvases-and-layers">F.11. Canvases and Layers</a></li>
 </ul>
 </li>
 </ul>
@@ -3134,9 +3140,279 @@ Expected: Similar to previous.</p>
 </li>
 </ol>
 </div>
+</div>
+<div class="sect2">
+<h3 id="applying-transformation-to-image"><a class="link" href="#applying-transformation-to-image">F.6. Applying transformation to image</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Apply build in transformation to image</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: <code>cd</code> into a existing directory with at at least 1 image to view the first batch of images in the directory.</p>
+</li>
+<li>
+<p>Test case: <code>apply blur 0x8</code><br>
+Expected: the image in the preview panel is blurred, the <code>blur 0x8</code> is shown in the history panel</p>
+</li>
+<li>
+<p>Test case: <code>apply rotate 180</code><br>
+Expected: the image in the preview panel is rotated 180 degrees, the <code>rotate 180</code> is shown in the history panel</p>
+</li>
+<li>
+<p>Test case: <code>apply blur</code><br>
+Expected: the image in the preview panel does not change, invalid message will be shown, command usage will be shown.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="applying-raw-transformation-to-image"><a class="link" href="#applying-raw-transformation-to-image">F.7. Applying raw transformation to image</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Apply raw transformation to image</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: <code>cd</code> into a existing directory with at at least 1 image to view the first batch of images in the directory.</p>
+</li>
+<li>
+<p>Test case: <code>apply raw blur 0x8</code><br>
+Expected: the image in the preview panel does not change, invalid operation message will be shown, nothing will be shown in the history panel.</p>
+</li>
+<li>
+<p>Test case: <code>apply raw -blur 0x8</code><br>
+Expected: the image in the preview panel is blurred, the <code>[-blur 0x8]</code> is shown in the history panel.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="creating-new-transformation"><a class="link" href="#creating-new-transformation">F.8. Creating new transformation</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a new transformation</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>create blurSample blur|0x8</code><br>
+Expected: message for new transformation created will be shown.</p>
+</li>
+<li>
+<p>Test case: <code>create blurSample blur</code><br>
+Expected: invalid argument message will be shown, command usage message will be shown.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="apply-a-customised-transformation"><a class="link" href="#apply-a-customised-transformation">F.9. Apply a customised transformation</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Apply a customised transformation</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: customised transformation <code>blurSample</code> has been created already.</p>
+</li>
+<li>
+<p>Test case: <code>apply @blurSample</code><br>
+Expected: the image in the preview panel is blurred, the <code>@blurSample</code> is shown in the history panel.</p>
+</li>
+<li>
+<p>Test case: <code>apply blurSample</code><br>
+Expected: the image in the preview panel does not change, the invalid operation message will be shown.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="save-a-image"><a class="link" href="#save-a-image">F.10. Save a image</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>save a edited image</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: some transformations has been proceeded to image.</p>
+</li>
+<li>
+<p>Test case: <code>save</code><br>
+Expected: The modified image will be save to the original image.</p>
+</li>
+<li>
+<p>Test case: <code>save test.jpg</code><br>
+Expected: A new image test.jpg will be created in the current directory. The modified image will be saved to test.jpg.</p>
+</li>
+<li>
+<p>Test case: <code>save test.test</code><br>
+Expected: A invalid format message will be shown, and the image will not be saved.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
 <div class="paragraph">
 <p><em>{ more test cases &#8230;&#8203; }</em></p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="canvases-and-layers"><a class="link" href="#canvases-and-layers">F.11. Canvases and Layers</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Canvas manipulation</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Positive cases</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>canvas size 1000x1000</code><br>
+Expected: The canvas should now a size of 1000 by 1000 pixels.</p>
+</li>
+<li>
+<p>Test case: <code>canvas bgcolor none</code><br>
+Expected: The canvas should now have a transparent background. If the canvas is too small, the background shouldn&#8217;t even be visible.</p>
+</li>
+<li>
+<p>Test case: <code>canvas auto-resize on</code><br>
+Expected: The canvas should now expand to ensure that all layers are within the frame. The canvas should ignore all options provided by <code>size</code>.</p>
+</li>
+</ol>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 13:58:05 UTC</div></div></div></body></html>
+</li>
+<li>
+<p>Negative cases</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>canvas bgcolor invalid</code><br></p>
+</li>
+<li>
+<p>Test case: <code>canvas size -123x456</code><br></p>
+</li>
+<li>
+<p>Test case: <code>canvas auto-resize invalid</code><br>
+Expected: the help message demonstrating proper usage of the command should show up in the console output panel.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Layer manipulation</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Positive cases</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>layer add 1</code><br>
+Expected: The first image in the <code>Film Reel</code> is added as a new layer with on top of all existing layers.</p>
+</li>
+<li>
+<p>Test case: <code>layer remove 2</code><br>
+Expected: The second layer in the canvas should be removed if the following conditions are satisfied:</p>
+<div class="olist upperalpha">
+<ol class="upperalpha" type="A">
+<li>
+<p>The layer index provided is valid.</p>
+</li>
+<li>
+<p>The layer is not currently selected.</p>
+</li>
+<li>
+<p>The layer is not the last one in the canvas.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Test case: <code>layer select 2</code><br>
+Expected: The layer at index 2 is selected to be the current working layer, highlighted in the <code>Layers Panel</code> and be the target of all subsequent transformations if the following condition is satisfied:</p>
+<div class="olist upperalpha">
+<ol class="upperalpha" type="A">
+<li>
+<p>The layer index provided is valid.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Test case: <code>layer swap 1 2</code><br>
+Expected: The layers at index 1 and 2 should be swapped if the following conditions are satisfied:</p>
+<div class="olist upperalpha">
+<ol class="upperalpha" type="A">
+<li>
+<p>The layer indexes provided are valid.</p>
+</li>
+<li>
+<p>The layer indexes provided are distinct.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Test case: <code>layer position -400x400</code><br>
+Expected: The top-left corner of the layer will be set to the coordinate provided. If the coordinates are too far out of the canvas and <code>auto-resize</code> isn&#8217;t turned on, clipping or complete invisibility should occur. Note that negative coordinates are accepted and this is intended behavior.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Negative cases</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>layer add 11</code>.<br></p>
+</li>
+<li>
+<p>Test case: <code>layer remove 1</code> when there is only one layer left in the canvas.</p>
+</li>
+<li>
+<p>Test case: <code>layer remove 2</code> when index 2 is the layer that is selected.</p>
+</li>
+<li>
+<p>Test case: <code>layer swap -1 -3</code>.</p>
+</li>
+<li>
+<p>Test case: <code>layer swap 1 1</code>.</p>
+</li>
+<li>
+<p>Test case: <code>layer position invalid</code>.<br>
+Expected : A specific error message about the constraint violated should show up in the console output panel and no other operations should be performed.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 14:10:06 UTC</div></div></div></body></html>
