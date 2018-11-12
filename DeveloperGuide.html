@@ -92,13 +92,17 @@
 <li><a href="#changing-a-directory">F.2. Changing a directory</a></li>
 <li><a href="#opening-an-image">F.3. Opening an image</a></li>
 <li><a href="#traversing-between-image-batches">F.4. Traversing between image batches</a></li>
-<li><a href="#applying-transformation-to-image">F.5. Applying transformation to image</a></li>
-<li><a href="#applying-raw-transformation-to-image">F.6. Applying raw transformation to image</a></li>
-<li><a href="#creating-new-transformation">F.7. Creating new transformation</a></li>
-<li><a href="#apply-a-customised-transformation">F.8. Apply a customised transformation</a></li>
-<li><a href="#undoing-and-redoing-transformations">F.9. Undoing and Redoing transformations</a></li>
-<li><a href="#save-a-image">F.10. Save a image</a></li>
-<li><a href="#canvases-and-layers">F.11. Canvases and Layers</a></li>
+<li><a href="#authenticating-with-google-photos">F.5. Authenticating with Google Photos</a></li>
+<li><a href="#listing-with-google-photos">F.6. Listing with Google Photos</a></li>
+<li><a href="#downloading-with-google-photos">F.7. Downloading with Google Photos</a></li>
+<li><a href="#downloading-with-google-photos-2">F.8. Downloading with Google Photos</a></li>
+<li><a href="#applying-transformation-to-image">F.9. Applying transformation to image</a></li>
+<li><a href="#applying-raw-transformation-to-image">F.10. Applying raw transformation to image</a></li>
+<li><a href="#creating-new-transformation">F.11. Creating new transformation</a></li>
+<li><a href="#apply-a-customised-transformation">F.12. Apply a customised transformation</a></li>
+<li><a href="#undoing-and-redoing-transformations">F.13. Undoing and Redoing transformations</a></li>
+<li><a href="#save-a-image">F.14. Save a image</a></li>
+<li><a href="#canvases-and-layers">F.15. Canvases and Layers</a></li>
 </ul>
 </li>
 </ul>
@@ -3122,7 +3126,130 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="applying-transformation-to-image"><a class="link" href="#applying-transformation-to-image">F.5. Applying transformation to image</a></h3>
+<h3 id="authenticating-with-google-photos"><a class="link" href="#authenticating-with-google-photos">F.5. Authenticating with Google Photos</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Logging in and out of Google Photos</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>login</code>, then authenticate with Google<br>
+Expected: Logged in email shown in console.</p>
+</li>
+<li>
+<p>Test case: <code>login</code>, then close login window without logging in<br>
+Expected: The Piconso application should work smoothly as usual</p>
+</li>
+<li>
+<p>Test case: <code>logout</code> when an account is logged into<br>
+Expected: Feedback user is logged out</p>
+</li>
+<li>
+<p>Test case: Launch application when user has not logged out<br>
+Expected: User is automatically logged in as indicated in StatusBarFooter.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listing-with-google-photos"><a class="link" href="#listing-with-google-photos">F.6. Listing with Google Photos</a></h3>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in.</p>
+</li>
+<li>
+<p>Test case: <code>g ls</code><br>
+Expected: Lists names of all photos in account.</p>
+</li>
+<li>
+<p>Test case: <code>g ls /a</code><br>
+Expected: Lists names of all albums in account.</p>
+</li>
+<li>
+<p>Test case: <code>g ls &lt;ALBUM&gt;</code><br>
+Expected: Lists names of all images in that album.</p>
+</li>
+<li>
+<p>Test case: <code>g ls &lt;INVALID_ALBUM&gt;</code><br>
+Expected: Error message is shown stating album not found.</p>
+</li>
+<li>
+<p>You may also try the methods without &lt;&gt; to test for validity, and also for duplicate image/album names to ensure they list properly.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="downloading-with-google-photos"><a class="link" href="#downloading-with-google-photos">F.7. Downloading with Google Photos</a></h3>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in.</p>
+</li>
+<li>
+<p>Test case: <code>g dl</code><br>
+Expected: Error should be thrown requesting parameter</p>
+</li>
+<li>
+<p>Test case: <code>g dl /i&lt;IMAGE&gt;</code><br>
+Expected: Downloads the image</p>
+</li>
+<li>
+<p>Test case: <code>g dl /a&lt;ALBUM&gt; /i&lt;IMAGE&gt;</code><br>
+Expected: Downloads the image found in the specified album.</p>
+</li>
+<li>
+<p>Test case: <code>g dl /a&lt;ALBUM&gt;</code><br>
+Expected: Downloads the entire album</p>
+</li>
+<li>
+<p>You may also try the methods without &lt;&gt; to test for validity and also test with a variety of non-existent albums and image names to ensure
+the requests throw an accurate error message.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="downloading-with-google-photos-2"><a class="link" href="#downloading-with-google-photos-2">F.8. Downloading with Google Photos</a></h3>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in.</p>
+</li>
+<li>
+<p>Test case: <code>g ul</code><br>
+Expected: Error should be thrown requesting parameter</p>
+</li>
+<li>
+<p>Test case: <code>g ul &lt;IMAGE&gt;</code><br>
+Expected: Uploads the image</p>
+</li>
+<li>
+<p>Test case: <code>g ul all</code><br>
+Expected: Uploads all images in current directory to Google Photos.</p>
+</li>
+<li>
+<p>Test case: <code>g ul all</code>, in a folder with 2 images copies<br>
+Expected: Uploads only one image.</p>
+</li>
+<li>
+<p>Test case: <code>g ul all</code>, an image that already exists in Google Photos<br>
+Expected: Uploads the image as the name it already had in Google Photos.</p>
+</li>
+<li>
+<p>You may also try the methods without &lt;&gt; to test for validity and also test with a variety of image names and duplicate images to ensure
+the requests throw an accurate error message.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="applying-transformation-to-image"><a class="link" href="#applying-transformation-to-image">F.9. Applying transformation to image</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3151,7 +3278,7 @@ Expected: the image in the preview panel does not change, invalid message will b
 </div>
 </div>
 <div class="sect2">
-<h3 id="applying-raw-transformation-to-image"><a class="link" href="#applying-raw-transformation-to-image">F.6. Applying raw transformation to image</a></h3>
+<h3 id="applying-raw-transformation-to-image"><a class="link" href="#applying-raw-transformation-to-image">F.10. Applying raw transformation to image</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3176,7 +3303,7 @@ Expected: the image in the preview panel is blurred, the <code>[-blur 0x8]</code
 </div>
 </div>
 <div class="sect2">
-<h3 id="creating-new-transformation"><a class="link" href="#creating-new-transformation">F.7. Creating new transformation</a></h3>
+<h3 id="creating-new-transformation"><a class="link" href="#creating-new-transformation">F.11. Creating new transformation</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3198,7 +3325,7 @@ Expected: invalid argument message will be shown, command usage message will be 
 </div>
 </div>
 <div class="sect2">
-<h3 id="apply-a-customised-transformation"><a class="link" href="#apply-a-customised-transformation">F.8. Apply a customised transformation</a></h3>
+<h3 id="apply-a-customised-transformation"><a class="link" href="#apply-a-customised-transformation">F.12. Apply a customised transformation</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3223,7 +3350,7 @@ Expected: the image in the preview panel does not change, the invalid operation 
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-and-redoing-transformations"><a class="link" href="#undoing-and-redoing-transformations">F.9. Undoing and Redoing transformations</a></h3>
+<h3 id="undoing-and-redoing-transformations"><a class="link" href="#undoing-and-redoing-transformations">F.13. Undoing and Redoing transformations</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3316,7 +3443,7 @@ Expected: Error message to user as there are no transformations to redo.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="save-a-image"><a class="link" href="#save-a-image">F.10. Save a image</a></h3>
+<h3 id="save-a-image"><a class="link" href="#save-a-image">F.14. Save a image</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3345,7 +3472,7 @@ Expected: A invalid format message will be shown, and the image will not be save
 </div>
 </div>
 <div class="sect2">
-<h3 id="canvases-and-layers"><a class="link" href="#canvases-and-layers">F.11. Canvases and Layers</a></h3>
+<h3 id="canvases-and-layers"><a class="link" href="#canvases-and-layers">F.15. Canvases and Layers</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3485,4 +3612,4 @@ Expected : A specific error message about the constraint violated should show up
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 15:20:16 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 15:31:32 UTC</div></div></div></body></html>

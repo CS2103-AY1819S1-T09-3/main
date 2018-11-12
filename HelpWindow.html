@@ -35,8 +35,16 @@
 <li><a href="#exits-the-application-code-exit-code">4.19. Exits the application: <code>exit</code></a></li>
 </ul>
 </li>
-<li><a href="#faq">5. FAQ</a></li>
-<li><a href="#command-summary">6. Command Summary</a></li>
+<li><a href="#upcoming-features-in-v2-0">5. Upcoming Features (in v2.0)</a>
+<ul class="sectlevel2">
+<li><a href="#batch-apply">5.1. Batch Apply</a></li>
+<li><a href="#export">5.2. Export</a></li>
+<li><a href="#ruler">5.3. Ruler</a></li>
+</ul>
+</li>
+<li><a href="#faq">6. FAQ</a></li>
+<li><a href="#command-summary">7. Command Summary</a></li>
+<li><a href="#transformation-summary">8. Transformation Summary</a></li>
 </ul>
 </div>
 </div>
@@ -1191,7 +1199,73 @@ Any files with duplicate naming existing in the targeted directory <strong>WILL<
 </div>
 </div>
 <div class="sect1">
-<h2 id="faq"><a class="link" href="#faq">5. FAQ</a></h2>
+<h2 id="upcoming-features-in-v2-0"><a class="link" href="#upcoming-features-in-v2-0">5. Upcoming Features (in v2.0)</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="batch-apply"><a class="link" href="#batch-apply">5.1. Batch Apply</a></h3>
+<div class="paragraph">
+<p>Format: <code>b-apply [operation] (arg1) (arg2)</code> &#8594; Applies the transformation to all images in the current directory and saves them as a copy of themselves.</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="paragraph">
+<p>In a directory with <code>y.png</code>, <code>z.png</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>b-apply colorspace gray</code> &#8594; Transformation applied to both images in directory and they are saved as <code>y_edit.png</code> and <code>z_edit.png</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="export"><a class="link" href="#export">5.2. Export</a></h3>
+<div class="paragraph">
+<p>Format: <code>export [SYSTEM] (FOLDER_NAME)</code> &#8594; Batch exports the images into sizes suitable for the OS stated into a new folder in the current directory (if specified). This is especially useful if you&#8217;re a developer for mobile environments.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>Parameter</em> : <code>[System]</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Android: Exports to hdpi, mdpi, xhdpi, xxhdpi, xxxhdpi sizes</p>
+</li>
+<li>
+<p>iOS: Exports to 1x, 2x, 3x of original size.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>export android</code> - Saves canvas into sizes hdpi, mdpi, xhdpi, xxhdpi, xxxhdpi in currently opened directory<br></p>
+</li>
+<li>
+<p><code>export android AND</code> - Saves canvas into sizes hdpi, mdpi, xhdpi, xxhdpi, xxxhdpi into a newly created folder <code>AND</code> in currently opened directory<br></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ruler"><a class="link" href="#ruler">5.3. Ruler</a></h3>
+<div class="paragraph">
+<p>Format: <code>ruler [ON|OFF]</code> &#8594; Toggles a ruler that surrounds the canvas. This will help you in estimating the number of pixels to move when using <code>layer position</code> or resizing objects.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="faq"><a class="link" href="#faq">6. FAQ</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
@@ -1200,92 +1274,273 @@ Any files with duplicate naming existing in the targeted directory <strong>WILL<
 </div>
 </div>
 <div class="sect1">
-<h2 id="command-summary"><a class="link" href="#command-summary">6. Command Summary</a></h2>
+<h2 id="command-summary"><a class="link" href="#command-summary">7. Command Summary</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>LEGEND</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>[PARAMETER]</code> &#8594; Represents a compulsory parameter</p>
+</li>
+<li>
+<p><code>(PARAMETER)</code> &#8594; Represents an optional parameter</p>
+</li>
+<li>
+<p><code>&lt;PARAMETER&gt;</code> &#8594; Represents a parameter that must be typed with <code>&lt; &gt;</code></p>
+</li>
+<li>
+<p><code>/a, /i, @</code> &#8594; Compulsory flags that must be typed.</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Feature</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Format</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Purpose</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Help</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>help</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pulls up the help guide.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>List</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ls</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lists all images and folders in current directory</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Change directory</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cd [DIRECTORY_NAME]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Moves to the specified directory</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Open image</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>open [IMAGE_INDEX]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Opens the image associated with the index</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Show next batch</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>next</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Moves to the next batch of 10 images in the current directory.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Show previous batch</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>prev</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Moves to the previous batch of 10 images in the current directory.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Apply</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>apply [TRANSFORMATION]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Applies a transformation to the image (table below shows all available transformations)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Save</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>save [IMAGE_NAME]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Saves the image as the name provided</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Create</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>create [newName] [op1 | arg1 | arg2 |&#8230;&#8203;] [op2 | arg1 | arg2 | &#8230;&#8203;]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Creates a custom transformation</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Undo</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>undo</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Undo most recent transformations on current layer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Undo all</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>undo-all</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Undoes all transformations on current layer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Redo</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>redo</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Redo most recent transformation on current layer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Redo all</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>redo-all</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Redoes all undone transformation on current layer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Canvas auto-resize</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>canvas auto-resize [ON/OFF]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Toggles the canvas auto-resize.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Set background color</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>canvas bgcolor [COLOR]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Changes the color of the background of the canvas.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Changes the canvas size</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>canvas size (HEIGHTxWIDTH)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Changes the size of the canvas.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Add layer</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>layer add [INDEX]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adds the selected image index as a new layer.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Delete layer</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>layer delete [INDEX]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deletes the layer at the selected index.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Reposition layer</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>layer position [XPOSxYPOS]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Repositions the layer to the specified position.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Select layer</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>layer select [INDEX]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Changes to layer at the selected index.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Swap layers</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>layer swap [INDEX 1] [INDEX 2]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Swaps the order of the two layers.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Login</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>login</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Prompts you to login to Google Photos (GP).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>List images on GP</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>g ls</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lists the photos you have on GP.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>List albums on GP</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>g ls /a</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lists the albums you have on GP. Try <code>g ls &lt;ALBUM&gt;</code> to list images from a specific album</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Download image</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>g dl /i&lt;IMAGE&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allows you to download specified image from GP</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Download album</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>g dl /a&lt;ALBUM&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allows you to download an entire album from GP. Try <code>g dl /a&lt;ALBUM&gt; /i&lt;IMAGE</code> to download an image from a specific album</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Upload image</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>g ul &lt;IMAGE&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allows you to upload specified image to GP</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Upload folder</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>g ul all</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allows you to upload all images in current directory to GP</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Logout</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>logout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Logs you out of GP</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Exit</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>exit</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Exits Piconso</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="transformation-summary"><a class="link" href="#transformation-summary">8. Transformation Summary</a></h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Help</strong> : <code>help</code><br></p>
-</li>
-<li>
-<p><strong>Ls</strong> : <code>ls</code><br></p>
-</li>
-<li>
-<p><strong>Cd</strong> : <code>cd [DIRECTORY_NAME]</code><br></p>
-</li>
-<li>
-<p><strong>Open</strong> : <code>open [INDEX 1-10]</code><br>
-e.g. <code>open 1</code><br></p>
-</li>
-<li>
-<p><strong>Next</strong> : <code>next</code><br></p>
-</li>
-<li>
-<p><strong>Previous</strong> : <code>prev</code><br></p>
-</li>
-<li>
-<p><strong>Apply</strong> <code>apply [TRANSFORMATION]</code><br>
-e.g. <code>apply rotate 180</code><br></p>
-</li>
-<li>
-<p><strong>Save</strong> : <code>save [IMAGE_NAME]/[SET_NAME]</code><br>
-e.g. <code>save exampleImage.jpg</code><br></p>
-</li>
-<li>
-<p><strong>Undo</strong> : <code>undo</code><br></p>
-</li>
-<li>
-<p><strong>Undo All</strong> : <code>undo-all</code><br></p>
-</li>
-<li>
-<p><strong>Redo</strong> : <code>redo</code><br></p>
-</li>
-<li>
-<p><strong>Redo All</strong> : <code>redo-all</code><br></p>
-</li>
-<li>
-<p><strong>Canvas auto-resize</strong> : <code>canvas auto-resize [on/off]</code></p>
-</li>
-<li>
-<p><strong>Background color</strong> : <code>canvas bgcolor [color]</code></p>
-</li>
-<li>
-<p><strong>Canvas size</strong> : <code>canvas size (heightxwidth)</code></p>
-</li>
-<li>
-<p><strong>Add layer</strong> : <code>layer add [INDEX]</code></p>
-</li>
-<li>
-<p><strong>Delete layer</strong> : <code>layer delete [INDEX]</code></p>
-</li>
-<li>
-<p><strong>Reposition layer</strong> : <code>layer position [newXxnewY]</code></p>
-</li>
-<li>
-<p><strong>Select layer</strong> : <code>layer select [INDEX]</code></p>
-</li>
-<li>
-<p><strong>Swap the order of two layers</strong> : <code>layer swap [INDEX 1] [INDEX 2]</code></p>
-</li>
-<li>
-<p><strong>Login</strong> : <code>login</code><br></p>
-</li>
-<li>
-<p><strong>Google List</strong> : <code>g ls OR g ls /a OR g ls &lt;ALBUM_NAME&gt;</code><br></p>
-</li>
-<li>
-<p><strong>Download</strong> : <code>g dl /i&lt;IMAGE_NAME&gt; OR g dl /a&lt;ALBUM_NAME&gt; OR g dl /a&lt;ALBUM_NAME&gt; /i&lt;IMAGE_NAME&gt;</code><br></p>
-</li>
-<li>
-<p><strong>Upload</strong> : <code>g ul &lt;IMAGE_NAME&gt; OR g ul all</code><br></p>
-</li>
-<li>
-<p><strong>Logout</strong> : <code>logout</code><br></p>
-</li>
-<li>
-<p><strong>Exit</strong> : <code>exit</code></p>
+<p>Read Section 4.8 for more details on parameter values</p>
 </li>
 </ul>
 </div>
+<table class="tableblock frame-all grid-all" style="width: 70%;">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 32%;">
+<col style="width: 48%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Transformation</th>
+<th class="tableblock halign-left valign-top">Usage</th>
+<th class="tableblock halign-left valign-top">Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Custom</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>apply @[CUSTOM_NAME]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Applies a custom transformation you have created before hand, <code>@</code> is compulsory.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Blur</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>apply blur [RadiusxSigma]</code> Values &#8594; Radius (0-99),  Sigma (0-99)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Blurs your entire layer accordingly to the radius &amp; sigma values.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Motion Blur</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>apply motion-blur [RadiusxSigma+Angle]</code> Values &#8594; Radius (0-29),  Sigma (0-19), Angle (0-99)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Simulates a motion blur on the layer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Colorspace</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>apply colorspace [color space] Values &#8594; sRGB/RGB/GRAY/LAB/CMYK</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Changes the range of colors allowed on the image.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Contrast</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>apply contrast</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enhances the intensity differences between the lighter and darker elements</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Sigmoidal Contrast</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>apply sigmoidal-contrast [ContrastxMidpoint]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Contrasts the image without saturating highlights or shadows.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Noise</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>apply noise [Radius]</code> Values &#8594; Radius (0-29)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Increases the noise in the image</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Resize</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>apply resize [percentage]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Resizes the image</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Rotate</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>apply rotate [value], Value &#8594; (-360 to 360)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rotates an image</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Sharpen</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>apply sharpen [RadiusxSigma]</code> Values &#8594; Radius (0-29),  Sigma (0-29)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sharpens the currently opened image</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Advanced</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>apply raw [arg1] [arg2]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Directly passes arguments entered to ImageMagick.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 15:20:16 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 15:31:32 UTC</div></div></div></body></html>
