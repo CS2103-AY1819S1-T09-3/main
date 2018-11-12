@@ -431,6 +431,48 @@ As all the display image will be resized to fit the panel when displayed, the <c
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="creates-custom-transformation-sets-for-use-code-create-code"><a class="link" href="#creates-custom-transformation-sets-for-use-code-create-code">Creates custom transformation sets for use : <code>create</code></a></h3>
+<div class="paragraph">
+<p>Format: <code>create [Name_Of_operation] [op1|arg1|arg2|&#8230;&#8203;] [op2|arg1|arg2|&#8230;&#8203;]</code>: Allows you to create your own custom transformation based on the transformations specified</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>create blurAndRotate blur|0x8 rotate|90</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>To use the newly created command, add an <code>@</code> before the command used &#8594; <code>apply @blurAndRotate</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="saves-images-code-save-code"><a class="link" href="#saves-images-code-save-code">Saves images : <code>save</code></a></h3>
+<div class="paragraph">
+<p>Format: <code>save (IMAGE_NAME)</code>: Saves the transformed image. Supports file formats jpg, jpeg, png, tiff, gif</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>save modified.png</code> - Saves the image into currently opened directory as <code>modified.png</code></p>
+</li>
+<li>
+<p><code>save</code> - Overwrites the original image in the currently opened directory. (saved as its original name)</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -588,6 +630,102 @@ intermediate images have to be stored in a temp folder first.</p>
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="createapplycommand"><a class="link" href="#createapplycommand">CreateApplyCommand:</a></h4>
+<div class="paragraph">
+<p>This command allows users to create a named set of commands and store in the disk. All transformation sets will first be validated by <code>ImageMagickUtil#parseCustomiseCommand</code>.</p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the transformation should behave at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user sequentially enters the transformations he wants to store, in the form of <code>create [command name] (command|argument)</code>. For example,
+<code>create blurgray blur|0x8 colorspace|GRAY</code> will create a new command named 'blurgray'.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The specified transformations are parsed and checked by the templates stored in the app.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If any of the specified transformations have an invalid name or argument, an error will be thrown.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 3. The validated new command will be stored in the json for in the PiconsoCommands folder create when first time run the app.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CreateTransformationActivityDiagram.png" alt="CreateTransformationActivityDiagram" width="800">
+</div>
+<div class="title">Figure 3. Activity Diagram for CreateApply Command</div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 12:34:06 UTC</div></div></div></body></html>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">Design Considerations</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Combination of the transformations are commonly needed in our daily lives. When users design a serious of operations and
+plan to apply them to multiple images, or store them for future use, this feature will make the image editing more efficient
+and flexible, thus we implemented the create command.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="save-feature"><a class="link" href="#save-feature">Save feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current Implementation</a></h4>
+<div class="paragraph">
+<p>The save command saves the current preview image to the same location it was opened in the local drive,
+User enters the name of the image and the format of the name will be validated.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>isFormatValid()</code> is to validate the format of the filename user enters</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Given is an example of how to use the command</p>
+</div>
+<div class="paragraph">
+<p>Step 1. Parse the argument entered, if no argument, store to original image.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. If there is an argument, parse the image name user enters, get the name and the format of the filename.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. Check the format of the image as well as the filename entered. If the format is not supported or the filename is already in use,
+a reminder will be shown to user and the image will not be saved.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">Design Considerations</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>as there is already an option for user to save to original image, when user specifies a filename, in order to avoid
+unintended overwritten of other images, using existing filename is forbidden.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SaveCommandSequenceDiagram.png" alt="SaveCommandSequenceDiagram" width="800">
+</div>
+<div class="title">Figure 4. Sequence Diagram for Save Command</div>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 13:01:37 UTC</div></div></div></body></html>

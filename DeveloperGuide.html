@@ -1255,6 +1255,12 @@ If any of the specified transformations have an invalid name or argument, an err
 <div class="paragraph">
 <p>Step 3. The validated new command will be stored in the json for in the PiconsoCommands folder create when first time run the app.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CreateTransformationActivityDiagram.png" alt="CreateTransformationActivityDiagram" width="800">
+</div>
+<div class="title">Figure 23. Activity Diagram for CreateApply Command</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">3.5.5. Design Considerations</a></h4>
@@ -1312,7 +1318,7 @@ unintended overwritten of other images, using existing filename is forbidden.</p
 <div class="content">
 <img src="images/SaveCommandSequenceDiagram.png" alt="SaveCommandSequenceDiagram" width="800">
 </div>
-<div class="title">Figure 23. Sequence Diagram for Save Command</div>
+<div class="title">Figure 24. Sequence Diagram for Save Command</div>
 </div>
 </div>
 </div>
@@ -1397,7 +1403,7 @@ The <code>ProcessBuilder</code> is then passed to <code>ImageMagickUtils#runProc
 <div class="content">
 <img src="images/CanvasSequenceDiagram.png" alt="CanvasSequenceDiagram" width="2000">
 </div>
-<div class="title">Figure 24. Sequence Diagram for Canvas Command</div>
+<div class="title">Figure 25. Sequence Diagram for Canvas Command</div>
 </div>
 <div class="paragraph">
 <p>The above diagram illustrates the process of parsing and executing <code>canvas</code> commands.</p>
@@ -1497,7 +1503,7 @@ It is possible to have negative co-ordinates although clipping will occur unless
 <div class="content">
 <img src="images/LayerSequenceDiagram.png" alt="LayerSequenceDiagram" width="2000">
 </div>
-<div class="title">Figure 25. Sequence Diagram for Layer Command</div>
+<div class="title">Figure 26. Sequence Diagram for Layer Command</div>
 </div>
 <div class="paragraph">
 <p>The above diagram illustrates the process of parsing and executing of <code>canvas</code> commands.</p>
@@ -1595,7 +1601,7 @@ Remember that resizing and scaling is accomplished with the <code>apply resize</
 <div class="content">
 <img src="images/CanvasLayersDemo.png" alt="CanvasLayersDemo" width="2000">
 </div>
-<div class="title">Figure 26. Results of various commands in sequence. The black bounding rectangle indicates the canvas size.</div>
+<div class="title">Figure 27. Results of various commands in sequence. The black bounding rectangle indicates the canvas size.</div>
 </div>
 </div>
 </div>
@@ -1737,7 +1743,7 @@ If connection to the internet is lost at any point during authentication with Go
 <div class="content">
 <img src="images/LoginSequenceDiagram.png" alt="LoginSequenceDiagram" width="1000">
 </div>
-<div class="title">Figure 27. Sequence Diagram for LoginCommand</div>
+<div class="title">Figure 28. Sequence Diagram for LoginCommand</div>
 </div>
 </div>
 <div class="sect3">
@@ -1867,7 +1873,7 @@ For all Google-related Commands (excluding login and logout), their command word
 <div class="content">
 <img src="images/GoogleLsActivityDiagram.png" alt="GoogleLsActivityDiagram" width="1000">
 </div>
-<div class="title">Figure 28. Activity Diagram for GoogleLsCommand</div>
+<div class="title">Figure 29. Activity Diagram for GoogleLsCommand</div>
 </div>
 <div class="paragraph">
 <p>The process is similar for the other 2 variants, except images or images from a specific album are retrieved instead. All retrieved results are always stored in their respective maps.</p>
@@ -2055,7 +2061,7 @@ If the local directory contains any image with the same name as the one to downl
 <div class="content">
 <img src="images/GoogleDlSequenceDiagram.png" alt="GoogleDlSequenceDiagram" width="800">
 </div>
-<div class="title">Figure 29. Sequence Diagram for GoogleDlCommand</div>
+<div class="title">Figure 30. Sequence Diagram for GoogleDlCommand</div>
 </div>
 <div class="paragraph">
 <p>The process is similar for the other 2 variants, except images or images from a specific album are downloaded instead.</p>
@@ -2161,7 +2167,7 @@ If the local directory contains any image with the same name as the one to downl
 <div class="content">
 <img src="images/uploadExplanation.png" alt="uploadExplanation" width="800">
 </div>
-<div class="title">Figure 30. Illustrates when how Google Photos handles images</div>
+<div class="title">Figure 31. Illustrates when how Google Photos handles images</div>
 </div>
 <div class="paragraph">
 <p>Currently the only measure taken has been to state this to the user. As this issue was only discovered in the later stages of development, it does not have a workaround yet. Though a lot of refactoring will be required,  switching from Google Photos to Google Drive might be a fix for the problem.</p>
@@ -2229,7 +2235,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <div class="content">
 <img src="images/chrome_save_as_pdf.png" alt="chrome save as pdf" width="300">
 </div>
-<div class="title">Figure 31. Saving documentation as PDF files in Chrome</div>
+<div class="title">Figure 32. Saving documentation as PDF files in Chrome</div>
 </div>
 </div>
 <div class="sect2">
@@ -2912,4 +2918,4 @@ b. Require developers to download those libraries manually (this creates extra w
 </dl>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 12:34:06 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 13:01:37 UTC</div></div></div></body></html>
