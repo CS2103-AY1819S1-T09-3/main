@@ -10,101 +10,160 @@
 <h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Piconso is an CLI (Command Line Interface) Image Editor designed and developed for quick and efficient image-editing. Many image-editors are complex and difficult to pick up, having a steep learning curve and sometimes even a steep price!</p>
+<p>Piconso is an CLI-based (Command Line Interface) image editor designed and developed for quick and efficient image-editing.
+Many of today&#8217;s top image editing softwares are often overloaded with features, and for those who just want to perform and learn basic image editing, the learning curve of these softwares is way too steep.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Ui.png" alt="width:602">
+</div>
+<div class="title">Figure 1. A view of Piconso</div>
 </div>
 <div class="paragraph">
-<p>Unlike them, Piconso offers the same features, in a much more simplified manner. With Piconso, all traditional image-editing features can be performed solely through text commands, removing the hassle of working with a mouse. The interface can be used by photographers, designers, developers and more, and is very easy to pick up.</p>
+<p>Sporting a simplified CLI interface, it is easy to navigate and interact with Piconso through basic text commands. The product caters especially towards individuals familiar with CLI but at the same time, aims to be easy for new users such as photographers to pick up.</p>
+</div>
+<div class="paragraph">
+<p>The application is Java-based and well documented, with its code quality ensured via a series of manual and unit tests. The following will detail more about my contributions to the development of Piconso.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Major enhancement</strong>: Added <strong>connectivity to Google Photos</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>What it does: Allows the user to login to Google Photos, and view, upload and download images on/to Google Photos.</p>
-</li>
-<li>
-<p>Justification: This feature improves the product significantly because it provides a user cloud connectivity to Google Photos, thus the user can immediately retrieve and work on a batch of images from the cloud, and upload his completed work there as well for easy storage and sharing.</p>
-</li>
-<li>
-<p>Highlights: This enhancement uses memoization ensure undo/redo commands are almost instant. Since transformations to images take significant time (especially large images) and that users typically want to quickly inspect the before and after of their transformation, it is necessary  for undo and redo to be fast. As such, after each transformation, the resulting transformed image is cached into a temporary folder. Undo and redo operations will shift a pointer leftwards or rightwards and read the selected image, instead of reapplying or reversing a transformation process which is time consuming.</p>
-</li>
-<li>
-<p>Credit: Google Photos Java Client API and Google OAuth API have been used throughout Google related commands.The feature that allows login to Google Photos was also based upon the [<a href="https://github.com/google/java-photoslibrary/blob/master/sample/src/main/java/com/google/photos/library/sample/demos/AlbumDemo.java" class="bare">https://github.com/google/java-photoslibrary/blob/master/sample/src/main/java/com/google/photos/library/sample/demos/AlbumDemo.java</a> [example found here]]</p>
-</li>
-</ul>
+<div class="sect2">
+<h3 id="strong-main-enhancement-strong-enabled-connectivity-to-google-photos"><a class="link" href="#strong-main-enhancement-strong-enabled-connectivity-to-google-photos"><strong>Main enhancement</strong>: Enabled connectivity to Google Photos</a></h3>
+<div class="paragraph">
+<p>Google Photos has become a popular platform that is used by many to safely store and share their images. As such, allowing connectivity to Google allows users to quickly retrieve their stored images on Google Photos for offline editing without having to leave Piconso.</p>
 </div>
-</li>
-<li>
-<p><strong>Minor enhancement</strong>: Added a ls command that allows the user to list the files in their current directory. Additionally, also created and linked the UIs for FilmReel (shows images in current directory batch) and HistoryList (shows history of transformations performed on image)</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>This enhancement provides users with the ability to:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103-AY1819S1-T09-3/main/commits?author=chivent">All commits</a>] [<a href="https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&amp;search=chivent">Project Code Dashboard</a>]</p>
+<p>Traverse Google Photos and filter images by album</p>
 </li>
 <li>
-<p><strong>Other contributions</strong>:</p>
+<p>Download an image or an entire album</p>
+</li>
+<li>
+<p>Upload an image or an entire folder</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>With this feature, the user can instantly download, edit and upload his edited photo for safe storage and quick sharing to other users. This especially adds value to users such as photographers or developers, who may have a large batch of images stored on the cloud that they would like to edit.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Project management:</p>
+<p><em>Highlights</em>: This enhancement runs authentication asynchronously such that if a login request is not followed through, it leaves the main application unaffected. Additionally, the upload, download and list features all have multiple command variants for user convenience.</p>
+</li>
+<li>
+<p><em>Credit</em>: Google Photos Java Client API and Google OAuth API have been used throughout Google related commands. Certain parts of the aspect that allows login to Google Photos was also based upon the <a href="https://github.com/google/java-photoslibrary/blob/master/sample/src/main/java/com/google/photos/library/sample/demos/AlbumDemo.java">example found here</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="strong-minor-enhancements-strong"><a class="link" href="#strong-minor-enhancements-strong"><strong>Minor enhancements</strong>:</a></h3>
+<div class="paragraph">
+<p><strong>Implemented a ls command</strong></p>
+</div>
+<div class="paragraph">
+<p>Similar to <code>ls</code> used in consoles, the ls command I implemented allows users to view the content of the directory they are currently in. However, the <code>ls</code> implemented in this project only lists folders and images so as to prevent user confusion.</p>
+</div>
+<div class="paragraph">
+<p><strong>Created the initial User Interface (UI)  and logic for HistoryListPanel</strong></p>
+</div>
+<div class="paragraph">
+<p>The HistoryListPanel (as seen on the upper left of the application) provides a way for users to keep track of the transformations they have performed thus far on the layer in a visual form.
+The logic previously handled only transformations on one layer, but was later changed by the team after the implementation of layers to incorporate it.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Help manage tagging of milestone code (v1.1-v1.2)</p>
+<p><em>Highlights</em>: The list currently constantly highlights the last performed transformation, and selection on the panel has been disabled to prevent user confusion.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Created UI and logic for Film Reel</strong></p>
+</div>
+<div class="paragraph">
+<p>We came to a decision that viewing all images at once would be too confusing for the user, and thus we decided to show the image by <em>batches</em>
+such that a user can only view 10 images at once, and navigate via <code>next</code> and <code>preview</code> commands.</p>
+</div>
+<div class="paragraph">
+<p>The FilmReel (as seen on the lower left of the application) shows the currently viewed batch of images in the directory.  It provides an easy way for users to preview their images and know the image index associated with it.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="strong-code-contributed-strong"><a class="link" href="#strong-code-contributed-strong"><strong>Code contributed</strong>:</a></h3>
+<div class="paragraph">
+<p>Here are links to my contributed code: [<a href="https://github.com/CS2103-AY1819S1-T09-3/main/commits?author=chivent">All commits</a>] [<a href="https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&amp;search=chivent">Project Code Dashboard</a>]</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="strong-other-contributions-strong"><a class="link" href="#strong-other-contributions-strong"><strong>Other contributions</strong>:</a></h3>
+<div class="paragraph">
+<p>Aside from my main contributions, I have also participated in performing the following general tasks</p>
+</div>
+<div class="paragraph">
+<p><strong>Project management:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Helped manage tagging of milestone code (v1.1-v1.2)</p>
 </li>
 <li>
 <p>Participated in creating and tagging issues, and merging/reviewing PRs</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p>Enhancements to existing features:</p>
+<div class="paragraph">
+<p><strong>Enhancements to existing features:</strong></p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Updated the status footer bar UI to display current directory and google connectivity status (Pull requests <a href="https://github.com/CS2103-AY1819S1-T09-3/main/pull/80">#80</a>)</p>
+<p>Updated the StatusFooterBar UI to display the current directory and google connectivity status (Pull requests <a href="https://github.com/CS2103-AY1819S1-T09-3/main/pull/80">#80</a>)</p>
+</li>
+<li>
+<p>Renamed "AddressBook" instances from base project to relate to our application instead.</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p>Documentation:</p>
+<div class="paragraph">
+<p><strong>Documentation:</strong></p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Added detailed implementation documentation for the google login feature in Developer Guide, including diagrams: <a href="https://github.com/CS2103-AY1819S1-T09-3/main/pull/131">#131</a></p>
+<p>Added detailed implementation documentation for the Google-related features in the Developer Guide, including diagrams and images: <a href="https://github.com/CS2103-AY1819S1-T09-3/main/pull/131">#131</a>, <a href="https://github.com/CS2103-AY1819S1-T09-3/main/pull/195">#195</a></p>
 </li>
 <li>
-<p>Updated the User Guide for the google features: <a href="https://github.com/CS2103-AY1819S1-T09-3/main/pull/103">#103</a>, <a href="https://github.com/CS2103-AY1819S1-T09-3/main/pull/131">#131</a></p>
+<p>Updated the User Guide for Google-related features: <a href="https://github.com/CS2103-AY1819S1-T09-3/main/pull/103">#103</a>, <a href="https://github.com/CS2103-AY1819S1-T09-3/main/pull/131">#131</a></p>
+</li>
+<li>
+<p>Performed general updates in DeveloperGuide, AboutUs and README documents <a href="https://github.com/CS2103-AY1819S1-T09-3/main/pull/200">#200</a>, <a href="https://github.com/CS2103-AY1819S1-T09-3/main/pull/203">#203</a>.</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p>Community:</p>
+<div class="paragraph">
+<p><strong>Community:</strong></p>
+</div>
 <div class="ulist">
 <ul>
+<li>
+<p>PRs merged: <a href="https://github.com/CS2103-AY1819S1-T09-3/main/pull/108">#108</a>, <a href="https://github.com/CS2103-AY1819S1-T09-3/main/pull/110">#110</a></p>
+</li>
 <li>
 <p>PRs reviewed: <a href="https://github.com/CS2103-AY1819S1-T09-3/main/pull/44">#44</a>, <a href="https://github.com/CS2103-AY1819S1-T09-3/main/pull/37">#37</a></p>
 </li>
 </ul>
 </div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
 </div>
 </div>
 </div>
@@ -117,7 +176,8 @@
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users.</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I have contributed to the User Guide.
+They showcase my ability to write user-friendly documentation.</em></p></td>
 </tr>
 </tbody>
 </table>
@@ -283,111 +343,6 @@ Any files with duplicate naming existing in the targeted directory <strong>WILL<
 <p>Format: <code>logout</code> &#8594; Disconnects you from Google Photos</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="exits-the-application-code-exit-code"><a class="link" href="#exits-the-application-code-exit-code">Exits the application: <code>exit</code></a></h3>
-<div class="paragraph">
-<p>Format: <code>exit</code> &#8594; Closes the application</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="faq"><a class="link" href="#faq">FAQ</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
-<strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous folder.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="command-summary"><a class="link" href="#command-summary">Command Summary</a></h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Help</strong> : <code>help</code><br></p>
-</li>
-<li>
-<p><strong>Ls</strong> : <code>ls</code><br></p>
-</li>
-<li>
-<p><strong>Cd</strong> : <code>cd [DIRECTORY_NAME]</code><br></p>
-</li>
-<li>
-<p><strong>Open</strong> : <code>open [INDEX 1-10]</code><br>
-e.g. <code>open 1</code><br></p>
-</li>
-<li>
-<p><strong>Next</strong> : <code>next</code><br></p>
-</li>
-<li>
-<p><strong>Previous</strong> : <code>prev</code><br></p>
-</li>
-<li>
-<p><strong>Apply</strong> <code>apply [TRANSFORMATION]</code><br>
-e.g. <code>apply rotate 180</code><br></p>
-</li>
-<li>
-<p><strong>Save</strong> : <code>save [IMAGE_NAME]/[SET_NAME]</code><br>
-e.g. <code>save exampleImage.jpg</code><br></p>
-</li>
-<li>
-<p><strong>Undo</strong> : <code>undo</code><br></p>
-</li>
-<li>
-<p><strong>Undo All</strong> : <code>undo-all</code><br></p>
-</li>
-<li>
-<p><strong>Redo</strong> : <code>redo</code><br></p>
-</li>
-<li>
-<p><strong>Redo All</strong> : <code>redo-all</code><br></p>
-</li>
-<li>
-<p><strong>Canvas auto-resize</strong> : <code>canvas auto-resize [on/off]</code></p>
-</li>
-<li>
-<p><strong>Background color</strong> : <code>canvas bgcolor [color]</code></p>
-</li>
-<li>
-<p><strong>Canvas size</strong> : <code>canvas size (heightxwidth)</code></p>
-</li>
-<li>
-<p><strong>Add layer</strong> : <code>layer add [INDEX]</code></p>
-</li>
-<li>
-<p><strong>Delete layer</strong> : <code>layer delete [INDEX]</code></p>
-</li>
-<li>
-<p><strong>Reposition layer</strong> : <code>layer position [newXxnewY]</code></p>
-</li>
-<li>
-<p><strong>Select layer</strong> : <code>layer select [INDEX]</code></p>
-</li>
-<li>
-<p><strong>Swap the order of two layers</strong> : <code>layer swap [INDEX 1] [INDEX 2]</code></p>
-</li>
-<li>
-<p><strong>Login</strong> : <code>login</code><br></p>
-</li>
-<li>
-<p><strong>Google List</strong> : <code>g ls OR g ls /a OR g ls &lt;ALBUM_NAME&gt;</code><br></p>
-</li>
-<li>
-<p><strong>Download</strong> : <code>g dl /i&lt;IMAGE_NAME&gt; OR g dl /a&lt;ALBUM_NAME&gt; OR g dl /a&lt;ALBUM_NAME&gt; /i&lt;IMAGE_NAME&gt;</code><br></p>
-</li>
-<li>
-<p><strong>Upload</strong> : <code>g ul &lt;IMAGE_NAME&gt; OR g ul all</code><br></p>
-</li>
-<li>
-<p><strong>Logout</strong> : <code>logout</code><br></p>
-</li>
-<li>
-<p><strong>Exit</strong> : <code>exit</code></p>
-</li>
-</ul>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -399,13 +354,11 @@ e.g. <code>save exampleImage.jpg</code><br></p>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide.
+They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>[NOTE] This section is still in progress, features for Google Ls, Upload and Download are yet to be fully completed.</p>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -545,7 +498,7 @@ If connection to the internet is lost at any point during authentication with Go
 <div class="content">
 <img src="../images/LoginSequenceDiagram.png" alt="LoginSequenceDiagram" width="1000">
 </div>
-<div class="title">Figure 1. Sequence Diagram for LoginCommand</div>
+<div class="title">Figure 2. Sequence Diagram for LoginCommand</div>
 </div>
 </div>
 <div class="sect3">
@@ -675,7 +628,7 @@ For all Google-related Commands (excluding login and logout), their command word
 <div class="content">
 <img src="../images/GoogleLsActivityDiagram.png" alt="GoogleLsActivityDiagram" width="1000">
 </div>
-<div class="title">Figure 2. Activity Diagram for GoogleLsCommand</div>
+<div class="title">Figure 3. Activity Diagram for GoogleLsCommand</div>
 </div>
 <div class="paragraph">
 <p>The process is similar for the other 2 variants, except images or images from a specific album are retrieved instead. All retrieved results are always stored in their respective maps.</p>
@@ -863,7 +816,7 @@ If the local directory contains any image with the same name as the one to downl
 <div class="content">
 <img src="../images/GoogleDlSequenceDiagram.png" alt="GoogleDlSequenceDiagram" width="800">
 </div>
-<div class="title">Figure 3. Sequence Diagram for GoogleDlCommand</div>
+<div class="title">Figure 4. Sequence Diagram for GoogleDlCommand</div>
 </div>
 <div class="paragraph">
 <p>The process is similar for the other 2 variants, except images or images from a specific album are downloaded instead.</p>
@@ -969,7 +922,7 @@ If the local directory contains any image with the same name as the one to downl
 <div class="content">
 <img src="../images/uploadExplanation.png" alt="uploadExplanation" width="800">
 </div>
-<div class="title">Figure 4. Illustrates when how Google Photos handles images</div>
+<div class="title">Figure 5. Illustrates when how Google Photos handles images</div>
 </div>
 <div class="paragraph">
 <p>Currently the only measure taken has been to state this to the user. As this issue was only discovered in the later stages of development, it does not have a workaround yet. Though a lot of refactoring will be required,  switching from Google Photos to Google Drive might be a fix for the problem.</p>
@@ -977,4 +930,4 @@ If the local directory contains any image with the same name as the one to downl
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 11:40:25 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 11:41:40 UTC</div></div></div></body></html>
