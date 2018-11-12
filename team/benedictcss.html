@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">Piconso</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://cs2103-ay1819s1-t09-3.github.io/main/index.html"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Benedict - Project Portfolio</h1></div><div id="content"><div class="sect1">
 <h2 id="project-piconso"><a class="link" href="#project-piconso">PROJECT: Piconso</a></h2>
 <div class="sectionbody">
-<hr>
+
 </div>
 </div>
 <div class="sect1">
@@ -28,9 +28,6 @@ with its simple command line tools.</p>
 <p>Capability to define own custom transformation set.</p>
 </li>
 <li>
-<p>A wide range of edit-text commands that remove the need for a mouse.</p>
-</li>
-<li>
 <p>Direct access to images on Google Photos (download and upload).</p>
 </li>
 </ul>
@@ -50,79 +47,61 @@ with its simple command line tools.</p>
 </tr>
 </tbody>
 </table>
+<div class="sect2">
+<h3 id="strong-major-enhancement-strong-ability-to-traverse-into-different-directories"><a class="link" href="#strong-major-enhancement-strong-ability-to-traverse-into-different-directories"><strong>Major Enhancement</strong>&#8201;&#8212;&#8201;Ability to traverse into different directories</a></h3>
+<div class="paragraph">
+<p>As majority of users have their images stored in different folders within their system drive, we decided to implement
+a feature that would ease users' access to this images. Therefore, I have added the <code>cd</code> feature which allows
+users to access these images without the need to store all their images to a specified folder for access.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Major enhancement</strong>: added the ability to cd into different directories.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>What it does: allows the user to traverse between folders in their home system.</p>
-</li>
-<li>
-<p>Justification: This feature improves the product significantly because it allows user to access images stored in different folders in their drive.</p>
-</li>
-<li>
-<p>Highlights: This enhancement affects the model of the product as it now stores the current directory. The implementation was quite challenging as it required changes to the UserPrefs.</p>
+<p>Highlights: To improve user&#8217;s performance, I have coupled the <code>cd</code> feature with the implementation of the <code>Tab</code> function
+which would auto-completes the user input with an existing directory in the current folder.</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p><strong>Major enhancement</strong>: added the ability to select images to display on GUI.</p>
+</div>
+<div class="sect2">
+<h3 id="strong-major-enhancement-strong-ability-to-open-images-for-editing"><a class="link" href="#strong-major-enhancement-strong-ability-to-open-images-for-editing"><strong>Major Enhancement</strong>&#8201;&#8212;&#8201;Ability to open images for editing</a></h3>
+<div class="paragraph">
+<p>Before any user could start editing an image, they would first need to open the image for editing. As such, the <code>select</code>
+feature in AB4 was refactored and modified to the <code>open</code> feature we have here on Piconso. This feature allows users into
+open an image from the current batch to be displayed on the GUI before any edits are made.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: allows the user to select the images from the current batch of images.</p>
-</li>
-<li>
-<p>Justification: This feature is essential to the product because a user would have to select an image for image-editing.</p>
-</li>
-<li>
-<p>Highlights: This enhancement affects existing commands. It requires in depth analysis of design alternative to ensure maximum efficiency in retrieving images.</p>
+<p>Highlights: This enhancement requires in depth analysis of design alternative to ensure maximum efficiency in
+retrieving images from the current directory.</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p><strong>Minor enhancement</strong>: added the ability to traverse through images with next/previous command.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>What it does: allows the user to move through the list of images in the current directory.</p>
-</li>
-<li>
-<p>Justification: This feature is essential to the product because a user would need to have access to all the images in the current directory for image-editing.</p>
-</li>
-<li>
-<p>Highlights: This enhancement affects existing commands and implemented together with the select feature.</p>
-</li>
-</ul>
 </div>
-</li>
-<li>
-<p><strong>Minor enhancement</strong>: added the tab function to auto-complete directory name in current folder and iterate through the list of directories with the given user input.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Justification: This feature improves users' usability as users are no longer required to enter the full name to access the folders.</p>
-</li>
-</ul>
+<div class="sect2">
+<h3 id="strong-minor-enhancement-strong-ability-to-traverse-between-image-batches"><a class="link" href="#strong-minor-enhancement-strong-ability-to-traverse-between-image-batches"><strong>Minor Enhancement</strong>&#8201;&#8212;&#8201;Ability to traverse between image batches</a></h3>
+<div class="paragraph">
+<p>As Piconso accesses only 10 images at any one time, the <code>next</code> and <code>prev</code> feature enables the user to access other
+images within the same directory. This feature facilitate the ease of traversal of all the images within the current
+directory.</p>
 </div>
-</li>
-<li>
-<p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103-AY1819S1-T09-3/main/commits?author=benedictcss">All commits</a>] [<a href="https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&amp;search=benedictcss">Project Code Dashboard</a>]</p>
-</li>
-<li>
-<p><strong>Other contributions</strong>:</p>
+</div>
+<div class="sect2">
+<h3 id="strong-code-contributed-strong-a-href-https-github-com-cs2103-ay1819s1-t09-3-main-commits-author-benedictcss-all-commits-a-a-href-https-nus-cs2103-ay1819s1-github-io-cs2103-dashboard-undefined-search-benedictcss-project-code-dashboard-a"><a class="link" href="#strong-code-contributed-strong-a-href-https-github-com-cs2103-ay1819s1-t09-3-main-commits-author-benedictcss-all-commits-a-a-href-https-nus-cs2103-ay1819s1-github-io-cs2103-dashboard-undefined-search-benedictcss-project-code-dashboard-a"><strong>Code contributed</strong>&#8201;&#8212;&#8201;[<a href="https://github.com/CS2103-AY1819S1-T09-3/main/commits?author=benedictcss">All commits</a>] [<a href="https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&amp;search=benedictcss">Project Code Dashboard</a>]</a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="strong-other-contributions-strong"><a class="link" href="#strong-other-contributions-strong"><strong>Other contributions</strong>:</a></h3>
+<div class="paragraph">
+<p>Below are other contributions that I have made for this project.</p>
+</div>
+<div class="sect3">
+<h4 id="project-management"><a class="link" href="#project-management">Project Management:</a></h4>
 <div class="ulist">
 <ul>
 <li>
-<p>Project Management:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Managed labels, milestones and issues for issue tracker on GitHub</p>
+<p>Created labels, milestones and issues for issue tracking on GitHub</p>
 </li>
 <li>
 <p>Participated in tagging issues and merging/reviewing PRs</p>
@@ -132,9 +111,9 @@ with its simple command line tools.</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p>Documentation:</p>
+</div>
+<div class="sect3">
+<h4 id="documentation"><a class="link" href="#documentation">Documentation:</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -145,9 +124,9 @@ with its simple command line tools.</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p>Enhancement to existing features:</p>
+</div>
+<div class="sect3">
+<h4 id="enhancement-to-existing-features"><a class="link" href="#enhancement-to-existing-features">Enhancement to existing features:</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -158,9 +137,9 @@ with its simple command line tools.</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p>Community:</p>
+</div>
+<div class="sect3">
+<h4 id="community"><a class="link" href="#community">Community:</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -168,11 +147,7 @@ with its simple command line tools.</p>
 </li>
 </ul>
 </div>
-</li>
-</ul>
 </div>
-</li>
-</ul>
 </div>
 </div>
 </div>
@@ -648,4 +623,4 @@ the <code>imageList</code> with all the images within Desktop.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 13:25:41 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 13:29:19 UTC</div></div></div></body></html>
