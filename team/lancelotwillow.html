@@ -443,12 +443,12 @@ As all the images will be resized to the canvas when displayed, the resize comma
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="transmission-feature"><a class="link" href="#transmission-feature">Transmission feature</a></h3>
+<h3 id="transformations-and-imagemagick"><a class="link" href="#transformations-and-imagemagick">Transformations and ImageMagick</a></h3>
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
 <div class="paragraph">
-<p>The transmission mechanism is facilitated by <a href="https://www.imagemagick.org/script/index.php"><code>ImageMagick</code></a>, an external API Library that helps process the target image by the specified commands given.
-The transmission feature mainly consists of:</p>
+<p>The transformation mechanism is facilitated by <a href="https://www.imagemagick.org/script/index.php"><code>ImageMagick</code></a>, an external API Library that helps process the target image by the specified commands given.
+The transformation feature mainly consists of:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -464,27 +464,22 @@ The transmission feature mainly consists of:</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>The following describes main operations and processes contained in the classes above.</p>
+<p>The following describes main operations and processes contained in the classes above.
+==== ImageMagickUtil:</p>
 </div>
-</div>
-<div class="sect3">
-<h4 id="imagemagicutil"><a class="link" href="#imagemagicutil">ImageMagicUtil:</a></h4>
 <div class="paragraph">
-<p>This class is used to provide the methods touching the ImageMagic package, here are some methods related to applying transformation</p>
+<p>This class is used to provide utility methods to facilitate interoperability with ImageMagick such as:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>copyOutside()</code>&#8201;&#8212;&#8201;copy the ImageMagick zipped package outside and unzip basing on the current OS</p>
+<p><code>copyOutside()</code>&#8201;&#8212;&#8201;Copies the OS-specific payload for ImageMagick.</p>
 </li>
 <li>
-<p><code>parseArguments()</code>&#8201;&#8212;&#8201;parse the argument from the operation.</p>
+<p><code>processImage()</code>&#8201;&#8212;&#8201;Converts user input to a valid ImageMagick command.</p>
 </li>
 <li>
-<p><code>processImage()</code>&#8201;&#8212;&#8201;process the specified transformation to the image.</p>
-</li>
-<li>
-<p><code>runProcessBuilder()</code>&#8201;&#8212;&#8201;run the process builder with the arguments given</p>
+<p><code>runProcessBuilder()</code>&#8201;&#8212;&#8201;Given a valid ImageMagick command, runs the command and retrieves the output.</p>
 </li>
 </ul>
 </div>
@@ -492,19 +487,23 @@ The transmission feature mainly consists of:</p>
 <div class="sect3">
 <h4 id="applycommand"><a class="link" href="#applycommand">ApplyCommand:</a></h4>
 <div class="paragraph">
-<p>this command is exposed to the model as <code>Model#addTransformation()</code>, which is used to update the transformationSet of the currentPreviewImage.</p>
+<p>This command validates a transformation provided by the user and attempts to add it to the current <code>PreviewImage</code>'s <code>TransformationSet</code>.</p>
 </div>
 <div class="paragraph">
-<p>Given below is an example usage scenario and how the transmission should behave at each step.</p>
+<p>Given below is an example usage scenario and how the command should behave at each step.</p>
 </div>
-<div class="paragraph">
-<p>Step 1. Upon first running the app, the corresponding zip package of ImageMagick will be copied out of the jar and unzipped. A temp folder is also created.</p>
-</div>
-<div class="paragraph">
-<p>Step 2. The user opens an image with the <code>open</code> command. the method <code>model.getPreviewImage()</code> will be called to get the bufferedImage of the current preview scene.</p>
-</div>
-<div class="paragraph">
-<p>Step 3. The user enters the command <code>apply blur 0x8</code>. The entered command is parsed and the corresponding transformation is created.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Upon first running the app, the corresponding zip package containing ImageMagick will be copied out of the jar and unzipped. A temporary folder for ImageMagick output is also created.</p>
+</li>
+<li>
+<p>The user opens an image with the <code>open</code> command. The method <code>model.getPreviewImage()</code> will be called to read the appropriate <code>BufferedImage</code> from disk.</p>
+</li>
+<li>
+<p>The user enters the command (e.g. <code>apply blur 0x8</code>). The entered command is parsed and the corresponding transformation is created.</p>
+</li>
+</ol>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -513,16 +512,18 @@ The transmission feature mainly consists of:</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If the input is invalid for the command enter, the processing of the image will not be started, and a reminder of how to use the command will be given to the user.
+If an invalid transformation is provided, a reminder of how to use the command will be given to the user and no ImageMagick command will be run.
 </td>
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>Step 4. An process builder will be built inside the method <code>processImage</code> which will take the image stored,
-        the processing info stored in the transmission set, use the ImageMagic executable file to do the processing,
-        then store the modified image in the temp folder created.</p>
-</div>
+<div class="olist arabic">
+<ol class="arabic" start="4">
+<li>
+<p><code>ImageMagick#processImage</code> is a quasi-factory method that creates an instance of <code>ProcessBuilder</code> which contains the all the necessary information for ImageMagick to apply a transformation to the image.</p>
+</li>
+<li>
+<p>The same method also executes the <code>ProcessBuilder</code> and reads the output back from the temporary folder.</p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -530,28 +531,23 @@ If the input is invalid for the command enter, the processing of the image will 
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-if the arguments passed is invalid, a reminder about the limit of the passed command will be given
+While normal <code>apply</code> commands will show a useful help message after a failure, an <code>apply raw</code> command cannot provide the same granularity and will return a generic error message.
 </td>
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>Step 5. the transformation will be added to the transformation set store in the preview image in the model.</p>
+</li>
+</ol>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-An error is prompted if the transformation set gotten from the model is invalid.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Step 6. The output bufferedImage will be generated by the modified file stored in the temp folder, and the stored file will be removed.</p>
+<div class="olist arabic">
+<ol class="arabic" start="6">
+<li>
+<p>If successful, the transformation that is just executed will be added to the <code>PreviewImage</code>'s <code>TransformationSet</code>.</p>
+</li>
+<li>
+<p>The command will then request the UI to update its components, namely the <code>HistoryListPanel</code> and <code>ImagePanel</code> if any transformation was applied.</p>
+</li>
+</ol>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -562,4 +558,4 @@ An error is prompted if the transformation set gotten from the model is invalid.
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 07:03:30 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 07:06:36 UTC</div></div></div></body></html>
