@@ -1101,9 +1101,11 @@ The transformation feature mainly consists of:</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>The following describes main operations and processes contained in the classes above.
-==== ImageMagickUtil:</p>
+<p>The following describes main operations and processes contained in the classes above.</p>
 </div>
+</div>
+<div class="sect3">
+<h4 id="imagemagickutil"><a class="link" href="#imagemagickutil">3.5.2. ImageMagickUtil:</a></h4>
 <div class="paragraph">
 <p>This class is used to provide utility methods to facilitate interoperability with ImageMagick such as:</p>
 </div>
@@ -1113,6 +1115,9 @@ The transformation feature mainly consists of:</p>
 <p><code>copyOutside()</code>&#8201;&#8212;&#8201;Copies the OS-specific payload for ImageMagick.</p>
 </li>
 <li>
+<p><code>parseOperationArguments()</code>&#8201;&#8212;&#8201;Parse the build in arguments and customised operations, return a list of String passed into process builder.</p>
+</li>
+<li>
 <p><code>processImage()</code>&#8201;&#8212;&#8201;Converts user input to a valid ImageMagick command.</p>
 </li>
 <li>
@@ -1120,27 +1125,46 @@ The transformation feature mainly consists of:</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>This class is separated from the model and acts as a Util for image editing, whenever editing the image,
+a transformation will be passed to the processImage, and it will be parses basing on the command templates
+stored in the app, then a list of arguments will be parsed from the transformation and a new process builder will be created
+and call the ImageMagick executable file to handle the image processing.</p>
+</div>
+<div class="paragraph">
+<p>When starting the app, methods in ImageMagickUtil will be called to check the environment and prepare the ImageMagick package.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/TransformationActivityDiagram.png" alt="TransformationActivityDiagram" width="800">
+</div>
+<div class="title">Figure 17. Activity Diagram for Transformation feature with ImageMagick</div>
+</div>
+<div class="sect4">
+<h5 id="design-considerations-5"><a class="link" href="#design-considerations-5">Design Considerations:</a></h5>
+<div class="paragraph">
+<p>As ImageMagick is an independent portable package and it differs from system to system, in order to make sure that
+piconso will be able to work on multiple operating system, it needs to check the current system, choose the correct package
+and prepare the suitable environment for using ImageMagick.</p>
+</div>
+</div>
 </div>
 <div class="sect3">
-<h4 id="applycommand"><a class="link" href="#applycommand">3.5.2. ApplyCommand:</a></h4>
+<h4 id="applycommand"><a class="link" href="#applycommand">3.5.3. ApplyCommand:</a></h4>
 <div class="paragraph">
 <p>This command validates a transformation provided by the user and attempts to add it to the current <code>PreviewImage</code>'s <code>TransformationSet</code>.</p>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the command should behave at each step.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Upon first running the app, the corresponding zip package containing ImageMagick will be copied out of the jar and unzipped. A temporary folder for ImageMagick output is also created.</p>
-</li>
-<li>
-<p>The user opens an image with the <code>open</code> command. The method <code>model.getPreviewImage()</code> will be called to read the appropriate <code>BufferedImage</code> from disk.</p>
-</li>
-<li>
-<p>The user enters the command (e.g. <code>apply blur 0x8</code>). The entered command is parsed and the corresponding transformation is created.</p>
-</li>
-</ol>
+<div class="paragraph">
+<p>Step 1. Upon first running the app, the corresponding zip package containing ImageMagick will be copied out of the jar and unzipped. A temporary folder for ImageMagick output is also created.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The user opens an image with the <code>open</code> command. The method <code>model.getPreviewImage()</code> will be called to read the appropriate <code>BufferedImage</code> from disk.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. The user enters the command (e.g. <code>apply blur 0x8</code>). The entered command is parsed and the corresponding transformation is created.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1154,13 +1178,10 @@ If an invalid transformation is provided, a reminder of how to use the command w
 </tr>
 </table>
 </div>
-<div class="olist arabic">
-<ol class="arabic" start="4">
-<li>
-<p><code>ImageMagick#processImage</code> is a quasi-factory method that creates an instance of <code>ProcessBuilder</code> which contains the all the necessary information for ImageMagick to apply a transformation to the image.</p>
-</li>
-<li>
-<p>The same method also executes the <code>ProcessBuilder</code> and reads the output back from the temporary folder.</p>
+<div class="paragraph">
+<p>Step 4. Call <code>ImageMagick#processImage</code> which is a quasi-factory method that creates an instance of <code>ProcessBuilder</code> which contains the all the necessary information for ImageMagick to apply a transformation to the image,
+executes the <code>ProcessBuilder</code> and reads the output back from the temporary folder.</p>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1173,28 +1194,35 @@ While normal <code>apply</code> commands will show a useful help message after a
 </tr>
 </table>
 </div>
-</li>
-</ol>
+<div class="paragraph">
+<p>Step 5. If successful, the transformation that is just executed will be added to the <code>PreviewImage</code>'s <code>TransformationSet</code>.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic" start="6">
+<div class="paragraph">
+<p>Step 6. The command will then request the UI to update its components, namely the <code>HistoryListPanel</code> and <code>ImagePanel</code> if any transformation was applied.</p>
+</div>
+<div class="sect4">
+<h5 id="design-considerations-6"><a class="link" href="#design-considerations-6">Design Considerations</a></h5>
+<div class="ulist">
+<ul>
 <li>
-<p>If successful, the transformation that is just executed will be added to the <code>PreviewImage</code>'s <code>TransformationSet</code>.</p>
+<p>As the ImageMagick executable file is only able to handle command line input and requires the path of the image to modify,
+intermediate images have to be stored in a temp folder first.</p>
 </li>
 <li>
-<p>The command will then request the UI to update its components, namely the <code>HistoryListPanel</code> and <code>ImagePanel</code> if any transformation was applied.</p>
+<p>For senior users, or users who are familiar with ImageMagick, <code>apply raw</code> will provide more flexibility and enable them to do further image editting.</p>
 </li>
-</ol>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/ApplyCommandSequenceDiagram.png" alt="ApplyCommandSequenceDiagram" width="800">
 </div>
-<div class="title">Figure 17. Sequence Diagram for Apply Command</div>
+<div class="title">Figure 18. Sequence Diagram for Apply Command</div>
+</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="createapplycommand"><a class="link" href="#createapplycommand">3.5.3. CreateApplyCommand:</a></h4>
+<h4 id="createapplycommand"><a class="link" href="#createapplycommand">3.5.4. CreateApplyCommand:</a></h4>
 <div class="paragraph">
 <p>This command allows users to create a named set of commands and store in the disk. All transformation sets will first be validated by <code>ImageMagickUtil#parseCustomiseCommand</code>.</p>
 </div>
@@ -1225,15 +1253,13 @@ If any of the specified transformations have an invalid name or argument, an err
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.5.4. Design Considerations</a></h4>
+<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">3.5.5. Design Considerations</a></h4>
 <div class="ulist">
 <ul>
 <li>
-<p>As the ImageMagick executable file is only able to handle command line input and requires the path of the image to modify,
-intermediate images have to be stored in a temp folder first.</p>
-</li>
-<li>
-<p>Combination of the transformations are commonly needed in our daily lives, thus we implemented the create command.</p>
+<p>Combination of the transformations are commonly needed in our daily lives. When users design a serious of operations and
+plan to apply them to multiple images, or store them for future use, this feature will make the image editing more efficient
+and flexible, thus we implemented the create command.</p>
 </li>
 </ul>
 </div>
@@ -1258,16 +1284,31 @@ User enters the name of the image and the format of the name will be validated.<
 <p>Given is an example of how to use the command</p>
 </div>
 <div class="paragraph">
-<p>Step 1. parse the image name user enters, get the name and the format of the filename.</p>
+<p>Step 1. Parse the argument entered, if no argument, store to original image.</p>
 </div>
 <div class="paragraph">
-<p>Step 2. check the format of the image, if the format is not supported, error will be thrown</p>
+<p>Step 2. If there is an argument, parse the image name user enters, get the name and the format of the filename.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. Check the format of the image as well as the filename entered. If the format is not supported or the filename is already in use,
+a reminder will be shown to user and the image will not be saved.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-8"><a class="link" href="#design-considerations-8">3.6.2. Design Considerations</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>as there is already an option for user to save to original image, when user specifies a filename, in order to avoid
+unintended overwritten of other images, using existing filename is forbidden.</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/SaveCommandSequenceDiagram.png" alt="SaveCommandSequenceDiagram" width="800">
 </div>
-<div class="title">Figure 18. Sequence Diagram for Save Command</div>
+<div class="title">Figure 19. Sequence Diagram for Save Command</div>
 </div>
 </div>
 </div>
@@ -1352,7 +1393,7 @@ The <code>ProcessBuilder</code> is then passed to <code>ImageMagickUtils#runProc
 <div class="content">
 <img src="images/CanvasSequenceDiagram.png" alt="CanvasSequenceDiagram" width="2000">
 </div>
-<div class="title">Figure 19. Sequence Diagram for Canvas Command</div>
+<div class="title">Figure 20. Sequence Diagram for Canvas Command</div>
 </div>
 <div class="paragraph">
 <p>The above diagram illustrates the process of parsing and executing <code>canvas</code> commands.</p>
@@ -1372,7 +1413,7 @@ The <code>ProcessBuilder</code> is then passed to <code>ImageMagickUtils#runProc
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.2.2. Design considerations</a></h4>
+<h4 id="design-considerations-9"><a class="link" href="#design-considerations-9">4.2.2. Design considerations</a></h4>
 <div class="paragraph">
 <p><strong>Manipulation of the <code>ProcessBuilder</code></strong></p>
 </div>
@@ -1452,7 +1493,7 @@ It is possible to have negative co-ordinates although clipping will occur unless
 <div class="content">
 <img src="images/LayerSequenceDiagram.png" alt="LayerSequenceDiagram" width="2000">
 </div>
-<div class="title">Figure 20. Sequence Diagram for Layer Command</div>
+<div class="title">Figure 21. Sequence Diagram for Layer Command</div>
 </div>
 <div class="paragraph">
 <p>The above diagram illustrates the process of parsing and executing of <code>canvas</code> commands.</p>
@@ -1472,7 +1513,7 @@ It is possible to have negative co-ordinates although clipping will occur unless
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">4.3.2. Design Considerations</a></h4>
+<h4 id="design-considerations-10"><a class="link" href="#design-considerations-10">4.3.2. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Further manipulation of the <code>ProcessBuilder</code></strong></p>
 </div>
@@ -1550,7 +1591,7 @@ Remember that resizing and scaling is accomplished with the <code>apply resize</
 <div class="content">
 <img src="images/CanvasLayersDemo.png" alt="CanvasLayersDemo" width="2000">
 </div>
-<div class="title">Figure 21. Results of various commands in sequence. The black bounding rectangle indicates the canvas size.</div>
+<div class="title">Figure 22. Results of various commands in sequence. The black bounding rectangle indicates the canvas size.</div>
 </div>
 </div>
 </div>
@@ -1692,7 +1733,7 @@ If connection to the internet is lost at any point during authentication with Go
 <div class="content">
 <img src="images/LoginSequenceDiagram.png" alt="LoginSequenceDiagram" width="1000">
 </div>
-<div class="title">Figure 22. Sequence Diagram for LoginCommand</div>
+<div class="title">Figure 23. Sequence Diagram for LoginCommand</div>
 </div>
 </div>
 <div class="sect3">
@@ -1712,7 +1753,7 @@ If connection to the internet is lost at any point during authentication with Go
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-8"><a class="link" href="#design-considerations-8">5.2.4. Design Considerations</a></h4>
+<h4 id="design-considerations-11"><a class="link" href="#design-considerations-11">5.2.4. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Asynchronous Login</strong>: By default, as long as a user has not logged in after <code>login</code> command is launched, Piconso freezes and waits for user input.</p>
 </div>
@@ -1822,14 +1863,14 @@ For all Google-related Commands (excluding login and logout), their command word
 <div class="content">
 <img src="images/GoogleLsActivityDiagram.png" alt="GoogleLsActivityDiagram" width="1000">
 </div>
-<div class="title">Figure 23. Activity Diagram for GoogleLsCommand</div>
+<div class="title">Figure 24. Activity Diagram for GoogleLsCommand</div>
 </div>
 <div class="paragraph">
 <p>The process is similar for the other 2 variants, except images or images from a specific album are retrieved instead. All retrieved results are always stored in their respective maps.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-9"><a class="link" href="#design-considerations-9">5.3.3. Design Considerations</a></h4>
+<h4 id="design-considerations-12"><a class="link" href="#design-considerations-12">5.3.3. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Performance Issues</strong>: The larger the amount of pictures stored in Google Photos, the longer amount of time a <code>g ls</code> command takes.</p>
 </div>
@@ -2010,14 +2051,14 @@ If the local directory contains any image with the same name as the one to downl
 <div class="content">
 <img src="images/GoogleDlSequenceDiagram.png" alt="GoogleDlSequenceDiagram" width="800">
 </div>
-<div class="title">Figure 24. Sequence Diagram for GoogleDlCommand</div>
+<div class="title">Figure 25. Sequence Diagram for GoogleDlCommand</div>
 </div>
 <div class="paragraph">
 <p>The process is similar for the other 2 variants, except images or images from a specific album are downloaded instead.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-10"><a class="link" href="#design-considerations-10">5.4.3. Design Considerations</a></h4>
+<h4 id="design-considerations-13"><a class="link" href="#design-considerations-13">5.4.3. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Location of downloaded images</strong>:</p>
 </div>
@@ -2095,7 +2136,7 @@ If the local directory contains any image with the same name as the one to downl
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-11"><a class="link" href="#design-considerations-11">5.5.2. Design Considerations</a></h4>
+<h4 id="design-considerations-14"><a class="link" href="#design-considerations-14">5.5.2. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Google Photos does not allow duplicate photos</strong>: Illustrated in the diagram below</p>
 </div>
@@ -2116,7 +2157,7 @@ If the local directory contains any image with the same name as the one to downl
 <div class="content">
 <img src="images/uploadExplanation.png" alt="uploadExplanation" width="800">
 </div>
-<div class="title">Figure 25. Illustrates when how Google Photos handles images</div>
+<div class="title">Figure 26. Illustrates when how Google Photos handles images</div>
 </div>
 <div class="paragraph">
 <p>Currently the only measure taken has been to state this to the user. As this issue was only discovered in the later stages of development, it does not have a workaround yet. Though a lot of refactoring will be required,  switching from Google Photos to Google Drive might be a fix for the problem.</p>
@@ -2184,7 +2225,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <div class="content">
 <img src="images/chrome_save_as_pdf.png" alt="chrome save as pdf" width="300">
 </div>
-<div class="title">Figure 26. Saving documentation as PDF files in Chrome</div>
+<div class="title">Figure 27. Saving documentation as PDF files in Chrome</div>
 </div>
 </div>
 <div class="sect2">
@@ -2867,4 +2908,4 @@ b. Require developers to download those libraries manually (this creates extra w
 </dl>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 10:38:48 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 11:39:37 UTC</div></div></div></body></html>
