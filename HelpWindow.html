@@ -76,6 +76,11 @@ Even new users that are unfamiliar with CLI will be able to easily and quickly p
 </li>
 </ol>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/Ui-Clue.png" alt="Ui Clue" width="800">
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -609,7 +614,7 @@ You may repeat the transformation again or use <code>sigmodial-contrast</code> i
 <div class="ulist">
 <ul>
 <li>
-<p>Percentage (1%-300%): Percentage of resize relative to the original image.</p>
+<p>Percentage (1%-399%): Percentage of resize relative to the original image.</p>
 </li>
 </ul>
 </div>
@@ -812,6 +817,20 @@ As all the display image will be resized to fit the panel when displayed, the <c
 </div>
 <div class="sect2">
 <h3 id="canvas-operations-code-canvas-code"><a class="link" href="#canvas-operations-code-canvas-code">4.15. Canvas operations : <code>canvas</code></a></h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Canvas operations are not transfomations and unaffected by <code>undo/redo/undo-all/redo-all</code> commands!</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="sect3">
 <h4 id="changes-the-size-of-the-canvas-code-canvas-size-code"><a class="link" href="#changes-the-size-of-the-canvas-code-canvas-size-code">4.15.1. Changes the size of the canvas: <code>canvas size</code></a></h4>
 <div class="paragraph">
@@ -929,6 +948,20 @@ When <code>on</code>, the canvas expands as required to ensure that no clipping 
 </div>
 <div class="sect2">
 <h3 id="layer-operations-code-layer-code"><a class="link" href="#layer-operations-code-layer-code">4.16. Layer operations : <code>layer</code></a></h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Layer operations are not transfomations and unaffected by <code>undo/redo/undo-all/redo-all</code> commands!</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="sect3">
 <h4 id="adds-a-new-layer-code-layer-add-index-layer_name-code"><a class="link" href="#adds-a-new-layer-code-layer-add-index-layer_name-code">4.16.1. Adds a new layer: <code>layer add [INDEX] (LAYER_NAME)</code></a></h4>
 <div class="paragraph">
@@ -960,9 +993,9 @@ When <code>on</code>, the canvas expands as required to ensure that no clipping 
 </div>
 </div>
 <div class="sect3">
-<h4 id="removes-a-layer-code-layer-remove-index-code"><a class="link" href="#removes-a-layer-code-layer-remove-index-code">4.16.2. Removes a layer: <code>layer remove [INDEX]</code></a></h4>
+<h4 id="deletes-a-layer-code-layer-delete-index-code"><a class="link" href="#deletes-a-layer-code-layer-delete-index-code">4.16.2. Deletes a layer: <code>layer delete [INDEX]</code></a></h4>
 <div class="paragraph">
-<p>Format : <code>layer remove [INDEX]</code> &#8594; This command allows you to permanently removes a layer from canvas.</p>
+<p>Format : <code>layer delete [INDEX]</code> &#8594; This command allows you to permanently deletes a layer from canvas.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -1015,6 +1048,20 @@ When <code>on</code>, the canvas expands as required to ensure that no clipping 
 <h4 id="positions-a-layer-code-layer-position-position-code"><a class="link" href="#positions-a-layer-code-layer-position-position-code">4.16.5. Positions a layer: <code>layer position [POSITION]</code></a></h4>
 <div class="paragraph">
 <p>Format : <code>layer position [POSITION]</code> &#8594; This command allows you to set the x and y co-ordinates of the current layer. (0,0) is defined to be the top left of the screen.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The provided x and y co-ordinates must be between –2147483648 and 2147483647!</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -1543,4 +1590,4 @@ Any files with duplicate naming existing in the targeted directory <strong>WILL<
 </tbody>
 </table>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 16:08:25 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-16 14:47:46 UTC</div></div></div></body></html>
